@@ -10,9 +10,9 @@ import 'package:car_service/ui/views/splash_screen_view/splash_screen_controller
 
 // ignore: must_be_immutable
 class SplashScreenView extends StatelessWidget {
-  SplashScreenView({Key? key}) : super(key: key);
+  SplashScreenView({super.key});
 
-  SplashScreenController? controller = Get.put(SplashScreenController());
+  SplashScreenController controller = Get.put(SplashScreenController());
 
   @override
   Widget build(BuildContext context) {
