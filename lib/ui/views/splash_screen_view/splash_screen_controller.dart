@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 class SplashScreenController extends GetxController {
   @override
   void onInit() {
-    Future.delayed(const Duration(seconds: 2)).then((value) {
+    Future.delayed(const Duration(seconds: 5)).then((value) {
       // if (storage.getFirstLunch())
       //   {
       //      Get.off(const IntroView());
@@ -15,7 +15,7 @@ class SplashScreenController extends GetxController {
       //   Get.off(storage.isLoggedIn? const ShoppingPageView() : const LandingView(),);
       // }
       // storage.setFirstLunch(false);
-      Get.off(const LoginView());
+      Get.off(LoginView());
     });
     super.onInit();
   }

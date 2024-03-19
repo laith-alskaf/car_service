@@ -1,7 +1,6 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:car_service/core/data/repositories/hive_repositories.dart';
 import 'package:car_service/core/services/connectivity_service.dart';
-import 'package:car_service/core/services/location_services/location_services.dart';
 import 'package:car_service/app/my_app_controller.dart';
 import 'package:get/get.dart';
 
@@ -20,6 +19,7 @@ double get sizeTextBodyBig => 22.sp; //20
 double get sizeTextBody => 20.sp; //18  //menu
 
 double get defaultSizeSmall => 18.sp; //16
+double get defaultPadding => 35.w; //16
 // CartServices get cartServices => Get.find<CartServices>();
 
 // bool get isOnline =>
