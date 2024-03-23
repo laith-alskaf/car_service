@@ -3,7 +3,6 @@ import 'package:car_service/ui/views/home/billing_view/billing_view.dart';
 import 'package:car_service/ui/views/home/history_view/history_view.dart';
 import 'package:car_service/ui/views/home/parking_view/parking_view.dart';
 import 'package:car_service/ui/views/home/repair_view/repair_view.dart';
-import 'package:car_service/ui/views/login_view/login_view.dart';
 import 'package:car_service/ui/views/main_view/main_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

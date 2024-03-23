@@ -2,7 +2,6 @@ import 'package:animate_do/animate_do.dart';
 import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/core/utils/string_urtil.dart';
 import 'package:car_service/ui/shared/colors.dart';
-import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text_field.dart';

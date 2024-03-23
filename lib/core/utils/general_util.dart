@@ -1,3 +1,6 @@
+import 'package:car_service/core/enums/connectivity_status.dart';
+import 'package:car_service/core/services/location_services/location_services.dart';
+import 'package:car_service/ui/shared/utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:car_service/core/data/repositories/hive_repositories.dart';
 import 'package:car_service/core/services/connectivity_service.dart';
@@ -8,6 +11,7 @@ HiveRepository get storage => Get.find<HiveRepository>();
 ConnectivityService get connectivityService => Get.find<ConnectivityService>();
 
 MyAppController get myAppController => Get.find<MyAppController>();
+LocationService get locationService => Get.find<LocationService>();
 
 // LocationService get locationService => Get.find<LocationService>();
 double get sizeTextTitle => 30.sp; //30  // title home view
@@ -22,16 +26,16 @@ double get defaultSizeSmall => 18.sp; //16
 double get defaultPadding => 35.w; //16
 // CartServices get cartServices => Get.find<CartServices>();
 
-// bool get isOnline =>
-//     Get.find<MyAppController>().connectivityStatus == ConnectivityStatus.ONLINE;
-//
-// bool get isOffline =>
-//     Get.find<MyAppController>().connectivityStatus ==
-//         ConnectivityStatus.OFFLINE;
+bool get isOnline =>
+    Get.find<MyAppController>().connectivityStatus == ConnectivityStatus.ONLINE;
 
-// void checkConnection(Function function) {
-//   if (isOnline)
-//     function();
-//   else
-//     showNoConnectionMessage();
-// }
+bool get isOffline =>
+    Get.find<MyAppController>().connectivityStatus ==
+        ConnectivityStatus.OFFLINE;
+
+void checkConnection(Function function) {
+  if (isOnline)
+    function();
+  else
+    showNoConnectionMessage();
+}

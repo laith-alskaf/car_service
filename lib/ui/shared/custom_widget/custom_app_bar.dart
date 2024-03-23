@@ -83,7 +83,7 @@ class CustomAppBar extends StatelessWidget {
                     isTextAlign: TextAlign.center,
                     textType: TextStyleType.title,
                     fontWeight: FontWeight.bold,
-                    text: title ?? '',
+                    text: title,
                     textColor: titleColor ?? AppColors.whiteColor),
               ),
                 // iconSetting ?? false ? (0.w).pw : (66.w).pw,

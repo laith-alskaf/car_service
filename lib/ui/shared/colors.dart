@@ -6,6 +6,7 @@ class AppColors {
   static Color textColor = const Color(0xFF525253);
   static Color whiteColor = const Color.fromRGBO(252, 255, 255, 1);
   static Color grayColor = const Color(0xFF929295);
+  static Color secondGray = const Color(0xFFEEEEEE);
   static const Color blackColor = Colors.black;
   static const secondColorMain = Color(0xFF011622);
   static const Color colorBorder = Color(0xFF072A3D);
