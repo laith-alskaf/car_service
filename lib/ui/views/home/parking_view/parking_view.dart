@@ -2,7 +2,6 @@ import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
-import 'package:car_service/ui/shared/custom_widget/custom_text_field.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:car_service/ui/views/home/parking_view/map/map_view.dart';
 import 'package:car_service/ui/views/home/parking_view/parking_view_controller.dart';
@@ -19,7 +18,7 @@ class ParkingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(shrinkWrap: true, children: [
+    return ListView(children: [
       CustomAppBar(
         title: 'Parking',
         iconSetting: true,

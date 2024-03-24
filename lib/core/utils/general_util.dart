@@ -8,9 +8,11 @@ import 'package:car_service/app/my_app_controller.dart';
 import 'package:get/get.dart';
 
 HiveRepository get storage => Get.find<HiveRepository>();
+
 ConnectivityService get connectivityService => Get.find<ConnectivityService>();
 
 MyAppController get myAppController => Get.find<MyAppController>();
+
 LocationService get locationService => Get.find<LocationService>();
 
 // LocationService get locationService => Get.find<LocationService>();
@@ -23,6 +25,7 @@ double get sizeTextBodyBig => 22.sp; //20
 double get sizeTextBody => 20.sp; //18  //menu
 
 double get defaultSizeSmall => 18.sp; //16
+
 double get defaultPadding => 35.w; //16
 // CartServices get cartServices => Get.find<CartServices>();
 
@@ -31,11 +34,27 @@ bool get isOnline =>
 
 bool get isOffline =>
     Get.find<MyAppController>().connectivityStatus ==
-        ConnectivityStatus.OFFLINE;
+    ConnectivityStatus.OFFLINE;
 
 void checkConnection(Function function) {
   if (isOnline)
     function();
   else
     showNoConnectionMessage();
+}
+
+class ServiceItem {
+  final String? typeService;
+  final String? name;
+  final String? image;
+  final String? servicesAvailable;
+  final List<String>? services;
+
+  ServiceItem({
+    this.typeService,
+    this.name,
+    this.image,
+    this.servicesAvailable,
+    this.services,
+  });
 }

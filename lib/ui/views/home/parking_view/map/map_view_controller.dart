@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:car_service/core/services/base_controller.dart';
-import 'package:car_service/ui/shared/utils.dart';
 
 class MapController extends BaseController {
   MapController(this.currentLocation);
@@ -27,30 +26,24 @@ class MapController extends BaseController {
       tilt: 59.440717697143555,
       zoom: 19.151926040649414);
 
-  final Completer<GoogleMapController> _controller =
-      Completer<GoogleMapController>();
-
   List<CountryModel> countryList = [];
 
   @override
   void onInit() async {
-    // initalCameraPosition = CameraPosition(
-    //   target: LatLng(currentLocation.latitude ?? 37.43296265331129,
-    //       currentLocation.longitude ?? -122.08832357078792),
-    //   zoom: 14.4746,
-    // );
-
+    initalCameraPosition = CameraPosition(
+      target: LatLng(currentLocation.latitude ?? 37.43296265331129,
+          currentLocation.longitude ?? -122.08832357078792),
+      zoom: 14.4746,
+    );
     selectedLocation = LatLng(currentLocation.latitude ?? 37.43296265331129,
         currentLocation.longitude ?? -122.08832357078792);
-
     currentPosition = CameraPosition(
       target: LatLng(currentLocation.latitude ?? 37.42796133580664,
           currentLocation.longitude ?? -122.085749655962),
       zoom: 4,
     );
-    // selecteLocation = LatLng(currentLocation.latitude ?? 37.42796133580664,
-    //     currentLocation.longitude ?? -122.08574965596);
-
+    selecteLocation = LatLng(currentLocation.latitude ?? 37.42796133580664,
+        currentLocation.longitude ?? -122.08574965596);
     super.onInit();
   }
 

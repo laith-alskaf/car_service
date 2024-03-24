@@ -1,5 +1,6 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:car_service/core/enums/message_type.dart';
@@ -26,10 +27,10 @@ void customLoader() => BotToast.showCustomLoading(toastBuilder: (context) {
             borderRadius: BorderRadius.circular(10)),
         width: screenWidth(4),
         height: screenHeight(4),
-        // child: SpinKitCircle(
-        //   color: AppColors.mainOrangeColor,
-        //   size: screenWidth(8),
-        // ),
+        child: SpinKitCircle(
+          color: AppColors.whiteColor,
+          size: screenWidth(8),
+        ),
       );
     });
 //___________________________________________________________

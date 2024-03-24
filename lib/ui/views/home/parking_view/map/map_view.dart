@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:car_service/app/my_app_controller.dart';
 import 'package:car_service/ui/views/home/parking_view/map/map_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,20 +16,21 @@ class MapView extends StatefulWidget {
 }
 
 class MapViewState extends State<MapView> {
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
         init: MapController(widget.currentLocation),
         builder: (mapController) {
           return Scaffold(
-            body: GoogleMap(
+            body:
+            GoogleMap(
               myLocationButtonEnabled: true,
               myLocationEnabled: true,
               mapType: MapType.normal,
               initialCameraPosition: mapController.currentPosition,
               onMapCreated: (GoogleMapController controller) async {
                 mapController.controller.complete(controller);
-
                 mapController.countryList.forEach((element) {
                   mapController.addMarker(
                       position: LatLng(element.latitude ?? 37.42796133580664,
@@ -39,7 +41,6 @@ class MapViewState extends State<MapView> {
               markers: mapController.markers,
               onTap: (latlong) {
                 mapController.selecteLocation = latlong;
-
                 mapController.addMarker(
                     imageUrl: 'https://www.fluttercampus.com/img/car.png',
                     position: LatLng(latlong.latitude, latlong.longitude),
