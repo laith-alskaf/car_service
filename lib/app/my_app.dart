@@ -16,14 +16,15 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: false,
       child: GetMaterialApp(
-        defaultTransition:
-            GetPlatform.isAndroid ? Transition.fadeIn : Transition.cupertino,
+        defaultTransition: GetPlatform.isAndroid
+            ? Transition.leftToRight
+            : Transition.cupertino,
         transitionDuration: const Duration(microseconds: 300),
         translations: AppTranslation(),
         builder: BotToastInit(),
         navigatorObservers: [BotToastNavigatorObserver()],
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+        title: 'Car Services',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),

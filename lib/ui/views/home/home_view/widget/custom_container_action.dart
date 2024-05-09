@@ -25,28 +25,22 @@ class CunstomContainerAction extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(25.r)),
             // color: AppColors.secondGray
-            color: Color(0xFFD1D1D1)
-            // gradient: const LinearGradient(
-            //   colors: [
-            //     Color(0xFF414495),
-            //     Color(0xFF2E306A),
-            //     Color(0xFF474BA4),
-            //     Color(0xFF2E306A),
-            //   ],
-            //   begin: Alignment.topLeft,
-            //   end: Alignment.bottomRight,
-            // ),
+            color: const Color(0xFFD1D1D1)
             ),
         child: Row(
           children: [
             SvgPicture.asset('assets/images/home_${action.image}.svg'),
             Padding(
               padding: EdgeInsetsDirectional.only(start: 20.w),
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomText(
-                      text: action.listText![0],
-                      textType: TextStyleType.subtitle,textColor: AppColors.blackColor,fontWeight: FontWeight.bold,),
+                    text: action.listText![0],
+                    textType: TextStyleType.subtitle,
+                    textColor: AppColors.blackColor,
+                    fontWeight: FontWeight.bold,
+                  ),
                   (10.h).ph,
                   if (action.image == 'pay') ...[
                     SizedBox(
@@ -65,11 +59,11 @@ class CunstomContainerAction extends StatelessWidget {
                     (10.h).ph,
                   ],
                   CustomText(
-                    startPadding:action.image == 'time'? 100.w:0,
+                      startPadding: action.image == 'time' ? 100.w : 0,
                       text: action.image == 'pay'
                           ? action.listText![2]
                           : (action.image == 'time'
-                              ? time??'No Service'
+                              ? time ?? 'No Service'
                               : action.listText![1]),
                       textType: TextStyleType.bodyBig),
                 ],

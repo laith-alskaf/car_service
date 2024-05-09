@@ -15,7 +15,7 @@ class SplashScreenController extends GetxController {
       //   Get.off(storage.isLoggedIn? const ShoppingPageView() : const LandingView(),);
       // }
       // storage.setFirstLunch(false);
-      Get.off(LoginView());
+      Get.off(()=>LoginView());
     });
     super.onInit();
   }

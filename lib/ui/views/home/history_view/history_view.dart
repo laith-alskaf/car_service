@@ -1,22 +1,96 @@
+import 'package:car_service/core/utils/general_util.dart';
+import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
-import 'package:car_service/ui/shared/extension_sizebox.dart';
+import 'package:car_service/ui/views/home/history_view/history_view_controller.dart';
+import 'package:car_service/ui/views/home/history_view/history_widget/container_service_type.dart';
+import 'package:car_service/ui/views/home/history_view/history_widget/title_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
-// ignore: must_be_immutable
 class HistoryView extends StatelessWidget {
-  HistoryView({super.key});
-
-  // HomeViewController controller = Get.put(HomeViewController());
+  const HistoryView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ListView(shrinkWrap: true, children: [
+    HistoryViewController historyViewController =
+        Get.put(HistoryViewController());
+    return ListView(children: [
       const CustomAppBar(
+        existAppBar: true,
         title: 'History',
-        iconSetting: true,
       ),
-      (10.h).ph,
+      Padding(
+          padding:
+              EdgeInsets.only(right: 30.w, left: 30.w, bottom: 10.h, top: 20.h),
+          child: GetBuilder<HistoryViewController>(builder: (s) {
+            return Container(
+              width: 516.w,
+              height: 60.h,
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.05),
+                    spreadRadius: 2,
+                    blurRadius: 3,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+                border: Border.all(color: AppColors.whiteColor),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(25.r),
+                ),
+                color: AppColors.whiteColor,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ServiceTitle(
+                    onTap: () {
+                      historyViewController.handleClickFilter(serviceIndex: 0);
+                    },
+                    onClick: historyViewController.index == 0 ? true : false,
+                    selectedContainer: (historyViewController.index == 0)
+                        ? AppColors.mainColor
+                        : Colors.transparent,
+                    title: 'Billings',
+                    titleContainer: (historyViewController.index == 0)
+                        ? AppColors.whiteColor
+                        : AppColors.colorBorder,
+                  ),
+                  ServiceTitle(
+                    onTap: () {
+                      historyViewController.handleClickFilter(serviceIndex: 1);
+                    },
+                    onClick: historyViewController.index == 1 ? true : false,
+                    selectedContainer: (historyViewController.index == 1)
+                        ? AppColors.mainColor
+                        : Colors.transparent,
+                    title: 'Parkings',
+                    titleContainer: (historyViewController.index == 1)
+                        ? AppColors.whiteColor
+                        : AppColors.colorBorder,
+                  ),
+                  ServiceTitle(
+                    onTap: () {
+                      historyViewController.handleClickFilter(serviceIndex: 2);
+                    },
+                    onClick: historyViewController.index == 2 ? true : false,
+                    selectedContainer: (historyViewController.index == 2)
+                        ? AppColors.mainColor
+                        : Colors.transparent,
+                    title: 'Repairs',
+                    titleContainer: (historyViewController.index == 2)
+                        ? AppColors.whiteColor
+                        : AppColors.colorBorder,
+                  ),
+                ],
+              ),
+            );
+          })),
+      ContainerServiceType(
+        myItems: serviceItem,
+      )
     ]);
   }
 }

@@ -1,25 +1,46 @@
+import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
-import 'package:car_service/ui/shared/extension_sizebox.dart';
-
-
+import 'package:car_service/ui/views/home/billing_view/billing_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'custom_container_payment.dart';
 
-
-// ignore: must_be_immutable
 class BillingView extends StatelessWidget {
-  BillingView({super.key});
+  const BillingView({super.key, this.existAppBar});
 
-  // HomeViewController controller = Get.put(HomeViewController());
+  final bool? existAppBar;
 
   @override
   Widget build(BuildContext context) {
-    return ListView(shrinkWrap: true, children: [
-      const CustomAppBar(
-        title: 'Billing',
-        iconSetting: true,
+    BillingViewController controller = Get.put(BillingViewController());
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: AppColors.whiteColor,
+        body: ListView(children: [
+          CustomAppBar(
+            existAppBar: existAppBar ?? false,
+            title: 'Billing',
+          ),
+          Align(
+              alignment: Alignment.topCenter,
+              child: Padding(
+                padding: EdgeInsets.only(
+                  top: 40.h,
+                ),
+                child: Column(
+                  children: List.generate(controller.cash.length, (index) {
+                    return Padding(
+                      padding: EdgeInsets.only(bottom: 30.h),
+                      child: CustomContainerPayment(
+                        indexes: index,
+                      ),
+                    );
+                  }),
+                ),
+              ))
+        ]),
       ),
-      (10.h).ph,
-    ]);
+    );
   }
 }

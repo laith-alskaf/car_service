@@ -2,7 +2,6 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 import 'package:car_service/core/enums/message_type.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_toast.dart';
@@ -39,6 +38,9 @@ void showNoConnectionMessage() {
       message: 'Please check internet connection',
       messageType: MessageType.WARNING);
 }
+
 //_____________________________________________________________
-
-
+void showConnectionMessage() {
+  CustomToast.showMessage(
+      message: 'Internet Connected', messageType: MessageType.WARNING);
+}

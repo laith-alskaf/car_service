@@ -2,11 +2,11 @@ import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
-import 'package:car_service/ui/views/home/repair_workshop_view/repair_workshop_controller.dart';
-import 'package:car_service/ui/views/home/repair_workshop_view/workshop_widget/app_bar_workshop.dart';
-import 'package:car_service/ui/views/home/repair_workshop_view/workshop_widget/coursor_widget.dart';
-import 'package:car_service/ui/views/home/repair_workshop_view/workshop_widget/custom_container_service.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:car_service/ui/views/home/oreder_details_view/order_details_view.dart';
+import 'package:car_service/ui/views/home/repair_view/repair_workshop_view/repair_workshop_controller.dart';
+import 'package:car_service/ui/views/home/repair_view/repair_workshop_view/workshop_widget/app_bar_workshop.dart';
+import 'package:car_service/ui/views/home/repair_view/repair_workshop_view/workshop_widget/coursor_widget.dart';
+import 'package:car_service/ui/views/home/repair_view/repair_workshop_view/workshop_widget/custom_container_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -26,7 +26,7 @@ class RepairWorkshopView extends StatelessWidget {
             ListView(physics: const NeverScrollableScrollPhysics(), children: [
           const CustomAppBar(
             title: 'Repair Workshop',
-            iconSetting: true,
+            existAppBar: true,
           ),
           (30.h).ph,
           Padding(
@@ -36,8 +36,11 @@ class RepairWorkshopView extends StatelessWidget {
               children: [
                 CustomCourserWidget(),
                 Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.w),
+                  padding: EdgeInsets.only(
+                    top: 20.w,
+                    right: 20.w,
+                    left: 20.w,
+                  ),
                   child: Row(
                     children: [
                       SizedBox(
@@ -66,15 +69,14 @@ class RepairWorkshopView extends StatelessWidget {
                       ),
                       const Spacer(),
                       Container(
-                          padding: EdgeInsets.all(20.w),
-                          height: 80.w,
-                          width: 80.w,
+                          padding: EdgeInsets.all(12.w),
+                          height: 50.w,
+                          width: 50.w,
                           decoration: BoxDecoration(
                               color: AppColors.grayColor.withOpacity(0.3),
                               borderRadius: BorderRadius.circular(100.r)),
                           child:
                               SvgPicture.asset('assets/images/location.svg')),
-                      (20.h).ph
                     ],
                   ),
                 ),
@@ -82,19 +84,27 @@ class RepairWorkshopView extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-            color: AppColors.backgroundColor,
-            width: 1.sw,
-            height: 0.45.sh,
-            child: ListView(
-              primary: true,
-              shrinkWrap: true,
-              children: List.generate(
-                  controller.itemService.length,
-                  (index) => CustomContainerService(
-                      service: controller.itemService[index],
-                      controller: controller,
-                      index: index)),
+          GestureDetector(
+            onTap: () {
+              Get.to(() => OrderDetailsView(
+                    item: controller.titleOrderDetails,
+                service: controller.itemService[0],
+                  ));
+            },
+            child: Container(
+              color: AppColors.backgroundColor,
+              width: 1.sw,
+              height: 0.5.sh,
+              child: ListView(
+                primary: true,
+                shrinkWrap: true,
+                children: List.generate(
+                    controller.itemService.length,
+                    (index) => CustomContainerService(
+                        service: controller.itemService[index],
+                        controller: controller,
+                        index: index)),
+              ),
             ),
           )
         ]),

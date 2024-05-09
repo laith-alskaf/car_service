@@ -1,7 +1,8 @@
+import 'package:car_service/core/enums/type_service.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
-import 'package:car_service/ui/views/home/repair_workshop_view/repair_workshop_controller.dart';
+import 'package:car_service/ui/views/home/repair_view/repair_workshop_view/repair_workshop_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -10,7 +11,7 @@ Widget tabBarWorkshop(
     {required RepairWorkshopController repairWorkshopController,
     bool? isSubView}) {
   return Container(
-      padding: EdgeInsetsDirectional.only(top: 50.h),
+      padding: EdgeInsetsDirectional.only(top: 30.h),
       width: 1.sw,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(topRight: Radius.circular(10.r)),

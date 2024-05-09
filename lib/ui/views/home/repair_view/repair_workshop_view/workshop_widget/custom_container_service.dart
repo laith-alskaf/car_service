@@ -3,11 +3,10 @@ import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
-import 'package:car_service/ui/views/home/repair_workshop_view/repair_workshop_controller.dart';
+import 'package:car_service/ui/views/home/repair_view/repair_workshop_view/repair_workshop_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
 
 class CustomContainerService extends StatelessWidget {
   final ServiceItem service;
@@ -38,51 +37,51 @@ class CustomContainerService extends StatelessWidget {
                 Padding(
                   padding:
                       EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        'assets/images/${service.image}.png',
-                        width: 120.w,
-                        height: 100.h,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CustomText(
-                            text: service.name!,
-                            textType: TextStyleType.title,
-                            fontWeight: FontWeight.bold,
-                            textColor:
-                                controller.expandContainers.value == index
-                                    ? AppColors.mainColor
-                                    : null,
-                          ),
-                          (10.h).ph,
-                          CustomText(
-                            text: service.servicesAvailable == null
-                                ? '120 Zontrike point'
-                                : '${service.servicesAvailable} Services Available',
-                            textType: TextStyleType.bodyBig,
-                            textColor: service.servicesAvailable == null
-                                ? AppColors.mainColor
-                                : null,
-                          ),
-                        ],
-                      ),
-                      const Spacer(),
-                      GestureDetector(
-                        onTap: () {
-                          controller.handleClick(index: index);
-                        },
-                        child: SizedBox(
+                  child: GestureDetector(
+                    onTap: (){
+                      controller.handleClick(index: index);
+                    },
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          'assets/images/${service.image}.png',
+                          width: 120.w,
+                          height: 100.h,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            CustomText(
+                              text: service.name!,
+                              textType: TextStyleType.title,
+                              fontWeight: FontWeight.bold,
+                              textColor:
+                                  controller.expandContainers.value == index
+                                      ? AppColors.mainColor
+                                      : null,
+                            ),
+                            (10.h).ph,
+                            CustomText(
+                              text: service.servicesAvailable == null
+                                  ? '120 Zontrike point'
+                                  : '${service.servicesAvailable} Services Available',
+                              textType: TextStyleType.bodyBig,
+                              textColor: service.servicesAvailable == null
+                                  ? AppColors.mainColor
+                                  : null,
+                            ),
+                          ],
+                        ),
+                        const Spacer(),
+                        SizedBox(
                           width: 60.w,
                           height: 60.w,
                           child: Transform.flip(
                               flipY: controller.expandContainers.value == index,
-                              child: const Icon(Icons.arrow_downward)),
+                              child:  Icon(Icons.arrow_drop_down_sharp,size:35.w ,)),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 Visibility(

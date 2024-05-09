@@ -25,7 +25,7 @@ class CustomTextFormField extends StatelessWidget {
     this.suffixOnTap,
     this.heightContainer,
     this.widthContainer,
-    this.contentPadding,
+    this.contentPadding, this.colorBorder,
   });
 
   final String hintText;
@@ -38,6 +38,7 @@ class CustomTextFormField extends StatelessWidget {
   final String? prefixIcon;
   final Color? prefixIconColor;
   final String? suffixIcon;
+  final Color? colorBorder;
   final Function()? suffixOnTap;
   final Color? suffixIconColor;
   final double? hintTextSize;
@@ -87,19 +88,19 @@ class CustomTextFormField extends StatelessWidget {
               EdgeInsets.symmetric(vertical: 15.h, horizontal: 15.w),
           border: OutlineInputBorder(
             borderSide: BorderSide(
-              color: AppColors.mainColor,
+              color:colorBorder?? AppColors.mainColor,
             ),
             borderRadius: BorderRadius.circular(15.r),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15.r),
             borderSide: BorderSide(
-              color: AppColors.mainColor,
+              color:colorBorder?? AppColors.mainColor,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: AppColors.mainColor,
+              color:colorBorder?? AppColors.mainColor,
             ),
             borderRadius: BorderRadius.circular(15.r),
           ),

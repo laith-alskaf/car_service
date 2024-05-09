@@ -1,5 +1,5 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:car_service/ui/views/home/repair_workshop_view/repair_workshop_controller.dart';
+import 'package:car_service/ui/views/home/repair_view/repair_workshop_view/repair_workshop_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -6,6 +6,7 @@ import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:car_service/ui/views/sign_up_view/sign_up_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -18,32 +19,13 @@ class SignUpVerify extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         (50.h).ph,
         ZoomIn(
           delay: const Duration(milliseconds: 400),
           duration: const Duration(milliseconds: 300),
           child: const CustomText(
-              text:
-                  'We need to verify your email address we have sent an email to',
-              textType: TextStyleType.bodyBig),
-        ),
-        ZoomIn(
-          delay: const Duration(milliseconds: 700),
-          duration: const Duration(milliseconds: 300),
-          child: CustomText(
-            text: 'eng.hashem.alhasan@gmail.com',
-            textType: TextStyleType.bodyBig,
-            textColor: AppColors.mainColor,
-          ),
-        ),
-        ZoomIn(
-          delay: const Duration(milliseconds: 1000),
-          duration: const Duration(milliseconds: 300),
-          child: const CustomText(
-              text:
-                  'Containing as 6 digit code which expire in 15 minutes please enter the code in below.',
+              text: 'Please Enter The 4 Digits Code sent to you',
               textType: TextStyleType.bodyBig),
         ),
         (25.h).ph,
@@ -55,13 +37,10 @@ class SignUpVerify extends StatelessWidget {
           obscureText: true,
           animationType: AnimationType.fade,
           keyboardType: TextInputType.number,
-          boxShadows: [
-
-          ],
+          boxShadows: const [],
           pinTheme: PinTheme(
             inactiveBorderWidth: 1.5.w,
-            fieldOuterPadding:
-            EdgeInsets.symmetric(horizontal: 5.w),
+            fieldOuterPadding: EdgeInsets.symmetric(horizontal: 5.w),
             errorBorderColor: Colors.red,
             shape: PinCodeFieldShape.box,
             activeColor: AppColors.mainColor,
@@ -70,14 +49,12 @@ class SignUpVerify extends StatelessWidget {
             inactiveColor: AppColors.mainColor,
             selectedColor: AppColors.whiteColor,
             inactiveFillColor: AppColors.whiteColor,
-            selectedFillColor:
-            AppColors.mainColor,
+            selectedFillColor: AppColors.mainColor,
             borderRadius: BorderRadius.circular(14.r),
             fieldHeight: 60.w,
             fieldWidth: 60.w,
           ),
-          animationDuration:
-          const Duration(milliseconds: 300),
+          animationDuration: const Duration(milliseconds: 300),
           enableActiveFill: true,
           onCompleted: (v) {
             "Completed";
@@ -88,15 +65,42 @@ class SignUpVerify extends StatelessWidget {
           },
         ),
         (25.h).ph,
+        GestureDetector(
+          onTap: () {},
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CustomText(
+                text: 'Resend',
+                isTextAlign: TextAlign.center,
+                textType: TextStyleType.bodyBig,
+                textColor: AppColors.mainColor,
+              ),
+              (10.w).pw,
+              SvgPicture.asset('assets/images/referach.svg'),
+            ],
+          ),
+        ),
+        (25.h).ph,
         ZoomIn(
-          delay: const Duration(milliseconds: 1300),
+          delay: const Duration(milliseconds: 400),
           duration: const Duration(milliseconds: 300),
           child: CustomButton(
             width: 1.sw,
             height: 50.h,
             buttonTypeEnum: ButtonTypeEnum.normal,
             onPressed: () {},
-            text: 'Finish',
+            text: 'Verify',
+          ),
+        ),
+        (25.h).ph,
+        ZoomIn(
+          delay: const Duration(milliseconds: 400),
+          duration: const Duration(milliseconds: 300),
+          child: CustomText(
+            text: 'You will be redirected to login page',
+            textType: TextStyleType.bodyBig,
+            textColor: AppColors.grayColor,
           ),
         ),
       ],

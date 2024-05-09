@@ -8,7 +8,8 @@ class ParkingViewController extends GetxController {
 
   @override
   void onInit() async {
-    currentLocation = await locationService.getUserCurrentLocation(hideLoader: true);
+    currentLocation =
+        await locationService.getUserCurrentLocation(hideLoader: true);
     // TODO: implement onInit
     super.onInit();
   }

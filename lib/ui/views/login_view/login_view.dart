@@ -22,103 +22,135 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: AppColors.whiteColor,
-      body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: defaultPadding),
-          child: Form(
-            key: controller.formKey1,
-            child: Column(
-              children: [
-                (0.1.sh).ph,
-                ZoomIn(
-                  delay: const Duration(milliseconds: 700),
-                  duration: const Duration(milliseconds: 300),
-                  child: SvgPicture.asset('assets/images/ic_login.svg'),
-                ),
-                (100.h).ph,
-                FadeInLeft(
-                  delay: const Duration(milliseconds: 700),
-                  duration: const Duration(milliseconds: 300),
-                  child: CustomTextFormField(
-                    hintText: 'Email',
-                    validator: (value) {
-                      if (value!.isEmpty && StringUtil.isEmail(value)) {
-                        return 'please check your Email';
-                      }
-                      return null;
-                    },
+    return SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: AppColors.whiteColor,
+        body: Padding(
+            padding: EdgeInsets.symmetric(horizontal: defaultPadding),
+            child: Form(
+              key: controller.formKey1,
+              child: Column(
+                children: [
+                  (0.1.sh).ph,
+                  ZoomIn(
+                    delay: const Duration(milliseconds: 700),
+                    duration: const Duration(milliseconds: 300),
+                    child: SvgPicture.asset(
+                      'assets/images/ic_verfiy.svg',
+                      width: 120.w,
+                    ),
                   ),
-                ),
-                (25.h).ph,
-                FadeInLeft(
-                  delay: const Duration(milliseconds: 1000),
-                  duration: const Duration(milliseconds: 300),
-                  child: CustomTextFormField(
-                    hintText: 'Password',
-                    validator: (value) {
-                      if (value!.isEmpty || StringUtil.isPassword(value)) {
-                        return 'please check your Email';
-                      }
-                      return null;
-                    },
+                  CustomText(
+                    text: 'Car Medic',
+                    textType: TextStyleType.title,
+                    fontWeight: FontWeight.bold,
+                    textColor: AppColors.textColor2,
                   ),
-                ),
-                (10.h).ph,
-                FadeInLeft(
-                  delay: const Duration(milliseconds: 1300),
-                  duration: const Duration(milliseconds: 300),
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: InkWell(
-                      onTap: () {},
-                      child: CustomText(
-                        text: 'Forget Password',
-                        textType: TextStyleType.small,
-                        textColor: AppColors.mainColor,
+                  (100.h).ph,
+                  const Align(
+                    alignment: AlignmentDirectional.centerStart,
+                    child: CustomText(
+                      text: 'Welocme !',
+                      textType: TextStyleType.title,
+                      fontWeight: FontWeight.bold,
+                      textColor: AppColors.blackColor,
+                    ),
+                  ),
+                  (15.h).ph,
+                  Align(
+                    alignment: AlignmentDirectional.centerStart,
+                    child: CustomText(
+                      text: 'Login to your account',
+                      textType: TextStyleType.bodyBig,
+                      fontWeight: FontWeight.normal,
+                      textColor: AppColors.blackColor,
+                      startPadding: 15.w,
+                    ),
+                  ),
+                  (10.h).ph,
+                  FadeInLeft(
+                    delay: const Duration(milliseconds: 700),
+                    duration: const Duration(milliseconds: 300),
+                    child: CustomTextFormField(
+                      hintText: 'Email',
+                      validator: (value) {
+                        if (value!.isEmpty && StringUtil.isEmail(value)) {
+                          return 'please check your Email';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  (25.h).ph,
+                  FadeInLeft(
+                    delay: const Duration(milliseconds: 1000),
+                    duration: const Duration(milliseconds: 300),
+                    child: CustomTextFormField(
+                      hintText: 'Password',
+                      validator: (value) {
+                        if (value!.isEmpty || StringUtil.isPassword(value)) {
+                          return 'please check your Email';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  (10.h).ph,
+                  FadeInLeft(
+                    delay: const Duration(milliseconds: 1300),
+                    duration: const Duration(milliseconds: 300),
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: InkWell(
+                        onTap: () {},
+                        child: CustomText(
+                          text: 'Forget Password',
+                          textType: TextStyleType.small,
+                          textColor: AppColors.mainColor,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                (25.h).ph,
-                ZoomIn(
-                  delay: const Duration(milliseconds: 1600),
-                  duration: const Duration(milliseconds: 300),
-                  child: CustomButton(
-                    width: 1.sw,
-                    height: 50.h,
-                    buttonTypeEnum: ButtonTypeEnum.normal,
-                    onPressed: () {
-                      Get.off(()=> MainView());
+                  (25.h).ph,
+                  ZoomIn(
+                    delay: const Duration(milliseconds: 1600),
+                    duration: const Duration(milliseconds: 300),
+                    child: CustomButton(
+                      width: 1.sw,
+                      height: 50.h,
+                      buttonTypeEnum: ButtonTypeEnum.normal,
+                      onPressed: () {
+                        Get.off(() => MainView());
+                      },
+                      text: 'Log in',
+                    ),
+                  ),
+                  const Spacer(),
+                  const CustomText(
+                      text: 'you don\'t have an account yet',
+                      textType: TextStyleType.small),
+                  (10.h).ph,
+                  InkWell(
+                    onTap: () {
+                      Get.to(
+                        () => SignUpMain(),
+                        transition: Transition.zoom,
+                        duration: const Duration(milliseconds: 350),
+                      );
                     },
-                    text: 'Log in',
+                    child: CustomText(
+                      text: 'Create One',
+                      textType: TextStyleType.bodyBig,
+                      textColor: AppColors.mainColor,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                const Spacer(),
-                const CustomText(
-                    text: 'you don\'t have an account yet',
-                    textType: TextStyleType.small),
-                (10.h).ph,
-                InkWell(
-                  onTap: () {
-                    Get.to(
-                      () => SignUpMain(),
-                      transition: Transition.zoom,
-                      duration: const Duration(milliseconds: 350),
-                    );
-                  },
-                  child: CustomText(
-                    text: 'Create One',
-                    textType: TextStyleType.bodyBig,
-                    textColor: AppColors.mainColor,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                (35.h).ph,
-              ],
-            ),
-          )),
+                  (35.h).ph,
+                ],
+              ),
+            )),
+      ),
     );
   }
 }

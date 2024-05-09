@@ -1,10 +1,11 @@
 import 'package:bot_toast/bot_toast.dart';
+import 'package:car_service/core/utils/general_util.dart';
 import 'package:location/location.dart';
 import 'package:geocoding/geocoding.dart' as geo;
 import 'package:car_service/ui/shared/utils.dart';
 
 class LocationService {
-  Location location =  Location();
+  Location location = Location();
 
   Future<LocationData?> getUserCurrentLocation({bool hideLoader = true}) async {
     LocationData _locationData;
@@ -13,13 +14,17 @@ class LocationService {
 
     if (!await isPermissionGranted()) return null;
 
-    customLoader();
+    if (myAppController.isOnline.value) {
+      customLoader();
+      _locationData = await location.getLocation();
 
-    _locationData = await location.getLocation();
+      if (hideLoader) BotToast.closeAllLoading();
 
-    if (hideLoader) BotToast.closeAllLoading();
-
-    return _locationData;
+      return _locationData;
+    }
+    else{
+      showNoConnectionMessage();
+    }
   }
 
   Future<geo.Placemark?> getAddressInfo(LocationData locationData,

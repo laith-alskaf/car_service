@@ -9,7 +9,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:fancy_bottom_navigation_plus/fancy_bottom_navigation_plus.dart';
-
 import '../home/home_view/home_view.dart';
 
 // ignore: must_be_immutable
@@ -28,9 +27,9 @@ class MainView extends StatelessWidget {
             controller: controller.pageViewController,
             children: [
               ParkingView(),
-              BillingView(),
+              const BillingView(),
               HomeView(),
-              HistoryView(),
+              const HistoryView(),
               RepairView(),
             ],
           ),
@@ -74,24 +73,23 @@ class MainView extends StatelessWidget {
                   title: "Repair"),
             ],
             onTabChangedListener: (int position) {
-              switch (position){
-                case 0 :
+              switch (position) {
+                case 0:
                   controller.animatedToPage(
                       BottomNavigationEnum.parking, position);
-                case 1 :
+                case 1:
                   controller.animatedToPage(
                       BottomNavigationEnum.billing, position);
-                  case 2 :
+                case 2:
                   controller.animatedToPage(
                       BottomNavigationEnum.home, position);
-                  case 3 :
+                case 3:
                   controller.animatedToPage(
                       BottomNavigationEnum.history, position);
-                  case 4 :
+                case 4:
                   controller.animatedToPage(
                       BottomNavigationEnum.repair, position);
               }
-
             },
           )),
     );

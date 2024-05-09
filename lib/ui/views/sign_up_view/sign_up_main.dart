@@ -1,7 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/ui/shared/colors.dart';
-import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text_field.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
@@ -20,6 +19,7 @@ class SignUpMain extends StatelessWidget {
   SignUpMain({super.key});
 
   SignUpViewController controller = Get.put(SignUpViewController());
+
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -33,15 +33,26 @@ class SignUpMain extends StatelessWidget {
               () => Column(
                 children: [
                   (0.1.sh).ph,
-                  FadeInDown(
-                    delay: const Duration(milliseconds: 400),
-                    duration: const Duration(milliseconds: 300),
-                    child: SvgPicture.asset(
-                      'assets/images/ic_${controller.imageSignUp[controller.currentIndex.value]}.svg',
-                      width: 200.w,
-                      height: 150.h,
+                  if (controller.currentIndex.value != 0)
+                    FadeInDown(
+                      delay: const Duration(milliseconds: 400),
+                      duration: const Duration(milliseconds: 300),
+                      child: SvgPicture.asset(
+                        'assets/images/ic_${controller.imageSignUp[controller.currentIndex.value]}.svg',
+                        width: 200.w,
+                        height: 150.h,
+                      ),
                     ),
-                  ),
+                  if (controller.currentIndex.value == 0)
+                    Align(
+                      alignment: AlignmentDirectional.centerStart,
+                      child: CustomText(
+                        text: 'Let’s Create New Account',
+                        textType: TextStyleType.bodyBig,
+                        textColor: AppColors.blackColor,
+                        startPadding: 15.w,
+                      ),
+                    ),
                   (20.h).ph,
                   ZoomIn(
                     delay: const Duration(milliseconds: 700),
@@ -52,9 +63,12 @@ class SignUpMain extends StatelessWidget {
                           List.generate(controller.imageSignUp.length, (index) {
                         return Obx(() {
                           return Container(
-                            margin: EdgeInsetsDirectional.only(end: 20.w),
-                            height: 15.h,
-                            width: 15.h,
+                            margin: EdgeInsetsDirectional.only(
+                                end: index + 1 == controller.imageSignUp.length
+                                    ? 0
+                                    : 20.w),
+                            height: 10.h,
+                            width: 10.h,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(100.r),
                                 color: controller.currentIndex.value == index
@@ -65,45 +79,48 @@ class SignUpMain extends StatelessWidget {
                       }),
                     ),
                   ),
-                  (100.h).ph,
+                  (20.h).ph,
                   if (controller.currentIndex.value == 0) ...[
-                    FadeInLeft(
-                      delay: const Duration(milliseconds: 700),
-                      duration: const Duration(milliseconds: 300),
-                      child: const CustomTextFormField(
-                        hintText: 'User Name',
-                      ),
+                    Row(
+                      children: [
+                        FadeInLeft(
+                          delay: const Duration(milliseconds: 700),
+                          duration: const Duration(milliseconds: 200),
+                          child: CustomTextFormField(
+                            widthContainer: 215.w,
+                            hintText: 'First Name',
+                          ),
+                        ),
+                        const Spacer(),
+                        FadeInLeft(
+                          delay: const Duration(milliseconds: 700),
+                          duration: const Duration(milliseconds: 200),
+                          child: CustomTextFormField(
+                            widthContainer: 215.w,
+                            hintText: 'Last Name',
+                          ),
+                        ),
+                      ],
                     ),
                     (25.h).ph,
                     FadeInLeft(
-                      delay: const Duration(milliseconds: 1000),
-                      duration: const Duration(milliseconds: 300),
+                      delay: const Duration(milliseconds: 900),
+                      duration: const Duration(milliseconds: 200),
                       child: const CustomTextFormField(
                         hintText: 'Email',
                       ),
                     ),
                     (25.h).ph,
                     FadeInLeft(
-                      delay: const Duration(milliseconds: 1300),
-                      duration: const Duration(milliseconds: 300),
+                      delay: const Duration(milliseconds: 1100),
+                      duration: const Duration(milliseconds: 200),
                       child: const CustomTextFormField(
                         hintText: 'Password',
                       ),
                     ),
                     (25.h).ph,
-                    ZoomIn(
-                      delay: const Duration(milliseconds: 1600),
-                      duration: const Duration(milliseconds: 300),
-                      child: CustomButton(
-                        width: 1.sw,
-                        height: 50.h,
-                        buttonTypeEnum: ButtonTypeEnum.normal,
-                        onPressed: () {
-                          controller.currentIndex.value++;
-                        },
-                        text: 'Sign Up',
-                      ),
-                    ),
+                    SignUpModel(),
+                    (25.h).ph,
                     const Spacer(),
                     const CustomText(
                         text: 'Already have account',
@@ -126,9 +143,10 @@ class SignUpMain extends StatelessWidget {
                     ),
                     (35.h).ph,
                   ],
-                  if (controller.currentIndex.value == 1) ...[SignUpModel()],
-                  if (controller.currentIndex.value == 2) ...[SignUpCheckEmail()],
-                  if (controller.currentIndex.value == 3) ...[SignUpVerify()],
+                  if (controller.currentIndex.value == 1) ...[
+                    SignUpCheckEmail()
+                  ],
+                  if (controller.currentIndex.value == 2) ...[SignUpVerify()],
                 ],
               ),
             )),

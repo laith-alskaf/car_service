@@ -4,8 +4,10 @@ import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:car_service/ui/views/sign_up_view/sign_up_view_controller.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 // ignore: must_be_immutable
@@ -23,14 +25,13 @@ class SignUpCheckEmail extends StatelessWidget {
           delay: const Duration(milliseconds: 400),
           duration: const Duration(milliseconds: 300),
           child: const CustomText(
-              text:
-                  'To confirm your email address tap the button in the email we sent to',
+              text: 'Please Check Your Inbox for The Verification Email',
               isTextAlign: TextAlign.center,
-              textType: TextStyleType.bodyBig),
+              textType: TextStyleType.title,fontWeight: FontWeight.normal,),
         ),
         (15.h).ph,
         ZoomIn(
-          delay: const Duration(milliseconds: 700),
+          delay: const Duration(milliseconds: 400),
           duration: const Duration(milliseconds: 300),
           child: CustomText(
             text: 'eng.hashem.alhasan@gmail.com',
@@ -40,7 +41,7 @@ class SignUpCheckEmail extends StatelessWidget {
         ),
         (25.h).ph,
         ZoomIn(
-          delay: const Duration(milliseconds: 1000),
+          delay: const Duration(milliseconds: 400),
           duration: const Duration(milliseconds: 300),
           child: CustomButton(
             width: 1.sw,
@@ -50,6 +51,28 @@ class SignUpCheckEmail extends StatelessWidget {
               controller.currentIndex.value++;
             },
             text: 'Next',
+          ),
+        ),
+        (25.h).ph,
+        GestureDetector(
+          onTap: () {},
+          child: const CustomText(
+              text: 'Didn\'t Receive Email ? ',
+              isTextAlign: TextAlign.center,
+              textType: TextStyleType.bodyBig,textColor: AppColors.blackColor,fontWeight: FontWeight.normal,),
+        ),
+        (25.h).ph,
+        GestureDetector(
+          onTap: () {},
+          child: Row(mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+               CustomText(
+                  text: 'Resend',
+                  isTextAlign: TextAlign.center,
+                  textType: TextStyleType.bodyBig,textColor:AppColors.mainColor ,),
+              (10.w).pw,
+              SvgPicture.asset('assets/images/referach.svg'),
+            ],
           ),
         ),
       ],

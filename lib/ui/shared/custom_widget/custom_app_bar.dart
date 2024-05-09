@@ -22,7 +22,7 @@ class CustomAppBar extends StatelessWidget {
     this.titleColor,
     this.backgroundColor,
     this.height,
-    this.existAppBarThemeColored});
+    this.existAppBarThemeColored, this.borderRadius});
 
   final String title;
   final bool? existContainer;
@@ -34,6 +34,7 @@ class CustomAppBar extends StatelessWidget {
   final double? positionedBottom;
   final double? height;
   final bool? iconSetting;
+  final bool? borderRadius;
   final Function()? onTapBack;
   final Function()? onTapList;
   final Color? titleColor;
@@ -53,9 +54,9 @@ class CustomAppBar extends StatelessWidget {
             height: 70.h,
             decoration: BoxDecoration(
                 color:backgroundColor?? AppColors.mainColor,
-                borderRadius: BorderRadius.only(
+                borderRadius:borderRadius??true? BorderRadius.only(
                     bottomLeft: Radius.circular(25.r),
-                    bottomRight: Radius.circular(25.r))),
+                    bottomRight: Radius.circular(25.r)):null),
           ),
         ),
         Padding(
@@ -78,7 +79,7 @@ class CustomAppBar extends StatelessWidget {
               ],
               Expanded(
                 child: CustomText(
-                    startPadding: iconSetting == true ? 40.w : 0,
+                    startPadding: iconSetting == true ? 60.w : 0,
                     endPadding:existAppBar==true? 50.w:0,
                     isTextAlign: TextAlign.center,
                     textType: TextStyleType.title,

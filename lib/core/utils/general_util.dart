@@ -1,4 +1,5 @@
 import 'package:car_service/core/enums/connectivity_status.dart';
+import 'package:car_service/core/enums/type_service.dart';
 import 'package:car_service/core/services/location_services/location_services.dart';
 import 'package:car_service/ui/shared/utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -33,18 +34,18 @@ bool get isOnline =>
     Get.find<MyAppController>().connectivityStatus == ConnectivityStatus.ONLINE;
 
 bool get isOffline =>
-    Get.find<MyAppController>().connectivityStatus ==
-    ConnectivityStatus.OFFLINE;
+    myAppController.connectivityStatus == ConnectivityStatus.OFFLINE;
 
 void checkConnection(Function function) {
-  if (isOnline)
+  if (isOnline) {
     function();
-  else
+  } else {
     showNoConnectionMessage();
+  }
 }
 
 class ServiceItem {
-  final String? typeService;
+  final TypeServices? typeService;
   final String? name;
   final String? image;
   final String? servicesAvailable;
@@ -58,3 +59,30 @@ class ServiceItem {
     this.services,
   });
 }
+
+List<ServiceItem> serviceItem = [
+  ServiceItem(
+    name: "service 1",
+    typeService: TypeServices.mechanic,
+  ),
+  ServiceItem(
+    name: "service 2",
+    typeService: TypeServices.electric,
+  ),
+  ServiceItem(
+    name: "service 3",
+    typeService: TypeServices.all,
+  ),
+  ServiceItem(
+    name: "service 4",
+    typeService: TypeServices.mechanic,
+  ),
+  ServiceItem(
+    name: "service 5",
+    typeService: TypeServices.electric,
+  ),
+  ServiceItem(
+    name: "service 6",
+    typeService: TypeServices.mechanic,
+  ),
+];

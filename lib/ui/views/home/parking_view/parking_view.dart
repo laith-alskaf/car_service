@@ -1,9 +1,11 @@
+import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
-import 'package:car_service/ui/views/home/parking_view/map/map_view.dart';
+import 'package:car_service/ui/views/home/map/map_view.dart';
+import 'package:car_service/ui/views/home/parking_view/park_spot/park_spot_view.dart';
 import 'package:car_service/ui/views/home/parking_view/parking_view_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +21,7 @@ class ParkingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(children: [
-      CustomAppBar(
+      const CustomAppBar(
         title: 'Parking',
         iconSetting: true,
       ),
@@ -28,7 +30,7 @@ class ParkingView extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: Column(
           children: [
-            Center(
+            const Center(
               child: CustomText(
                 text: 'Choose  a',
                 textType: TextStyleType.title,
@@ -56,10 +58,20 @@ class ParkingView extends StatelessWidget {
             ),
             (25.h).ph,
             GestureDetector(
-              onTap: () {
-                Get.to(() => MapView(
-                      currentLocation: controller.currentLocation!,
-                    ));
+              onTap: () async {
+                if (controller.currentLocation != null) {
+                  Get.to(() => MapView(
+                        currentLocation: controller.currentLocation!,
+                      ));
+                } else {
+                  controller.currentLocation = await locationService
+                      .getUserCurrentLocation(hideLoader: true);
+                  if (controller.currentLocation != null) {
+                    Get.to(() => MapView(
+                          currentLocation: controller.currentLocation!,
+                        ));
+                  }
+                }
               },
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.w),
@@ -85,7 +97,9 @@ class ParkingView extends StatelessWidget {
             ),
             (25.h).ph,
             CustomButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.to(() => ParkSpotView());
+              },
               text: 'Next',
               buttonTypeEnum: ButtonTypeEnum.big,
               height: 45.h,
