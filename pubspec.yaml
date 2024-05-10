@@ -105,6 +105,7 @@ flutter:
       fonts:
         - asset: assets/fonts/balooBhaija_Bold.ttf
         - asset: assets/fonts/balooBhaija_Regular.ttf
+
   # fonts:
   #   - family: Schyler
   #     fonts:
