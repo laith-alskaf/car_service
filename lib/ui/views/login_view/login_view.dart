@@ -8,13 +8,12 @@ import 'package:car_service/ui/shared/custom_widget/custom_text_field.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:car_service/ui/views/login_view/login_view_controller.dart';
 import 'package:car_service/ui/views/main_view/main_view.dart';
+import 'package:car_service/ui/views/password/forget_password_view/forget_password_view.dart';
 import 'package:car_service/ui/views/sign_up_view/sign_up_main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import '../password/forgetpassword_view/forgetpassword_view.dart';
-
 
 // ignore: must_be_immutable
 class LoginView extends StatelessWidget {
@@ -106,7 +105,7 @@ class LoginView extends StatelessWidget {
                       alignment: Alignment.centerRight,
                       child: InkWell(
                         onTap: () {
-                          Get.to(ForgetPasswordView());
+                          Get.to(() => const ForgetPasswordView());
                         },
                         child: CustomText(
                           text: 'Forget Password',
