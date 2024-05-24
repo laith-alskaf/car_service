@@ -34,6 +34,7 @@ class SignUpVerify extends StatelessWidget {
           appContext: context,
           length: 6,
           obscuringCharacter: '*',
+          controller: controller.verifyCodeController,
           obscureText: true,
           animationType: AnimationType.fade,
           keyboardType: TextInputType.number,
@@ -89,7 +90,9 @@ class SignUpVerify extends StatelessWidget {
             width: 1.sw,
             height: 50.h,
             buttonTypeEnum: ButtonTypeEnum.normal,
-            onPressed: () {},
+            onPressed: () {
+              controller.sendCode();
+            },
             text: 'Verify',
           ),
         ),

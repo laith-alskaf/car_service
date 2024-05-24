@@ -33,14 +33,15 @@ class CustomToast {
         duration: const Duration(seconds: 3),
         toastBuilder: (value) {
           return Container(
-            padding: const EdgeInsets.only(top: 5),
-            width: screenWidth(1.3),
+            margin: EdgeInsets.only(bottom: 10.h),
+            padding: const EdgeInsets.only(top: 5,),
+            width: screenWidth(1.5),
             decoration: BoxDecoration(
-                color: AppColors.textColor,
+                color: AppColors.whiteColor,
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   BoxShadow(
-                    color: shadowColor.withOpacity(0.5),
+                    color: shadowColor.withOpacity(0.2),
                     spreadRadius: 3,
                     blurRadius: 7,
                     offset: const Offset(0, 2),
@@ -52,16 +53,16 @@ class CustomToast {
               children: [
                 SvgPicture.asset(
                   'assets/images/$imageName.svg',
-                  width: screenWidth(6),
-                  height: screenWidth(6),
+                  width: screenWidth(8),
+                  height: screenWidth(8),
                 ),
                 15.ph,
                 CustomText(
                   text:message,
-                  textType: TextStyleType.title,
-                  fontWeight: FontWeight.bold,
+                  textType: TextStyleType.subtitle,
+                  fontWeight: FontWeight.w400,
                   startPadding: 20.w,
-                  textColor: AppColors.whiteColor,
+                  textColor: AppColors.blackColor,
                   endPadding: 20.w,
                   isTextAlign: TextAlign.center,
                 ),

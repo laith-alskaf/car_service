@@ -1,6 +1,31 @@
+import 'package:car_service/core/enums/message_type.dart';
+import 'package:car_service/core/services/base_controller.dart';
+import 'package:car_service/ui/shared/custom_widget/custom_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LoginViewController extends GetxController{
+import '../../../core/data/repositories/user_repositiory.dart';
+
+class LoginViewController extends BaseController {
   final GlobalKey<FormState> formKey1 = GlobalKey<FormState>();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  Future<void> login() async {
+    await runLoadingFutureFunction(
+        function: UserRepository()
+            .login(
+      email: emailController.text,
+      password: passwordController.text,
+    )
+            .then((value) {
+      value.fold((l) {
+        CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+      }, (r) {
+        CustomToast.showMessage(
+            message: 'لعيون هاشم واقطع', messageType: MessageType.SUCCESS);
+        // storage.setTokenInfo(r);
+      });
+    }));
+  }
 }

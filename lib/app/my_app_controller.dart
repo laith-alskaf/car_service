@@ -20,13 +20,13 @@ class MyAppController extends BaseController {
       ("Connection From MyAppController Changed To $event");
       myAppController.isOnline.value =
           connectivityStatus == ConnectivityStatus.ONLINE ? true : false;
-      if (isOffline) {
-        BotToast.closeAllLoading();
-        showNoConnectionMessage();
-      } else {
-        BotToast.closeAllLoading();
-        showConnectionMessage();
-      }
+      // if (isOffline) {
+      //   BotToast.closeAllLoading();
+      //   showNoConnectionMessage();
+      // } else {
+      //   BotToast.closeAllLoading();
+      //   showConnectionMessage();
+      // }
     });
   }
 

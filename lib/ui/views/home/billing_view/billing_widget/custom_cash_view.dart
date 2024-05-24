@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'billing_view_controller.dart';
+import '../billing_view_controller.dart';
 
 class CustomCashView extends StatelessWidget {
   const CustomCashView({super.key, required this.typeCash});
@@ -27,7 +27,7 @@ class CustomCashView extends StatelessWidget {
                 ? AppColors.redColorSyriatel
                 : AppColors.mtnYellowColor,
             title: 'Parking',
-            existAppBar: true,
+            existBack: true,
           ),
           Align(
             alignment: Alignment.topCenter,

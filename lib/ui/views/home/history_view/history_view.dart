@@ -17,8 +17,8 @@ class HistoryView extends StatelessWidget {
         Get.put(HistoryViewController());
     return ListView(children: [
       const CustomAppBar(
-        existAppBar: true,
         title: 'History',
+        iconSetting: true,
       ),
       Padding(
           padding:

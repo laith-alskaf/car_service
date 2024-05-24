@@ -3,7 +3,7 @@ import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:car_service/ui/views/home/home_view/home_view_controller.dart';
-import 'package:car_service/ui/views/home/home_view/widget/conteiner_info.dart';
+import 'package:car_service/ui/views/home/home_view/home_widget/conteiner_info.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -4,7 +4,7 @@ import 'package:car_service/ui/views/home/billing_view/billing_view_controller.d
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'custom_container_payment.dart';
+import 'billing_widget/custom_container_payment.dart';
 
 class BillingView extends StatelessWidget {
   const BillingView({super.key, this.existAppBar});
@@ -19,7 +19,8 @@ class BillingView extends StatelessWidget {
         backgroundColor: AppColors.whiteColor,
         body: ListView(children: [
           CustomAppBar(
-            existAppBar: existAppBar ?? false,
+            existBack: existAppBar,
+            iconSetting: true,
             title: 'Billing',
           ),
           Align(

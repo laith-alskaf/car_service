@@ -34,7 +34,7 @@ class SignUpCheckEmail extends StatelessWidget {
           delay: const Duration(milliseconds: 400),
           duration: const Duration(milliseconds: 300),
           child: CustomText(
-            text: 'eng.hashem.alhasan@gmail.com',
+            text: controller.emailController.text,
             textType: TextStyleType.body,
             textColor: AppColors.mainColor,
           ),
@@ -48,7 +48,7 @@ class SignUpCheckEmail extends StatelessWidget {
             height: 50.h,
             buttonTypeEnum: ButtonTypeEnum.normal,
             onPressed: () {
-              controller.currentIndex.value++;
+              controller.verify();
             },
             text: 'Next',
           ),

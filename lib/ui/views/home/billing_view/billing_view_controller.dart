@@ -1,7 +1,7 @@
 import 'package:car_service/core/enums/type_cash.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
-import 'package:car_service/ui/views/home/billing_view/custom_cash_view.dart';
+import 'package:car_service/ui/views/home/billing_view/billing_widget/custom_cash_view.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';

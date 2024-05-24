@@ -26,7 +26,7 @@ class RepairWorkshopView extends StatelessWidget {
             ListView(physics: const NeverScrollableScrollPhysics(), children: [
           const CustomAppBar(
             title: 'Repair Workshop',
-            existAppBar: true,
+            existBack: true,
           ),
           (30.h).ph,
           Padding(

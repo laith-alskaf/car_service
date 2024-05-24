@@ -15,7 +15,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import '../password/forgetpassword_view/forgetpassword_view.dart';
 
-
 // ignore: must_be_immutable
 class LoginView extends StatelessWidget {
   LoginView({super.key});
@@ -76,6 +75,7 @@ class LoginView extends StatelessWidget {
                     duration: const Duration(milliseconds: 300),
                     child: CustomTextFormField(
                       hintText: 'Email',
+                      controller: controller.emailController,
                       validator: (value) {
                         if (value!.isEmpty && StringUtil.isEmail(value)) {
                           return 'please check your Email';
@@ -90,6 +90,7 @@ class LoginView extends StatelessWidget {
                     duration: const Duration(milliseconds: 300),
                     child: CustomTextFormField(
                       hintText: 'Password',
+                      controller: controller.passwordController,
                       validator: (value) {
                         if (value!.isEmpty || StringUtil.isPassword(value)) {
                           return 'please check your Email';

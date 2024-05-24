@@ -1,4 +1,9 @@
 import 'package:bot_toast/bot_toast.dart';
+import 'package:car_service/app/my_app_controller.dart';
+import 'package:car_service/core/data/repositories/hive_repositories.dart';
+import 'package:car_service/core/services/connectivity_service.dart';
+import 'package:car_service/core/services/location_services/location_services.dart';
+import 'package:car_service/core/utils/general_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -24,6 +29,13 @@ class MyApp extends StatelessWidget {
         builder: BotToastInit(),
         navigatorObservers: [BotToastNavigatorObserver()],
         debugShowCheckedModeBanner: false,
+        onReady: () async {
+          Get.put(ConnectivityService());
+          Get.put(MyAppController());
+          Get.put(HiveRepository());
+          Get.put(LocationService());
+          await storage.init();
+        },
         title: 'Car Services',
         theme: ThemeData(
           primarySwatch: Colors.blue,

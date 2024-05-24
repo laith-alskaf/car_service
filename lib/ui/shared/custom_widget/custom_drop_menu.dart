@@ -1,16 +1,19 @@
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
+import 'package:car_service/ui/views/sign_up_view/sign_up_view_controller.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class CustomDropMenu extends StatelessWidget {
-  const CustomDropMenu({super.key, required this.items, this.onSaved});
+   CustomDropMenu({super.key, required this.items, this.onSaved});
 
   final List<String> items;
   final Function(String?)? onSaved;
+  SignUpViewController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +48,7 @@ class CustomDropMenu extends StatelessWidget {
           ),
           items: items.map<DropdownMenuItem<String>>((value) {
             return DropdownMenuItem<String>(
+
               value: value,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,6 +85,9 @@ class CustomDropMenu extends StatelessWidget {
           validator: (value) {
             if (value == null) {
               return 'Please select Type';
+            }
+            else{
+              controller.carType.value=value;
             }
             return null;
           },

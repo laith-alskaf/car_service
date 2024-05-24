@@ -21,16 +21,32 @@ class SignUpModel extends StatelessWidget {
         FadeInLeft(
           delay: const Duration(milliseconds: 1300),
           duration: const Duration(milliseconds: 200),
-          child: const CustomTextFormField(
+          child:  CustomTextFormField(
             hintText: 'Car Brand And Model',
+            controller: controller.carModelController,
+            validator: (value) {
+              if (value!.isEmpty) {
+                return 'should not be empty';
+              }
+              return null;
+            },
+
           ),
         ),
         (25.h).ph,
         FadeInLeft(
           delay: const Duration(milliseconds: 1500),
           duration: const Duration(milliseconds: 200),
-          child: const CustomTextFormField(
+          child:  CustomTextFormField(
             hintText: 'Car Number',
+            keyboardType: TextInputType.number,
+            validator: (value) {
+              if (value!.isEmpty) {
+                return 'should not be empty';
+              }
+              return null;
+            },
+            controller:controller.carNumberController,
           ),
         ),
         (25.h).ph,
@@ -40,7 +56,7 @@ class SignUpModel extends StatelessWidget {
           child: CustomDropMenu(
             items: controller.listCarType,
             onSaved: (value) {
-              controller.carType = value!;
+              controller.carType.value = value!;
             },
           ),
         ),
@@ -53,6 +69,7 @@ class SignUpModel extends StatelessWidget {
             height: 50.h,
             buttonTypeEnum: ButtonTypeEnum.normal,
             onPressed: () {
+              controller.register();
               controller.currentIndex.value++;
             },
             text: 'Next',

@@ -22,7 +22,7 @@ class OrderDetailsView extends StatelessWidget {
             ListView(physics: const NeverScrollableScrollPhysics(), children: [
           const CustomAppBar(
             title: 'Order Details',
-            existAppBar: true,
+            existBack: true,
           ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20.w),

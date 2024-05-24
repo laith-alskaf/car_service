@@ -26,7 +26,7 @@ class ParkSpotView extends StatelessWidget {
           const CustomAppBar(
             title: 'Parking',
             borderRadius: false,
-            existAppBar: true,
+            existBack: true,
           ),
           // (30.h).ph,
           Divider(
