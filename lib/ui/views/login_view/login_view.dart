@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+
 import '../password/forgetpassword_view/forgetpassword_view.dart';
 
 // ignore: must_be_immutable
@@ -107,7 +108,7 @@ class LoginView extends StatelessWidget {
                       alignment: Alignment.centerRight,
                       child: InkWell(
                         onTap: () {
-                          Get.to(ForgetPasswordView());
+                          Get.to(() => const ForgetPasswordView());
                         },
                         child: CustomText(
                           text: 'Forget Password',

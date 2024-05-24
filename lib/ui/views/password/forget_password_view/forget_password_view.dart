@@ -4,7 +4,7 @@ import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text_field.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
-import 'package:car_service/ui/views/password/resetpassword_view/resetpassword_view.dart';
+import 'package:car_service/ui/views/password/reset_password_view/reset_password_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -47,7 +47,7 @@ class ForgetPasswordView extends StatelessWidget {
             FadeInLeft(
               delay: const Duration(milliseconds: 1300),
               duration: const Duration(milliseconds: 300),
-              child: CustomTextFormField(hintText: "Email"),
+              child: const CustomTextFormField(hintText: "Email"),
             ),
             (40.h).ph,
             ZoomIn(
@@ -57,7 +57,7 @@ class ForgetPasswordView extends StatelessWidget {
                   width: 1.sw,
                   height: 50.h,
                   onPressed: () {
-                    Get.to(ResetPassword_view());
+                    Get.to(() => const ResetPasswordView());
                   },
                   text: "Reset Password",
                   buttonTypeEnum: ButtonTypeEnum.normal),

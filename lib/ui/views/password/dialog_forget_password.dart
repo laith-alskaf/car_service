@@ -1,23 +1,15 @@
-
 import 'package:car_service/ui/shared/extension_sizebox.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../../../core/utils/general_util.dart';
 import '../../shared/colors.dart';
 import '../../shared/custom_widget/custom_button.dart';
 import '../../shared/custom_widget/custom_text.dart';
 
-class CusromDilaog_view extends StatefulWidget {
-  const CusromDilaog_view({Key? key}) : super(key: key);
+class CustomDialogPassword extends StatelessWidget {
+  const CustomDialogPassword({super.key});
 
-  @override
-  State<CusromDilaog_view> createState() => _CusromDilaog_viewState();
-}
-
-class _CusromDilaog_viewState extends State<CusromDilaog_view> {
   @override
   Widget build(BuildContext context) {
     return Dialog(

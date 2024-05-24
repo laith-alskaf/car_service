@@ -1,23 +1,16 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../core/utils/general_util.dart';
 import '../../../shared/custom_widget/custom_button.dart';
 import '../../../shared/custom_widget/custom_text.dart';
 import '../../../shared/custom_widget/custom_text_field.dart';
 
-class ResetPassword_view extends StatefulWidget {
-  const ResetPassword_view({Key? key}) : super(key: key);
+class ResetPasswordView extends StatelessWidget {
+  const ResetPasswordView({super.key});
 
-  @override
-  State<ResetPassword_view> createState() => _ResetPassword_viewState();
-}
-
-class _ResetPassword_viewState extends State<ResetPassword_view> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +37,7 @@ class _ResetPassword_viewState extends State<ResetPassword_view> {
             FadeInLeft(
               delay: const Duration(milliseconds: 1000),
               duration: const Duration(milliseconds: 300),
-              child: CustomText(
+              child: const CustomText(
                 text: "Password",
                 textType: TextStyleType.bodyBig,
                 textColor: AppColors.blackColor,
@@ -54,13 +47,13 @@ class _ResetPassword_viewState extends State<ResetPassword_view> {
             FadeInLeft(
               delay: const Duration(milliseconds: 1000),
               duration: const Duration(milliseconds: 300),
-              child: CustomTextFormField(hintText: "Password"),
+              child: const CustomTextFormField(hintText: "Password"),
             ),
             (20.h).ph,
             FadeInLeft(
               delay: const Duration(milliseconds: 1300),
               duration: const Duration(milliseconds: 300),
-              child: CustomText(
+              child: const CustomText(
                 text: "Confirm Password",
                 textType: TextStyleType.bodyBig,
                 textColor: AppColors.blackColor,
@@ -70,7 +63,7 @@ class _ResetPassword_viewState extends State<ResetPassword_view> {
             FadeInLeft(
               delay: const Duration(milliseconds: 1300),
               duration: const Duration(milliseconds: 300),
-              child: CustomTextFormField(hintText: "Confirm Password"),
+              child: const CustomTextFormField(hintText: "Confirm Password"),
             ),
             (40.h).ph,
             ZoomIn(
@@ -79,8 +72,7 @@ class _ResetPassword_viewState extends State<ResetPassword_view> {
               child: CustomButton(
                   width: 1.sw,
                   height: 50.h,
-                  onPressed: () {
-                  },
+                  onPressed: () {},
                   text: "Reset Password",
                   buttonTypeEnum: ButtonTypeEnum.normal),
             ),
@@ -96,16 +88,6 @@ class _ResetPassword_viewState extends State<ResetPassword_view> {
                 ),
               ),
             ),
-
-
-
-
-
-
-
-
-
-
           ],
         ),
       ),
