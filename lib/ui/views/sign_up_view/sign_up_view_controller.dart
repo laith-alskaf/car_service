@@ -3,14 +3,10 @@ import 'package:car_service/core/enums/message_type.dart';
 import 'package:car_service/core/services/base_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/get_rx.dart';
-
 import '../../shared/custom_widget/custom_toast.dart';
 import '../main_view/main_view.dart';
 
 class SignUpViewController extends BaseController {
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
   RxInt currentIndex = 0.obs;
   List<String> imageSignUp = ['verfiy', 'emailcheck', 'ic_right'];
   List<String> listCarType = [
@@ -49,7 +45,7 @@ class SignUpViewController extends BaseController {
                 confirmPassword: confirmController.text,
                 carModel: carModelController.text,
                 carNumber: carNumberController.text,
-                carType:carType.value,
+                carType: carType.value,
                 firstName: firstNameController.text,
                 lastName: lastNameController.text)
             .then((value) {
@@ -65,7 +61,7 @@ class SignUpViewController extends BaseController {
   }
 
   Future<void> verify() async {
-    runLoadingFutureFunction(
+    await runLoadingFutureFunction(
         function:
             UserRepository().verify(email: emailController.text).then((value) {
       value.fold((l) {
@@ -80,9 +76,10 @@ class SignUpViewController extends BaseController {
   }
 
   Future<void> sendCode() async {
-    runLoadingFutureFunction(
+    print(verifyCodeController.text);
+    await runLoadingFutureFunction(
         function: UserRepository()
-            .sendCode(code: verifyCodeController.text)
+            .sendCode(code: verifyCodeController.text,email: emailController.text)
             .then((value) {
       value.fold((l) {
         CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);

@@ -12,9 +12,9 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 
 // ignore: must_be_immutable
 class SignUpVerify extends StatelessWidget {
-  SignUpVerify({super.key});
+  SignUpVerify({super.key, required this.controller});
 
-  SignUpViewController controller = Get.find();
+ final SignUpViewController controller;
 
   @override
   Widget build(BuildContext context) {

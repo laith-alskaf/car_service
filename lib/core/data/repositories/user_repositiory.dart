@@ -38,7 +38,7 @@ class UserRepository {
   }
 
   Future<Either<String, bool>> resetPassword({
-    required String email,
+    required String code,
   }) async {
     try {
       return NetworkUtil.sendRequest(
@@ -47,7 +47,7 @@ class UserRepository {
           headers:
               NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
           body: {
-            'userName': email,
+            'code': code,
           }).then((response) {
         CommonResponse<Map<String, dynamic>> commonResponse =
             CommonResponse.fromJson(response);
@@ -61,17 +61,18 @@ class UserRepository {
       return Left(e.toString());
     }
   }
-  Future<Either<String, bool>> verify({
+
+  Future<Either<String, bool>> forgetPassword({
     required String email,
   }) async {
     try {
       return NetworkUtil.sendRequest(
           type: RequestType.POST,
-          url: UserEndPoints.verifyCode,
+          url: UserEndPoints.forgetPassword,
           headers:
               NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
           body: {
-            'userName': email,
+            'email': email,
           }).then((response) {
         CommonResponse<Map<String, dynamic>> commonResponse =
             CommonResponse.fromJson(response);
@@ -85,8 +86,36 @@ class UserRepository {
       return Left(e.toString());
     }
   }
+
+  Future<Either<String, bool>> verify({
+    required String email,
+  }) async {
+    try {
+      return NetworkUtil.sendRequest(
+        type: RequestType.POST,
+        url: UserEndPoints.verifyCode,
+        headers:
+            NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
+        body: {
+          'email': email,
+        },
+      ).then((response) {
+        CommonResponse<Map<String, dynamic>> commonResponse =
+            CommonResponse.fromJson(response);
+        if (commonResponse.getStatus) {
+          return Right(commonResponse.getStatus);
+        } else {
+          return Left(commonResponse.message ?? '');
+        }
+      });
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+
   Future<Either<String, bool>> sendCode({
     required String code,
+    required String email,
   }) async {
     try {
       return NetworkUtil.sendRequest(
@@ -94,13 +123,13 @@ class UserRepository {
           url: UserEndPoints.sendCode,
           headers:
               NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
-          body: {
-            'code': code,
-          }).then((response) {
+          body: {'code': code, 'email': email}).then((response) {
         CommonResponse<Map<String, dynamic>> commonResponse =
             CommonResponse.fromJson(response);
         if (commonResponse.getStatus) {
-          storage.setTokenInfo(commonResponse.data!['token']);
+          // print(commonResponse.data!);
+          // storage.setTokenInfo(commonResponse.data!['token']);
+
           return Right(commonResponse.getStatus);
         } else {
           return Left(commonResponse.message ?? '');
@@ -142,7 +171,7 @@ class UserRepository {
         CommonResponse<Map<String, dynamic>> commonResponse =
             CommonResponse.fromJson(response);
         if (commonResponse.getStatus) {
-          return const  Right(true);
+          return const Right(true);
         } else {
           return Left(commonResponse.message ?? ''); //رسالة الخطأ
         }

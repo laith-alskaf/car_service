@@ -21,7 +21,7 @@ class NetworkUtil {
       print('==========> $uri');
       //?--- To Save api response ----
       late http.Response
-      response; // حتى يتم استقبال البيانات من http ويتم تاخير تعريفه حتى يتم طلبه
+          response; // حتى يتم استقبال البيانات من http ويتم تاخير تعريفه حتى يتم طلبه
       //?--- To Save api status code ----
 
       //!--- Required convert ap i response to Map ----
@@ -34,18 +34,18 @@ class NetworkUtil {
           break;
         case RequestType.POST:
           response =
-          await client.post(uri, body: jsonEncode(body), headers: headers);
+              await client.post(uri, body: jsonEncode(body), headers: headers);
           break;
         case RequestType.PUT:
           response =
-          await client.put(uri, body: jsonEncode(body), headers: headers);
+              await client.put(uri, body: jsonEncode(body), headers: headers);
           break;
         case RequestType.DELETE:
           response = await client.delete(uri,
               body: jsonEncode(body), headers: headers);
           break;
         case RequestType.MULTIPART:
-        // TODO: Handle this case.
+          // TODO: Handle this case.
           break;
       }
 
@@ -59,10 +59,9 @@ class NetworkUtil {
 
       jsonResponse.putIfAbsent(
           'response',
-              () =>
-          result == null
+          () => result == null
               ? jsonDecode(jsonEncode(
-              {'title': const Utf8Codec().decode(response.bodyBytes)}))
+                  {'title': const Utf8Codec().decode(response.bodyBytes)}))
               : jsonDecode(const Utf8Codec().decode(response.bodyBytes)));
       jsonResponse.putIfAbsent('statusCode', () => response.statusCode);
 
@@ -72,5 +71,4 @@ class NetworkUtil {
       (e);
     }
   }
-
 }

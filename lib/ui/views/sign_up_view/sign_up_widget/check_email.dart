@@ -12,9 +12,10 @@ import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class SignUpCheckEmail extends StatelessWidget {
-  SignUpCheckEmail({super.key});
 
-  SignUpViewController controller = Get.find();
+  SignUpCheckEmail({super.key, required this.controller});
+
+ final SignUpViewController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +26,11 @@ class SignUpCheckEmail extends StatelessWidget {
           delay: const Duration(milliseconds: 400),
           duration: const Duration(milliseconds: 300),
           child: const CustomText(
-              text: 'Please Check Your Inbox for The Verification Email',
-              isTextAlign: TextAlign.center,
-              textType: TextStyleType.title,fontWeight: FontWeight.normal,),
+            text: 'Please Check Your Inbox for The Verification Email',
+            isTextAlign: TextAlign.center,
+            textType: TextStyleType.title,
+            fontWeight: FontWeight.normal,
+          ),
         ),
         (15.h).ph,
         ZoomIn(
@@ -57,19 +60,25 @@ class SignUpCheckEmail extends StatelessWidget {
         GestureDetector(
           onTap: () {},
           child: const CustomText(
-              text: 'Didn\'t Receive Email ? ',
-              isTextAlign: TextAlign.center,
-              textType: TextStyleType.bodyBig,textColor: AppColors.blackColor,fontWeight: FontWeight.normal,),
+            text: 'Didn\'t Receive Email ? ',
+            isTextAlign: TextAlign.center,
+            textType: TextStyleType.bodyBig,
+            textColor: AppColors.blackColor,
+            fontWeight: FontWeight.normal,
+          ),
         ),
         (25.h).ph,
         GestureDetector(
           onTap: () {},
-          child: Row(mainAxisAlignment: MainAxisAlignment.center,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-               CustomText(
-                  text: 'Resend',
-                  isTextAlign: TextAlign.center,
-                  textType: TextStyleType.bodyBig,textColor:AppColors.mainColor ,),
+              CustomText(
+                text: 'Resend',
+                isTextAlign: TextAlign.center,
+                textType: TextStyleType.bodyBig,
+                textColor: AppColors.mainColor,
+              ),
               (10.w).pw,
               SvgPicture.asset('assets/images/referach.svg'),
             ],

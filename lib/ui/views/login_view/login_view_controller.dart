@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import '../../../core/data/repositories/user_repositiory.dart';
 
 class LoginViewController extends BaseController {
-  final GlobalKey<FormState> formKey1 = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 

@@ -15,7 +15,7 @@ class NetworkConfig {
       if (needAuth!)
         "Authorization":
         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQ3VzdG9tZXIiLCJuYW1lIjoiMiIsIm5iZiI6MTY4NTMzOTIyOCwiZXhwIjoxNjg1ODU3NjI4LCJpYXQiOjE2ODUzMzkyMjh9.ofigylUBXXyBLv4XpNb0wrVSCNR8WgacaVLH4IHTs1g",
-      if (type != RequestType.GET)
+      // if (type != RequestType.GET)
         "Content-Type":  "application/json",
       ...extraHeaders ?? {}
     };

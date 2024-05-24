@@ -21,6 +21,9 @@ class LoginView extends StatelessWidget {
   LoginView({super.key});
 
   LoginViewController controller = Get.put(LoginViewController());
+  final GlobalKey<FormState> _formKey1 = GlobalKey(
+    debugLabel: 'loginScreenKey',
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +34,7 @@ class LoginView extends StatelessWidget {
         body: Padding(
             padding: EdgeInsets.symmetric(horizontal: defaultPadding),
             child: Form(
-              key: controller.formKey1,
+              key: _formKey1,
               child: Column(
                 children: [
                   (0.1.sh).ph,
@@ -78,8 +81,8 @@ class LoginView extends StatelessWidget {
                       hintText: 'Email',
                       controller: controller.emailController,
                       validator: (value) {
-                        if (value!.isEmpty && StringUtil.isEmail(value)) {
-                          return 'please check your Email';
+                        if (value!.isEmpty || StringUtil.isEmail(value)) {
+                          return 'please check your email';
                         }
                         return null;
                       },
@@ -94,7 +97,7 @@ class LoginView extends StatelessWidget {
                       controller: controller.passwordController,
                       validator: (value) {
                         if (value!.isEmpty || StringUtil.isPassword(value)) {
-                          return 'please check your Email';
+                          return 'please check your password';
                         }
                         return null;
                       },
@@ -108,7 +111,7 @@ class LoginView extends StatelessWidget {
                       alignment: Alignment.centerRight,
                       child: InkWell(
                         onTap: () {
-                          Get.to(() => const ForgetPasswordView());
+                          Get.to(() => ForgetPasswordView());
                         },
                         child: CustomText(
                           text: 'Forget Password',
@@ -127,7 +130,9 @@ class LoginView extends StatelessWidget {
                       height: 50.h,
                       buttonTypeEnum: ButtonTypeEnum.normal,
                       onPressed: () {
-                        Get.off(() => MainView());
+                        if (_formKey1.currentState!.validate()) {
+                          Get.off(() => MainView());
+                        }
                       },
                       text: 'Log in',
                     ),

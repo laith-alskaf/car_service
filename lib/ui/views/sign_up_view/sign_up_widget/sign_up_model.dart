@@ -10,7 +10,9 @@ import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class SignUpModel extends StatelessWidget {
-  SignUpModel({super.key});
+  final GlobalKey<FormState> fromKey;
+
+  SignUpModel({super.key, required this.fromKey});
 
   SignUpViewController controller = Get.find();
 
@@ -21,7 +23,7 @@ class SignUpModel extends StatelessWidget {
         FadeInLeft(
           delay: const Duration(milliseconds: 1300),
           duration: const Duration(milliseconds: 200),
-          child:  CustomTextFormField(
+          child: CustomTextFormField(
             hintText: 'Car Brand And Model',
             controller: controller.carModelController,
             validator: (value) {
@@ -30,23 +32,23 @@ class SignUpModel extends StatelessWidget {
               }
               return null;
             },
-
           ),
         ),
         (25.h).ph,
         FadeInLeft(
           delay: const Duration(milliseconds: 1500),
           duration: const Duration(milliseconds: 200),
-          child:  CustomTextFormField(
+          child: CustomTextFormField(
             hintText: 'Car Number',
             keyboardType: TextInputType.number,
             validator: (value) {
-              if (value!.isEmpty) {
-                return 'should not be empty';
+              if (value!.isEmpty || value.length <= 4) {
+                return 'should be not more than 4 numbers';
               }
+
               return null;
             },
-            controller:controller.carNumberController,
+            controller: controller.carNumberController,
           ),
         ),
         (25.h).ph,
@@ -69,8 +71,9 @@ class SignUpModel extends StatelessWidget {
             height: 50.h,
             buttonTypeEnum: ButtonTypeEnum.normal,
             onPressed: () {
-              controller.register();
-              controller.currentIndex.value++;
+              if (fromKey.currentState!.validate()) {
+                controller.register();
+              }
             },
             text: 'Next',
           ),
