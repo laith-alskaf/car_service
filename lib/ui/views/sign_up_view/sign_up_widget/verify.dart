@@ -10,7 +10,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-// ignore: must_be_immutable
 class SignUpVerify extends StatelessWidget {
   SignUpVerify({super.key, required this.controller});
 

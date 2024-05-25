@@ -10,12 +10,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-// ignore: must_be_immutable
 class SignUpCheckEmail extends StatelessWidget {
-
   SignUpCheckEmail({super.key, required this.controller});
 
- final SignUpViewController controller;
+  final SignUpViewController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +32,17 @@ class SignUpCheckEmail extends StatelessWidget {
         ),
         (15.h).ph,
         ZoomIn(
-          delay: const Duration(milliseconds: 400),
-          duration: const Duration(milliseconds: 300),
-          child: CustomText(
-            text: controller.emailController.text,
-            textType: TextStyleType.body,
-            textColor: AppColors.mainColor,
-          ),
-        ),
+            delay: const Duration(milliseconds: 400),
+            duration: const Duration(milliseconds: 300),
+            child: GetBuilder<SignUpViewController>(
+              builder: (s) {
+                return CustomText(
+                  text: controller.email,
+                  textType: TextStyleType.body,
+                  textColor: AppColors.mainColor,
+                );
+              },
+            )),
         (25.h).ph,
         ZoomIn(
           delay: const Duration(milliseconds: 400),
@@ -51,7 +52,7 @@ class SignUpCheckEmail extends StatelessWidget {
             height: 50.h,
             buttonTypeEnum: ButtonTypeEnum.normal,
             onPressed: () {
-              controller.verify();
+              controller.currentIndex.value++;
             },
             text: 'Next',
           ),
@@ -69,7 +70,9 @@ class SignUpCheckEmail extends StatelessWidget {
         ),
         (25.h).ph,
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            controller.verify();
+          },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

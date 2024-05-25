@@ -39,38 +39,42 @@ class LoginView extends StatelessWidget {
                 children: [
                   (0.1.sh).ph,
                   ZoomIn(
-                    delay: const Duration(milliseconds: 700),
-                    duration: const Duration(milliseconds: 300),
                     child: SvgPicture.asset(
                       'assets/images/ic_verfiy.svg',
                       width: 120.w,
                     ),
                   ),
-                  CustomText(
-                    text: 'Car Medic',
-                    textType: TextStyleType.title,
-                    fontWeight: FontWeight.bold,
-                    textColor: AppColors.textColor2,
-                  ),
-                  (100.h).ph,
-                  const Align(
-                    alignment: AlignmentDirectional.centerStart,
+                  ZoomIn(
                     child: CustomText(
-                      text: 'Welocme !',
+                      text: 'Car Medic',
                       textType: TextStyleType.title,
                       fontWeight: FontWeight.bold,
-                      textColor: AppColors.blackColor,
+                      textColor: AppColors.textColor2,
+                    ),
+                  ),
+                  (100.h).ph,
+                  ZoomIn(
+                    child: const Align(
+                      alignment: AlignmentDirectional.centerStart,
+                      child: CustomText(
+                        text: 'Welocme !',
+                        textType: TextStyleType.title,
+                        fontWeight: FontWeight.bold,
+                        textColor: AppColors.blackColor,
+                      ),
                     ),
                   ),
                   (15.h).ph,
-                  Align(
-                    alignment: AlignmentDirectional.centerStart,
-                    child: CustomText(
-                      text: 'Login to your account',
-                      textType: TextStyleType.bodyBig,
-                      fontWeight: FontWeight.normal,
-                      textColor: AppColors.blackColor,
-                      startPadding: 15.w,
+                  ZoomIn(
+                    child: Align(
+                      alignment: AlignmentDirectional.centerStart,
+                      child: CustomText(
+                        text: 'Login to your account',
+                        textType: TextStyleType.bodyBig,
+                        fontWeight: FontWeight.normal,
+                        textColor: AppColors.blackColor,
+                        startPadding: 15.w,
+                      ),
                     ),
                   ),
                   (10.h).ph,
@@ -138,23 +142,31 @@ class LoginView extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
-                  const CustomText(
-                      text: 'you don\'t have an account yet',
-                      textType: TextStyleType.small),
+                  ZoomIn(
+                    delay: const Duration(milliseconds: 1600),
+                    duration: const Duration(milliseconds: 300),
+                    child: const CustomText(
+                        text: 'you don\'t have an account yet',
+                        textType: TextStyleType.small),
+                  ),
                   (10.h).ph,
-                  InkWell(
-                    onTap: () {
-                      Get.to(
-                        () => SignUpMain(),
-                        transition: Transition.zoom,
-                        duration: const Duration(milliseconds: 350),
-                      );
-                    },
-                    child: CustomText(
-                      text: 'Create One',
-                      textType: TextStyleType.bodyBig,
-                      textColor: AppColors.mainColor,
-                      fontWeight: FontWeight.bold,
+                  ZoomIn(
+                    delay: const Duration(milliseconds: 1600),
+                    duration: const Duration(milliseconds: 300),
+                    child: InkWell(
+                      onTap: () {
+                        Get.to(
+                          () => SignUpMain(),
+                          transition: Transition.zoom,
+                          duration: const Duration(milliseconds: 350),
+                        );
+                      },
+                      child: CustomText(
+                        text: 'Create One',
+                        textType: TextStyleType.bodyBig,
+                        textColor: AppColors.mainColor,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   (35.h).ph,

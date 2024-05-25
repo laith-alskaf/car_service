@@ -94,7 +94,7 @@ class CustomDropMenu extends StatelessWidget {
         iconStyleData: const IconStyleData(),
         dropdownStyleData: DropdownStyleData(
           maxHeight: 300,
-          decoration: BoxDecoration(
+          decoration: BoxDecoration(color: AppColors.whiteColor,
             borderRadius: BorderRadius.circular(15),
           ),
         ),

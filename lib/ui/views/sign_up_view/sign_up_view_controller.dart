@@ -22,6 +22,7 @@ class SignUpViewController extends BaseController {
     'Hybrid Car'
   ];
   RxString carType = ''.obs;
+  late String email;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController verifyCodeController = TextEditingController();
@@ -51,11 +52,14 @@ class SignUpViewController extends BaseController {
             .then((value) {
       value.fold((l) {
         CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
-      }, (r) {
+      }, (r) async{
+        email = emailController.text;
         CustomToast.showMessage(
             message: 'لعيون هاشم واقطع', messageType: MessageType.SUCCESS);
         // storage.setTokenInfo(r);
         currentIndex.value++;
+        verify();
+        update();
       });
     }));
   }
@@ -68,7 +72,7 @@ class SignUpViewController extends BaseController {
         CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
       }, (r) {
         CustomToast.showMessage(
-            message: 'send code done for your email',
+            message: 'The code has been sent',
             messageType: MessageType.SUCCESS);
         currentIndex.value++;
       });
@@ -79,7 +83,8 @@ class SignUpViewController extends BaseController {
     print(verifyCodeController.text);
     await runLoadingFutureFunction(
         function: UserRepository()
-            .sendCode(code: verifyCodeController.text,email: emailController.text)
+            .sendCode(
+                code: verifyCodeController.text, email: emailController.text)
             .then((value) {
       value.fold((l) {
         CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);

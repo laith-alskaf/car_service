@@ -173,7 +173,7 @@ class UserRepository {
         if (commonResponse.getStatus) {
           return const Right(true);
         } else {
-          return Left(commonResponse.message ?? ''); //رسالة الخطأ
+          return Left(commonResponse.message ?? '');
         }
       });
     } catch (e) {
