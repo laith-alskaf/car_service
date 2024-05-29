@@ -8,7 +8,7 @@ class LocationService {
   Location location = Location();
 
   Future<LocationData?> getUserCurrentLocation({bool hideLoader = true}) async {
-    LocationData _locationData;
+    LocationData locationData;
 
     if (!await isLocationEnabeld()) return null;
 
@@ -16,15 +16,15 @@ class LocationService {
 
     if (myAppController.isOnline.value) {
       customLoader();
-      _locationData = await location.getLocation();
+      locationData = await location.getLocation();
 
       if (hideLoader) BotToast.closeAllLoading();
 
-      return _locationData;
-    }
-    else{
+      return locationData;
+    } else {
       showNoConnectionMessage();
     }
+    return null;
   }
 
   Future<geo.Placemark?> getAddressInfo(LocationData locationData,
@@ -51,10 +51,10 @@ class LocationService {
   }
 
   Future<bool> isLocationEnabeld() async {
-    bool _serviceEnabled;
-    _serviceEnabled = await location.serviceEnabled();
-    if (!_serviceEnabled) {
-      _serviceEnabled = await location.requestService();
+    bool serviceEnabled;
+    serviceEnabled = await location.serviceEnabled();
+    if (!serviceEnabled) {
+      serviceEnabled = await location.requestService();
       // if (!_serviceEnabled) {
       //   if(AppConfig.isLocationRequired){
       //     //!-- Message to show --
@@ -62,21 +62,21 @@ class LocationService {
       //   return false;
       // }
     }
-    return _serviceEnabled;
+    return serviceEnabled;
   }
 
   Future<bool> isPermissionGranted() async {
-    PermissionStatus _permissionGranted;
+    PermissionStatus permissionGranted;
 
-    _permissionGranted = await location.hasPermission();
-    if (_permissionGranted == PermissionStatus.denied) {
-      _permissionGranted = await location.requestPermission();
-      if (_permissionGranted != PermissionStatus.granted) {
+    permissionGranted = await location.hasPermission();
+    if (permissionGranted == PermissionStatus.denied) {
+      permissionGranted = await location.requestPermission();
+      if (permissionGranted != PermissionStatus.granted) {
         //!-- Message to show --
         return false;
       }
     }
 
-    return _permissionGranted == PermissionStatus.granted;
+    return permissionGranted == PermissionStatus.granted;
   }
 }

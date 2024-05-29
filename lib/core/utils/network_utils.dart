@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:car_service/core/enums/request_type.dart';
 
@@ -18,7 +19,7 @@ class NetworkUtil {
       //!--- Required for request ----
       //*--- Make full api url ------
       var uri = Uri.http(baseUrl, url, params);
-      print('==========> $uri');
+      log('==========> $uri');
       //?--- To Save api response ----
       late http.Response
           response; // حتى يتم استقبال البيانات من http ويتم تاخير تعريفه حتى يتم طلبه

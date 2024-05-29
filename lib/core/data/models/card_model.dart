@@ -17,7 +17,7 @@ class CartModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data =  Map<String, dynamic>();
+    final Map<String, dynamic> data =  <String, dynamic>{};
     data['count'] = count;
     data['total'] = total;
     // if (this.meal != null) {

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:car_service/core/data/repositories/user_repositiory.dart';
 import 'package:car_service/core/enums/message_type.dart';
 import 'package:car_service/core/services/base_controller.dart';
@@ -80,7 +82,7 @@ class SignUpViewController extends BaseController {
   }
 
   Future<void> sendCode() async {
-    print(verifyCodeController.text);
+    log(verifyCodeController.text);
     await runLoadingFutureFunction(
         function: UserRepository()
             .sendCode(

@@ -6,9 +6,8 @@ import 'package:car_service/ui/views/home/home_view/home_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-class CunstomContainerAction extends StatelessWidget {
-  CunstomContainerAction(
+class CustomContainerAction extends StatelessWidget {
+ const CustomContainerAction(
       {super.key, required this.action, this.price, this.time});
 
   final HomeAction action;

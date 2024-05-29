@@ -28,13 +28,13 @@ class CountryModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['country'] = this.country;
-    data['alpha2'] = this.alpha2;
-    data['alpha3'] = this.alpha3;
-    data['numeric'] = this.numeric;
-    data['latitude'] = this.latitude;
-    data['longitude'] = this.longitude;
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    data['country'] = country;
+    data['alpha2'] = alpha2;
+    data['alpha3'] = alpha3;
+    data['numeric'] = numeric;
+    data['latitude'] = latitude;
+    data['longitude'] = longitude;
     return data;
   }
 }

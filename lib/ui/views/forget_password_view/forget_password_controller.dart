@@ -3,12 +3,12 @@ import 'package:car_service/core/enums/message_type.dart';
 import 'package:car_service/core/services/base_controller.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_toast.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class ForgePasswordController extends BaseController {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
+  TextEditingController verifyCodeController = TextEditingController();
 
   Future<void> forget() async {
     await runLoadingFutureFunction(

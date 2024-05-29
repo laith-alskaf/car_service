@@ -6,7 +6,7 @@ class MapUtil {
   static Future<BitmapDescriptor> getImageFromAsset(
       {required String imageName}) async {
     return await BitmapDescriptor.fromAssetImage(
-      ImageConfiguration(),
+      const ImageConfiguration(),
       "assets/images/$imageName",
     );
   }

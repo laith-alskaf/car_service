@@ -5,6 +5,8 @@ class AppColors {
   static Color backgroundColor = const Color(0xFFE0E0E2);
   static const Color mtnBrownColor = Color(0xFF3A2400);
   static const Color mtnYellowColor = Color(0xFFFEB300);
+  static Color error = Colors.red.shade600;
+  static Color success = Colors.green.shade600;
   static Color textColor = const Color(0xFF525253);
   static const Color redColorSyriatel = Color(0xFFDD222B);
   static const Color lightBlueColor = Color(0xFFF7FCFF);

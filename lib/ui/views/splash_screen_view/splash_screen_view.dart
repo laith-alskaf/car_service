@@ -19,14 +19,14 @@ class SplashScreenView extends StatelessWidget {
         backgroundColor: AppColors.whiteColor,
         body: Column(
           children: [
-            (210.h).ph,
+            (280.h).ph,
             Image.asset(
               'assets/images/ic_splash.png',
               scale: 4,
             ),
             const Spacer(),
             SpinKitThreeBounce(color: AppColors.mainColor),
-            (50.h).ph,
+            (30.h).ph,
             CustomText(
               startPadding: 20.w,
               endPadding: 20.w,

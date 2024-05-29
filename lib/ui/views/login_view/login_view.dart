@@ -6,6 +6,7 @@ import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text_field.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
+import 'package:car_service/ui/views/forget_password_view/forget_password_view.dart';
 import 'package:car_service/ui/views/login_view/login_view_controller.dart';
 import 'package:car_service/ui/views/main_view/main_view.dart';
 import 'package:car_service/ui/views/sign_up_view/sign_up_main.dart';
@@ -13,8 +14,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-
-import '../password/forget_password_view/forget_password_view.dart';
 
 // ignore: must_be_immutable
 class LoginView extends StatelessWidget {
@@ -85,7 +84,7 @@ class LoginView extends StatelessWidget {
                       hintText: 'Email',
                       controller: controller.emailController,
                       validator: (value) {
-                        if (value!.isEmpty || StringUtil.isEmail(value)) {
+                        if (value!.isEmpty || !StringUtil.isEmail(value)) {
                           return 'please check your email';
                         }
                         return null;
@@ -100,8 +99,11 @@ class LoginView extends StatelessWidget {
                       hintText: 'Password',
                       controller: controller.passwordController,
                       validator: (value) {
-                        if (value!.isEmpty || StringUtil.isPassword(value)) {
+                        if (value!.isEmpty || !StringUtil.isPassword(value)) {
                           return 'please check your password';
+                        }
+                        if (value.length <= 7) {
+                          return 'please inpout more than 7';
                         }
                         return null;
                       },

@@ -3,12 +3,12 @@ import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
+import 'package:car_service/ui/shared/custom_widget/custom_text_field.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
-import 'package:car_service/ui/views/password/forget_password_view/forget_password_controller.dart';
+import 'package:car_service/ui/views/forget_password_view/forget_password_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../../shared/custom_widget/custom_text_field.dart';
 
 class ResetPasswordView extends StatelessWidget {
   ResetPasswordView({

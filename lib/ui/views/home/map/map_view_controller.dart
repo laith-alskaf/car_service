@@ -20,7 +20,7 @@ class MapController extends BaseController {
   late CameraPosition initalCameraPosition;
   late LatLng selectedLocation;
 
-  static const CameraPosition _kLake = CameraPosition(
+  static const CameraPosition kLake = CameraPosition(
       bearing: 192.8334901395799,
       target: LatLng(37.43296265331129, -122.08832357078792),
       tilt: 59.440717697143555,

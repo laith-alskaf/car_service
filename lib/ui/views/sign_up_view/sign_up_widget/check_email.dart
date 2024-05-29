@@ -11,7 +11,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class SignUpCheckEmail extends StatelessWidget {
-  SignUpCheckEmail({super.key, required this.controller});
+  const SignUpCheckEmail({super.key, required this.controller});
 
   final SignUpViewController controller;
 

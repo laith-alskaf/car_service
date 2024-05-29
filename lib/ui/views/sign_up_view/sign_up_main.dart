@@ -2,8 +2,6 @@ import 'package:animate_do/animate_do.dart';
 import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/core/utils/string_urtil.dart';
 import 'package:car_service/ui/shared/colors.dart';
-import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
-import 'package:car_service/ui/shared/custom_widget/custom_drop_menu.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text_field.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
@@ -165,9 +163,11 @@ class SignUpMain extends StatelessWidget {
                                   controller: controller.passwordController,
                                   hintText: 'Password',
                                   validator: (value) {
-                                    if (value!.isEmpty ||
-                                        StringUtil.isPassword(value)) {
+                                    if (value!.isEmpty) {
                                       return 'please check your password';
+                                    }
+                                    if (value.length <= 7) {
+                                      return 'please input more than 7';
                                     }
                                     return null;
                                   },
@@ -233,7 +233,13 @@ class SignUpMain extends StatelessWidget {
                             ],
                             if (controller.currentIndex.value == 2) ...[
                               SignUpVerify(
-                                controller: controller,
+                                onPressedVerify: () {
+                                  controller.sendCode();
+                                },
+                                onPressedResend: () {
+                                  controller.verify();
+                                },
+                                controller: controller.verifyCodeController,
                               )
                             ],
                           ],

@@ -1,4 +1,3 @@
-import 'package:car_service/core/utils/general_util.dart';
 import 'package:dartz/dartz.dart';
 import 'package:car_service/core/data/models/api/token_info.dart';
 import 'package:car_service/core/data/models/common_respons.dart';

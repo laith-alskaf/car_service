@@ -1,8 +1,6 @@
-import 'package:bot_toast/bot_toast.dart';
 import 'package:car_service/core/enums/connectivity_status.dart';
 import 'package:car_service/core/services/base_controller.dart';
 import 'package:car_service/core/utils/general_util.dart';
-import 'package:car_service/ui/shared/utils.dart';
 import 'package:get/get.dart';
 
 class MyAppController extends BaseController {
