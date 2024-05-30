@@ -100,9 +100,11 @@ class SignUpMain extends StatelessWidget {
                                     duration: const Duration(milliseconds: 200),
                                     child: CustomTextFormField(
                                       onFieldSubmitted: (value) {
-                                        if (value.isEmpty ||
-                                            StringUtil.isName(value)) {
+                                        if (value.isEmpty ) {
                                           return 'Input your first name';
+                                        }
+                                        else{
+
                                         }
                                         return null;
                                       },
@@ -111,8 +113,7 @@ class SignUpMain extends StatelessWidget {
                                       controller:
                                           controller.firstNameController,
                                       validator: (value) {
-                                        if (value!.isEmpty ||
-                                            StringUtil.isName(value)) {
+                                        if (value!.isEmpty) {
                                           return 'Input your first name';
                                         }
                                         return null;
@@ -128,8 +129,7 @@ class SignUpMain extends StatelessWidget {
                                       hintText: 'Last Name',
                                       controller: controller.lastNameController,
                                       validator: (value) {
-                                        if (value!.isEmpty ||
-                                            StringUtil.isName(value)) {
+                                        if (value!.isEmpty ) {
                                           return 'please check your last name';
                                         }
                                         return null;

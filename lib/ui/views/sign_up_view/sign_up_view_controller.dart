@@ -60,7 +60,7 @@ class SignUpViewController extends BaseController {
             message: 'لعيون هاشم واقطع', messageType: MessageType.SUCCESS);
         // storage.setTokenInfo(r);
         currentIndex.value++;
-        verify();
+       // await verify();
         update();
       });
     }));

@@ -19,7 +19,7 @@ class SplashScreenView extends StatelessWidget {
         backgroundColor: AppColors.whiteColor,
         body: Column(
           children: [
-            (280.h).ph,
+            (200.h).ph,
             Image.asset(
               'assets/images/ic_splash.png',
               scale: 4,
