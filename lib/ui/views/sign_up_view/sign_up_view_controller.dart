@@ -54,13 +54,14 @@ class SignUpViewController extends BaseController {
             .then((value) {
       value.fold((l) {
         CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
-      }, (r) async{
+      }, (r) async {
+        Get.back();
         email = emailController.text;
         CustomToast.showMessage(
             message: 'لعيون هاشم واقطع', messageType: MessageType.SUCCESS);
         // storage.setTokenInfo(r);
         currentIndex.value++;
-       // await verify();
+        // await verify();
         update();
       });
     }));
