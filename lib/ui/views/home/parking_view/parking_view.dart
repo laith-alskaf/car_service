@@ -47,31 +47,24 @@ class ParkingView extends StatelessWidget {
               ),
             ),
             (70.h).ph,
-            Container(
-              height: 250.h,
-              decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.mainColor),
-                  borderRadius: BorderRadius.all(Radius.circular(15.r)),
-                  image: const DecorationImage(
-                      image: AssetImage('assets/images/maps.png'),
-                      fit: BoxFit.fill)),
+            GestureDetector(
+              onTap: () async {
+                controller.getClosestPark();
+              },
+              child: Container(
+                height: 250.h,
+                decoration: BoxDecoration(
+                    border: Border.all(color: AppColors.mainColor),
+                    borderRadius: BorderRadius.all(Radius.circular(15.r)),
+                    image: const DecorationImage(
+                        image: AssetImage('assets/images/maps.png'),
+                        fit: BoxFit.fill)),
+              ),
             ),
             (25.h).ph,
             GestureDetector(
               onTap: () async {
-                if (controller.currentLocation != null) {
-                  Get.to(() => MapView(
-                        currentLocation: controller.currentLocation!,
-                      ));
-                } else {
-                  controller.currentLocation = await locationService
-                      .getUserCurrentLocation(hideLoader: true);
-                  if (controller.currentLocation != null) {
-                    Get.to(() => MapView(
-                          currentLocation: controller.currentLocation!,
-                        ));
-                  }
-                }
+                controller.getClosestPark();
               },
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.w),

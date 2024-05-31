@@ -99,7 +99,7 @@ class LoginView extends StatelessWidget {
                       hintText: 'Password',
                       controller: controller.passwordController,
                       validator: (value) {
-                        if (value!.isEmpty || !StringUtil.isPassword(value)) {
+                        if (value!.isEmpty ) {
                           return 'please check your password';
                         }
                         if (value.length <= 7) {
@@ -135,9 +135,9 @@ class LoginView extends StatelessWidget {
                       width: 1.sw,
                       height: 50.h,
                       buttonTypeEnum: ButtonTypeEnum.normal,
-                      onPressed: () {
+                      onPressed: () async{
                         if (_formKey1.currentState!.validate()) {
-                          Get.off(() => MainView());
+                       await   controller.login();
                         }
                       },
                       text: 'Log in',

@@ -10,7 +10,7 @@ import '../main_view/main_view.dart';
 
 class SignUpViewController extends BaseController {
   RxInt currentIndex = 0.obs;
-  List<String> imageSignUp = ['verfiy', 'emailcheck', 'ic_right'];
+  List<String> imageSignUp = ['verfiy', 'emailcheck', 'right'];
   List<String> listCarType = [
     'Sedan',
     'SUV (Sports Utility Vehicle)',
@@ -57,9 +57,8 @@ class SignUpViewController extends BaseController {
       }, (r) async {
         Get.back();
         email = emailController.text;
-        CustomToast.showMessage(
-            message: 'لعيون هاشم واقطع', messageType: MessageType.SUCCESS);
-        // storage.setTokenInfo(r);
+        CustomToast.showMessage(message: r, messageType: MessageType.SUCCESS);
+
         currentIndex.value++;
         // await verify();
         update();
@@ -77,7 +76,6 @@ class SignUpViewController extends BaseController {
         CustomToast.showMessage(
             message: 'The code has been sent',
             messageType: MessageType.SUCCESS);
-        currentIndex.value++;
       });
     }));
   }

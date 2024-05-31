@@ -3,7 +3,7 @@ import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_drop_menu.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text_field.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
-import 'package:car_service/ui/views/sign_up_view/custom_dilog.dart';
+import 'package:car_service/ui/views/sign_up_view/sign_up_widget/custom_dilog.dart';
 import 'package:car_service/ui/views/sign_up_view/sign_up_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -73,8 +73,7 @@ class SignUpModel extends StatelessWidget {
             buttonTypeEnum: ButtonTypeEnum.normal,
             onPressed: () {
               if (fromKey.currentState!.validate()) {
-                //     controller.register();
-                showEmailDialog(context, controller.emailController.text);
+                showCheckEmailDialog(email: controller.emailController.text);
               }
             },
             text: 'Next',

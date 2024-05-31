@@ -66,7 +66,8 @@ class NetworkUtil {
               : jsonDecode(const Utf8Codec().decode(response.bodyBytes)));
       jsonResponse.putIfAbsent('statusCode', () => response.statusCode);
 
-      (jsonResponse);
+      log(jsonResponse.toString());
+
       return jsonResponse;
     } catch (e) {
       (e);

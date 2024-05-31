@@ -1,5 +1,6 @@
+import 'dart:developer';
+import 'package:car_service/core/utils/general_util.dart';
 import 'package:dartz/dartz.dart';
-import 'package:car_service/core/data/models/api/token_info.dart';
 import 'package:car_service/core/data/models/common_respons.dart';
 import 'package:car_service/core/data/network/endpoints/user_endpoints.dart';
 import 'package:car_service/core/data/network/network_config.dart';
@@ -7,7 +8,7 @@ import 'package:car_service/core/enums/request_type.dart';
 import 'package:car_service/core/utils/network_utils.dart';
 
 class UserRepository {
-  Future<Either<String, TokenInfo>> login({
+  Future<Either<String, String>> login({
     required String email,
     required String password,
   }) async {
@@ -18,15 +19,15 @@ class UserRepository {
           headers:
               NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
           body: {
-            'userName': email,
+            'email': email,
             'password': password,
           }).then((response) {
+        log('==========> ${response}');
         CommonResponse<Map<String, dynamic>> commonResponse =
             CommonResponse.fromJson(response);
         if (commonResponse.getStatus) {
-          return Right(TokenInfo.fromJson(
-            commonResponse.data ?? {},
-          ));
+          storage.setTokenInfo(commonResponse.data!['token']);
+          return Right(commonResponse.data!['message']);
         } else {
           return Left(commonResponse.message ?? '');
         }
@@ -36,8 +37,36 @@ class UserRepository {
     }
   }
 
-  Future<Either<String, bool>> resetPassword({
+  Future<Either<String, String>> verifyResetPassword({
     required String code,
+    required String email,
+  }) async {
+    try {
+      return NetworkUtil.sendRequest(
+          type: RequestType.POST,
+          url: UserEndPoints.verifyResetPassword,
+          headers:
+              NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
+          body: {
+            'code': code,
+            'email': email,
+          }).then((response) {
+        CommonResponse<Map<String, dynamic>> commonResponse =
+            CommonResponse.fromJson(response);
+        if (commonResponse.getStatus) {
+          return Right(commonResponse.data!['message']);
+        } else {
+          return Left(commonResponse.message ?? '');
+        }
+      });
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }  Future<Either<String, String>>
+  resetPassword({
+    required String newPassword,
+    required String confirmPassword,
+    required String email,
   }) async {
     try {
       return NetworkUtil.sendRequest(
@@ -46,12 +75,14 @@ class UserRepository {
           headers:
               NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
           body: {
-            'code': code,
+            'newPassword': newPassword,
+            'confirmPassword': confirmPassword,
+            'email': email,
           }).then((response) {
         CommonResponse<Map<String, dynamic>> commonResponse =
             CommonResponse.fromJson(response);
         if (commonResponse.getStatus) {
-          return Right(commonResponse.getStatus);
+          return Right(commonResponse.data!['message']);
         } else {
           return Left(commonResponse.message ?? '');
         }
@@ -61,7 +92,7 @@ class UserRepository {
     }
   }
 
-  Future<Either<String, bool>> forgetPassword({
+  Future<Either<String, String>> forgetPassword({
     required String email,
   }) async {
     try {
@@ -76,7 +107,7 @@ class UserRepository {
         CommonResponse<Map<String, dynamic>> commonResponse =
             CommonResponse.fromJson(response);
         if (commonResponse.getStatus) {
-          return Right(commonResponse.getStatus);
+          return Right(commonResponse.data!['message']);
         } else {
           return Left(commonResponse.message ?? '');
         }
@@ -123,12 +154,11 @@ class UserRepository {
           headers:
               NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
           body: {'code': code, 'email': email}).then((response) {
+        log('==========> ${response}');
         CommonResponse<Map<String, dynamic>> commonResponse =
             CommonResponse.fromJson(response);
         if (commonResponse.getStatus) {
-          // print(commonResponse.data!);
-          // storage.setTokenInfo(commonResponse.data!['token']);
-
+          storage.setTokenInfo(commonResponse.data!['token']);
           return Right(commonResponse.getStatus);
         } else {
           return Left(commonResponse.message ?? '');
@@ -139,7 +169,7 @@ class UserRepository {
     }
   }
 
-  Future<Either<String, bool>> register({
+  Future<Either<String, String>> register({
     required String email,
     required String password,
     required String confirmPassword,
@@ -170,7 +200,7 @@ class UserRepository {
         CommonResponse<Map<String, dynamic>> commonResponse =
             CommonResponse.fromJson(response);
         if (commonResponse.getStatus) {
-          return const Right(true);
+          return Right(commonResponse.data!['message']);
         } else {
           return Left(commonResponse.message ?? '');
         }

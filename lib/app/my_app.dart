@@ -32,9 +32,8 @@ class MyApp extends StatelessWidget {
         onReady: () async {
           Get.put(ConnectivityService());
           Get.put(MyAppController());
-          Get.put(HiveRepository());
+
           Get.put(LocationService());
-          await storage.init();
         },
         title: 'Car Services',
         theme: ThemeData(

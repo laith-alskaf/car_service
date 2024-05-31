@@ -8,15 +8,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-import '../../shared/colors.dart';
+import '../../../shared/colors.dart';
 
-showEmailDialog(BuildContext context, String email) {
+showCheckEmailDialog({required String email}) {
   SignUpViewController controller = Get.find();
   showDialog(
     barrierDismissible: true,
-    context: context,
+    context: Get.context!,
     builder: (BuildContext context) {
-      return AlertDialog(
+      return AlertDialog(contentPadding: EdgeInsets.only(),
         content: IntrinsicHeight(
           child: Container(
             decoration: BoxDecoration(
@@ -49,13 +49,15 @@ showEmailDialog(BuildContext context, String email) {
                   SizedBox(height: 30.h),
                   CustomButton(
                     width: MediaQuery.of(context).size.width,
-                    height: 40.h,
+                    height: 50.h,
                     text: "confirm",
                     buttonTypeEnum: ButtonTypeEnum.normal,
                     onPressed: () async {
                       controller.register();
                     },
                   ),
+                  SizedBox(height: 30.h),
+
                 ],
               ),
             ),

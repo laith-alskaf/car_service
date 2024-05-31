@@ -6,7 +6,6 @@ import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text_field.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:car_service/ui/views/forget_password_view/forget_password_controller.dart';
-import 'package:car_service/ui/views/forget_password_view/verify_view/verify_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -75,9 +74,9 @@ class ForgetPasswordView extends StatelessWidget {
                 child: CustomButton(
                     width: 1.sw,
                     height: 50.h,
-                    onPressed: () {
+                    onPressed: () async{
                       if (_formKeyForget.currentState!.validate()) {
-                        Get.to(() => VerifyForgetPassView(controller: controller,));
+                        await controller.forget();
                       }
                     },
                     text: "Reset Password",

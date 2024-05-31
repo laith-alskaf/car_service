@@ -10,8 +10,8 @@ class CommonResponse<T> {
     } else {
       if (json['response'] != null &&
           json['response'] is Map &&
-          json['title'] != null) {
-        this.message = json['response']['title']; /////Row is Changing of title
+          json['response']['message'] != null) {
+        this.message = json['response']['message'];
       } else {
         switch (statusCode) {
             case 400:

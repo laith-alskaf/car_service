@@ -60,16 +60,16 @@ class RepairView extends StatelessWidget {
             GestureDetector(
               onTap: () async {
                 if (controller.currentLocation != null) {
-                  Get.to(() => MapView(
-                        currentLocation: controller.currentLocation!,
-                      ));
+                  // Get.to(() => MapView(
+                  //       currentLocation: controller.currentLocation!,
+                  //     ));
                 } else {
                   controller.currentLocation = await locationService
                       .getUserCurrentLocation(hideLoader: true);
                   if (controller.currentLocation != null) {
-                    Get.to(() => MapView(
-                          currentLocation: controller.currentLocation!,
-                        ));
+                    // Get.to(() => MapView(
+                    //       currentLocation: controller.currentLocation!,
+                    //     ));
                   }
                 }
               },

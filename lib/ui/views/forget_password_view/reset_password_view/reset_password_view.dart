@@ -61,6 +61,15 @@ class ResetPasswordView extends StatelessWidget {
                 child: CustomTextFormField(
                   hintText: "Password",
                   controller: controller.passwordController,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'please check your password';
+                    }
+                    if (value.length <= 7) {
+                      return 'please input more than 7';
+                    }
+                    return null;
+                  },
                 ),
               ),
               (20.h).ph,
@@ -80,6 +89,14 @@ class ResetPasswordView extends StatelessWidget {
                 child: CustomTextFormField(
                   hintText: "Confirm Password",
                   controller: controller.confirmPasswordController,
+                  validator: (value) {
+                    if (value!.isEmpty ||
+                        controller.passwordController.text !=
+                            controller.confirmPasswordController.text) {
+                      return 'please check your confirm password';
+                    }
+                    return null;
+                  },
                 ),
               ),
               (40.h).ph,
@@ -89,8 +106,10 @@ class ResetPasswordView extends StatelessWidget {
                 child: CustomButton(
                     width: 1.sw,
                     height: 50.h,
-                    onPressed: () {
-                      if (_formKeyReset.currentState!.validate()) {}
+                    onPressed: () async {
+                      if (_formKeyReset.currentState!.validate()) {
+                        await controller.resetPassword();
+                      }
                     },
                     text: "Reset Password",
                     buttonTypeEnum: ButtonTypeEnum.normal),

@@ -14,10 +14,10 @@ import 'package:get/get.dart';
 
 class VerifyForgetPassView extends StatelessWidget {
   VerifyForgetPassView({
-    super.key, required this.controller,
+    super.key,
   });
 
-final  ForgePasswordController controller;
+  ForgePasswordController controller = Get.find();
   final GlobalKey<FormState> _formKeyVerifyForget = GlobalKey(
     debugLabel: 'verifyForgetKey',
   );
@@ -49,7 +49,9 @@ final  ForgePasswordController controller;
                   ),
                   (25.h).ph,
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      controller.forget();
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -72,9 +74,9 @@ final  ForgePasswordController controller;
                       width: 1.sw,
                       height: 50.h,
                       buttonTypeEnum: ButtonTypeEnum.normal,
-                      onPressed: () {
+                      onPressed: () async{
                         if (_formKeyVerifyForget.currentState!.validate()) {
-                          Get.offAll(() => LoginView());
+                        await  controller.resetPassVerify();
                         }
                       },
                       text: 'Verify',
