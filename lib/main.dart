@@ -12,6 +12,7 @@ Future<void> main() async {
     DeviceOrientation.portraitUp,
   ]);
   Get.put(HiveRepository());
+
   await storage.init();
 
   runApp(const MyApp());
