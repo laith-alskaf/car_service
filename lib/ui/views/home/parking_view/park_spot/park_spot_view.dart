@@ -1,3 +1,4 @@
+import 'package:car_service/core/translation/app_translation.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
@@ -23,8 +24,8 @@ class ParkSpotView extends StatelessWidget {
       child: Scaffold(
         body:
             ListView(physics: const NeverScrollableScrollPhysics(), children: [
-          const CustomAppBar(
-            title: 'Parking',
+           CustomAppBar(
+            title: tr('Parking'),
             borderRadius: false,
             existBack: true,
           ),

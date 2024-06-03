@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:car_service/core/translation/app_translation.dart';
 import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
@@ -39,8 +40,8 @@ class VerifyForgetPassView extends StatelessWidget {
                   ZoomIn(
                     delay: const Duration(milliseconds: 400),
                     duration: const Duration(milliseconds: 300),
-                    child: const CustomText(
-                        text: 'Please Enter The 6 Digits Code sent to you',
+                    child:  CustomText(
+                        text: tr("Please Enter The 6 Digits Code sent to you"),
                         textType: TextStyleType.bodyBig),
                   ),
                   (25.h).ph,
@@ -87,7 +88,7 @@ class VerifyForgetPassView extends StatelessWidget {
                     delay: const Duration(milliseconds: 400),
                     duration: const Duration(milliseconds: 300),
                     child: CustomText(
-                      text: 'You will be redirected to login page',
+                      text: tr("You will be redirected to login page"),
                       textType: TextStyleType.bodyBig,
                       textColor: AppColors.grayColor,
                     ),

@@ -5,7 +5,10 @@ class EnLanguage {
     "Billing": "Billing",
     "Home": "Home",
     "History": "History",
+    'Parking Timer':'Parking Timer',
+    'Return To Home Page':'Return To Home Page',
     "Repair": "Repair",
+
 
     //______________________________ LogIn View_________________________________________
         "key_login": "Log in",
@@ -43,6 +46,15 @@ class EnLanguage {
     "Please Check Your Inbox for The Verification Email": "Please Check Your Inbox for The Verification Email",
     "Please Enter The 6 Digits Code sent to you": "Please Enter The 6 Digits Code sent to you",
     "You will be redirected to login page": "You will be redirected to login page",
+    //______________________________ ForgetPasswordView_________________________________________
+    "Don’t worry it happens please enter your email address":"Don’t worry it happens please enter your email address",
+    "Reset Password":"Reset Password",
+    //______________________________ locationView_________________________________________
+
+    'No Location Selected':'No Location Selected'
+
+
+
 
   };
 }
