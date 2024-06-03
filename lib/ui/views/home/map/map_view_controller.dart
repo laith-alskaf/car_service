@@ -73,7 +73,7 @@ class MapController extends BaseController {
   }
 
   Future<void> choosePark({required String parkNumber}) async {
-    await runLoadingFutureFunction(
+    await runFullLoadingFutureFunction(
         function:
             ParkRepository().choosePark(parkNumber: parkNumber).then((value) {
       value.fold((l) {

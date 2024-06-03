@@ -17,7 +17,7 @@ class ParkingViewController extends BaseController {
 
   Future<void> getClosestPark() async {
     if (currentLocation != null) {
-      await runLoadingFutureFunction(
+      await runFullLoadingFutureFunction(
           function: ParkRepository()
               .getClosestPark(
         long: currentLocation!.longitude.toString(),

@@ -57,7 +57,7 @@ class ForgetPasswordView extends StatelessWidget {
                 delay: const Duration(milliseconds: 1300),
                 duration: const Duration(milliseconds: 300),
                 child: CustomTextFormField(
-                  hintText: "Email",
+                  hintText: tr("Email"),
                   controller: controller.emailController,
                   keyboardType: TextInputType.emailAddress,
                   validator: (value) {

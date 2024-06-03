@@ -106,7 +106,7 @@ List<LatLng> holesMap = const <LatLng>[
   LatLng(-83.586481, -57.760736),
   LatLng(-83.703123, -34.314564),
 ];
-List<LatLng> polygonHOMS = [
+List<LatLng> polygonHOMS = const [
   LatLng(34.779027, 36.719289),
   LatLng(34.760384, 36.663986),
   LatLng(34.741861, 36.635257),

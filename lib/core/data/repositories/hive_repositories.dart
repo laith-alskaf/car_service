@@ -27,17 +27,17 @@ class HiveRepository {
     primaryBox = await Hive.openBox(HIVE_GENERAL_BOX);
   }
 
-  void setAppLanguage(String value) {
-    Hive.box(HIVE_GENERAL_BOX).put(PREF_APP_LANG, value);
+  Future<void> setAppLanguage(String value) async {
+    await Hive.box(HIVE_GENERAL_BOX).put(PREF_APP_LANG, value);
   }
 
   String get getAppLanguage =>
-      Hive.box(HIVE_GENERAL_BOX).get(PREF_APP_LANG, defaultValue: '');
+      Hive.box(HIVE_GENERAL_BOX).get(PREF_APP_LANG, defaultValue:AppConfig.defaultLanguage);
 
   Future<void> setTokenInfo(String value) async {
     Hive.box(HIVE_GENERAL_BOX).put(HIVE_TOKEN_INFO, value);
   }
 
   String get getTokenInfo =>
-      Hive.box(HIVE_GENERAL_BOX).get(HIVE_TOKEN_INFO, defaultValue:AppConfig.defaultLanguage);
+      Hive.box(HIVE_GENERAL_BOX).get(HIVE_TOKEN_INFO, defaultValue:'');
 }

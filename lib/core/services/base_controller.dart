@@ -1,8 +1,11 @@
 
+import 'package:bot_toast/bot_toast.dart';
 import 'package:car_service/core/utils/general_util.dart';
 import 'package:get/get.dart';
 import 'package:car_service/core/enums/operation_type.dart';
 import 'package:car_service/core/enums/request_status.dart';
+
+import '../../ui/shared/utils.dart';
 
 class BaseController extends GetxController {
   Rx<RequestStatus> requestStatus = RequestStatus.DEFUALT.obs;
@@ -54,17 +57,17 @@ class BaseController extends GetxController {
   //   });
   // }
   //
-  // Future runFullLoadingFutureFunction({
-  //   required Future function,
-  // }) async {
-  //   checkConnection(() async {
-  //     customLoader();
-  //
-  //     await function;
-  //
-  //     BotToast.closeAllLoading();
-  //   });
-  // }
+  Future runFullLoadingFutureFunction({
+    required Future function,
+  }) async {
+    checkConnection(() async {
+      customLoader();
+
+      await function;
+
+      BotToast.closeAllLoading();
+    });
+  }
 
 
 }

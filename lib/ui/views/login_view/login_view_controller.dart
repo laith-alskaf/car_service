@@ -11,7 +11,7 @@ class LoginViewController extends BaseController {
   TextEditingController passwordController = TextEditingController();
 
   Future<void> login() async {
-    await runLoadingFutureFunction(
+    await runFullLoadingFutureFunction(
         function: UserRepository()
             .login(
       email: emailController.text,

@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
         transitionDuration: const Duration(microseconds: 300),
         translations: AppTranslation(),
         builder: BotToastInit(),
+        locale: getLocal(),
         navigatorObservers: [BotToastNavigatorObserver()],
         debugShowCheckedModeBanner: false,
         onReady: () async {
@@ -51,7 +52,7 @@ Locale getLocal() {
   if (storage.getAppLanguage == 'ar') {
     return const Locale('ar', 'SA');
   } else if (storage.getAppLanguage == 'en') {
-    return const Locale('tr', 'en');
+    return const Locale('en', 'en');
   } else {
     return const Locale('en', 'US');
   }

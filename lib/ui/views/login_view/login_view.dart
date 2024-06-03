@@ -45,7 +45,7 @@ class LoginView extends StatelessWidget {
                   ),
                   ZoomIn(
                     child: CustomText(
-                      text: 'Car Medic',
+                      text: tr('Car Medic'),
                       textType: TextStyleType.title,
                       fontWeight: FontWeight.bold,
                       textColor: AppColors.textColor2,
@@ -56,7 +56,7 @@ class LoginView extends StatelessWidget {
                     child:  Align(
                       alignment: AlignmentDirectional.centerStart,
                       child: CustomText(
-                        text: tr('Welocme !'),
+                        text: tr('Welcome'),
                         textType: TextStyleType.title,
                         fontWeight: FontWeight.bold,
                         textColor: AppColors.blackColor,

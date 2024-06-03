@@ -40,7 +40,7 @@ class SignUpViewController extends BaseController {
   TextEditingController carModelController = TextEditingController();
 
   Future<void> register() async {
-    await runLoadingFutureFunction(
+    await runFullLoadingFutureFunction(
         function: UserRepository()
             .register(
                 email: emailController.text,
@@ -67,7 +67,7 @@ class SignUpViewController extends BaseController {
   }
 
   Future<void> verify() async {
-    await runLoadingFutureFunction(
+    await runFullLoadingFutureFunction(
         function:
             UserRepository().verify(email: emailController.text).then((value) {
       value.fold((l) {
@@ -82,7 +82,7 @@ class SignUpViewController extends BaseController {
 
   Future<void> sendCode() async {
     log(verifyCodeController.text);
-    await runLoadingFutureFunction(
+    await runFullLoadingFutureFunction(
         function: UserRepository()
             .sendCode(
                 code: verifyCodeController.text, email: emailController.text)
