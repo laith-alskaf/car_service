@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:car_service/core/translation/app_translation.dart';
 import 'package:car_service/core/utils/string_urtil.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
@@ -34,7 +35,7 @@ class ForgetPasswordView extends StatelessWidget {
                 delay: const Duration(milliseconds: 700),
                 duration: const Duration(milliseconds: 300),
                 child: CustomText(
-                  text: "Forget Your Password",
+                  text: tr("Forget Password"),
                   textType: TextStyleType.title,
                   textColor: AppColors.mainColor,
                   fontWeight: FontWeight.bold,
@@ -46,7 +47,7 @@ class ForgetPasswordView extends StatelessWidget {
                 duration: const Duration(milliseconds: 300),
                 child: CustomText(
                   text:
-                      "Don’t worry it happens please enter your email address",
+                      tr("Don’t worry it happens please enter your email address"),
                   textType: TextStyleType.subtitle,
                   textColor: AppColors.blackColor.withOpacity(0.6),
                 ),
@@ -61,7 +62,7 @@ class ForgetPasswordView extends StatelessWidget {
                   keyboardType: TextInputType.emailAddress,
                   validator: (value) {
                     if (value!.isEmpty || !StringUtil.isEmail(value)) {
-                      return 'please check your email';
+                      return tr("please check your email");
                     }
                     return null;
                   },
@@ -79,7 +80,7 @@ class ForgetPasswordView extends StatelessWidget {
                         await controller.forget();
                       }
                     },
-                    text: "Reset Password",
+                    text: tr("Reset Password"),
                     buttonTypeEnum: ButtonTypeEnum.normal),
               ),
             ],

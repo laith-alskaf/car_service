@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:car_service/core/translation/app_translation.dart';
 import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
@@ -37,7 +38,7 @@ class ResetPasswordView extends StatelessWidget {
                 duration: const Duration(milliseconds: 300),
                 child: Center(
                   child: CustomText(
-                    text: "Reset Your Password",
+                    text: tr("Reset Your Password"),
                     textType: TextStyleType.title,
                     textColor: AppColors.mainColor,
                     fontWeight: FontWeight.bold,
@@ -48,8 +49,8 @@ class ResetPasswordView extends StatelessWidget {
               FadeInLeft(
                 delay: const Duration(milliseconds: 1000),
                 duration: const Duration(milliseconds: 300),
-                child: const CustomText(
-                  text: "Password",
+                child:  CustomText(
+                  text: tr("Password"),
                   textType: TextStyleType.bodyBig,
                   textColor: AppColors.blackColor,
                 ),
@@ -63,10 +64,10 @@ class ResetPasswordView extends StatelessWidget {
                   controller: controller.passwordController,
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return 'please check your password';
+                      return tr('please check your password');
                     }
                     if (value.length <= 7) {
-                      return 'please input more than 7';
+                      return tr('please input more than 7');
                     }
                     return null;
                   },
@@ -76,8 +77,8 @@ class ResetPasswordView extends StatelessWidget {
               FadeInLeft(
                 delay: const Duration(milliseconds: 1300),
                 duration: const Duration(milliseconds: 300),
-                child: const CustomText(
-                  text: "Confirm Password",
+                child:  CustomText(
+                  text: tr("Confirm Password"),
                   textType: TextStyleType.bodyBig,
                   textColor: AppColors.blackColor,
                 ),
@@ -87,13 +88,13 @@ class ResetPasswordView extends StatelessWidget {
                 delay: const Duration(milliseconds: 1300),
                 duration: const Duration(milliseconds: 300),
                 child: CustomTextFormField(
-                  hintText: "Confirm Password",
+                  hintText: tr("Confirm Password"),
                   controller: controller.confirmPasswordController,
                   validator: (value) {
                     if (value!.isEmpty ||
                         controller.passwordController.text !=
                             controller.confirmPasswordController.text) {
-                      return 'please check your confirm password';
+                      return tr ('please check your confirm password');
                     }
                     return null;
                   },
@@ -111,7 +112,7 @@ class ResetPasswordView extends StatelessWidget {
                         await controller.resetPassword();
                       }
                     },
-                    text: "Reset Password",
+                    text: tr("Reset Password"),
                     buttonTypeEnum: ButtonTypeEnum.normal),
               ),
               (40.h).ph,
@@ -120,7 +121,7 @@ class ResetPasswordView extends StatelessWidget {
                 duration: const Duration(milliseconds: 300),
                 child: Center(
                   child: CustomText(
-                    text: "You will be redirected to login page",
+                    text: tr("You will be redirected to login page"),
                     textType: TextStyleType.body,
                     textColor: AppColors.blackColor.withOpacity(0.6),
                   ),

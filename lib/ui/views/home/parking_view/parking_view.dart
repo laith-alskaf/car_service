@@ -1,5 +1,4 @@
 import 'package:car_service/core/translation/app_translation.dart';
-import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
@@ -76,7 +75,7 @@ class ParkingView extends StatelessWidget {
                 ),
                 child: CustomText(
                   text: controller.selectedLocation == null
-                      ? 'No Location Selected'
+                      ?tr( 'No Location Selected')
                       : controller.selectedLocation!,
                   textType: TextStyleType.bodyBig,
                   isTextAlign: controller.selectedLocation == null

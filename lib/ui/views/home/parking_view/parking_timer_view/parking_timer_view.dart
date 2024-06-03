@@ -1,3 +1,4 @@
+import 'package:car_service/core/translation/app_translation.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
@@ -21,8 +22,8 @@ class ParkingTimerView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: ListView(children: [
-          const CustomAppBar(
-            title: 'Parking Timer',
+           CustomAppBar(
+            title: tr('Parking Timer'),
             iconSetting: true,
           ),
           (20.h).ph,
@@ -75,7 +76,7 @@ class ParkingTimerView extends StatelessWidget {
               Get.offAll(MainView());
             },
             child: CustomText(
-              text: 'Return To Home Page',
+              text: tr('Return To Home Page'),
               textType: TextStyleType.title,
               isTextAlign: TextAlign.center,
               textColor: AppColors.mainColor,

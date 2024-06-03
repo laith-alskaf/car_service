@@ -5,6 +5,8 @@ class ARLanguage {
         "Parking": "موقف سيارات",
         "Billing": "الفواتير",
         "Home": "الرئيسية",
+        'Parking Timer':"مؤقت وقوف السيارات",
+        'Return To Home Page':'العودة اللى الصفحة الرئيسية',
         "History": "السجل",
         "Repair": "الاصلاح",
 
@@ -47,5 +49,12 @@ class ARLanguage {
             "الرجاء إدخال الرمز المكون من 6 أرقام الذي تم إرساله إليك",
         "You will be redirected to login page":
             "سيتم إعادة توجيهك إلى صفحة تسجيل الدخول",
-      };
+        //______________________________ ForgetPasswordView_________________________________________
+        "Don’t worry it happens please enter your email address":"لا تقلق، قد يحدث ذلك، يرجى إدخال عنوان بريدك الإلكتروني",
+        "Reset Password":"اعادة ارسال كلمة المرور",
+        //______________________________ ForgetPasswordView_________________________________________
+        'No Location Selected':"لم يتم اختيار موقع"
+
+
+  };
 }
