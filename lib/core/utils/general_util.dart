@@ -7,6 +7,7 @@ import 'package:car_service/core/data/repositories/hive_repositories.dart';
 import 'package:car_service/core/services/connectivity_service.dart';
 import 'package:car_service/app/my_app_controller.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 HiveRepository get storage => Get.find<HiveRepository>();
 
@@ -85,4 +86,36 @@ List<ServiceItem> serviceItem = [
     name: "service 6",
     typeService: TypeServices.mechanic,
   ),
+];
+List<LatLng> holesMap = const <LatLng>[
+  LatLng(83.703123, -34.314564),
+  LatLng(84.111673, 42.135523),
+  LatLng(84.136953, 98.001947),
+  LatLng(82.853123, 166.262209),
+  LatLng(83.972621, -138.522415),
+  LatLng(83.261179, -72.576219),
+  LatLng(83.586481, -57.760736),
+  LatLng(83.703123, -34.314564),
+  LatLng(-83.703123, -34.314564),
+  LatLng(-83.703123, -34.314564),
+  LatLng(-84.111673, 42.135523),
+  LatLng(-84.136953, 98.001947),
+  LatLng(-82.853123, 166.262209),
+  LatLng(-83.972621, -138.522415),
+  LatLng(-83.261179, -72.576219),
+  LatLng(-83.586481, -57.760736),
+  LatLng(-83.703123, -34.314564),
+];
+List<LatLng> polygonHOMS = [
+  LatLng(34.779027, 36.719289),
+  LatLng(34.760384, 36.663986),
+  LatLng(34.741861, 36.635257),
+  LatLng(34.721158, 36.625088),
+  LatLng(34.672778, 36.645628),
+  LatLng(34.656600, 36.679696),
+  LatLng(34.654221, 36.709614),
+  LatLng(34.678690, 36.730561),
+  LatLng(34.699996, 36.742665),
+  LatLng(34.719133, 36.757399),
+  LatLng(34.756260, 36.755292),
 ];

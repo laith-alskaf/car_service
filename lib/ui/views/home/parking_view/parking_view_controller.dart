@@ -34,7 +34,7 @@ class ParkingViewController extends BaseController {
           parkingList.forEach((value) {
             locationPark.add(value.location!);
           });
-          Get.off(() => MapView(
+          Get.to(() => MapView(
                 currentLocation: currentLocation!,
                 locationPark: locationPark,
               ));

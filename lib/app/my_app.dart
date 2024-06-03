@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bot_toast/bot_toast.dart';
 import 'package:car_service/app/my_app_controller.dart';
 import 'package:car_service/core/data/repositories/hive_repositories.dart';
@@ -42,5 +44,15 @@ class MyApp extends StatelessWidget {
         home: SplashScreenView(),
       ),
     );
+  }
+}
+
+Locale getLocal() {
+  if (storage.getAppLanguage == 'ar') {
+    return const Locale('ar', 'SA');
+  } else if (storage.getAppLanguage == 'en') {
+    return const Locale('tr', 'en');
+  } else {
+    return const Locale('en', 'US');
   }
 }

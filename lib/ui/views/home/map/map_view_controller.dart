@@ -21,12 +21,10 @@ class MapController extends BaseController {
       Completer<GoogleMapController>();
   late CameraPosition currentPosition;
   RxSet<Marker> markers = <Marker>{}.obs;
-  late LatLng selecteLocation;
+  late LatLng selectLocation;
   RxString streetName = ''.obs;
-  late CameraPosition initalCameraPosition;
-  late LatLng selectedLocation;
-  late List<LatLng> polygonPoints;
-
+  double lat = 34.779027;
+  double long = 36.719289;
   static const CameraPosition kLake = CameraPosition(
       bearing: 192.8334901395799,
       target: LatLng(37.43296265331129, -122.08832357078792),
@@ -37,25 +35,13 @@ class MapController extends BaseController {
 
   @override
   void onInit() async {
-    initalCameraPosition = CameraPosition(
-      target: LatLng(currentLocation.latitude ?? 37.43296265331129,
-          currentLocation.longitude ?? -122.08832357078792),
-      zoom: 4,
-    );
-    selectedLocation = LatLng(currentLocation.latitude ?? 37.43296265331129,
-        currentLocation.longitude ?? -122.08832357078792);
     currentPosition = CameraPosition(
-      target: LatLng(currentLocation.latitude ?? 37.42796133580664,
-          currentLocation.longitude ?? -122.085749655962),
-      zoom: 4,
+      target: LatLng(
+          currentLocation.latitude ?? lat, currentLocation.longitude ?? long),
+      zoom: 15,
     );
-    selecteLocation = LatLng(currentLocation.latitude ?? 37.42796133580664,
-        currentLocation.longitude ?? -122.08574965596);
-    polygonPoints = locationPark.map((location) {
-      double lat = location.coordinates![0];
-      double lng = location.coordinates![1];
-      return LatLng(lat, lng);
-    }).toList();
+    selectLocation = LatLng(
+        currentLocation.latitude ?? lat, currentLocation.longitude ?? long);
     super.onInit();
   }
 
@@ -76,7 +62,7 @@ class MapController extends BaseController {
       infoWindow: InfoWindow(
           title: name,
           onTap: () {
-            // choosePark(parkNumber: id);
+            choosePark(parkNumber: id);
             parkingViewController.selectedLocation = name;
           }),
       markerId: MarkerId(id),
