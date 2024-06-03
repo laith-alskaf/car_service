@@ -1,3 +1,4 @@
+import 'package:car_service/core/translation/app_translation.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
@@ -22,7 +23,7 @@ class CustomDropMenu extends StatelessWidget {
         style: TextStyle(color: AppColors.mainColor),
         decoration: InputDecoration(
           contentPadding: EdgeInsets.only(top: 10.h),
-          hintText: '   Car Type',
+          hintText: tr('Car Type'),
           hintStyle: TextStyle(color: AppColors.grayColor),
           fillColor: AppColors.blackColor.withOpacity(0.02),
           focusedBorder: OutlineInputBorder(

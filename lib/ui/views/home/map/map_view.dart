@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:car_service/core/data/models/api/choos_parking_model.dart';
+import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/views/home/map/map_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,6 +28,16 @@ class MapViewState extends State<MapView> {
         builder: (mapController) {
           return Scaffold(
             body: GoogleMap(
+                polygons: {
+                  Polygon(
+                    polygonId: const PolygonId('myPolygon'),
+                    points: mapController.polygonPoints,
+                    strokeColor: AppColors.mainColor,
+                    strokeWidth: 2,
+                    fillColor: Colors.blue.withOpacity(0.3),
+                    visible: true,
+                  ),
+                },
                 myLocationButtonEnabled: true,
                 myLocationEnabled: true,
                 mapType: MapType.normal,
@@ -36,8 +47,8 @@ class MapViewState extends State<MapView> {
                   mapController.locationPark.forEach((element) {
                     mapController.addMarker(
                         imageUrl: 'https://www.fluttercampus.com/img/car.png',
-                        position: LatLng(element.coordinates![1],
-                            element.coordinates![0] ?? -122.085749655962),
+                        position: LatLng(
+                            element.coordinates![1], element.coordinates![0]),
                         id: element.parkingNumber.toString(),
                         name: element.parkingName);
                   });
@@ -50,27 +61,27 @@ class MapViewState extends State<MapView> {
                       position: LatLng(latlong.latitude, latlong.longitude),
                       id: 'current');
                 }),
-            floatingActionButton: mapController.requestStatus.value ==
-                    RequestStatus.LOADING
-                ? const CircularProgressIndicator()
-                : Align(
-                    alignment: AlignmentDirectional.bottomStart,
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.only(start: 25.w, bottom: 25.w),
-                      child: FloatingActionButton.extended(
-                        onPressed: _goToTheLake,
-                        label: Text(mapController.streetName.value),
-                        icon: const Icon(Icons.directions_boat),
-                      ),
-                    ),
-                  ),
+            // floatingActionButton: mapController.requestStatus.value ==
+            //         RequestStatus.LOADING
+            //     ? const CircularProgressIndicator()
+            //     : Align(
+            //         alignment: AlignmentDirectional.bottomStart,
+            //         child: Padding(
+            //           padding:
+            //               EdgeInsetsDirectional.only(start: 25.w, bottom: 25.w),
+            //           child: FloatingActionButton.extended(
+            //             onPressed: _goToTheLake,
+            //             label: Text(mapController.streetName.value),
+            //             icon: const Icon(Icons.directions_boat),
+            //           ),
+            //         ),
+            //       ),
           );
         });
   }
 
-  Future<void> _goToTheLake() async {
+  // Future<void> _goToTheLake() async {
     // final GoogleMapController controller = await _controller.future;
     // await controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
-  }
+  // }
 }

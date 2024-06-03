@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:car_service/core/translation/app_translation.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
@@ -23,8 +24,8 @@ class SignUpCheckEmail extends StatelessWidget {
         ZoomIn(
           delay: const Duration(milliseconds: 400),
           duration: const Duration(milliseconds: 300),
-          child: const CustomText(
-            text: 'Please Check Your Inbox for The Verification Email',
+          child: CustomText(
+            text: tr('Please Check Your Inbox for The Verification Email'),
             isTextAlign: TextAlign.center,
             textType: TextStyleType.title,
             fontWeight: FontWeight.normal,
@@ -54,14 +55,14 @@ class SignUpCheckEmail extends StatelessWidget {
             onPressed: () {
               controller.currentIndex.value++;
             },
-            text: 'Next',
+            text: tr('Next'),
           ),
         ),
         (25.h).ph,
         GestureDetector(
           onTap: () {},
-          child: const CustomText(
-            text: 'Didn\'t Receive Email ? ',
+          child: CustomText(
+            text: tr('Didn\'t Receive Email ?'),
             isTextAlign: TextAlign.center,
             textType: TextStyleType.bodyBig,
             textColor: AppColors.blackColor,
@@ -77,7 +78,7 @@ class SignUpCheckEmail extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CustomText(
-                text: 'Resend',
+                text: tr('Resend'),
                 isTextAlign: TextAlign.center,
                 textType: TextStyleType.bodyBig,
                 textColor: AppColors.mainColor,

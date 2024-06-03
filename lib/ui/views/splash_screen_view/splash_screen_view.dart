@@ -1,3 +1,4 @@
+import 'package:car_service/core/translation/app_translation.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,8 +31,8 @@ class SplashScreenView extends StatelessWidget {
             CustomText(
               startPadding: 20.w,
               endPadding: 20.w,
-              text:
-                  'Welcome to our Car Services, your one-stop destination for all your automotive needs',
+              text: tr(
+                  'Welcome to our Car Services, your one-stop destination for all your automotive needs'),
               textType: TextStyleType.title,
               isTextAlign: TextAlign.center,
               fontWeight: FontWeight.bold,

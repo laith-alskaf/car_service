@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:car_service/core/translation/app_translation.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_drop_menu.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text_field.dart';
@@ -25,11 +26,11 @@ class SignUpModel extends StatelessWidget {
           delay: const Duration(milliseconds: 1300),
           duration: const Duration(milliseconds: 200),
           child: CustomTextFormField(
-            hintText: 'Car Brand And Model',
+            hintText: tr('Car Brand And Model'),
             controller: controller.carModelController,
             validator: (value) {
               if (value!.isEmpty) {
-                return 'should not be empty';
+                return tr('Should be not empty');
               }
               return null;
             },
@@ -40,11 +41,11 @@ class SignUpModel extends StatelessWidget {
           delay: const Duration(milliseconds: 1500),
           duration: const Duration(milliseconds: 200),
           child: CustomTextFormField(
-            hintText: 'Car Number',
+            hintText: tr('Car Number'),
             keyboardType: TextInputType.number,
             validator: (value) {
               if (value!.isEmpty || value.length <= 4) {
-                return 'should be not more than 4 numbers';
+                return tr('Should be more than 4 numbers');
               }
 
               return null;
@@ -76,7 +77,7 @@ class SignUpModel extends StatelessWidget {
                 showCheckEmailDialog(email: controller.emailController.text);
               }
             },
-            text: 'Next',
+            text: tr('Next'),
           ),
         ),
       ],

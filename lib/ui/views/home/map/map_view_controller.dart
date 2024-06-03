@@ -1,13 +1,11 @@
 import 'dart:async';
 import 'package:car_service/core/data/models/api/choos_parking_model.dart';
-import 'package:car_service/core/data/models/api/country_model.dart';
 import 'package:car_service/core/data/repositories/park_repositories.dart';
 import 'package:car_service/core/enums/message_type.dart';
-import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/core/utils/map_util.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_toast.dart';
 import 'package:car_service/ui/views/home/parking_view/park_spot/park_spot_view.dart';
-import 'package:car_service/ui/views/home/parking_view/parking_view.dart';
+import 'package:car_service/ui/views/home/parking_view/parking_view_controller.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
@@ -16,6 +14,7 @@ import 'package:car_service/core/services/base_controller.dart';
 class MapController extends BaseController {
   MapController(this.currentLocation, this.locationPark);
 
+  late ParkingViewController parkingViewController = Get.find();
   late LocationData currentLocation;
   late List<LocationPark> locationPark;
   final Completer<GoogleMapController> controller =
@@ -26,6 +25,7 @@ class MapController extends BaseController {
   RxString streetName = ''.obs;
   late CameraPosition initalCameraPosition;
   late LatLng selectedLocation;
+  late List<LatLng> polygonPoints;
 
   static const CameraPosition kLake = CameraPosition(
       bearing: 192.8334901395799,
@@ -40,7 +40,7 @@ class MapController extends BaseController {
     initalCameraPosition = CameraPosition(
       target: LatLng(currentLocation.latitude ?? 37.43296265331129,
           currentLocation.longitude ?? -122.08832357078792),
-      zoom: 14.4746,
+      zoom: 4,
     );
     selectedLocation = LatLng(currentLocation.latitude ?? 37.43296265331129,
         currentLocation.longitude ?? -122.08832357078792);
@@ -51,6 +51,11 @@ class MapController extends BaseController {
     );
     selecteLocation = LatLng(currentLocation.latitude ?? 37.42796133580664,
         currentLocation.longitude ?? -122.08574965596);
+    polygonPoints = locationPark.map((location) {
+      double lat = location.coordinates![0];
+      double lng = location.coordinates![1];
+      return LatLng(lat, lng);
+    }).toList();
     super.onInit();
   }
 
@@ -68,16 +73,16 @@ class MapController extends BaseController {
             : BitmapDescriptor.defaultMarker;
 
     markers.add(Marker(
-        infoWindow: InfoWindow(title: name,onTap: (){
-          choosePark(parkNumber: id);
-        }),
-        markerId: MarkerId(id),
-        position: position,
-        icon: markerIcon,
-        // onTap: () {
-        //
-        // }
-        ));
+      infoWindow: InfoWindow(
+          title: name,
+          onTap: () {
+            // choosePark(parkNumber: id);
+            parkingViewController.selectedLocation = name;
+          }),
+      markerId: MarkerId(id),
+      position: position,
+      icon: markerIcon,
+    ));
     update();
   }
 

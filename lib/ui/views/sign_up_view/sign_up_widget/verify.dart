@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:car_service/core/translation/app_translation.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_otp_field.dart';
@@ -28,8 +29,8 @@ class SignUpVerify extends StatelessWidget {
         ZoomIn(
           delay: const Duration(milliseconds: 400),
           duration: const Duration(milliseconds: 300),
-          child: const CustomText(
-              text: 'Please Enter The 6 Digits Code sent to you',
+          child: CustomText(
+              text: tr('Please Enter The 6 Digits Code sent to you'),
               textType: TextStyleType.bodyBig),
         ),
         (25.h).ph,
@@ -43,7 +44,7 @@ class SignUpVerify extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CustomText(
-                text: 'Resend',
+                text: tr('Resend'),
                 isTextAlign: TextAlign.center,
                 textType: TextStyleType.bodyBig,
                 textColor: AppColors.mainColor,
@@ -62,7 +63,7 @@ class SignUpVerify extends StatelessWidget {
             height: 50.h,
             buttonTypeEnum: ButtonTypeEnum.normal,
             onPressed: onPressedVerify,
-            text: 'Verify',
+            text: tr('Verify'),
           ),
         ),
         (25.h).ph,
@@ -70,7 +71,7 @@ class SignUpVerify extends StatelessWidget {
           delay: const Duration(milliseconds: 400),
           duration: const Duration(milliseconds: 300),
           child: CustomText(
-            text: 'You will be redirected to login page',
+            text: tr('You will be redirected to login page'),
             textType: TextStyleType.bodyBig,
             textColor: AppColors.grayColor,
           ),

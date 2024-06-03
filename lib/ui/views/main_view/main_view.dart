@@ -1,3 +1,4 @@
+import 'package:car_service/core/translation/app_translation.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/views/home/billing_view/billing_view.dart';
 import 'package:car_service/ui/views/home/history_view/history_view.dart';
@@ -47,30 +48,30 @@ class MainView extends StatelessWidget {
                       'assets/bottom_bar/ic_parking.svg',
                     ),
                   ),
-                  title: "Parking"),
+                  title: tr("Parking")),
               TabData(
                   icon: Padding(
                     padding: EdgeInsets.all(20.w),
                     child: SvgPicture.asset('assets/bottom_bar/ic_billing.svg'),
                   ),
-                  title: "Billing"),
+                  title: tr("Billing")),
               TabData(
                   icon: Padding(
                       padding: EdgeInsets.all(10.w),
                       child: SvgPicture.asset('assets/bottom_bar/ic_home.svg')),
-                  title: "Home"),
+                  title: tr("Home")),
               TabData(
                   icon: Padding(
                       padding: EdgeInsets.all(20.w),
                       child:
                           SvgPicture.asset('assets/bottom_bar/ic_history.svg')),
-                  title: "History"),
+                  title: tr("History")),
               TabData(
                   icon: Padding(
                       padding: EdgeInsets.all(20.w),
                       child: SvgPicture.asset(
                           'assets/bottom_bar/ic_maintance.svg')),
-                  title: "Repair"),
+                  title: tr("Repair")),
             ],
             onTabChangedListener: (int position) {
               switch (position) {

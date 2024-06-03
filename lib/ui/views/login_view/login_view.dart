@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:car_service/core/translation/app_translation.dart';
 import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/core/utils/string_urtil.dart';
 import 'package:car_service/ui/shared/colors.dart';
@@ -8,7 +9,6 @@ import 'package:car_service/ui/shared/custom_widget/custom_text_field.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:car_service/ui/views/forget_password_view/forget_password_view.dart';
 import 'package:car_service/ui/views/login_view/login_view_controller.dart';
-import 'package:car_service/ui/views/main_view/main_view.dart';
 import 'package:car_service/ui/views/sign_up_view/sign_up_main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -53,10 +53,10 @@ class LoginView extends StatelessWidget {
                   ),
                   (100.h).ph,
                   ZoomIn(
-                    child: const Align(
+                    child:  Align(
                       alignment: AlignmentDirectional.centerStart,
                       child: CustomText(
-                        text: 'Welocme !',
+                        text: tr('Welocme !'),
                         textType: TextStyleType.title,
                         fontWeight: FontWeight.bold,
                         textColor: AppColors.blackColor,
@@ -68,7 +68,7 @@ class LoginView extends StatelessWidget {
                     child: Align(
                       alignment: AlignmentDirectional.centerStart,
                       child: CustomText(
-                        text: 'Login to your account',
+                        text: tr('Login to your account'),
                         textType: TextStyleType.bodyBig,
                         fontWeight: FontWeight.normal,
                         textColor: AppColors.blackColor,
@@ -81,11 +81,11 @@ class LoginView extends StatelessWidget {
                     delay: const Duration(milliseconds: 700),
                     duration: const Duration(milliseconds: 300),
                     child: CustomTextFormField(
-                      hintText: 'Email',
+                      hintText: tr('Email'),
                       controller: controller.emailController,
                       validator: (value) {
                         if (value!.isEmpty || !StringUtil.isEmail(value)) {
-                          return 'please check your email';
+                          return tr('please check your email');
                         }
                         return null;
                       },
@@ -96,14 +96,14 @@ class LoginView extends StatelessWidget {
                     delay: const Duration(milliseconds: 1000),
                     duration: const Duration(milliseconds: 300),
                     child: CustomTextFormField(
-                      hintText: 'Password',
+                      hintText: tr('Password'),
                       controller: controller.passwordController,
                       validator: (value) {
                         if (value!.isEmpty ) {
-                          return 'please check your password';
+                          return tr('please check your password');
                         }
                         if (value.length <= 7) {
-                          return 'please inpout more than 7';
+                          return tr('please inpout more than 7');
                         }
                         return null;
                       },
@@ -120,7 +120,7 @@ class LoginView extends StatelessWidget {
                           Get.to(() => ForgetPasswordView());
                         },
                         child: CustomText(
-                          text: 'Forget Password',
+                          text: tr('Forget Password'),
                           textType: TextStyleType.small,
                           textColor: AppColors.mainColor,
                         ),
@@ -140,15 +140,15 @@ class LoginView extends StatelessWidget {
                        await   controller.login();
                         }
                       },
-                      text: 'Log in',
+                      text: tr('key_login'),
                     ),
                   ),
                   const Spacer(),
                   ZoomIn(
                     delay: const Duration(milliseconds: 1600),
                     duration: const Duration(milliseconds: 300),
-                    child: const CustomText(
-                        text: 'you don\'t have an account yet',
+                    child:  CustomText(
+                        text: tr('you don\'t have an account yet'),
                         textType: TextStyleType.small),
                   ),
                   (10.h).ph,
@@ -164,7 +164,7 @@ class LoginView extends StatelessWidget {
                         );
                       },
                       child: CustomText(
-                        text: 'Create One',
+                        text: tr('Create One'),
                         textType: TextStyleType.bodyBig,
                         textColor: AppColors.mainColor,
                         fontWeight: FontWeight.bold,

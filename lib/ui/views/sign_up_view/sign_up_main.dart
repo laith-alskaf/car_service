@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:car_service/core/translation/app_translation.dart';
 import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/core/utils/string_urtil.dart';
 import 'package:car_service/ui/shared/colors.dart';
@@ -54,7 +55,7 @@ class SignUpMain extends StatelessWidget {
                                 child: Align(
                                   alignment: AlignmentDirectional.centerStart,
                                   child: CustomText(
-                                    text: 'Let’s Create New Account',
+                                    text: tr('Let’s Create New Account'),
                                     textType: TextStyleType.bodyBig,
                                     textColor: AppColors.blackColor,
                                     startPadding: 15.w,
@@ -99,22 +100,13 @@ class SignUpMain extends StatelessWidget {
                                     delay: const Duration(milliseconds: 700),
                                     duration: const Duration(milliseconds: 200),
                                     child: CustomTextFormField(
-                                      onFieldSubmitted: (value) {
-                                        if (value.isEmpty ) {
-                                          return 'Input your first name';
-                                        }
-                                        else{
-
-                                        }
-                                        return null;
-                                      },
                                       widthContainer: 215.w,
-                                      hintText: 'First Name',
+                                      hintText: tr('First Name'),
                                       controller:
                                           controller.firstNameController,
                                       validator: (value) {
                                         if (value!.isEmpty) {
-                                          return 'Input your first name';
+                                          return tr('Input your first name');
                                         }
                                         return null;
                                       },
@@ -126,11 +118,11 @@ class SignUpMain extends StatelessWidget {
                                     duration: const Duration(milliseconds: 200),
                                     child: CustomTextFormField(
                                       widthContainer: 215.w,
-                                      hintText: 'Last Name',
+                                      hintText: tr('Last Name'),
                                       controller: controller.lastNameController,
                                       validator: (value) {
                                         if (value!.isEmpty ) {
-                                          return 'please check your last name';
+                                          return tr('Input your last name');
                                         }
                                         return null;
                                       },
@@ -143,13 +135,13 @@ class SignUpMain extends StatelessWidget {
                                 delay: const Duration(milliseconds: 900),
                                 duration: const Duration(milliseconds: 200),
                                 child: CustomTextFormField(
-                                  hintText: 'Email',
+                                  hintText: tr('Email'),
                                   keyboardType: TextInputType.emailAddress,
                                   controller: controller.emailController,
                                   validator: (value) {
                                     if (value!.isEmpty ||
                                         !StringUtil.isEmail(value)) {
-                                      return 'please check your email';
+                                      return tr('please check your email');
                                     }
                                     return null;
                                   },
@@ -161,13 +153,13 @@ class SignUpMain extends StatelessWidget {
                                 duration: const Duration(milliseconds: 200),
                                 child: CustomTextFormField(
                                   controller: controller.passwordController,
-                                  hintText: 'Password',
+                                  hintText: tr('Password'),
                                   validator: (value) {
                                     if (value!.isEmpty) {
-                                      return 'please check your password';
+                                      return tr('please check your password');
                                     }
                                     if (value.length <= 7) {
-                                      return 'please input more than 7';
+                                      return tr('please input more than 7');
                                     }
                                     return null;
                                   },
@@ -179,12 +171,12 @@ class SignUpMain extends StatelessWidget {
                                 duration: const Duration(milliseconds: 200),
                                 child: CustomTextFormField(
                                   controller: controller.confirmController,
-                                  hintText: 'Confirm Password',
+                                  hintText: tr('Confirm Password'),
                                   validator: (value) {
                                     if (value!.isEmpty ||
                                         controller.passwordController.text !=
                                             controller.confirmController.text) {
-                                      return 'please check your confirm password';
+                                      return tr('please check your confirm password');
                                     }
                                     return null;
                                   },
@@ -199,9 +191,9 @@ class SignUpMain extends StatelessWidget {
                               ZoomIn(
                                 delay: const Duration(milliseconds: 1900),
                                 duration: const Duration(milliseconds: 200),
-                                child: const CustomText(
+                                child:  CustomText(
                                     isTextAlign: TextAlign.center,
-                                    text: 'Already have account',
+                                    text: tr('Already have account'),
                                     textType: TextStyleType.small),
                               ),
                               (10.h).ph,
@@ -217,7 +209,7 @@ class SignUpMain extends StatelessWidget {
                                   },
                                   child: CustomText(
                                     isTextAlign: TextAlign.center,
-                                    text: 'Log In',
+                                    text: tr('key_login'),
                                     textType: TextStyleType.bodyBig,
                                     textColor: AppColors.mainColor,
                                     fontWeight: FontWeight.bold,

@@ -1,10 +1,10 @@
+import 'package:car_service/core/translation/app_translation.dart';
 import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
-import 'package:car_service/ui/views/home/map/map_view.dart';
 import 'package:car_service/ui/views/home/parking_view/park_spot/park_spot_view.dart';
 import 'package:car_service/ui/views/home/parking_view/parking_view_controller.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,8 +21,8 @@ class ParkingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(children: [
-      const CustomAppBar(
-        title: 'Parking',
+       CustomAppBar(
+        title: tr('Parking'),
         iconSetting: true,
       ),
       (30.h).ph,
@@ -93,7 +93,7 @@ class ParkingView extends StatelessWidget {
               onPressed: () {
                 Get.to(() => ParkSpotView());
               },
-              text: 'Next',
+              text: tr('Next'),
               buttonTypeEnum: ButtonTypeEnum.big,
               height: 45.h,
               width: 1.sw,
