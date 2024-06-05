@@ -1,8 +1,6 @@
-import 'dart:developer';
 
 import 'package:bot_toast/bot_toast.dart';
 import 'package:car_service/app/my_app_controller.dart';
-import 'package:car_service/core/data/repositories/hive_repositories.dart';
 import 'package:car_service/core/services/connectivity_service.dart';
 import 'package:car_service/core/services/location_services/location_services.dart';
 import 'package:car_service/core/utils/general_util.dart';

@@ -1,17 +1,21 @@
 import 'dart:developer';
-
 import 'package:car_service/core/data/models/api/choos_parking_model.dart';
+import 'package:car_service/core/data/models/api/park_spot_model.dart';
 import 'package:car_service/core/data/repositories/park_repositories.dart';
 import 'package:car_service/core/enums/message_type.dart';
 import 'package:car_service/core/services/base_controller.dart';
 import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_toast.dart';
 import 'package:car_service/ui/views/home/map/map_view.dart';
+import 'package:car_service/ui/views/home/parking_view/park_spot/park_spot_view.dart';
 import 'package:get/get.dart';
 import 'package:location/location.dart';
 
 class ParkingViewController extends BaseController {
-  String? selectedLocation;
+  String? selectedPark;
+  String? parkNumber;
+  late double price;
+  List<ParkingSpot> parkingSpot = [];
   LocationData? currentLocation;
   late List<ChooseParkingModel> parkingList;
 
@@ -49,11 +53,25 @@ class ParkingViewController extends BaseController {
     }
   }
 
-  @override
-  void onInit() async {
-    // currentLocation =
-    //     await locationService.getUserCurrentLocation(hideLoader: true);
-    // TODO: implement onInit
-    super.onInit();
+  Future<void> choosePark({required String parkNumber}) async {
+    await runFullLoadingFutureFunction(
+        function: ParkRepository()
+            .choosePark(ParkingNumber: parkNumber)
+            .then((value) {
+      value.fold((l) {
+        CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+      }, (r) {
+        for (dynamic spots in r['park']) {
+          parkingSpot.add(ParkingSpot.fromJson(spots));
+        }
+        price = r['price'];
+        log(price.toString());
+        Get.to(() => ParkSpotView(
+              parkingSpot: parkingSpot,
+              selectedPark: selectedPark!,
+              price: price,
+            ));
+      });
+    }));
   }
 }

@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'package:car_service/core/data/models/api/choos_parking_model.dart';
+import 'package:car_service/core/data/models/api/park_spot_model.dart';
 import 'package:car_service/core/data/network/endpoints/park_endpoint.dart';
-import 'package:car_service/core/utils/general_util.dart';
 import 'package:dartz/dartz.dart';
 import 'package:car_service/core/data/models/common_respons.dart';
 import 'package:car_service/core/data/network/network_config.dart';
@@ -23,25 +23,31 @@ class ParkRepository {
             'userLatitude': lat,
             'userLongitude': long,
           }).then((response) {
-        log('==========> ${response}');
-        CommonResponse<Map<String, dynamic>> commonResponse =
-            CommonResponse.fromJson(response);
-        List<ChooseParkingModel> listParking = [];
-        for (Map<String,dynamic> parkingModel in commonResponse.data!['parkingLocations']) {
-          listParking.add(ChooseParkingModel.fromJson(parkingModel));
-        }
-        if (commonResponse.getStatus) {
-          return Right(listParking);
+        if (response != null) {
+          log('==========> ${response}');
+          CommonResponse<Map<String, dynamic>> commonResponse =
+              CommonResponse.fromJson(response);
+          List<ChooseParkingModel> listParking = [];
+          for (Map<String, dynamic> parkingModel
+              in commonResponse.data!['parkingLocations']) {
+            listParking.add(ChooseParkingModel.fromJson(parkingModel));
+          }
+          if (commonResponse.getStatus) {
+            return Right(listParking);
+          } else {
+            return Left(commonResponse.message ?? '');
+          }
         } else {
-          return Left(commonResponse.message ?? '');
+          return const Left('Please check your internet');
         }
       });
     } catch (e) {
       return Left(e.toString());
     }
   }
-  Future<Either<String,String>> choosePark({
-    required String parkNumber,
+
+  Future<Either<String, dynamic>> choosePark({
+    required String ParkingNumber,
   }) async {
     try {
       return NetworkUtil.sendRequest(
@@ -50,15 +56,20 @@ class ParkRepository {
           headers:
               NetworkConfig.getHeaders(needAuth: true, type: RequestType.POST),
           body: {
-            'parkNumber': parkNumber,
+            'ParkingNumber': ParkingNumber,
           }).then((response) {
-        log('==========> ${response}');
-        CommonResponse<Map<String, dynamic>> commonResponse =
-            CommonResponse.fromJson(response);
-        if (commonResponse.getStatus) {
-          return const  Right('Done Choose Parking');
+        if (response != null) {
+          log('==========> ${response}');
+          CommonResponse<Map<String, dynamic>> commonResponse =
+              CommonResponse.fromJson(response);
+
+          if (commonResponse.getStatus) {
+            return Right(commonResponse.data);
+          } else {
+            return Left(commonResponse.message ?? '');
+          }
         } else {
-          return Left(commonResponse.message ?? '');
+          return const Left('Please check your internet');
         }
       });
     } catch (e) {

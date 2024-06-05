@@ -4,7 +4,6 @@ import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
-import 'package:car_service/ui/views/home/parking_view/park_spot/park_spot_view.dart';
 import 'package:car_service/ui/views/home/parking_view/parking_view_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +19,7 @@ class ParkingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(children: [
-       CustomAppBar(
+      CustomAppBar(
         title: tr('Parking'),
         iconSetting: true,
       ),
@@ -48,7 +47,7 @@ class ParkingView extends StatelessWidget {
             (70.h).ph,
             GestureDetector(
               onTap: () async {
-                controller.getClosestPark();
+                await controller.getClosestPark();
               },
               child: Container(
                 height: 250.h,
@@ -63,34 +62,41 @@ class ParkingView extends StatelessWidget {
             (25.h).ph,
             GestureDetector(
               onTap: () async {
-                controller.getClosestPark();
+                await controller.getClosestPark();
               },
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.w),
-                width: 1.sw,
-                height: 55.h,
-                decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.mainColor),
-                  borderRadius: BorderRadius.all(Radius.circular(15.r)),
-                ),
-                child: CustomText(
-                  text: controller.selectedLocation == null
-                      ?tr( 'No Location Selected')
-                      : controller.selectedLocation!,
-                  textType: TextStyleType.bodyBig,
-                  isTextAlign: controller.selectedLocation == null
-                      ? TextAlign.center
-                      : null,
-                  textColor: controller.selectedLocation == null
-                      ? AppColors.grayColor
-                      : AppColors.blackColor,
-                ),
-              ),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.w),
+                  width: 1.sw,
+                  height: 55.h,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: AppColors.mainColor),
+                    borderRadius: BorderRadius.all(Radius.circular(15.r)),
+                  ),
+                  child: GetBuilder<ParkingViewController>(
+                    builder: (cont) {
+                      return CustomText(
+                        text: controller.selectedPark == null
+                            ? tr('No Location Selected')
+                            : controller.selectedPark!,
+                        textType: controller.selectedPark == null
+                            ? TextStyleType.bodyBig
+                            : TextStyleType.subtitle,
+                        fontWeight: FontWeight.bold,
+                        isTextAlign: TextAlign.center,
+                        textColor: controller.selectedPark == null
+                            ? AppColors.grayColor
+                            : AppColors.mainColor,
+                      );
+                    },
+                  )),
             ),
             (25.h).ph,
             CustomButton(
               onPressed: () {
-                Get.to(() => ParkSpotView());
+                if (controller.selectedPark != null) {
+                  controller.choosePark(parkNumber: controller.parkNumber!);
+                }
               },
               text: tr('Next'),
               buttonTypeEnum: ButtonTypeEnum.big,

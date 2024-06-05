@@ -7,12 +7,12 @@ import 'package:car_service/ui/shared/custom_widget/custom_otp_field.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:car_service/ui/views/forget_password_view/forget_password_controller.dart';
-import 'package:car_service/ui/views/login_view/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class VerifyForgetPassView extends StatelessWidget {
   VerifyForgetPassView({
     super.key,
@@ -40,7 +40,7 @@ class VerifyForgetPassView extends StatelessWidget {
                   ZoomIn(
                     delay: const Duration(milliseconds: 400),
                     duration: const Duration(milliseconds: 300),
-                    child:  CustomText(
+                    child: CustomText(
                         text: tr("Please Enter The 6 Digits Code sent to you"),
                         textType: TextStyleType.bodyBig),
                   ),
@@ -75,9 +75,9 @@ class VerifyForgetPassView extends StatelessWidget {
                       width: 1.sw,
                       height: 50.h,
                       buttonTypeEnum: ButtonTypeEnum.normal,
-                      onPressed: () async{
+                      onPressed: () async {
                         if (_formKeyVerifyForget.currentState!.validate()) {
-                        await  controller.resetPassVerify();
+                          await controller.resetPassVerify();
                         }
                       },
                       text: 'Verify',

@@ -4,7 +4,6 @@ import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
-import 'package:car_service/ui/views/home/map/map_view.dart';
 import 'package:car_service/ui/views/home/repair_view/repair_view_controller.dart';
 import 'package:car_service/ui/views/home/repair_view/repair_workshop_view/repair_workshop_view.dart';
 import 'package:flutter/cupertino.dart';

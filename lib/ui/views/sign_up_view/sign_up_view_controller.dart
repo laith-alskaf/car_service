@@ -74,7 +74,7 @@ class SignUpViewController extends BaseController {
         CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
       }, (r) {
         CustomToast.showMessage(
-            message: 'The code has been sent',
+            message: r,
             messageType: MessageType.SUCCESS);
       });
     }));
@@ -91,7 +91,7 @@ class SignUpViewController extends BaseController {
         CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
       }, (r) {
         CustomToast.showMessage(
-            message: 'Verify is done', messageType: MessageType.SUCCESS);
+            message: r, messageType: MessageType.SUCCESS);
         Get.off(() => MainView());
       });
     }));

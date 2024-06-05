@@ -1,10 +1,6 @@
 import 'dart:async';
 import 'package:car_service/core/data/models/api/choos_parking_model.dart';
-import 'package:car_service/core/data/repositories/park_repositories.dart';
-import 'package:car_service/core/enums/message_type.dart';
 import 'package:car_service/core/utils/map_util.dart';
-import 'package:car_service/ui/shared/custom_widget/custom_toast.dart';
-import 'package:car_service/ui/views/home/parking_view/park_spot/park_spot_view.dart';
 import 'package:car_service/ui/views/home/parking_view/parking_view_controller.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -62,8 +58,10 @@ class MapController extends BaseController {
       infoWindow: InfoWindow(
           title: name,
           onTap: () {
-            choosePark(parkNumber: id);
-            parkingViewController.selectedLocation = name;
+            parkingViewController.selectedPark = name;
+            parkingViewController.parkNumber = id;
+            parkingViewController.update();
+            Get.back();
           }),
       markerId: MarkerId(id),
       position: position,
@@ -72,17 +70,6 @@ class MapController extends BaseController {
     update();
   }
 
-  Future<void> choosePark({required String parkNumber}) async {
-    await runFullLoadingFutureFunction(
-        function:
-            ParkRepository().choosePark(parkNumber: parkNumber).then((value) {
-      value.fold((l) {
-        CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
-      }, (r) {
-        Get.to(() => ParkSpotView());
-      });
-    }));
-  }
 // void getStreetName() async {
 //   runLoadingFutureFunction(
 //       function: locationService

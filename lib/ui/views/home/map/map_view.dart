@@ -45,7 +45,7 @@ class MapViewState extends State<MapView> {
                 initialCameraPosition: mapController.currentPosition,
                 onMapCreated: (GoogleMapController controller) async {
                   mapController.controller.complete(controller);
-                  mapController.locationPark.forEach((element) {
+                  widget.locationPark.forEach((element) {
                     mapController.addMarker(
                         imageUrl: 'https://www.fluttercampus.com/img/car.png',
                         position: LatLng(

@@ -31,15 +31,26 @@ class NetworkUtil {
       //*--- Make call correct request type ------
       switch (type) {
         case RequestType.GET:
-          response = await client.get(uri, headers: headers);
+          response = await client
+              .get(uri, headers: headers)
+              .timeout(const Duration(seconds: 50), onTimeout: () {
+            return response;
+          });
           break;
         case RequestType.POST:
-          response =
-              await client.post(uri, body: jsonEncode(body), headers: headers);
+          response = await client
+              .post(uri, body: jsonEncode(body), headers: headers)
+              .timeout(const Duration(seconds: 50), onTimeout: () {
+            return response;
+          });
           break;
         case RequestType.PUT:
-          response =
-              await client.put(uri, body: jsonEncode(body), headers: headers);
+          response = await client
+              .put(uri, body: jsonEncode(body), headers: headers)
+              .timeout(const Duration(seconds: 50), onTimeout: () {
+            return response;
+          });
+
           break;
         case RequestType.DELETE:
           response = await client.delete(uri,

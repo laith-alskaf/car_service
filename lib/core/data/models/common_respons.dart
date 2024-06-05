@@ -29,6 +29,9 @@ class CommonResponse<T> {
             case 503:
               this.message = '400 Server unvalibale';
               break;
+              case 500:
+              this.message = '500 Server unvalibale';
+              break;
         }
       }
     }

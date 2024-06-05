@@ -1,11 +1,8 @@
 import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:car_service/ui/views/home/home_view/home_view_controller.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
 import 'package:get/get.dart';
 
 // ignore: must_be_immutable
