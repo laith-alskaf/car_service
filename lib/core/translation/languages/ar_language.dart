@@ -53,7 +53,12 @@ class ARLanguage {
         "Don’t worry it happens please enter your email address":"لا تقلق، قد يحدث ذلك، يرجى إدخال عنوان بريدك الإلكتروني",
         "Reset Password":"اعادة ارسال كلمة المرور",
         //______________________________ ForgetPasswordView_________________________________________
-        'No Location Selected':"لم يتم اختيار موقع"
+        'No Location Selected':"لم يتم اختيار موقع",
+        //______________________________ ForgetPasswordView_________________________________________
+        "Select Date and Start Hour":"اختار التاريخ و الوقت",
+        "Parking Time":"وقت الحجز"
+
+
 
 
   };

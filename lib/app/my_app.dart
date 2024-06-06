@@ -10,6 +10,8 @@ import 'package:get/get.dart';
 import 'package:car_service/core/translation/app_translation.dart';
 import 'package:car_service/ui/views/splash_screen_view/splash_screen_view.dart';
 
+import '../ui/views/home/parking_view/choice_parking_time/choose_parking_time_view.dart';
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -40,7 +42,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: SplashScreenView(),
+        home: ChooseParkingTimeView(),
       ),
     );
   }

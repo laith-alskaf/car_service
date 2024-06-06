@@ -51,10 +51,13 @@ class EnLanguage {
     "Reset Password":"Reset Password",
     //______________________________ locationView_________________________________________
 
-    'No Location Selected':'No Location Selected'
+    'No Location Selected':'No Location Selected',
+  "Select Date and Start Hour":"Select Date and Start Hour",
+    "Parking Time":"Parking Time"
 
 
 
 
-  };
+
+};
 }
