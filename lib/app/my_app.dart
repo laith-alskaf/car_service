@@ -1,16 +1,13 @@
-
 import 'package:bot_toast/bot_toast.dart';
 import 'package:car_service/app/my_app_controller.dart';
 import 'package:car_service/core/services/connectivity_service.dart';
 import 'package:car_service/core/services/location_services/location_services.dart';
 import 'package:car_service/core/utils/general_util.dart';
+import 'package:car_service/ui/views/splash_screen_view/splash_screen_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:car_service/core/translation/app_translation.dart';
-import 'package:car_service/ui/views/splash_screen_view/splash_screen_view.dart';
-
-import '../ui/views/home/parking_view/choice_parking_time/choose_parking_time_view.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -45,7 +42,6 @@ class MyApp extends StatelessWidget {
         home: SplashScreenView(),
       ),
     );
-    
   }
 }
 

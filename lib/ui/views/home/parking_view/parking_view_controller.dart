@@ -64,7 +64,7 @@ class ParkingViewController extends BaseController {
         for (dynamic spots in r['park']) {
           parkingSpot.add(ParkingSpot.fromJson(spots));
         }
-        price = r['price'];
+        price = double.parse(r['location']['Price'].toString());
         log(price.toString());
         Get.to(() => ParkSpotView(
               parkingSpot: parkingSpot,

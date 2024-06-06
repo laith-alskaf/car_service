@@ -25,7 +25,9 @@ class CustomTextFormField extends StatelessWidget {
     this.suffixOnTap,
     this.heightContainer,
     this.widthContainer,
-    this.contentPadding, this.colorBorder,
+    this.contentPadding,
+    this.colorBorder,
+    this.readOnly,
   });
 
   final String hintText;
@@ -34,6 +36,7 @@ class CustomTextFormField extends StatelessWidget {
   final Color? hintTextColor;
   final TextInputType? keyboardType;
   final bool obscureText;
+  final bool? readOnly;
   final String? Function(String?)? validator;
   final String? prefixIcon;
   final Color? prefixIconColor;
@@ -58,19 +61,21 @@ class CustomTextFormField extends StatelessWidget {
         onTapOutside: (event) => FocusScope.of(context).unfocus(),
         maxLines: maxLines ?? 1,
         onChanged: onChanged,
+        readOnly: readOnly ?? false,
         controller: controller,
         validator: validator,
         obscureText: obscureText,
         textAlign: TextAlign.start,
         cursorColor: AppColors.mainColor,
         decoration: InputDecoration(
-          // prefixIcon: UnconstrainedBox(
-          //   child: SvgPicture.asset(
-          //     'assets/svgs/$prefixIcon.svg',
-          //     color: prefixIconColor ?? AppColors.mainOrangeColor,
-          //     width: screenWidth(15),
-          //   ),
-          // ),
+          prefixIcon:  Transform.scale(
+            scale: 0.5,
+            child: SvgPicture.asset(
+              'assets/images/$prefixIcon.svg',
+              color: prefixIconColor ?? AppColors.mainColor,
+              width: screenWidth(15),
+            ),
+          ),
           suffixIcon: suffixIcon != null
               ? InkWell(
                   onTap: suffixOnTap,
@@ -88,19 +93,19 @@ class CustomTextFormField extends StatelessWidget {
               EdgeInsets.symmetric(vertical: 15.h, horizontal: 15.w),
           border: OutlineInputBorder(
             borderSide: BorderSide(
-              color:colorBorder?? AppColors.mainColor,
+              color: colorBorder ?? AppColors.mainColor,
             ),
             borderRadius: BorderRadius.circular(15.r),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15.r),
             borderSide: BorderSide(
-              color:colorBorder?? AppColors.mainColor,
+              color: colorBorder ?? AppColors.mainColor,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color:colorBorder?? AppColors.mainColor,
+              color: colorBorder ?? AppColors.mainColor,
             ),
             borderRadius: BorderRadius.circular(15.r),
           ),

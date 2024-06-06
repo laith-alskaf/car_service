@@ -7,7 +7,7 @@ import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:car_service/ui/views/home/parking_view/park_spot/dotted_line.dart';
 import 'package:car_service/ui/views/home/parking_view/park_spot/park_spot_view_controller.dart';
-import 'package:car_service/ui/views/home/parking_view/parking_timer_view/parking_timer_view.dart';
+import 'package:car_service/ui/views/home/parking_view/park_spot/spot_widget/dialog_choose_park_time.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -30,7 +30,7 @@ class ParkSpotView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
           body: GetBuilder(
-        init: ParkSpotViewController(parkingSpot, selectedPark,price),
+        init: ParkSpotViewController(parkingSpot, selectedPark, price),
         builder: (controller) {
           return ListView(
               physics: const NeverScrollableScrollPhysics(),
@@ -232,10 +232,12 @@ class ParkSpotView extends StatelessWidget {
                           (10.h).ph,
                           CustomButton(
                             onPressed: () {
-                              // Get.to(() => const BillingView(
-                              //       existAppBar: true,
-                              //     ));
-                              Get.to(() => ParkingTimerView());
+                              showDialogDatePark(controller: controller,
+                                  nameSpot: controller
+                                      .parkingSpot[controller.indexSpot]
+                                      .parkNumber
+                                      .toString());
+                              // Get.to(() => ParkingTimerView());
                             },
                             text: 'Next',
                             buttonTypeEnum: ButtonTypeEnum.normal,
