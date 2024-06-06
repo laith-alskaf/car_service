@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:car_service/core/data/models/api/user_info_model.dart';
 import 'package:car_service/core/utils/general_util.dart';
 import 'package:dartz/dartz.dart';
 import 'package:car_service/core/data/models/common_respons.dart';
@@ -23,19 +24,24 @@ class UserRepository {
             'password': password,
           }).then((response) {
         if (response != null) {
+          log('==========> ${response}');
+          CommonResponse<Map<String, dynamic>> commonResponse =
+          CommonResponse.fromJson(response);
+          if (commonResponse.getStatus) {
+            log('==========> ${commonResponse.data!['user']}');
+            storage.setUserInfo(UserInfo.fromJson(commonResponse.data!['user']));
+            log('======user    ====> ${storage.getUserInfo()!.email}');
 
-        } else {
-          return const Left('Please check your internet');
+            storage.setTokenInfo(commonResponse.data!['token']);
+            return Right(commonResponse.data!['message']);
+          } else {
+            return Left(commonResponse.message ?? '');
+          }
         }
-        log('==========> ${response}');
-        CommonResponse<Map<String, dynamic>> commonResponse =
-            CommonResponse.fromJson(response);
-        if (commonResponse.getStatus) {
-          storage.setTokenInfo(commonResponse.data!['token']);
-          return Right(commonResponse.data!['message']);
-        } else {
-          return Left(commonResponse.message ?? '');
-        }
+
+         else {
+          return const Left('Please check your internet');}
+
       });
     } catch (e) {
       return Left(e.toString());

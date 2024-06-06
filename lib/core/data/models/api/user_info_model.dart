@@ -1,22 +1,5 @@
+
 class UserInfo {
-  User? user;
-
-  UserInfo({this.user});
-
-  UserInfo.fromJson(Map<String, dynamic> json) {
-    user = json['user'] != null ? new User.fromJson(json['user']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.user != null) {
-      data['user'] = this.user!.toJson();
-    }
-    return data;
-  }
-}
-
-class User {
   String? sId;
   String? email;
   String? password;
@@ -36,7 +19,7 @@ class User {
   String? updatedAt;
   int? iV;
 
-  User(
+  UserInfo(
       {this.sId,
         this.email,
         this.password,
@@ -56,7 +39,7 @@ class User {
         this.updatedAt,
         this.iV});
 
-  User.fromJson(Map<String, dynamic> json) {
+  UserInfo.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     email = json['email'];
     password = json['password'];
