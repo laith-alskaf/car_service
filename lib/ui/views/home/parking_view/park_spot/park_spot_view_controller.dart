@@ -1,5 +1,9 @@
 import 'package:car_service/core/data/models/api/park_spot_model.dart';
+import 'package:car_service/core/data/repositories/park_repositories.dart';
+import 'package:car_service/core/enums/message_type.dart';
 import 'package:car_service/core/services/base_controller.dart';
+import 'package:car_service/ui/shared/colors.dart';
+import 'package:car_service/ui/shared/custom_widget/custom_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -7,20 +11,23 @@ class ParkSpotViewController extends BaseController {
   ParkSpotViewController(this.parkingSpot, this.selectedPark, this.price);
 
   late double price;
-  TextEditingController dateSpot = TextEditingController();
-  TextEditingController timeSpot = TextEditingController();
+  late double checkPrice;
+
   int numberHoursPark = 1;
   late List<ParkingSpot> parkingSpot;
   late String selectedPark;
   late int indexSpot;
-  RxString birthDay = 'no date select'.obs;
+  RxString birthDay = ''.obs;
   RxInt selectedContainer = 0.obs;
-
-  RxString time = 'no time select'.obs;
+  late int hour;
+  RxString time = ''.obs;
 
   @override
   void onInit() {
+    checkPrice = price;
+    update();
     initSpots();
+
     super.onInit();
   }
 
@@ -30,12 +37,30 @@ class ParkSpotViewController extends BaseController {
     });
   }
 
+  changePrice({required bool dec}) {
+    if (dec) {
+      if (numberHoursPark < 24) {
+        numberHoursPark += 1;
+        checkPrice += price;
+      }
+    } else {
+      if (numberHoursPark > 1) {
+        numberHoursPark -= 1;
+        checkPrice -= price;
+      }
+    }
+    update();
+  }
+
   bool handleCarExist({required int index}) {
     return parkingSpot[index].filled!;
   }
 
-  Future selectDate() async {
+  selectDate() async {
     final selectedDate = await showDatePicker(
+      onDatePickerModeChange: (DatePickerEntryMode value) {
+        Navigator.of(Get.context!).pop(value);
+      },
       context: Get.context!,
       initialDate: DateTime.now(),
       firstDate: DateTime.now(),
@@ -47,7 +72,7 @@ class ParkSpotViewController extends BaseController {
     update();
   }
 
-  Future selectTime() async {
+  selectTime() async {
     final now = DateTime.now();
     final selectedTime = await showTimePicker(
       context: Get.context!,
@@ -55,14 +80,15 @@ class ParkSpotViewController extends BaseController {
       helpText: 'Select Time',
       builder: (BuildContext context, Widget? child) {
         return MediaQuery(
-          data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+          data: MediaQuery.of(context).copyWith(),
           child: child!,
         );
       },
     );
 
+
     if (selectedTime != null) {
-      final hour = selectedTime.hourOfPeriod;
+      hour = selectedTime.hourOfPeriod;
       final minute = selectedTime.minute;
       final period = selectedTime.period == DayPeriod.am ? 'AM' : 'PM';
 
@@ -70,15 +96,30 @@ class ParkSpotViewController extends BaseController {
     }
     update();
   }
-// Future<void> choosePark({required String parkNumber}) async {
-//   await runFullLoadingFutureFunction(
-//       function:
-//       ParkRepository().choosePark(parkNumber: parkNumber).then((value) {
-//         value.fold((l) {
-//           CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
-//         }, (r) {
-//           Get.to(() => ParkSpotView());
-//         });
-//       }));
-// }
+  clearData(){
+    time.value = '';
+    birthDay.value = '';
+    numberHoursPark =1;
+    checkPrice=price;
+  }
+  Future<void> chooseTimeSpot() async {
+    await runFullLoadingFutureFunction(
+        function: ParkRepository()
+            .chooseTimeSpot(
+                parkingName: selectedPark,
+                date: time.value,
+                duration: numberHoursPark,
+                Spot: parkingSpot[indexSpot].parkNumber!)
+            .then((value) {
+      value.fold((l) {
+        CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+      }, (r) {
+        clearData();
+        Get.back();
+        CustomToast.showMessage(
+            message: 'لعيون عمك هاشم واقطع', messageType: MessageType.SUCCESS);
+        // Get.to(() => ParkSpotView());
+      });
+    }));
+  }
 }

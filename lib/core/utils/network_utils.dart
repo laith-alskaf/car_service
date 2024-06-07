@@ -33,21 +33,21 @@ class NetworkUtil {
         case RequestType.GET:
           response = await client
               .get(uri, headers: headers)
-              .timeout(const Duration(seconds: 50), onTimeout: () {
+              .timeout(const Duration(seconds: 15), onTimeout: () {
             return response;
           });
           break;
         case RequestType.POST:
           response = await client
               .post(uri, body: jsonEncode(body), headers: headers)
-              .timeout(const Duration(seconds: 50), onTimeout: () {
+              .timeout(const Duration(seconds: 15), onTimeout: () {
             return response;
           });
           break;
         case RequestType.PUT:
           response = await client
               .put(uri, body: jsonEncode(body), headers: headers)
-              .timeout(const Duration(seconds: 50), onTimeout: () {
+              .timeout(const Duration(seconds: 15), onTimeout: () {
             return response;
           });
 
