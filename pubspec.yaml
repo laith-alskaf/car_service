@@ -46,7 +46,7 @@ dependencies:
   pin_code_fields: ^8.0.1
   fancy_bottom_navigation_plus: ^1.0.3
   carousel_slider: ^4.2.1
-  #  provider: ^6.0.5
+  im_stepper:   #  provider: ^6.0.5
 
   geocoding: ^2.0.5
   google_maps_flutter: ^2.6.0

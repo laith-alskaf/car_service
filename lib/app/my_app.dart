@@ -9,6 +9,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:car_service/core/translation/app_translation.dart';
 
+import '../ui/views/home/oreder_details_view/order_details_view.dart';
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -39,7 +41,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: SplashScreenView(),
+        home: OrderDetailsView(),
       ),
     );
   }

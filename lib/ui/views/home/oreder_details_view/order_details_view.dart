@@ -7,72 +7,35 @@ import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'custom_order_continer.dart';
+
 class OrderDetailsView extends StatelessWidget {
   const OrderDetailsView(
-      {super.key, required this.item, required this.service});
-
-  final List<List<String>> item;
-  final ServiceItem service;
-
+      {super.key});
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body:
-            ListView(physics: const NeverScrollableScrollPhysics(), children: [
-          const CustomAppBar(
-            title: 'Order Details',
-            existBack: true,
+        body:Padding(
+          padding: EdgeInsets.symmetric(vertical: 90.h,horizontal: 30.h),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset("assets/images/done.png"),
+              (0.04.sh).ph,
+              CustomText(text:"Your Problem Has been Placed Sucessfuly" , textType: TextStyleType.bodyBig,fontSize: 19.h,),
+              (0.1.sh).ph,
+              CustomOrderContiner(location: "location",
+                  your_problem: "your_problem", img: "referach", appointment_time:"20:12"  ,
+                  estimated_time:"20:15")
+
+
+            ],
+
           ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
-            margin: EdgeInsets.symmetric(horizontal: 20.h, vertical: 20.h),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(15.r)),
-                color: AppColors.whiteColor,
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.mainColor.withOpacity(0.5),
-                    spreadRadius: 0.5,
-                    blurRadius: 1,
-                    offset: const Offset(0, 2),
-                  ),
-                ]),
-            width: 1.sw,
-            child: Row(
-              children: [
-                Image.asset(
-                  'assets/images/${service.image}.png',
-                  width: 100.w,
-                  height: 100.h,
-                ),
-                (10.w).pw,
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomText(
-                      text: service.name!,
-                      textType: TextStyleType.title,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    (10.h).ph,
-                    CustomText(
-                      text: service.servicesAvailable == null
-                          ? '120 Zontrike point'
-                          : '${service.servicesAvailable} Services Available',
-                      textType: TextStyleType.bodyBig,
-                    ),
-                  ],
-                )
-              ],
-            ),
-          ),
-          ...List.generate(
-              item.length,
-              (index) => CustomRowService(
-                    item: item[index],
-                  ))
-        ]),
+        )
+
       ),
     );
   }

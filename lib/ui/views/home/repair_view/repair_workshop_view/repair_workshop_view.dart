@@ -87,8 +87,7 @@ class RepairWorkshopView extends StatelessWidget {
           GestureDetector(
             onTap: () {
               Get.to(() => OrderDetailsView(
-                    item: controller.titleOrderDetails,
-                service: controller.itemService[0],
+
                   ));
             },
             child: Container(
