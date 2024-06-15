@@ -51,9 +51,9 @@ class LoginView extends StatelessWidget {
                       textColor: AppColors.textColor2,
                     ),
                   ),
-                  (100.h).ph,
+                  (80.h).ph,
                   ZoomIn(
-                    child:  Align(
+                    child: Align(
                       alignment: AlignmentDirectional.centerStart,
                       child: CustomText(
                         text: tr('Welcome'),
@@ -99,7 +99,7 @@ class LoginView extends StatelessWidget {
                       hintText: tr('Password'),
                       controller: controller.passwordController,
                       validator: (value) {
-                        if (value!.isEmpty ) {
+                        if (value!.isEmpty) {
                           return tr('please check your password');
                         }
                         if (value.length <= 7) {
@@ -135,9 +135,9 @@ class LoginView extends StatelessWidget {
                       width: 1.sw,
                       height: 50.h,
                       buttonTypeEnum: ButtonTypeEnum.normal,
-                      onPressed: () async{
+                      onPressed: () async {
                         if (_formKey1.currentState!.validate()) {
-                       await   controller.login();
+                          await controller.login();
                         }
                       },
                       text: tr('key_login'),
@@ -147,7 +147,7 @@ class LoginView extends StatelessWidget {
                   ZoomIn(
                     delay: const Duration(milliseconds: 1600),
                     duration: const Duration(milliseconds: 300),
-                    child:  CustomText(
+                    child: CustomText(
                         text: tr('you don\'t have an account yet'),
                         textType: TextStyleType.small),
                   ),

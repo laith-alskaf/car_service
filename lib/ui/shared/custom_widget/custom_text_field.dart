@@ -68,14 +68,14 @@ class CustomTextFormField extends StatelessWidget {
         textAlign: TextAlign.start,
         cursorColor: AppColors.mainColor,
         decoration: InputDecoration(
-          prefixIcon:  Transform.scale(
+          prefixIcon:prefixIcon!=null?  Transform.scale(
             scale: 0.5,
             child: SvgPicture.asset(
               'assets/images/$prefixIcon.svg',
               color: prefixIconColor ?? AppColors.mainColor,
               width: screenWidth(15),
             ),
-          ),
+          ):null,
           suffixIcon: suffixIcon != null
               ? InkWell(
                   onTap: suffixOnTap,

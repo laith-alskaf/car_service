@@ -60,6 +60,8 @@ dependencies:
   animate_do: ^3.3.4
   location:
   percent_indicator: ^4.2.3
+  flutter_stepindicator: ^0.1.7
+
 
 dev_dependencies:
   flutter_test:

@@ -5,29 +5,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class CustomOrderContiner extends StatelessWidget {
+class CustomOrderContainer extends StatelessWidget {
   final String location;
-  final String your_problem;
+  final String yourProblem;
   final String img;
-  final String appointment_time;
+  final String appointmentTime;
 
-  final String estimated_time;
+  final String estimatedTime;
 
-  const CustomOrderContiner(
+  const CustomOrderContainer(
       {super.key,
       required this.location,
-      required this.your_problem,
+      required this.yourProblem,
       required this.img,
-      required this.appointment_time,
-      required this.estimated_time});
+      required this.appointmentTime,
+      required this.estimatedTime});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 0.9.sw,
-      height: 0.9.sw,
+      height: 0.25.sh,
       decoration: BoxDecoration(
-          border: Border.all(color: AppColors.mainColor, width: 4.h)),
+          border: Border.all(color: AppColors.mainColor, width: 3.w),
+          borderRadius: BorderRadius.all(Radius.circular(20.r))),
       child: Padding(
         padding: EdgeInsetsDirectional.only(start: 10.h, top: 20.h),
         child: Column(
@@ -39,7 +40,7 @@ class CustomOrderContiner extends StatelessWidget {
               textColor: AppColors.mainColor,
               fontSize: 20.h,
             ),
-            (0.05.sh).ph,
+            (0.03.sh).ph,
             Row(
               children: [
                 CustomText(
@@ -56,7 +57,7 @@ class CustomOrderContiner extends StatelessWidget {
                 ),
               ],
             ),
-            (0.07.sh).ph,
+            (0.02.sh).ph,
             Row(
               children: [
                 CustomText(
@@ -67,7 +68,7 @@ class CustomOrderContiner extends StatelessWidget {
                 ),
                 (0.05.sw).pw,
                 CustomText(
-                  text: your_problem,
+                  text: yourProblem,
                   textType: TextStyleType.body,
                   fontSize: 18.h,
                 ),
@@ -75,7 +76,7 @@ class CustomOrderContiner extends StatelessWidget {
                 SvgPicture.asset("assets/images/${img}.svg")
               ],
             ),
-            (0.07.sh).ph,
+            (0.02.sh).ph,
             Row(
               children: [
                 CustomText(
@@ -87,14 +88,14 @@ class CustomOrderContiner extends StatelessWidget {
                 ),
                 (0.05.sw).pw,
                 CustomText(
-                  text: appointment_time,
+                  text: appointmentTime,
                   textType: TextStyleType.body,
                   fontSize: 18.h,
                   fontWeight: FontWeight.bold,
                 ),
               ],
             ),
-            (0.07.sh).ph,
+            (0.02.sh).ph,
             Row(
               children: [
                 CustomText(
@@ -105,7 +106,7 @@ class CustomOrderContiner extends StatelessWidget {
                 ),
                 (0.05.sw).pw,
                 CustomText(
-                  text: estimated_time,
+                  text: estimatedTime,
                   textType: TextStyleType.body,
                   fontSize: 18.h,
                   fontWeight: FontWeight.bold,
