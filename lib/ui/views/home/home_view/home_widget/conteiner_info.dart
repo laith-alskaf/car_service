@@ -8,22 +8,16 @@ import 'package:flutter_svg/flutter_svg.dart';
 class CustomContainerInfo extends StatelessWidget {
   const CustomContainerInfo(
       {super.key,
-      this.isIcon,
       this.image,
       required this.title,
-      required this.body,
       this.width,
-      this.existImage,
-      this.height, this.icon});
+      this.height, this.onpresed});
 
-  final bool? isIcon;
   final String? image;
-  final String? icon;
+  final Function? onpresed;
   final String title;
-  final String body;
   final double? width;
   final double? height;
-  final bool? existImage;
 
   @override
   Widget build(BuildContext context) {
@@ -31,64 +25,28 @@ class CustomContainerInfo extends StatelessWidget {
       // margin: EdgeInsets.only(bottom: 10.h, left: 20.w, right: 20.w),
       padding:
           EdgeInsetsDirectional.symmetric(horizontal: 10.w, vertical: 15.w),
-      width: width ?? 250.w,
+      width: width ?? 0.8.sw,
       height: height ?? 80.h,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(50.r)),
-        // color: AppColors.secondGray
-        color: AppColors.mainColor,
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+        color: AppColors.whiteColor,
+        boxShadow: [
+          BoxShadow(
+            color:  AppColors.mainColor.withOpacity(0.4),
+            spreadRadius: 1,
+            blurRadius: 3,
+            offset: const Offset(0, 3),
+          ),
+        ],
+
       ),
       child: Row(
         children: [
-          if (existImage ?? true && image != null) ...[
-            Container(
-              height: 60.w,
-              width: 60.w,
-              decoration: BoxDecoration(
-                  color: isIcon ?? true
-                      ? AppColors.whiteColor
-                      : AppColors.secondGray,
-                  borderRadius: BorderRadius.all(Radius.circular(100.r)),
-                  image: DecorationImage(
-                      image: AssetImage('assets/images/$image'),
-                      fit: BoxFit.cover)),
-            ),
-            (15.w).pw,
-          ],
-          Padding(
-            padding: EdgeInsetsDirectional.only(
-                start: existImage ?? true ? 0 : 20.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CustomText(
-                  text: title,
-                  textType: existImage ?? true
-                      ? TextStyleType.body
-                      : TextStyleType.title,
-                  fontWeight: FontWeight.bold,
-                  textColor: existImage ?? true
-                      ? AppColors.whiteColor.withOpacity(0.5)
-                      : AppColors.whiteColor,
-                ),
-                (15.h).ph,
-                CustomText(
-                  text: body,
-                  textType: TextStyleType.body,
-                  textColor: existImage ?? true
-                      ? AppColors.whiteColor
-                      : AppColors.whiteColor.withOpacity(0.5),
-                ),
-              ],
-            ),
-          ),
-         const  Spacer(),
-          if (isIcon ?? true == false) ...[
-            SvgPicture.asset('assets/images/$icon.svg'),
-            (20.w).pw,
-          ],
+          CustomText(text:title , textType: TextStyleType.body,textColor: AppColors.blackColor,),
+          (10.h).pw,
+          SvgPicture.asset("assets/images/$image.svg")
         ],
-      ),
+      )
     );
   }
 }
