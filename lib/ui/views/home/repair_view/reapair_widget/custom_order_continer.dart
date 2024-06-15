@@ -1,6 +1,7 @@
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -73,7 +74,7 @@ class CustomOrderContainer extends StatelessWidget {
                   fontSize: 18.h,
                 ),
                 (0.04.sw).pw,
-                SvgPicture.asset("assets/images/${img}.svg")
+                Image.asset("assets/images/${img}.png")
               ],
             ),
             (0.02.sh).ph,
