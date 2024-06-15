@@ -4,7 +4,7 @@ import 'package:car_service/ui/shared/custom_widget/custom_toast.dart';
 import 'package:car_service/ui/views/main_view/main_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../core/data/repositories/user_repositiory.dart';
+import '../../../core/data/repositories/user_repositories.dart';
 
 class LoginViewController extends BaseController {
   TextEditingController emailController = TextEditingController();

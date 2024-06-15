@@ -40,7 +40,7 @@ class ParkingViewController extends BaseController {
           });
           Get.to(() => MapView(
                 currentLocation: currentLocation!,
-                locationPark: locationPark,
+                locationPark: locationPark,isPark: true,
               ));
         });
       }));

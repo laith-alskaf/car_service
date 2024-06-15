@@ -1,15 +1,15 @@
-import 'package:car_service/ui/shared/colors.dart';
-import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
+import 'package:car_service/ui/views/home/repair_view/main_reapair_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:get/get.dart';
 import '../../../../shared/custom_widget/custom_order_continer.dart';
 
+// ignore: must_be_immutable
 class OrderDetailsView extends StatelessWidget {
-  const OrderDetailsView({super.key});
-
+   OrderDetailsView({super.key});
+  MainRepairController controller = Get.find();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -25,12 +25,12 @@ class OrderDetailsView extends StatelessWidget {
           fontSize: 25.sp,
         ),
         (0.05.sh).ph,
-        const CustomOrderContainer(
-            location: "location",
-            yourProblem: "your_problem",
-            img: "referach",
-            price: "7000",
-            estimatedTime: "20:15")
+         CustomOrderContainer(
+            location:controller.orderDetails.location! ,
+            yourProblem: controller.orderDetails.problem! ,
+            img: controller.orderDetails.image!,
+            price:controller.orderDetails.price!.toString(),
+            estimatedTime: controller.orderDetails.estimatedTime!.toString())
       ],
     );
   }

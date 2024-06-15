@@ -1,7 +1,6 @@
+import 'package:car_service/core/translation/app_translation.dart';
 import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/ui/shared/colors.dart';
-import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
-import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:car_service/ui/views/home/repair_view/main_reapair_controller.dart';
@@ -37,53 +36,49 @@ class RepairChoosePlaceView extends StatelessWidget {
           ),
         ),
         (70.h).ph,
-        Container(
-          height: 250.h,
-          decoration: BoxDecoration(
-              border: Border.all(color: AppColors.mainColor),
-              borderRadius: BorderRadius.all(Radius.circular(15.r)),
-              image: const DecorationImage(
-                  image: AssetImage('assets/images/maps.png'),
-                  fit: BoxFit.fill)),
-        ),
-        (25.h).ph,
         GestureDetector(
           onTap: () async {
-            if (controller.currentLocation != null) {
-              // Get.to(() => MapView(
-              //       currentLocation: controller.currentLocation!,
-              //     ));
-            } else {
-              controller.currentLocation = await locationService
-                  .getUserCurrentLocation(hideLoader: true);
-              if (controller.currentLocation != null) {
-                // Get.to(() => MapView(
-                //       currentLocation: controller.currentLocation!,
-                //     ));
-              }
-            }
+            await controller.getRepairPlaces();
           },
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.w),
-            width: 1.sw,
-            height: 55.h,
+            height: 250.h,
             decoration: BoxDecoration(
-              border: Border.all(color: AppColors.mainColor),
-              borderRadius: BorderRadius.all(Radius.circular(15.r)),
-            ),
-            child: CustomText(
-              text: controller.selectedLocation == null
-                  ? 'No Location Selected'
-                  : controller.selectedLocation!,
-              textType: TextStyleType.bodyBig,
-              isTextAlign:
-                  controller.selectedLocation == null ? TextAlign.center : null,
-              textColor: controller.selectedLocation == null
-                  ? AppColors.grayColor
-                  : AppColors.blackColor,
-            ),
+                border: Border.all(color: AppColors.mainColor),
+                borderRadius: BorderRadius.all(Radius.circular(15.r)),
+                image: const DecorationImage(
+                    image: AssetImage('assets/images/maps.png'),
+                    fit: BoxFit.fill)),
           ),
         ),
+        (25.h).ph,
+        GestureDetector(onTap: () async {
+          await controller.getRepairPlaces();
+        }, child: GetBuilder<MainRepairController>(
+          builder: (controller) {
+            return Container(
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.w),
+              width: 1.sw,
+              height: 55.h,
+              decoration: BoxDecoration(
+                border: Border.all(color: AppColors.mainColor),
+                borderRadius: BorderRadius.all(Radius.circular(15.r)),
+              ),
+              child: CustomText(
+                text: controller.selectedPlace == null
+                    ? tr('No Location Selected')
+                    : controller.selectedPlace!,
+                textType: controller.selectedPlace == null
+                    ? TextStyleType.bodyBig
+                    : TextStyleType.subtitle,
+                fontWeight: FontWeight.bold,
+                isTextAlign: TextAlign.center,
+                textColor: controller.selectedPlace == null
+                    ? AppColors.grayColor
+                    : AppColors.mainColor,
+              ),
+            );
+          },
+        )),
       ],
     );
   }

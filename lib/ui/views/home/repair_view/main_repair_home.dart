@@ -57,7 +57,7 @@ class MainRepairView extends StatelessWidget {
                     if (controller.page == 0) const ChooseProblemTypeView(),
                     if (controller.page == 1) const ChooseProblemView(),
                     if (controller.page == 2) RepairChoosePlaceView(),
-                    if (controller.page == 3) const OrderDetailsView(),
+                    if (controller.page == 3)  OrderDetailsView(),
                     if (controller.page == 4)
                       Column(
                         children: [
@@ -88,16 +88,18 @@ class MainRepairView extends StatelessWidget {
                       children: [
                         CustomButton(
                           onPressed: () {
-                            controller.handleClickStep(isIncrease: true);
+                            controller.handleButtonPress(isIncrease: true);
                           },
                           text: controller.page == 4 ? 'Finish' : 'Next',
-                          buttonTypeEnum: ButtonTypeEnum.big,
+                          buttonTypeEnum: ButtonTypeEnum.medium,
+                          width: 240.w,
                           height: 55.h,
                         ),
                         (20.h).ph,
+                        if(controller.page!=0)
                         GestureDetector(
                             onTap: () {
-                              controller.handleClickStep(isIncrease: false);
+                              controller.handleStepValue(isIncrease: false);
                             },
                             child: CustomText(
                               text: 'Back',

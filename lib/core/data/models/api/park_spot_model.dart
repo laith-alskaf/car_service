@@ -21,12 +21,12 @@ class ParkingSpot {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['parkNumber'] = this.parkNumber;
-    data['filled'] = this.filled;
-    data['carNumber'] = this.carNumber;
-    data['bookingEndTime'] = this.bookingEndTime;
-    data['_id'] = this.sId;
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    data['parkNumber'] = parkNumber;
+    data['filled'] = filled;
+    data['carNumber'] = carNumber;
+    data['bookingEndTime'] = bookingEndTime;
+    data['_id'] = sId;
     return data;
   }
 }

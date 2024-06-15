@@ -50,7 +50,7 @@ class CustomOrderContainer extends StatelessWidget {
                   textColor: AppColors.grayColor,
                   fontSize: 18.h,
                 ),
-                (0.05.sw).pw,
+                (0.03.sw).pw,
                 CustomText(
                   text: location,
                   textType: TextStyleType.body,
@@ -65,16 +65,16 @@ class CustomOrderContainer extends StatelessWidget {
                   text: "Your Problem :",
                   textType: TextStyleType.body,
                   textColor: AppColors.grayColor,
-                  fontSize: 18.h,
+                  fontSize: 17.h,
                 ),
-                (0.05.sw).pw,
+                (0.03.sw).pw,
                 CustomText(
                   text: yourProblem,
                   textType: TextStyleType.body,
                   fontSize: 18.h,
                 ),
                 (0.04.sw).pw,
-                Image.asset("assets/images/${img}.png")
+                Image.network(img)
               ],
             ),
             (0.02.sh).ph,
@@ -87,7 +87,7 @@ class CustomOrderContainer extends StatelessWidget {
                   fontSize: 18.h,
                   fontWeight: FontWeight.bold,
                 ),
-                (0.05.sw).pw,
+                (0.03.sw).pw,
                 CustomText(
                   text: price,
                   textType: TextStyleType.body,
@@ -105,7 +105,7 @@ class CustomOrderContainer extends StatelessWidget {
                   textColor: AppColors.grayColor,
                   fontSize: 18.h,
                 ),
-                (0.05.sw).pw,
+                (0.03.sw).pw,
                 CustomText(
                   text: estimatedTime,
                   textType: TextStyleType.body,

@@ -2,16 +2,20 @@ import 'dart:async';
 import 'package:car_service/core/data/models/api/choos_parking_model.dart';
 import 'package:car_service/core/utils/map_util.dart';
 import 'package:car_service/ui/views/home/parking_view/parking_view_controller.dart';
+import 'package:car_service/ui/views/home/repair_view/main_reapair_controller.dart';
+import 'package:car_service/ui/views/home/repair_view/main_repair_home.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:car_service/core/services/base_controller.dart';
 
 class MapController extends BaseController {
-  MapController(this.currentLocation, this.locationPark);
+  MapController(this.currentLocation, this.locationPark, this.isPark);
 
   late ParkingViewController parkingViewController = Get.find();
+  late MainRepairController mainRepairController = Get.find();
   late LocationData currentLocation;
+  late bool isPark;
   late List<LocationPark> locationPark;
   final Completer<GoogleMapController> controller =
       Completer<GoogleMapController>();
@@ -58,9 +62,15 @@ class MapController extends BaseController {
       infoWindow: InfoWindow(
           title: name,
           onTap: () {
-            parkingViewController.selectedPark = name;
-            parkingViewController.parkNumber = id;
-            parkingViewController.update();
+            if (isPark) {
+              parkingViewController.selectedPark = name;
+              parkingViewController.parkNumber = id;
+              parkingViewController.update();
+            } else {
+              mainRepairController.selectedPlace = name;
+              mainRepairController.placeNumber = id;
+              mainRepairController.update();
+            }
             Get.back();
           }),
       markerId: MarkerId(id),

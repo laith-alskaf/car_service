@@ -10,9 +10,10 @@ import 'package:location/location.dart';
 class MapView extends StatefulWidget {
   final LocationData currentLocation;
   final List<LocationPark> locationPark;
+  final bool isPark;
 
   const MapView(
-      {super.key, required this.currentLocation, required this.locationPark});
+      {super.key, required this.currentLocation, required this.locationPark, required this.isPark});
 
   @override
   State<MapView> createState() => MapViewState();
@@ -22,7 +23,7 @@ class MapViewState extends State<MapView> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
-        init: MapController(widget.currentLocation, widget.locationPark),
+        init: MapController(widget.currentLocation, widget.locationPark,widget.isPark),
         builder: (mapController) {
           return SafeArea(
             child: Scaffold(

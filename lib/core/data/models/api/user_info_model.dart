@@ -12,7 +12,6 @@ class UserInfo {
   String? expirationCodeTime;
   String? verifyEmailCode;
   String? resetPasswordCode;
-  Null? resetPasswordExpiration;
   int? money;
   int? paymentAmount;
   String? createdAt;
@@ -32,7 +31,6 @@ class UserInfo {
         this.expirationCodeTime,
         this.verifyEmailCode,
         this.resetPasswordCode,
-        this.resetPasswordExpiration,
         this.money,
         this.paymentAmount,
         this.createdAt,
@@ -52,7 +50,6 @@ class UserInfo {
     expirationCodeTime = json['expirationCodeTime'];
     verifyEmailCode = json['verifyEmailCode'];
     resetPasswordCode = json['resetPasswordCode'];
-    resetPasswordExpiration = json['resetPasswordExpiration'];
     money = json['money'];
     paymentAmount = json['paymentAmount'];
     createdAt = json['createdAt'];
@@ -61,25 +58,24 @@ class UserInfo {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['email'] = this.email;
-    data['password'] = this.password;
-    data['firstName'] = this.firstName;
-    data['lastName'] = this.lastName;
-    data['username'] = this.username;
-    data['emailVerified'] = this.emailVerified;
-    data['photo'] = this.photo;
-    data['role'] = this.role;
-    data['expirationCodeTime'] = this.expirationCodeTime;
-    data['verifyEmailCode'] = this.verifyEmailCode;
-    data['resetPasswordCode'] = this.resetPasswordCode;
-    data['resetPasswordExpiration'] = this.resetPasswordExpiration;
-    data['money'] = this.money;
-    data['paymentAmount'] = this.paymentAmount;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['__v'] = this.iV;
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    data['_id'] = sId;
+    data['email'] = email;
+    data['password'] = password;
+    data['firstName'] = firstName;
+    data['lastName'] = lastName;
+    data['username'] = username;
+    data['emailVerified'] = emailVerified;
+    data['photo'] = photo;
+    data['role'] = role;
+    data['expirationCodeTime'] = expirationCodeTime;
+    data['verifyEmailCode'] = verifyEmailCode;
+    data['resetPasswordCode'] = resetPasswordCode;
+    data['money'] = money;
+    data['paymentAmount'] = paymentAmount;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['__v'] = iV;
     return data;
   }
 }

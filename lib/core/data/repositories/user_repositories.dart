@@ -191,6 +191,7 @@ class UserRepository {
           CommonResponse<Map<String, dynamic>> commonResponse =
           CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
+            storage.setUserInfo(UserInfo.fromJson(commonResponse.data!['user']));
             storage.setTokenInfo(commonResponse.data!['token']);
             return Right(commonResponse.data!['message']);
           } else {

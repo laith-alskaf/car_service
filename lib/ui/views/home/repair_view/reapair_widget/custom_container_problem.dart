@@ -1,12 +1,10 @@
 import 'package:car_service/ui/shared/colors.dart';
-import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
+import 'package:flutter_svg/svg.dart';
 
 // ignore: must_be_immutable
 class CustomContainerProblem extends StatelessWidget {
@@ -15,12 +13,11 @@ class CustomContainerProblem extends StatelessWidget {
       required this.nameProblem,
       this.isClick,
       this.onTap,
-      this.width,
-      this.height});
+      this.pathImage});
 
   final String nameProblem;
-  final double? width;
-  final double? height;
+  final String? pathImage;
+
   final bool? isClick;
   final Function()? onTap;
 
@@ -29,9 +26,10 @@ class CustomContainerProblem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: width ?? 190.w,
-        height: height ?? 180.w,
+        width: 170.w,
+        height: 170.w,
         margin: EdgeInsetsDirectional.only(bottom: 20.w),
+        padding: EdgeInsets.symmetric(horizontal: 10.w),
         alignment: Alignment.center,
         decoration: BoxDecoration(
             color: isClick == true ? AppColors.mainColor : AppColors.whiteColor,
@@ -49,17 +47,25 @@ class CustomContainerProblem extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset(
-              'assets/images/$nameProblem.svg',
-              width: 50.w,
-              height: 50.w,
-              color: isClick == true ? AppColors.whiteColor : null,
-            ),
+            if (pathImage != null)
+              Image.network(
+                pathImage!,
+                width: 50.w,
+                height: 50.w,
+                color: isClick == true ? AppColors.whiteColor : null,
+              ),
+            if (pathImage == null)
+              SvgPicture.asset(
+                'assets/images/$nameProblem.svg',
+                width: 50.w,
+                height: 50.w,
+                color: isClick == true ? AppColors.whiteColor : null,
+              ),
             (10.w).ph,
             CustomText(
               text: nameProblem,
               isTextAlign: TextAlign.center,
-              textType: TextStyleType.bodyBig,
+              textType: TextStyleType.body,
               textColor:
                   isClick == true ? AppColors.whiteColor : AppColors.blackColor,
             )
