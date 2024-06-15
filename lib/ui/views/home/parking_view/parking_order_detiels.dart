@@ -1,14 +1,13 @@
-import 'package:car_service/ui/shared/colors.dart';
-import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../shared/custom_widget/custom_order_continer.dart';
+import '../../../shared/custom_widget/custom_order_continer.dart';
 
-class OrderDetailsView extends StatelessWidget {
-  const OrderDetailsView({super.key});
+
+class ParkingOrderDetiels extends StatelessWidget {
+  const ParkingOrderDetiels({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -10,7 +10,7 @@ class CustomOrderContainer extends StatelessWidget {
   final String location;
   final String yourProblem;
   final String img;
-  final String appointmentTime;
+  final String price;
 
   final String estimatedTime;
 
@@ -19,7 +19,7 @@ class CustomOrderContainer extends StatelessWidget {
       required this.location,
       required this.yourProblem,
       required this.img,
-      required this.appointmentTime,
+      required this.price,
       required this.estimatedTime});
 
   @override
@@ -89,7 +89,7 @@ class CustomOrderContainer extends StatelessWidget {
                 ),
                 (0.05.sw).pw,
                 CustomText(
-                  text: appointmentTime,
+                  text: price,
                   textType: TextStyleType.body,
                   fontSize: 18.h,
                   fontWeight: FontWeight.bold,
