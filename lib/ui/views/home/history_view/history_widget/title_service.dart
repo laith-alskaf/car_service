@@ -26,22 +26,12 @@ class ServiceTitle extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          // boxShadow: onClick
-          //     ? [
-          //         BoxShadow(
-          //           color: AppColors.mainColor,
-          //           spreadRadius: 1,
-          //           blurRadius: 3,
-          //           offset: const Offset(0, 2),
-          //         ),
-          //       ]
-          //     : null,
           borderRadius: BorderRadius.all(
             Radius.circular(23.r),
           ),
           color: selectedContainer,
         ),
-        width: width ?? 150.w,
+        width: width ?? 235.w,
         height: 80.h,
         child: Center(
           child: CustomText(

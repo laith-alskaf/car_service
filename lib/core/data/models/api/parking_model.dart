@@ -85,3 +85,121 @@ class ParkingSpot {
     return data;
   }
 }
+class ParkingHistoryModel {
+  String? sId;
+  UserId? userId;
+  SelectedPark? selectedPark;
+  int? duration;
+  int? price;
+  String? createdAt;
+  String? updatedAt;
+  int? iV;
+
+  ParkingHistoryModel(
+      {this.sId,
+        this.userId,
+        this.selectedPark,
+        this.duration,
+        this.price,
+        this.createdAt,
+        this.updatedAt,
+        this.iV});
+
+  ParkingHistoryModel.fromJson(Map<String, dynamic> json) {
+    sId = json['_id'];
+    userId =
+    json['userId'] != null ?  UserId.fromJson(json['userId']) : null;
+    selectedPark = json['SelectedPark'] != null
+        ? new SelectedPark.fromJson(json['SelectedPark'])
+        : null;
+    duration = json['duration'];
+    price = json['Price'];
+    createdAt = json['createdAt'];
+    updatedAt = json['updatedAt'];
+    iV = json['__v'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    data['_id'] = sId;
+    if (this.userId != null) {
+      data['userId'] = userId!.toJson();
+    }
+    if (this.selectedPark != null) {
+      data['SelectedPark'] = selectedPark!.toJson();
+    }
+    data['duration'] = duration;
+    data['Price'] = price;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['__v'] = iV;
+    return data;
+  }
+}
+
+class UserId {
+  String? sId;
+  String? email;
+  String? firstName;
+  String? lastName;
+
+  UserId({this.sId, this.email, this.firstName, this.lastName});
+
+  UserId.fromJson(Map<String, dynamic> json) {
+    sId = json['_id'];
+    email = json['email'];
+    firstName = json['firstName'];
+    lastName = json['lastName'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_id'] = sId;
+    data['email'] = email;
+    data['firstName'] = firstName;
+    data['lastName'] = lastName;
+    return data;
+  }
+}
+
+class SelectedPark {
+  Location? location;
+  String? sId;
+
+  SelectedPark({this.location, this.sId});
+
+  SelectedPark.fromJson(Map<String, dynamic> json) {
+    location = json['location'] != null
+        ? new Location.fromJson(json['location'])
+        : null;
+    sId = json['_id'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    if (location != null) {
+      data['location'] = location!.toJson();
+    }
+    data['_id'] = sId;
+    return data;
+  }
+}
+
+class Location {
+  String? parkingName;
+  int? price;
+
+  Location({this.parkingName, this.price});
+
+  Location.fromJson(Map<String, dynamic> json) {
+    parkingName = json['parkingName'];
+    price = json['Price'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    data['parkingName'] = parkingName;
+    data['Price'] = price;
+    return data;
+  }
+}

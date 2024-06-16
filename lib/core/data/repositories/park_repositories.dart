@@ -64,7 +64,12 @@ class ParkRepository {
               CommonResponse.fromJson(response);
 
           if (commonResponse.getStatus) {
-            return Right(commonResponse.data);
+            List<ChooseParkingModel> listParking = [];
+            for (Map<String, dynamic> parkingModel
+            in commonResponse.data!['parkingLocations']) {
+              listParking.add(ChooseParkingModel.fromJson(parkingModel));
+            }
+            return Right(listParking);
           } else {
             return Left(commonResponse.message ?? '');
           }

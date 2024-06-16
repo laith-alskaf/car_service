@@ -1,4 +1,3 @@
-import 'package:car_service/core/data/models/api/park_spot_model.dart';
 import 'package:car_service/core/translation/app_translation.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';

@@ -47,26 +47,13 @@ class HistoryView extends StatelessWidget {
                 children: [
                   ServiceTitle(
                     onTap: () {
-                      historyViewController.handleClickFilter(serviceIndex: 0);
-                    },
-                    onClick: historyViewController.index == 0 ? true : false,
-                    selectedContainer: (historyViewController.index == 0)
-                        ? AppColors.mainColor
-                        : Colors.transparent,
-                    title: 'Billings',
-                    titleContainer: (historyViewController.index == 0)
-                        ? AppColors.whiteColor
-                        : AppColors.colorBorder,
-                  ),
-                  ServiceTitle(
-                    onTap: () {
                       historyViewController.handleClickFilter(serviceIndex: 1);
                     },
                     onClick: historyViewController.index == 1 ? true : false,
                     selectedContainer: (historyViewController.index == 1)
                         ? AppColors.mainColor
                         : Colors.transparent,
-                    title: 'Parkings',
+                    title: 'Parking',
                     titleContainer: (historyViewController.index == 1)
                         ? AppColors.whiteColor
                         : AppColors.colorBorder,
