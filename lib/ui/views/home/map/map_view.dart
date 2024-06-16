@@ -1,4 +1,4 @@
-import 'package:car_service/core/data/models/api/choos_parking_model.dart';
+import 'package:car_service/core/data/models/api/parking_model.dart';
 import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/views/home/map/map_view_controller.dart';

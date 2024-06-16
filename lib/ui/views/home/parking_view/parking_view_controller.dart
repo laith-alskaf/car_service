@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'package:car_service/core/data/models/api/choos_parking_model.dart';
+import 'package:car_service/core/data/models/api/parking_model.dart';
 import 'package:car_service/core/data/models/api/park_spot_model.dart';
 import 'package:car_service/core/data/repositories/park_repositories.dart';
 import 'package:car_service/core/enums/message_type.dart';

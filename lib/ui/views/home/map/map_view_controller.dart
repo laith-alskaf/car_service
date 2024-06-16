@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:car_service/core/data/models/api/choos_parking_model.dart';
+import 'package:car_service/core/data/models/api/parking_model.dart';
 import 'package:car_service/core/utils/map_util.dart';
 import 'package:car_service/ui/views/home/parking_view/parking_view_controller.dart';
 import 'package:car_service/ui/views/home/repair_view/main_reapair_controller.dart';
