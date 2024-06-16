@@ -78,7 +78,7 @@ class ParkRepository {
     }
   }
 
-  Future<Either<String, dynamic>> chooseTimeSpot({
+  Future<Either<String, parkingorderdetails>> chooseTimeSpot({
     required int duration,
     required String date,
     required int Spot,
@@ -102,7 +102,7 @@ class ParkRepository {
           CommonResponse<Map<String, dynamic>> commonResponse =
               CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
-            return Right(commonResponse.data);
+            return Right(parkingorderdetails.fromJson(commonResponse.data!));
           } else {
             return Left(commonResponse.message ?? '');
           }

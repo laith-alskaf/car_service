@@ -4,15 +4,21 @@ import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
+import 'package:get/get.dart';
 
 import '../../../../shared/colors.dart';
+import '../../parking_view/park_spot/park_spot_view_controller.dart';
 
 class ServicesContainer extends StatelessWidget {
-  const ServicesContainer({super.key});
+   ServicesContainer({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+
+    return GetBuilder<ParkSpotViewController>(
+        builder: (c) {
+      return
+      Container(
       width: 1.sw,
       height: 0.2.sh,
       decoration: BoxDecoration(
@@ -48,9 +54,9 @@ class ServicesContainer extends StatelessWidget {
                   format: CountDownTimerFormat.hoursMinutesSeconds,
                   endTime: DateTime.now().add(
                     Duration(
-                      hours: 1,
-                      minutes: 27,
-                      seconds: 34,
+                      hours:  0,
+                      minutes: 0,
+                      seconds: 0,
                     ),
                   ),
                   onEnd: () {
@@ -80,6 +86,6 @@ class ServicesContainer extends StatelessWidget {
 
             ),
       ),
-    );
+    );});
   }
 }

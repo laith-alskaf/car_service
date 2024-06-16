@@ -85,6 +85,46 @@ class ParkingSpot {
     return data;
   }
 }
+class parkingorderdetails {
+  int? parkNumber;
+  String? carNumber;
+  String? bookingEndTime;
+  int? parksNum;
+  String? parkingName;
+  int? duration;
+  int? price;
+
+  parkingorderdetails(
+      {this.parkNumber,
+        this.carNumber,
+        this.bookingEndTime,
+        this.parksNum,
+        this.parkingName,
+        this.duration,
+        this.price});
+
+  parkingorderdetails.fromJson(Map<String, dynamic> json) {
+    parkNumber = json['parkNumber'];
+    carNumber = json['carNumber'];
+    bookingEndTime = json['bookingEndTime'];
+    parksNum = json['parksNum'];
+    parkingName = json['parkingName'];
+    duration = json['duration'];
+    price = json['Price'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['parkNumber'] = this.parkNumber;
+    data['carNumber'] = this.carNumber;
+    data['bookingEndTime'] = this.bookingEndTime;
+    data['parksNum'] = this.parksNum;
+    data['parkingName'] = this.parkingName;
+    data['duration'] = this.duration;
+    data['Price'] = this.price;
+    return data;
+  }
+}
 class ParkingHistoryModel {
   String? sId;
   UserId? userId;

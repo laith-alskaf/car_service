@@ -18,6 +18,7 @@ class HomeView extends StatelessWidget {
 
   HomeViewController controller = Get.put(HomeViewController());
 
+
   @override
   Widget build(BuildContext context) {
     return ListView(children: [

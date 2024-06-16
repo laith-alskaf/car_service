@@ -2,6 +2,7 @@ import 'package:car_service/core/data/repositories/park_repositories.dart';
 import 'package:car_service/core/enums/message_type.dart';
 import 'package:car_service/core/services/base_controller.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_toast.dart';
+import 'package:car_service/ui/views/home/parking_view/parking_order_detiels.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,6 +13,11 @@ class ParkSpotViewController extends BaseController {
 
   late double price;
   late double checkPrice;
+  late parkingorderdetails parkorderDetails;
+   int hours=0;
+   int mintes=0;
+
+
 
   int numberHoursPark = 1;
   late List<ParkingSpot> parkingSpot;
@@ -86,23 +92,52 @@ class ParkSpotViewController extends BaseController {
       },
     );
 
+
     if (selectedTime != null) {
       hour = selectedTime.hourOfPeriod;
       final minute = selectedTime.minute;
       final period = selectedTime.period == DayPeriod.am ? 'AM' : 'PM';
 
       time.value = '$hour:$minute $period';
+
+      mintes=minute- TimeOfDay.now().minute;
+
+      int currentHour = TimeOfDay.now().hour;
+      int endHour = hour + numberHoursPark;
+
+// إذا كان الوقت الإجمالي يتجاوز منتصف الليل (24:00), نقوم بتصحيحه
+      if (endHour >= 24) {
+        endHour -= 24;
+      }
+// التحقق مما إذا كان الوقت الحالي قد تجاوز وقت الانتهاء
+      if (currentHour < hour || currentHour > endHour) {
+        // إذا كان الوقت الحالي قبل وقت البدء أو بعد وقت الانتهاء، نستخدم الوقت بالكامل
+        hours = numberHoursPark;
+      } else {
+        // إذا كان الوقت الحالي بين وقت البدء ووقت الانتهاء، نحسب الساعات المتبقية
+        hours = endHour - currentHour;
+       // -----------------------------------------------------------------------------------------------------------
+        int currentMinute = TimeOfDay.now().minute;
+        int minutesDifference = minute - currentMinute;
+
+// للتأكد من أن minutesDifference ليست سالبة، يمكنك إضافة 60 إليها إذا كانت سالبة
+// لأن الوقت عبارة عن دورة 24 ساعة
+        if (minutesDifference < 0) {
+          minutesDifference += 60;
+        }
+        mintes=minutesDifference;
+
+      }
+
     }
     update();
   }
-
-  clearData() {
+  clearData(){
     time.value = '';
     birthDay.value = '';
-    numberHoursPark = 1;
-    checkPrice = price;
+    numberHoursPark =1;
+    checkPrice=price;
   }
-
   Future<void> chooseTimeSpot() async {
     await runFullLoadingFutureFunction(
         function: ParkRepository()
@@ -115,8 +150,14 @@ class ParkSpotViewController extends BaseController {
       value.fold((l) {
         CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
       }, (r) {
-        clearData();
+        parkorderDetails = r;
+        update();
         Get.back();
+        Get.to(()=>ParkingOrderDetiels());
+
+        CustomToast.showMessage(
+            message: 'لعيون عمك هاشم واقطع', messageType: MessageType.SUCCESS);
+        // Get.to(() => ParkSpotView());
       });
     }));
   }

@@ -1,36 +1,92 @@
+import 'package:car_service/core/utils/general_util.dart';
+import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
+import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
+import 'package:car_service/ui/views/home/home_view/home_view.dart';
+import 'package:car_service/ui/views/home/parking_view/custom_order_detiels_contiener.dart';
+import 'package:car_service/ui/views/home/parking_view/park_spot/park_spot_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
+import '../../../shared/colors.dart';
 import '../../../shared/custom_widget/custom_order_continer.dart';
 
-
 class ParkingOrderDetiels extends StatelessWidget {
-  const ParkingOrderDetiels({super.key});
+  ParkingOrderDetiels({super.key});
+
+  ParkSpotViewController controller = Get.find();
+
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Image.asset("assets/images/done.png"),
-        (0.04.sh).ph,
-        CustomText(
-          text: 'Your Problem Has been Placed Sucessfuly',
-          textType: TextStyleType.subtitle,
-          fontWeight: FontWeight.bold,
-          fontSize: 25.sp,
-        ),
-        (0.05.sh).ph,
-        const CustomOrderContainer(
-            location: "location",
-            yourProblem: "your_problem",
-            img: "referach",
-            price: "7000",
-            estimatedTime: "20:15")
-      ],
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: AppColors.whiteColor,
+        body: GetBuilder<ParkSpotViewController>(
+          builder: (c) {
+            return Column(
+              children: [
+                CustomAppBar(title: "order detiels"),
+                (10.h).ph,
+                Padding(
+                  padding:  EdgeInsets.symmetric(horizontal: defaultPadding),
+                  child: Column(
+                    children: [
+                      CircularPercentIndicator(
+                        radius: 180.0,
+                        animation: true,
+                        animationDuration: 5000,
+                        backgroundWidth: 20,
+                        lineWidth: 20.0,
+                        percent: 1,
+                        center: TimerCountdown(
+                          timeTextStyle: TextStyle(
+                            color: AppColors.blackColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          format: CountDownTimerFormat.hoursMinutesSeconds,
+                          endTime: DateTime.now().add(
+                            Duration(
+                              hours: controller.hours ,
+                              minutes:controller.mintes,
+                              seconds: 0,
+                            ),
+                          ),
+                          onEnd: () {
+                            print("Timer finished");
+                          },
+                        ),
+                        circularStrokeCap: CircularStrokeCap.round,
+                        backgroundColor: AppColors.grayColor.withOpacity(0.2),
+                        progressColor: AppColors.mainColor,
+                      ),
+                      (10.h).ph,
+                      CustomOrderDetielsContiener(
+                        parkNumber: controller.parkorderDetails.parkNumber.toString(),
+                        carNumber: controller.parkorderDetails.carNumber!,
+                        bookingEndTime: controller.parkorderDetails.bookingEndTime!,
+                        parksNum: controller.parkorderDetails.parksNum.toString(),
+                        parkingName: controller.parkorderDetails.parkingName!,
+                        duration: controller.parkorderDetails.duration.toString(),
+                        price: controller.parkorderDetails.price.toString(),
+                      ),
+                      (10.h).ph,
+                      CustomButton(text: "go to home page", buttonTypeEnum: ButtonTypeEnum.big,
+                      width: 1.sw,),
+                    ],
+                  ),
+                )
+      
+              ],
+            );
+          },
+        )
+      ),
     );
   }
 }
