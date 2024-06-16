@@ -6,7 +6,9 @@ import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 
 showAlertDelete({required String text, required Function ontap}) {
   Get.dialog(Dialog(
@@ -15,9 +17,12 @@ showAlertDelete({required String text, required Function ontap}) {
     backgroundColor: AppColors.whiteColor,
     insetPadding: const EdgeInsets.only(),
     child: Container(
-      color: AppColors.whiteColor,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(35.r)),
+        color: AppColors.whiteColor,
+      ),
       width: 460.w,
-      height: 208.h,
+      height: 180.h,
       child: Padding(
         padding: EdgeInsets.all(20.w),
         child: Column(
@@ -25,7 +30,10 @@ showAlertDelete({required String text, required Function ontap}) {
           children: [
             Row(
               children: [
-                SizedBox(width: 48.w, height: 43.w, child: Image.asset('')),
+                SizedBox(
+                    width: 48.w,
+                    height: 43.w,
+                    child: SvgPicture.asset('assets/images/ph_x-bold.svg')),
                 Padding(
                   padding: EdgeInsets.only(top: 5.h),
                   child: CustomText(
@@ -64,8 +72,9 @@ showAlertDelete({required String text, required Function ontap}) {
                     buttonTypeEnum: ButtonTypeEnum.small,
                     backgroundColor: AppColors.whiteColor,
                     borderColor: AppColors.secondColorMain,
+                    textColor: AppColors.mainColor,
                     onPressed: ontap,
-                    text: tr('key_cancel'),
+                    text: 'Cancel',
                   ),
                   SizedBox(
                     width: 15.w,

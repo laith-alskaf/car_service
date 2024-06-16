@@ -86,7 +86,6 @@ class ParkSpotViewController extends BaseController {
       },
     );
 
-
     if (selectedTime != null) {
       hour = selectedTime.hourOfPeriod;
       final minute = selectedTime.minute;
@@ -96,12 +95,14 @@ class ParkSpotViewController extends BaseController {
     }
     update();
   }
-  clearData(){
+
+  clearData() {
     time.value = '';
     birthDay.value = '';
-    numberHoursPark =1;
-    checkPrice=price;
+    numberHoursPark = 1;
+    checkPrice = price;
   }
+
   Future<void> chooseTimeSpot() async {
     await runFullLoadingFutureFunction(
         function: ParkRepository()
@@ -116,9 +117,6 @@ class ParkSpotViewController extends BaseController {
       }, (r) {
         clearData();
         Get.back();
-        CustomToast.showMessage(
-            message: 'لعيون عمك هاشم واقطع', messageType: MessageType.SUCCESS);
-        // Get.to(() => ParkSpotView());
       });
     }));
   }

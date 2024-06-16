@@ -7,6 +7,7 @@ import 'package:car_service/ui/views/home/history_view/history_widget/alert_dial
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class ContainerHistoryQr extends StatelessWidget {
@@ -28,11 +29,13 @@ class ContainerHistoryQr extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       shrinkWrap: true,
-      itemCount: 10,
+      itemCount: controller.currentIndexON.value == 0
+          ? controller.parkingHistory.length
+          : controller.problemHistory.length,
       itemBuilder: (context, index) => Obx(
         () => SizedBox(
           height: controller.checkExpandedContainer(index) ? 335.h : 130.h,
-          child: InkWell(
+          child: GestureDetector(
             onTap: () {
               controller.clickToShow(index);
             },
@@ -68,20 +71,18 @@ class ContainerHistoryQr extends StatelessWidget {
                           Visibility(
                             visible: controller.currentIndexON.value != index,
                             child: Padding(
-                              padding: EdgeInsetsDirectional.only(start: 10.w),
-                              child: ClipRRect(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20.r)),
-                                child: SizedBox(
-                                  width: 100.h,
-                                  height: 100.h,
-                                  child: Image.asset(
-                                    '',
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                              ),
-                            ),
+                                padding:
+                                    EdgeInsetsDirectional.only(start: 10.w),
+                                child: controller.currentIndexON.value == 0
+                                    ? SvgPicture.asset(
+                                        'assets/images/ic_park.svg',
+                                        color: AppColors.mainColor,
+                                        width: 80.w,
+                                      )
+                                    : Image.network(controller
+                                        .problemHistory[index]
+                                        .carProblem!
+                                        .image!)),
                           ),
                           if (controller.currentIndexON.value != index)
                             SizedBox(
@@ -106,8 +107,19 @@ class ContainerHistoryQr extends StatelessWidget {
                                       : SizedBox(
                                           width: 210.w,
                                           height: 25.h,
-                                          child: const CustomText(
-                                            text: 'Laith_Alskaf',
+                                          child: CustomText(
+                                            text: controller
+                                                        .currentIndexON.value ==
+                                                    0
+                                                ? controller
+                                                    .parkingHistory[index]
+                                                    .selectedPark!
+                                                    .location!
+                                                    .parkingName!
+                                                : controller
+                                                    .problemHistory[index]
+                                                    .carProblem!
+                                                    .problemType!,
                                             overflow: TextOverflow.clip,
                                             textType: TextStyleType.bodyBig,
                                             fontWeight: FontWeight.bold,
@@ -133,29 +145,37 @@ class ContainerHistoryQr extends StatelessWidget {
                                     ),
                                   if (controller.checkExpandedContainer(index))
                                     (12.h).ph,
-                                  controller.showText.value &&
-                                          controller.currentIndexON.value ==
-                                              index
-                                      ? const CustomText(
-                                          textType: TextStyleType.body,
-                                          maxLines: 3,
-                                          text: "0988999888",
-                                          fontWeight: FontWeight.normal,
-                                        )
-                                      : CustomText(
-                                          topPadding: 5.h,
-                                          text: '0982055788',
-                                          textType: TextStyleType.body,
-                                          fontWeight: FontWeight.normal,
-                                        ),
+                                  // controller.showText.value &&
+                                  //         controller.currentIndexON.value ==
+                                  //             index
+                                  CustomText(
+                                    topPadding: 5.h,
+                                    text: controller.currentIndexON.value == 0
+                                        ? controller
+                                            .parkingHistory[index].price!
+                                            .toString()
+                                        : controller.problemHistory[index]
+                                            .carProblem!.name!,
+                                    textType: TextStyleType.body,
+                                    fontWeight: FontWeight.normal,
+                                  ),
                                   (2.h).ph,
                                   controller.checkExpandedContainer(index)
                                       ? const SizedBox()
                                       : Padding(
                                           padding: EdgeInsetsDirectional.only(
                                               start: 196.w),
-                                          child: const CustomText(
-                                            text: " 18-12-2023",
+                                          child: CustomText(
+                                            text: controller
+                                                        .currentIndexON.value ==
+                                                    0
+                                                ? controller
+                                                    .parkingHistory[index]
+                                                    .createdAt!
+                                                    .toString()
+                                                : controller
+                                                    .problemHistory[index]
+                                                    .createdAt!,
                                             fontWeight: FontWeight.normal,
                                             textType: TextStyleType.bodyBig,
                                           ),
@@ -170,29 +190,34 @@ class ContainerHistoryQr extends StatelessWidget {
                 controller.checkExpandedContainer(index)
                     ? ZoomIn(
                         child: Align(
-                          alignment: Alignment.topCenter,
-                          child: ClipOval(
-                            child: Image.asset(
-                              '',
-                              width: 100.w,
-                              height: 100.w,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
+                            alignment: Alignment.topCenter,
+                            child: controller.currentIndexON.value == 0
+                                ? SvgPicture.asset(
+                                    'assets/images/ic_park.svg',
+                                    color: AppColors.mainColor,
+                                    width: 80.w,
+                                  )
+                                : Image.network(controller
+                                    .problemHistory[index].carProblem!.image!)),
                       )
                     : const SizedBox(),
                 Align(
                   alignment: Alignment.topCenter,
                   child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.only(top: 30.h, start: 400.w),
+                    padding: EdgeInsetsDirectional.only(
+                        top: controller.checkExpandedContainer(index)
+                            ? 50.h
+                            : 30.h,
+                        start: 400.w),
                     child: InkWell(
                       onTap: () => showAlertDelete(
                           text: 'Sure Delete History Info',
                           ontap: () => Get.back()),
                       child: SizedBox(
-                          width: 20.w, height: 20.w, child: Image.asset('')),
+                          width: 28.w,
+                          height: 28.w,
+                          child:
+                              SvgPicture.asset('assets/images/ph_x-bold.svg')),
                     ),
                   ),
                 ),

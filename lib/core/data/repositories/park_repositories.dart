@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:car_service/core/data/models/api/parking_model.dart';
 import 'package:car_service/core/data/network/endpoints/park_endpoint.dart';
+import 'package:car_service/core/utils/general_util.dart';
 import 'package:dartz/dartz.dart';
 import 'package:car_service/core/data/models/common_respons.dart';
 import 'package:car_service/core/data/network/network_config.dart';
@@ -64,12 +65,7 @@ class ParkRepository {
               CommonResponse.fromJson(response);
 
           if (commonResponse.getStatus) {
-            List<ChooseParkingModel> listParking = [];
-            for (Map<String, dynamic> parkingModel
-            in commonResponse.data!['parkingLocations']) {
-              listParking.add(ChooseParkingModel.fromJson(parkingModel));
-            }
-            return Right(listParking);
+            return Right(commonResponse.data);
           } else {
             return Left(commonResponse.message ?? '');
           }
@@ -95,8 +91,7 @@ class ParkRepository {
           headers:
               NetworkConfig.getHeaders(needAuth: true, type: RequestType.POST),
           body: {
-            // 'username': storage.getUserInfo()!.username!,
-            'username': 'hashem112',
+            'username': storage.getUserInfo()!.username,
             'duration': duration,
             'date': date,
             'parkingName': parkingName,
@@ -108,6 +103,37 @@ class ParkRepository {
               CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
             return Right(commonResponse.data);
+          } else {
+            return Left(commonResponse.message ?? '');
+          }
+        } else {
+          return const Left('Please check your internet');
+        }
+      });
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+  Future<Either<String, List<ParkingHistoryModel>>> getHistoryParking() async {
+    try {
+      return NetworkUtil.sendRequest(
+          type: RequestType.POST,
+          url: ParkEndPoints.getHistoryParking,
+          headers: NetworkConfig.getHeaders(type: RequestType.POST),
+          body: {
+            'username': storage.getUserInfo()!.username,
+          }).then((response) {
+        if (response != null) {
+          log('==========> $response');
+          CommonResponse<List<dynamic>> commonResponse =
+              CommonResponse.fromJson(response);
+          if (commonResponse.getStatus) {
+            List<ParkingHistoryModel> historyParking = [];
+            for (Map<String, dynamic> s in commonResponse.data!) {
+              historyParking.add(ParkingHistoryModel.fromJson(s));
+            }
+            return Right(historyParking);
           } else {
             return Left(commonResponse.message ?? '');
           }

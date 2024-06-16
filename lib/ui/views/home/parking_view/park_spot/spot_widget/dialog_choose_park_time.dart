@@ -154,14 +154,9 @@ showDialogDatePark(
                   buttonTypeEnum: ButtonTypeEnum.normal,
                   onPressed: () {
                     if (controller.time.value != '') {
-                      if (controller.hour >=
-                          TimeOfDay.fromDateTime(DateTime.now()).hour) {
+
                         controller.chooseTimeSpot();
-                      } else {
-                        CustomToast.showMessage(
-                            message: 'Please input after time now or equal',
-                            messageType: MessageType.REJECTED);
-                      }
+
                     } else {
                       CustomToast.showMessage(
                           message: 'Please input time and date',
