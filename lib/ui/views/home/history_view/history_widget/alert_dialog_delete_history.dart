@@ -10,7 +10,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
-showAlertDelete({required String text, required Function ontap}) {
+showAlertDelete({required String text, required Function onTap}) {
   Get.dialog(Dialog(
     shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(35.r))),
@@ -73,7 +73,9 @@ showAlertDelete({required String text, required Function ontap}) {
                     backgroundColor: AppColors.whiteColor,
                     borderColor: AppColors.secondColorMain,
                     textColor: AppColors.mainColor,
-                    onPressed: ontap,
+                    onPressed: (){
+                      Get.back();
+                    },
                     text: 'Cancel',
                   ),
                   SizedBox(
@@ -82,7 +84,7 @@ showAlertDelete({required String text, required Function ontap}) {
                   CustomButton(
                     buttonTypeEnum: ButtonTypeEnum.small,
                     backgroundColor: AppColors.mainColor,
-                    onPressed: ontap,
+                    onPressed: onTap,
                     text: 'Ok',
                   ),
                 ],

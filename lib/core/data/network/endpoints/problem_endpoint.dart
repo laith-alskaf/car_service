@@ -5,4 +5,5 @@ class ProblemEndpoint {
   static String getRepairPlaces = NetworkConfig.getFullApiRout('problem/getRepairPlaces');
   static String choosePlace = NetworkConfig.getFullApiRout('problem/orderProblem');
   static String getHistoryProblem = NetworkConfig.getFullApiRout('orders/getReapirOrders');
+  static String deleteHistoryProblem = NetworkConfig.getFullApiRout('orders/deleterepair');
 }

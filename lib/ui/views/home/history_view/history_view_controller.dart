@@ -8,9 +8,9 @@ import 'package:car_service/ui/shared/custom_widget/custom_toast.dart';
 import 'package:get/get.dart';
 
 class HistoryViewController extends BaseController {
-  int index = 1;
-  List<ParkingHistoryModel> parkingHistory = <ParkingHistoryModel>[];
-  List<ProblemHistoryModel> problemHistory = <ProblemHistoryModel>[];
+  int index = 0;
+  List<ParkingHistoryModel>? parkingHistory;
+  List<ProblemHistoryModel>? problemHistory;
 
   handleClickFilter({required int serviceIndex}) {
     index = serviceIndex;
@@ -45,6 +45,11 @@ class HistoryViewController extends BaseController {
         CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
       }, (r) {
         parkingHistory = r;
+        for (int i = 0; i < parkingHistory!.length; i++) {
+          parkingHistory![i].createdAt =
+              parkingHistory![i].createdAt!.substring(0, 10);
+        }
+        update();
       });
     }));
   }
@@ -56,12 +61,43 @@ class HistoryViewController extends BaseController {
         CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
       }, (r) {
         problemHistory = r;
+        for (int i = 0; i < problemHistory!.length; i++) {
+          problemHistory![i].createdAt =
+              problemHistory![i].createdAt!.substring(0, 10);
+        }
+
+        update();
+      });
+    }));
+  }
+
+  Future<void> deleteHistoryPark({required String idPark}) async {
+    await runLoadingFutureFunction(
+        function:
+            ParkRepository().deleteHistoryPark(idPark: idPark).then((value) {
+      value.fold((l) {
+        CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+      }, (r) async {
+        CustomToast.showMessage(message: r, messageType: MessageType.SUCCESS);
+        await getHistoryParking();
+      });
+    }));
+  }
+  Future<void> deleteHistoryProblem({required String idPark}) async {
+    await runLoadingFutureFunction(
+        function:
+            ProblemRepositories().deleteHistoryProblem(idPark: idPark).then((value) {
+      value.fold((l) {
+        CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+      }, (r) async {
+        CustomToast.showMessage(message: r, messageType: MessageType.SUCCESS);
+        await getHistoryProblems();
       });
     }));
   }
 
   @override
-  void onInit() async {
+  Future<void> onInit() async {
     getHistoryParking();
     getHistoryProblems();
     super.onInit();

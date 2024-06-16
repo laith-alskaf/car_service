@@ -1,10 +1,9 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
+import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/views/home/history_view/history_view_controller.dart';
 import 'package:car_service/ui/views/home/history_view/history_widget/container_history_qr.dart';
-import 'package:car_service/ui/views/home/history_view/history_widget/container_service_type.dart';
 import 'package:car_service/ui/views/home/history_view/history_widget/title_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -50,27 +49,27 @@ class HistoryView extends StatelessWidget {
                 children: [
                   ServiceTitle(
                     onTap: () {
+                      historyViewController.handleClickFilter(serviceIndex: 0);
+                    },
+                    onClick: historyViewController.index == 0 ? true : false,
+                    selectedContainer: (historyViewController.index == 0)
+                        ? AppColors.mainColor
+                        : Colors.transparent,
+                    title: 'Parking',
+                    titleContainer: (historyViewController.index == 0)
+                        ? AppColors.whiteColor
+                        : AppColors.colorBorder,
+                  ),
+                  ServiceTitle(
+                    onTap: () {
                       historyViewController.handleClickFilter(serviceIndex: 1);
                     },
                     onClick: historyViewController.index == 1 ? true : false,
                     selectedContainer: (historyViewController.index == 1)
                         ? AppColors.mainColor
                         : Colors.transparent,
-                    title: 'Parking',
-                    titleContainer: (historyViewController.index == 1)
-                        ? AppColors.whiteColor
-                        : AppColors.colorBorder,
-                  ),
-                  ServiceTitle(
-                    onTap: () {
-                      historyViewController.handleClickFilter(serviceIndex: 2);
-                    },
-                    onClick: historyViewController.index == 2 ? true : false,
-                    selectedContainer: (historyViewController.index == 2)
-                        ? AppColors.mainColor
-                        : Colors.transparent,
                     title: 'Repairs',
-                    titleContainer: (historyViewController.index == 2)
+                    titleContainer: (historyViewController.index == 1)
                         ? AppColors.whiteColor
                         : AppColors.colorBorder,
                   ),
@@ -79,24 +78,48 @@ class HistoryView extends StatelessWidget {
             );
           })),
       ZoomIn(
-        child: Padding(
-            padding: EdgeInsets.only(top: 20.h),
-            child: GetBuilder<HistoryViewController>(
-              builder: (c) {
-                return historyViewController.parkingHistory.isEmpty &&
-                        historyViewController.problemHistory.isEmpty
-                    ? Center(
-                      child: SpinKitCircle(
-                        color: AppColors.mainColor,
-                        size: 100.w,
-                      ),
-                    )
-                    : ContainerHistoryQr(
-                        image: '',
-                        onTap: () {},
-                        controller: historyViewController);
-              },
-            )),
+        child: SizedBox(
+          height: 1.sh,
+          child: Padding(
+              padding: EdgeInsets.only(top: 10.h, bottom: 290.h),
+              child: GetBuilder<HistoryViewController>(
+                builder: (c) {
+                  return historyViewController.index == 0
+                      ? (historyViewController.parkingHistory == null
+                          ? Center(
+                              child: SpinKitCircle(
+                                color: AppColors.mainColor,
+                                size: 100.w,
+                              ),
+                            )
+                          : historyViewController.parkingHistory!.isEmpty
+                              ? const Center(
+                                  child: CustomText(
+                                      text: 'No Data',
+                                      textType: TextStyleType.title),
+                                )
+                              : ContainerHistoryQr(
+                                  onTap: () {},
+                                ))
+                      : (historyViewController.problemHistory == null
+                          ? Center(
+                              child: SpinKitCircle(
+                                color: AppColors.mainColor,
+                                size: 100.w,
+                              ),
+                            )
+                          : historyViewController.problemHistory!.isEmpty
+                              ? const Center(
+                                  child: CustomText(
+                                      text: 'No Data',
+                                      textType: TextStyleType.title),
+                                )
+                              : ContainerHistoryQr(
+                                  onTap: () {},
+                                ));
+                },
+              )),
+        ),
       )
     ]);
   }

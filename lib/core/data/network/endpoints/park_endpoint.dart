@@ -5,4 +5,6 @@ class ParkEndPoints {
   static String choosePark = NetworkConfig.getFullApiRout('parking/getParkingSpots');
   static String chooseTime = NetworkConfig.getFullApiRout('parking/bookingPark');
   static String getHistoryParking = NetworkConfig.getFullApiRout('orders/getParkingOrders');
+  static String deleteHistoryPark = NetworkConfig.getFullApiRout('orders/deleteOrder');
+
 }
