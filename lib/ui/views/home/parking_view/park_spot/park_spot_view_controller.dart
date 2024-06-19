@@ -1,3 +1,4 @@
+import 'package:car_service/core/data/models/api/parking_timer.dart';
 import 'package:car_service/core/data/repositories/park_repositories.dart';
 import 'package:car_service/core/enums/message_type.dart';
 import 'package:car_service/core/services/base_controller.dart';
@@ -12,6 +13,7 @@ class ParkSpotViewController extends BaseController {
   ParkSpotViewController(this.parkingSpot, this.selectedPark, this.price);
 
   late double price;
+  late ParkingTimer parkingtimer;
   late double checkPrice;
   late parkingorderdetails parkorderDetails;
    int hours=0;
@@ -161,4 +163,18 @@ class ParkSpotViewController extends BaseController {
       });
     }));
   }
+  Future<void> parkingTimer() async {
+    await runFullLoadingFutureFunction(
+        function: ParkRepository().parkingtimer().then((value) {
+          value.fold((l) {
+            CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+          }, (r) {
+            parkingtimer = r;
+            update();
+            CustomToast.showMessage(
+                message: 'لعيون عمك هاشم واقطع', messageType: MessageType.SUCCESS);
+          });
+        }));
+  }
+
 }

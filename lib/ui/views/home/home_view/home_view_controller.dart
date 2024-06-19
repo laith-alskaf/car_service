@@ -1,8 +1,25 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
+import 'package:car_service/core/data/repositories/park_repositories.dart';
+import 'package:car_service/core/enums/message_type.dart';
+import 'package:car_service/core/services/base_controller.dart';
+import 'package:car_service/ui/shared/custom_widget/custom_toast.dart';
 
-class HomeViewController extends GetxController {
+
+import '../../../../core/data/models/api/parking_timer.dart';
+
+
+class HomeViewController extends BaseController {
   late CarouselController buttonCarouselController = CarouselController();
+  Rx<ParkingTimer> parkingtimer = ParkingTimer().obs;
+  @override
+  void onInit() {
+    super.onInit();
+    parkingTimer();
+  }
+
+
+
   RxList<int> selectedImageIndex = [0, 0, 0].obs;
 
   final List<List<String>> cash = [
@@ -46,6 +63,33 @@ class HomeViewController extends GetxController {
 
   onPageChanged2(int index, _) {
     selectedImageIndex[2] = index;
+  }
+  Future<void> parkingTimer() async {
+    await runFullLoadingFutureFunction(
+        function: ParkRepository().parkingtimer().then((value) {
+          value.fold((l) {
+            CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+          }, (r) {
+            parkingtimer.value = r;
+            update();
+            CustomToast.showMessage(
+                message: 'لعيون عمك هاشم واقطع', messageType: MessageType.SUCCESS);
+            // Get.to(() => ParkSpotView());
+          });
+        }));
+  }
+  Future<void> expandtime() async {
+    await runFullLoadingFutureFunction(
+        function:
+        ParkRepository().expandtime(duration: 2).then((value) {
+          value.fold((l) {
+            CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+          }, (r) {
+            CustomToast.showMessage(
+                message: r,
+                messageType: MessageType.SUCCESS);
+          });
+        }));
   }
 }
 

@@ -243,3 +243,21 @@ class Location {
     return data;
   }
 }
+class expandtime {
+  String? username;
+  int? duration;
+
+  expandtime({this.username, this.duration});
+
+  expandtime.fromJson(Map<String, dynamic> json) {
+    username = json['username'];
+    duration = json['duration'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['username'] = this.username;
+    data['duration'] = this.duration;
+    return data;
+  }
+}

@@ -156,6 +156,7 @@ showDialogDatePark(
                     if (controller.time.value != '') {
 
                         controller.chooseTimeSpot();
+                        controller.parkingTimer();
 
                     } else {
                       CustomToast.showMessage(

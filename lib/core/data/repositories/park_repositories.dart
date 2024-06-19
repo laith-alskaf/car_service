@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:car_service/core/data/models/api/parking_model.dart';
+import 'package:car_service/core/data/models/api/parking_timer.dart';
 import 'package:car_service/core/data/network/endpoints/park_endpoint.dart';
 import 'package:car_service/core/utils/general_util.dart';
 import 'package:dartz/dartz.dart';
@@ -114,6 +115,69 @@ class ParkRepository {
       return Left(e.toString());
     }
   }
+  //-----------------------------------------------------------------
+  Future<Either<String, ParkingTimer>> parkingtimer() async {
+    try {
+      return NetworkUtil.sendRequest(
+          type: RequestType.POST,
+          url: ParkEndPoints.parkingtimer,
+          headers:
+          NetworkConfig.getHeaders(needAuth: true, type: RequestType.POST),
+          body: {
+            'username': storage.getUserInfo()!.username,
+          }).then((response) {
+        if (response != null) {
+          log('==========> ${response}');
+          CommonResponse<Map<String, dynamic>> commonResponse =
+          CommonResponse.fromJson(response);
+          if (commonResponse.getStatus) {
+            return Right(ParkingTimer.fromJson(commonResponse.data!));
+          } else {
+            return Left(commonResponse.message ?? '');
+          }
+        } else {
+          return const Left('Please check your internet');
+        }
+      });
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+  Future<Either<String, String>> expandtime({
+    required int duration,
+  }) async {
+    try {
+      return NetworkUtil.sendRequest(
+          type: RequestType.POST,
+          url: ParkEndPoints.expandtime,
+          headers:
+          NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
+          body: {
+            'username':storage.getUserInfo()!.username,
+            'duration': duration,
+          }).then((response) {
+        if (response != null) {
+          CommonResponse<Map<String, dynamic>> commonResponse =
+          CommonResponse.fromJson(response);
+          if (commonResponse.getStatus) {
+            return Right(commonResponse.data!['message']);
+          } else {
+            return Left(commonResponse.message ?? '');
+          }
+        } else {
+          return const Left('Please check your internet');
+        }
+
+      });
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+
+
+
+
 
   Future<Either<String, List<ParkingHistoryModel>>> getHistoryParking() async {
     try {
