@@ -4,6 +4,7 @@ import 'package:car_service/core/data/repositories/park_repositories.dart';
 import 'package:car_service/core/enums/message_type.dart';
 import 'package:car_service/core/services/base_controller.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_toast.dart';
+import 'package:get/get_rx/get_rx.dart';
 
 
 import '../../../../core/data/models/api/parking_timer.dart';
@@ -12,10 +13,24 @@ import '../../../../core/data/models/api/parking_timer.dart';
 class HomeViewController extends BaseController {
   late CarouselController buttonCarouselController = CarouselController();
   Rx<ParkingTimer> parkingtimer = ParkingTimer().obs;
+  RxInt numberHoursPark = 1.obs;
+
   @override
   void onInit() {
     super.onInit();
     parkingTimer();
+  }
+  changePrice({required bool dec}) {
+    if (dec) {
+      if (numberHoursPark < 24) {
+        numberHoursPark += 1;
+      }
+    } else {
+      if (numberHoursPark > 1) {
+        numberHoursPark -= 1;
+      }
+    }
+    update();
   }
 
 
@@ -81,7 +96,7 @@ class HomeViewController extends BaseController {
   Future<void> expandtime() async {
     await runFullLoadingFutureFunction(
         function:
-        ParkRepository().expandtime(duration: 2).then((value) {
+        ParkRepository().expandtime(duration: numberHoursPark.value).then((value) {
           value.fold((l) {
             CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
           }, (r) {
