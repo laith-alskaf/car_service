@@ -18,11 +18,13 @@ showDialogDatePark(
         borderRadius: BorderRadius.all(Radius.circular(35.r))),
     child: IntrinsicHeight(
       child: Container(
+
         decoration: BoxDecoration(
           color: AppColors.whiteColor,
           borderRadius: BorderRadius.circular(20),
         ),
         width: 400.w,
+        height:0.3.sh ,
         child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.w),
             child: Column(
