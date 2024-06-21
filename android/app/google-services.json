@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "21476635686",
+    "project_id": "fir-e8b4f",
+    "storage_bucket": "fir-e8b4f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:21476635686:android:80dd998b6c812d68f562e7",
+        "android_client_info": {
+          "package_name": "com.example.car_service"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5t9XN86r5DJwlEQ2_ATtyAJblpXhq1_A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

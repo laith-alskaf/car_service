@@ -8,6 +8,7 @@ import 'package:hive/hive.dart';
 class HiveRepository {
   static String HIVE_FIRST_LOGIN = "first_login";
   static String HIVE_LOGIN_MODEL = 'login_model';
+  String HIVE_FCM_TOKEN = 'fcm_token';
   static String HIVE_TOKEN_INFO = 'token_info';
   static String HIVE_USER_INFO = 'user_info';
   String PREF_APP_LANG = 'app_languages';
@@ -44,6 +45,7 @@ class HiveRepository {
 
   String get getTokenInfo =>
       Hive.box(HIVE_GENERAL_BOX).get(HIVE_TOKEN_INFO, defaultValue: '');
+
   Future<void> setUserInfo(UserInfo value) async {
     await Hive.box(HIVE_GENERAL_BOX).put(HIVE_USER_INFO, jsonEncode(value.toJson()));
   }
@@ -57,5 +59,10 @@ class HiveRepository {
     }
   }
 
+  Future<void> setfcmTokenInfo(String value) async {
+    await Hive.box(HIVE_GENERAL_BOX).put(HIVE_FCM_TOKEN, value);
+  }
 
+  String get getfcmTokenInfo =>
+      Hive.box(HIVE_GENERAL_BOX).get(HIVE_FCM_TOKEN, defaultValue: '');
 }
