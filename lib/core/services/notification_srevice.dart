@@ -60,6 +60,7 @@ class NotificationService {
     }
     //! -- Call api that register fcm token ---
     log('fcm token:     '+storage.getfcmTokenInfo);
+    print(storage.getfcmTokenInfo);
 
     FirebaseMessaging.instance.onTokenRefresh.listen((fcmToken) {
       //! -- Call api that register fcm token ---

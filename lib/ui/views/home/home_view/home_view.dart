@@ -1,7 +1,5 @@
-import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
-import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:car_service/ui/views/home/home_view/home_view_controller.dart';
@@ -33,11 +31,11 @@ class HomeView extends StatelessWidget {
             ),
             (50.h).ph,
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 0),
+              padding: const EdgeInsets.symmetric(horizontal: 0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ContainerSubscription(),
+                  const ContainerSubscription(),
                   (50.h).ph,
                   Padding(
                     padding: EdgeInsetsDirectional.only(start: 5.h),
@@ -55,8 +53,8 @@ class HomeView extends StatelessWidget {
                     ),
                   ),
                   (20.h).ph,
-                  Center(
-                    child: CustomContainerInfo(title: "Find Available Maintenance spots",
+                  const Center(
+                    child:  CustomContainerInfo(title: "Find Available Maintenance spots",
                       image: "meantenance",
                     ),
                   ),
@@ -80,7 +78,7 @@ class HomeView extends StatelessWidget {
               ),
             ),
             Obx(() {
-              return controller.parkingtimer.value == null ? SpinKitCircle(color: AppColors.mainColor,) :
+              return controller.parkingtimer.isNull ? SpinKitCircle(color: AppColors.mainColor,) :
               ServicesContainer();
 
 

@@ -15,7 +15,8 @@ showCheckEmailDialog({required String email}) {
     barrierDismissible: true,
     context: Get.context!,
     builder: (BuildContext context) {
-      return AlertDialog(contentPadding: EdgeInsets.only(),
+      return AlertDialog(
+        contentPadding: const EdgeInsets.only(),
         content: IntrinsicHeight(
           child: Container(
             decoration: BoxDecoration(
@@ -56,7 +57,6 @@ showCheckEmailDialog({required String email}) {
                     },
                   ),
                   SizedBox(height: 30.h),
-
                 ],
               ),
             ),

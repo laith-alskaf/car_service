@@ -82,7 +82,7 @@ showDialogDatePark(
                         ),
                         width: 40.w,
                         height: 40.w,
-                        child: CustomText(
+                        child: const CustomText(
                           isTextAlign: TextAlign.center,
                           textType: TextStyleType.bodyBig,
                           text: '-',

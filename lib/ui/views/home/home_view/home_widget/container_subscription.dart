@@ -32,7 +32,7 @@ class ContainerSubscription extends StatelessWidget {
           children: [
             Row(
               children: [
-                Spacer(),
+                const Spacer(),
                 CustomText(text: "Free", textType: TextStyleType.bodyBig,textColor: AppColors.blueColor,),
                 (30.w).pw,
                 CustomText(text: "Permuim",  textType: TextStyleType.bodyBig,textColor: AppColors.blueColor,),

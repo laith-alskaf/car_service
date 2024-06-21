@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
 import 'package:get/get.dart';
-
 import '../../../../shared/colors.dart';
-import '../../parking_view/park_spot/park_spot_view_controller.dart';
 import '../home_view_controller.dart';
 
 class ServicesContainer extends StatelessWidget {
@@ -64,7 +62,7 @@ class ServicesContainer extends StatelessWidget {
                           context: context,
                           builder: (BuildContext context) {
                             return AlertDialog(
-                              content: Text(
+                              content: const Text(
                                   'Are you sure you want to expand your parking time'),
                               actions: <Widget>[
                                 Row(mainAxisAlignment: MainAxisAlignment.center,crossAxisAlignment: CrossAxisAlignment.center,
@@ -84,7 +82,7 @@ class ServicesContainer extends StatelessWidget {
                                         ),
                                         width: 40.w,
                                         height: 40.w,
-                                        child: CustomText(
+                                        child: const CustomText(
                                           isTextAlign: TextAlign.center,
                                           textType: TextStyleType.bodyBig,
                                           text: '-',
@@ -135,15 +133,15 @@ class ServicesContainer extends StatelessWidget {
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                       },
-                                      child: Text('Cancel'),
+                                      child: const Text('Cancel'),
                                     ),
                                     TextButton(
                                       onPressed: () {
                                         controller.expandtime();
                                         controller.parkingtimer();
-                                        Navigator.of(context)!.pop();
+                                        Get.back();
                                       },
-                                      child: Text('OK'),
+                                      child:const  Text('OK'),
                                     ),
                                   ],
                                 ),
@@ -156,7 +154,7 @@ class ServicesContainer extends StatelessWidget {
                     ),
                   ),
                   TimerCountdown(
-                    timeTextStyle: TextStyle(
+                    timeTextStyle: const TextStyle(
                         color: AppColors.blackColor,
                         fontWeight: FontWeight.bold),
                     format: CountDownTimerFormat.hoursMinutesSeconds,

@@ -1,14 +1,11 @@
-import 'package:car_service/core/translation/app_translation.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
 
 showAlertDelete({required String text, required Function onTap}) {
   Get.dialog(Dialog(

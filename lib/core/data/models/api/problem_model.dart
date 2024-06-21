@@ -171,6 +171,7 @@ class CarProblem {
     return data;
   }
 }
+
 class ProblemHistoryModel {
   String? sId;
   UserId? userId;
@@ -180,7 +181,7 @@ class ProblemHistoryModel {
   String? updatedAt;
   int? iV;
 
-  ProblemHistoryModel(
+    ProblemHistoryModel(
       {this.sId,
         this.userId,
         this.selectedPark,

@@ -1,5 +1,4 @@
 import 'package:car_service/core/translation/app_translation.dart';
-import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';

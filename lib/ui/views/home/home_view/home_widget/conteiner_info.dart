@@ -28,7 +28,7 @@ class CustomContainerInfo extends StatelessWidget {
       width: width ?? 0.8.sw,
       height: height ?? 80.h,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(20)),
+        borderRadius: const BorderRadius.all( Radius.circular(20)),
         color: AppColors.whiteColor,
         boxShadow: [
           BoxShadow(

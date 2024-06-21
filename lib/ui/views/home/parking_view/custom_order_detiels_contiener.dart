@@ -4,7 +4,6 @@ import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomOrderDetielsContiener extends StatelessWidget {
   final String parkNumber;
