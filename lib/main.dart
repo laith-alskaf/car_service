@@ -1,15 +1,12 @@
-
-
 import 'package:car_service/core/data/repositories/hive_repositories.dart';
+import 'package:car_service/core/services/notification_srevice.dart';
 import 'package:car_service/core/utils/general_util.dart';
+import 'package:car_service/ui/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:car_service/app/my_app.dart';
 import 'package:get/get.dart';
-
-import 'core/services/notification_srevice.dart';
-import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

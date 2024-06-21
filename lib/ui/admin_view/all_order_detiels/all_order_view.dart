@@ -17,8 +17,7 @@ class AllOrderView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AllOrderController controller =
-    Get.put(AllOrderController());
+    AllOrderController controller = Get.put(AllOrderController());
     return ListView(children: [
       const CustomAppBar(
         title: 'All Orders',
@@ -26,7 +25,7 @@ class AllOrderView extends StatelessWidget {
       ),
       Padding(
           padding:
-          EdgeInsets.only(right: 30.w, left: 30.w, bottom: 10.h, top: 20.h),
+              EdgeInsets.only(right: 30.w, left: 30.w, bottom: 10.h, top: 20.h),
           child: GetBuilder<AllOrderController>(builder: (s) {
             return Container(
               width: 516.w,

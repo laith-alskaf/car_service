@@ -54,7 +54,7 @@ class NotificationService {
     final fcmToken;
     if (storage.getfcmTokenInfo == '') {
       fcmToken = await FirebaseMessaging.instance.getToken();
-      storage.setfcmTokenInfo(fcmToken);
+    await  storage.setfcmTokenInfo(fcmToken);
     } else {
       fcmToken = storage.getfcmTokenInfo;
     }
