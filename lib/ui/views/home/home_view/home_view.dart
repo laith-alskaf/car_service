@@ -19,10 +19,9 @@ class HomeView extends StatelessWidget {
 
   HomeViewController controller = Get.put(HomeViewController());
 
-
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HomeViewController>(// Replace YourControllerClass with the actual controller you're using
+    return GetBuilder<HomeViewController>(
       builder: (controller) {
         return ListView(
           children: [
@@ -43,50 +42,55 @@ class HomeView extends StatelessWidget {
                     child: Row(
                       children: [
                         CustomText(
-                          text: "And Many More! go and see our premuim Packages",
+                          text:
+                              "And Many More! go and see our premuim Packages",
                           textType: TextStyleType.bodyBig,
                           textColor: AppColors.blueColor,
                           fontSize: 16.h,
                         ),
                         (10.w).pw,
-                        Icon(Icons.arrow_forward_outlined, color: AppColors.blueColor,),
+                        Icon(
+                          Icons.arrow_forward_outlined,
+                          color: AppColors.blueColor,
+                        ),
                       ],
                     ),
                   ),
                   (20.h).ph,
-                   Center(
-                    child:  CustomContainerInfo(title: "Find Available Maintenance spots",
-                      onpresed:(){
-                      Get.to(AllOrderView());
-                      } ,
+                  Center(
+                    child: CustomContainerInfo(
+                      title: "Find Available Maintenance spots",
+                      onpresed: () {
+                        Get.to(AllOrderView());
+                      },
                       image: "meantenance",
                     ),
                   ),
                   (20.h).ph,
                   Row(
                     children: [
-                      CustomContainerInfo(title: "Scan Qr Code",
+                      CustomContainerInfo(
+                        title: "Scan Qr Code",
                         image: "qr",
                         width: 0.4.sw,
                       ),
                       (15.w).pw,
-                      CustomContainerInfo(title: "Find Your Parking Spot",
+                      CustomContainerInfo(
+                        title: "Find Your Parking Spot",
                         image: "spot",
                         width: 0.57.sw,
                       ),
                     ],
                   ),
                   (20.h).ph,
-
                 ],
               ),
             ),
-            Obx(() {
-              return controller.parkingtimer.isNull ? SpinKitCircle(color: AppColors.mainColor,) :
-              ServicesContainer();
-
-
-            }),
+            controller.parkingtimer.isNull
+                ? SpinKitCircle(
+                    color: AppColors.mainColor,
+                  )
+                : ServicesContainer()
           ],
         );
       },

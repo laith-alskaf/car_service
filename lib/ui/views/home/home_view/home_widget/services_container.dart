@@ -11,7 +11,7 @@ import '../home_view_controller.dart';
 class ServicesContainer extends StatelessWidget {
   ServicesContainer({super.key});
 
-  HomeViewController controller = Get.put(HomeViewController());
+  HomeViewController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,6 @@ class ServicesContainer extends StatelessWidget {
               offset: const Offset(0, 3),
             ),
           ],
-          // borderRadius: const BorderRadius.all(Radius.circular(20)),
         ),
         child: Padding(
           padding: EdgeInsets.all(defaultPadding),
@@ -56,16 +55,16 @@ class ServicesContainer extends StatelessWidget {
                   Center(
                     child: IconButton(
                       onPressed: () {
-                        // Show the dialog when the button is pressed
                         showDialog(
-
                           context: context,
                           builder: (BuildContext context) {
                             return AlertDialog(
                               content: const Text(
                                   'Are you sure you want to expand your parking time'),
                               actions: <Widget>[
-                                Row(mainAxisAlignment: MainAxisAlignment.center,crossAxisAlignment: CrossAxisAlignment.center,
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     InkWell(
                                       onTap: () {
@@ -141,7 +140,7 @@ class ServicesContainer extends StatelessWidget {
                                         controller.parkingtimer();
                                         Get.back();
                                       },
-                                      child:const  Text('OK'),
+                                      child: const Text('OK'),
                                     ),
                                   ],
                                 ),
