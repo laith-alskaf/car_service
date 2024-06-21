@@ -1,3 +1,4 @@
+import 'package:car_service/ui/admin_view/all_order_detiels/all_order_view.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
@@ -53,8 +54,11 @@ class HomeView extends StatelessWidget {
                     ),
                   ),
                   (20.h).ph,
-                  const Center(
+                   Center(
                     child:  CustomContainerInfo(title: "Find Available Maintenance spots",
+                      onpresed:(){
+                      Get.to(AllOrderView());
+                      } ,
                       image: "meantenance",
                     ),
                   ),

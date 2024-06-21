@@ -21,32 +21,37 @@ class CustomContainerInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // margin: EdgeInsets.only(bottom: 10.h, left: 20.w, right: 20.w),
-      padding:
-          EdgeInsetsDirectional.symmetric(horizontal: 10.w, vertical: 15.w),
-      width: width ?? 0.8.sw,
-      height: height ?? 80.h,
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all( Radius.circular(20)),
-        color: AppColors.whiteColor,
-        boxShadow: [
-          BoxShadow(
-            color:  AppColors.mainColor.withOpacity(0.4),
-            spreadRadius: 1,
-            blurRadius: 3,
-            offset: const Offset(0, 3),
-          ),
-        ],
+    return InkWell(
+      onTap:(){
+        onpresed;
+      } ,
+      child: Container(
+        // margin: EdgeInsets.only(bottom: 10.h, left: 20.w, right: 20.w),
+        padding:
+            EdgeInsetsDirectional.symmetric(horizontal: 10.w, vertical: 15.w),
+        width: width ?? 0.8.sw,
+        height: height ?? 80.h,
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all( Radius.circular(20)),
+          color: AppColors.whiteColor,
+          boxShadow: [
+            BoxShadow(
+              color:  AppColors.mainColor.withOpacity(0.4),
+              spreadRadius: 1,
+              blurRadius: 3,
+              offset: const Offset(0, 3),
+            ),
+          ],
 
+        ),
+        child: Row(
+          children: [
+            CustomText(text:title , textType: TextStyleType.body,textColor: AppColors.blackColor,),
+            (10.h).pw,
+            SvgPicture.asset("assets/images/$image.svg")
+          ],
+        )
       ),
-      child: Row(
-        children: [
-          CustomText(text:title , textType: TextStyleType.body,textColor: AppColors.blackColor,),
-          (10.h).pw,
-          SvgPicture.asset("assets/images/$image.svg")
-        ],
-      )
     );
   }
 }

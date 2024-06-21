@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 
 import '../../../core/data/repositories/admin_repositories.dart';
 
-class AllOrderContianer extends BaseController {
+class AllOrderController extends BaseController {
   int index = 0;
   List<ProblemHistoryModel>? problemHistory;
 
