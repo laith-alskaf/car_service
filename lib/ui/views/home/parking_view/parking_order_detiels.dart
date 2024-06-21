@@ -1,7 +1,9 @@
 import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
+import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
+import 'package:car_service/ui/views/home/home_view/home_view.dart';
 import 'package:car_service/ui/views/home/parking_view/custom_order_detiels_contiener.dart';
 import 'package:car_service/ui/views/home/parking_view/park_spot/park_spot_view_controller.dart';
 import 'package:car_service/ui/views/main_view/main_view.dart';
@@ -9,13 +11,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+
 import '../../../shared/colors.dart';
+import '../../../shared/custom_widget/custom_order_continer.dart';
 
 class ParkingOrderDetiels extends StatelessWidget {
   ParkingOrderDetiels({super.key});
 
   ParkSpotViewController controller = Get.find();
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,10 +53,10 @@ class ParkingOrderDetiels extends StatelessWidget {
                             format: CountDownTimerFormat.hoursMinutesSeconds,
                             endTime: DateTime.now().add(
                               Duration(
-                                  hours: controller.parkingtimer.hours ?? 0,
-                                  minutes: controller.parkingtimer.minutes ?? 0,
-                                  seconds:
-                                      controller.parkingtimer.seconds ?? 0),
+                                  hours: controller.parkingtimer.hours! ,
+                                  minutes:controller.parkingtimer.minutes!,
+                                  seconds:controller.parkingtimer.seconds!
+                              ),
                             ),
                             onEnd: () {
                               print("Timer finished");
