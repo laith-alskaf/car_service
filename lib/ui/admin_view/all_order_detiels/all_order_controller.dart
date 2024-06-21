@@ -12,6 +12,8 @@ import '../../../core/data/repositories/admin_repositories.dart';
 class AllOrderController extends BaseController {
   int index = 0;
   List<ProblemHistoryModel>? problemHistory;
+  List<ParkingHistoryModel>? parkingHistory;
+
 
   handleClickFilter({required int serviceIndex}) {
     index = serviceIndex;

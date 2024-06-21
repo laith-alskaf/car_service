@@ -79,6 +79,50 @@ class AllOrderView extends StatelessWidget {
               ),
             );
           })),
+      ZoomIn(
+        child: SizedBox(
+          height: 1.sh,
+          child: Padding(
+              padding: EdgeInsets.only(top: 10.h, bottom: 290.h),
+              child: GetBuilder<HistoryViewController>(
+                builder: (c) {
+                  return controller.index == 0
+                      ? (controller.parkingHistory == null
+                      ? Center(
+                    child: SpinKitCircle(
+                      color: AppColors.mainColor,
+                      size: 100.w,
+                    ),
+                  )
+                      : controller.parkingHistory!.isEmpty
+                      ? const Center(
+                    child: CustomText(
+                        text: 'No Data',
+                        textType: TextStyleType.title),
+                  )
+                      : ContainerHistoryQr(
+                    onTap: () {},
+                  ))
+                      : (controller.problemHistory == null
+                      ? Center(
+                    child: SpinKitCircle(
+                      color: AppColors.mainColor,
+                      size: 100.w,
+                    ),
+                  )
+                      : controller.problemHistory!.isEmpty
+                      ? const Center(
+                    child: CustomText(
+                        text: 'No Data',
+                        textType: TextStyleType.title),
+                  )
+                      : ContainerHistoryQr(
+                    onTap: () {},
+                  ));
+                },
+              )),
+        ),
+      )
     ]);
   }
 }
