@@ -14,7 +14,7 @@ class CustomContainerInfo extends StatelessWidget {
       this.height, this.onpresed});
 
   final String? image;
-  final Function? onpresed;
+  final Function()? onpresed;
   final String title;
   final double? width;
   final double? height;
@@ -22,9 +22,9 @@ class CustomContainerInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap:(){
+      onTap:
         onpresed;
-      } ,
+       ,
       child: Container(
         // margin: EdgeInsets.only(bottom: 10.h, left: 20.w, right: 20.w),
         padding:
