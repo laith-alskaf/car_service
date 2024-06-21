@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:car_service/core/utils/general_util.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -58,7 +59,7 @@ class NotificationService {
       fcmToken = storage.getfcmTokenInfo;
     }
     //! -- Call api that register fcm token ---
-    print(storage.getfcmTokenInfo);
+    log('fcm token:     '+storage.getfcmTokenInfo);
 
     FirebaseMessaging.instance.onTokenRefresh.listen((fcmToken) {
       //! -- Call api that register fcm token ---
