@@ -10,7 +10,7 @@ import '../models/common_respons.dart';
 import '../network/endpoints/problem_endpoint.dart';
 import '../network/network_config.dart';
 
-class adminRepositories {
+class AdminRepositories {
 
   Future<Either<String, List<ProblemHistoryModel>>> getHistoryProblem() async {
     try {
