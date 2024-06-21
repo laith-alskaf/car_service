@@ -11,8 +11,7 @@ class CustomContainerInfo extends StatelessWidget {
       this.image,
       required this.title,
       this.width,
-      this.height,
-      this.onpresed});
+      this.height, this.onpresed});
 
   final String? image;
   final Function()? onpresed;

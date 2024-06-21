@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import '../../../core/data/repositories/admin_repositories.dart';
 
 class AllOrderController extends BaseController {
-  int index = 1;
+  int index = 0;
   List<ProblemHistoryModel>? problemHistory;
   List<ParkingHistoryModel>? parkingHistory;
 

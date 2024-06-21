@@ -223,6 +223,7 @@ class UserRepository {
         url: UserEndPoints.register,
         body: {
           'email': email,
+          'fcmToken':storage.getfcmTokenInfo,
           'username': firstName,
           'password': password,
           'confirmPassword': password,

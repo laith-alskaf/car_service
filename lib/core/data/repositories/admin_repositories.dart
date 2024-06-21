@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:car_service/core/data/network/endpoints/admin_endpoint.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../enums/request_type.dart';
@@ -16,7 +17,7 @@ class AdminRepositories {
     try {
       return NetworkUtil.sendRequest(
           type: RequestType.POST,
-          url: ProblemEndpoint.getHistoryProblem,
+          url: adminendpoint.getHistoryProblem,
           headers: NetworkConfig.getHeaders(type: RequestType.POST),
           body: {}).then((response) {
         if (response != null) {
@@ -28,6 +29,7 @@ class AdminRepositories {
             for (Map<String, dynamic> s in commonResponse.data!) {
               historyProblem.add(ProblemHistoryModel.fromJson(s));
             }
+            print(historyProblem.length);
             return Right(historyProblem);
           } else {
             return Left(commonResponse.message ?? '');
