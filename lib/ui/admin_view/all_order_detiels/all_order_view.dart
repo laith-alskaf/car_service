@@ -48,19 +48,19 @@ class AllOrderView extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ServiceTitle(
-                    onTap: () {
-                      controller.handleClickFilter(serviceIndex: 0);
-                    },
-                    onClick: controller.index == 0 ? true : false,
-                    selectedContainer: (controller.index == 0)
-                        ? AppColors.mainColor
-                        : Colors.transparent,
-                    title: 'Parking',
-                    titleContainer: (controller.index == 0)
-                        ? AppColors.whiteColor
-                        : AppColors.colorBorder,
-                  ),
+                  // ServiceTitle(
+                  //   onTap: () {
+                  //     controller.handleClickFilter(serviceIndex: 0);
+                  //   },
+                  //   onClick: controller.index == 0 ? true : false,
+                  //   selectedContainer: (controller.index == 0)
+                  //       ? AppColors.mainColor
+                  //       : Colors.transparent,
+                  //   title: 'Parking',
+                  //   titleContainer: (controller.index == 0)
+                  //       ? AppColors.whiteColor
+                  //       : AppColors.colorBorder,
+                  // ),
                   ServiceTitle(
                     onTap: () {
                       controller.handleClickFilter(serviceIndex: 1);
@@ -85,24 +85,26 @@ class AllOrderView extends StatelessWidget {
               padding: EdgeInsets.only(top: 10.h, bottom: 290.h),
               child: GetBuilder<HistoryViewController>(
                 builder: (c) {
-                  return controller.index == 0
-                      ? (controller.parkingHistory == null
-                      ? Center(
-                    child: SpinKitCircle(
-                      color: AppColors.mainColor,
-                      size: 100.w,
-                    ),
-                  )
-                      : controller.parkingHistory!.isEmpty
-                      ? const Center(
-                    child: CustomText(
-                        text: 'No Data',
-                        textType: TextStyleType.title),
-                  )
-                      : ContainerHistoryQr(
-                    onTap: () {},
-                  ))
-                      : (controller.problemHistory == null
+                  return
+                  //   controller.index == 0
+                  //     ? (controller.parkingHistory == null
+                  //     ? Center(
+                  //   child: SpinKitCircle(
+                  //     color: AppColors.mainColor,
+                  //     size: 100.w,
+                  //   ),
+                  // )
+                  //     : controller.parkingHistory!.isEmpty
+                  //     ? const Center(
+                  //   child: CustomText(
+                  //       text: 'No Data',
+                  //       textType: TextStyleType.title),
+                  // )
+                  //     : ContainerHistoryQr(
+                  //   onTap: () {},
+                  // ))
+                  //     :
+                  (controller.problemHistory == null
                       ? Center(
                     child: SpinKitCircle(
                       color: AppColors.mainColor,
