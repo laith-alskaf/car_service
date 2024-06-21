@@ -17,7 +17,7 @@ class CustomOrderDetielsContiener extends StatelessWidget {
 
   const CustomOrderDetielsContiener(
       {super.key, required this.parkNumber, required this.carNumber, required this.bookingEndTime, required this.parksNum, required this.parkingName, required this.duration, required this.price,
-       });
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +79,7 @@ class CustomOrderDetielsContiener extends StatelessWidget {
                   text: "bookingEndTime : ",
                   textType: TextStyleType.body,
                   textColor: AppColors.grayColor,
-                  fontSize: 18.h,
+                  fontSize: 16.h,
                   fontWeight: FontWeight.bold,
                 ),
                 (0.03.sw).pw,

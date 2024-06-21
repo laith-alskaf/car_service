@@ -7,7 +7,7 @@ import 'package:car_service/ui/shared/custom_widget/custom_toast.dart';
 import 'package:get/get_rx/get_rx.dart';
 
 
-import '../../../../core/data/models/api/parking_timer.dart';
+import '../../../../core/data/models/api/parking_model.dart';
 
 
 class HomeViewController extends BaseController {
@@ -17,8 +17,13 @@ class HomeViewController extends BaseController {
 
   @override
   void onInit() {
-    super.onInit();
     parkingTimer();
+    super.onInit();
+  }
+  @override
+  void refresh() {
+    // TODO: implement refresh
+    super.refresh();
   }
   changePrice({required bool dec}) {
     if (dec) {
@@ -88,7 +93,7 @@ class HomeViewController extends BaseController {
             parkingtimer.value = r;
             update();
             CustomToast.showMessage(
-                message: 'لعيون عمك هاشم واقطع', messageType: MessageType.SUCCESS);
+                message: 'done', messageType: MessageType.SUCCESS);
             // Get.to(() => ParkSpotView());
           });
         }));
@@ -96,13 +101,14 @@ class HomeViewController extends BaseController {
   Future<void> expandtime() async {
     await runFullLoadingFutureFunction(
         function:
-        ParkRepository().expandtime(duration: numberHoursPark.value).then((value) {
+        ParkRepository().expandtime(duration: 2).then((value) {
           value.fold((l) {
             CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
           }, (r) {
             CustomToast.showMessage(
                 message: r,
                 messageType: MessageType.SUCCESS);
+            update();
           });
         }));
   }

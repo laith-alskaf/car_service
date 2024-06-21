@@ -27,69 +27,69 @@ class ParkingOrderDetiels extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColors.whiteColor,
-        body: GetBuilder<ParkSpotViewController>(
-          builder: (c) {
-            return Column(
-              children: [
-                CustomAppBar(title: "order detiels"),
-                (10.h).ph,
-                Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: defaultPadding),
-                  child: Column(
-                    children: [
-                      CircularPercentIndicator(
-                        radius: 180.0,
-                        animation: true,
-                        animationDuration: 5000,
-                        backgroundWidth: 20,
-                        lineWidth: 20.0,
-                        percent: 1,
-                        center: TimerCountdown(
-                          timeTextStyle: TextStyle(
-                            color: AppColors.blackColor,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          format: CountDownTimerFormat.hoursMinutesSeconds,
-                          endTime: DateTime.now().add(
-                            Duration(
-                              hours: controller.parkingtimer.hours??0 ,
-                              minutes:controller.parkingtimer.minutes??0,
-                              seconds:controller.parkingtimer.seconds??0
+          backgroundColor: AppColors.whiteColor,
+          body: GetBuilder<ParkSpotViewController>(
+            builder: (c) {
+              return Column(
+                children: [
+                  CustomAppBar(title: "order detiels"),
+                  (10.h).ph,
+                  Padding(
+                    padding:  EdgeInsets.symmetric(horizontal: defaultPadding),
+                    child: Column(
+                      children: [
+                        CircularPercentIndicator(
+                          radius: 180.0,
+                          animation: true,
+                          animationDuration: 5000,
+                          backgroundWidth: 20,
+                          lineWidth: 20.0,
+                          percent: 1,
+                          center: TimerCountdown(
+                            timeTextStyle: TextStyle(
+                              color: AppColors.blackColor,
+                              fontWeight: FontWeight.bold,
                             ),
+                            format: CountDownTimerFormat.hoursMinutesSeconds,
+                            endTime: DateTime.now().add(
+                              Duration(
+                                  hours: controller.parkingtimer.hours??0 ,
+                                  minutes:controller.parkingtimer.minutes??0,
+                                  seconds:controller.parkingtimer.seconds??0
+                              ),
+                            ),
+                            onEnd: () {
+                              print("Timer finished");
+                            },
                           ),
-                          onEnd: () {
-                            print("Timer finished");
-                          },
+                          circularStrokeCap: CircularStrokeCap.round,
+                          backgroundColor: AppColors.grayColor.withOpacity(0.2),
+                          progressColor: AppColors.mainColor,
                         ),
-                        circularStrokeCap: CircularStrokeCap.round,
-                        backgroundColor: AppColors.grayColor.withOpacity(0.2),
-                        progressColor: AppColors.mainColor,
-                      ),
-                      (10.h).ph,
-                      CustomOrderDetielsContiener(
-                        parkNumber: controller.parkorderDetails.parkNumber.toString()??"",
-                        carNumber: controller.parkorderDetails.carNumber??"",
-                        bookingEndTime: controller.parkorderDetails.bookingEndTime??"",
-                        parksNum: controller.parkorderDetails.parksNum.toString()??"",
-                        parkingName: controller.parkorderDetails.parkingName??"",
-                        duration: controller.parkorderDetails.duration.toString()??"",
-                        price: controller.parkorderDetails.price.toString()??"",
-                      ),
-                      (10.h).ph,
-                      CustomButton(text: "go to home page", buttonTypeEnum: ButtonTypeEnum.big,
-                      width: 1.sw,
-                      onPressed: (){
-                        Get.to(MainView());
-                      },),
-                    ],
-                  ),
-                )
-      
-              ],
-            );
-          },
-        )
+                        (10.h).ph,
+                        CustomOrderDetielsContiener(
+                          parkNumber: controller.parkorderDetails.parkNumber.toString()??"",
+                          carNumber: controller.parkorderDetails.carNumber??"",
+                          bookingEndTime: controller.parkorderDetails.bookingEndTime??"",
+                          parksNum: controller.parkorderDetails.parksNum.toString()??"",
+                          parkingName: controller.parkorderDetails.parkingName??"",
+                          duration: controller.parkorderDetails.duration.toString()??"",
+                          price: controller.parkorderDetails.price.toString()??"",
+                        ),
+                        (10.h).ph,
+                        CustomButton(text: "go to home page", buttonTypeEnum: ButtonTypeEnum.big,
+                          width: 1.sw,
+                          onPressed: (){
+                            Get.to(MainView());
+                          },),
+                      ],
+                    ),
+                  )
+
+                ],
+              );
+            },
+          )
       ),
     );
   }

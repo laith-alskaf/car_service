@@ -23,8 +23,8 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   return GetBuilder<HomeViewController>(// Replace YourControllerClass with the actual controller you're using
-     builder: (controller) {
+    return GetBuilder<HomeViewController>(// Replace YourControllerClass with the actual controller you're using
+      builder: (controller) {
         return ListView(
           children: [
             const CustomAppBar(
@@ -81,7 +81,7 @@ class HomeView extends StatelessWidget {
             ),
             Obx(() {
               return controller.parkingtimer.value == null ? SpinKitCircle(color: AppColors.mainColor,) :
-                  ServicesContainer();
+              ServicesContainer();
 
 
             }),

@@ -24,7 +24,7 @@ showDialogDatePark(
           borderRadius: BorderRadius.circular(20),
         ),
         width: 400.w,
-        height:0.3.sh ,
+        height:0.54.sh ,
         child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.w),
             child: Column(
@@ -152,34 +152,34 @@ showDialogDatePark(
                 (20.h).ph,
                 Center(
                     child: CustomButton(
-                  text: tr("Next"),
-                  buttonTypeEnum: ButtonTypeEnum.normal,
-                  onPressed: () {
-                    if (controller.time.value != '') {
+                      text: tr("Next"),
+                      buttonTypeEnum: ButtonTypeEnum.normal,
+                      onPressed: () {
+                        if (controller.time.value != '') {
 
-                        controller.chooseTimeSpot();
-                        controller.parkingTimer();
+                          controller.chooseTimeSpot();
+                          controller.parkingTimer();
 
-                    } else {
-                      CustomToast.showMessage(
-                          message: 'Please input time and date',
-                          messageType: MessageType.REJECTED);
-                    }
-                  },
-                )),
+                        } else {
+                          CustomToast.showMessage(
+                              message: 'Please input time and date',
+                              messageType: MessageType.REJECTED);
+                        }
+                      },
+                    )),
                 (20.h).ph,
                 Center(
                     child: InkWell(
-                  onTap: () {
-                    controller.clearData();
-                    Get.back();
-                  },
-                  child: CustomText(
-                    text: "Cansel",
-                    textType: TextStyleType.title,
-                    textColor: AppColors.mainColor,
-                  ),
-                )),
+                      onTap: () {
+                        controller.clearData();
+                        Get.back();
+                      },
+                      child: CustomText(
+                        text: "Cansel",
+                        textType: TextStyleType.title,
+                        textColor: AppColors.mainColor,
+                      ),
+                    )),
               ],
             )),
       ),

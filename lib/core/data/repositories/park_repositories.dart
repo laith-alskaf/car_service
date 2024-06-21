@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'package:car_service/core/data/models/api/parking_model.dart';
-import 'package:car_service/core/data/models/api/parking_timer.dart';
 import 'package:car_service/core/data/network/endpoints/park_endpoint.dart';
 import 'package:car_service/core/utils/general_util.dart';
 import 'package:dartz/dartz.dart';
@@ -19,7 +18,7 @@ class ParkRepository {
           type: RequestType.POST,
           url: ParkEndPoints.getClosestPark,
           headers:
-              NetworkConfig.getHeaders(needAuth: true, type: RequestType.POST),
+          NetworkConfig.getHeaders(needAuth: true, type: RequestType.POST),
           body: {
             'userLatitude': lat,
             'userLongitude': long,
@@ -27,12 +26,12 @@ class ParkRepository {
         if (response != null) {
           log('==========> ${response}');
           CommonResponse<Map<String, dynamic>> commonResponse =
-              CommonResponse.fromJson(response);
+          CommonResponse.fromJson(response);
 
           if (commonResponse.getStatus) {
             List<ChooseParkingModel> listParking = [];
             for (Map<String, dynamic> parkingModel
-                in commonResponse.data!['parkingLocations']) {
+            in commonResponse.data!['parkingLocations']) {
               listParking.add(ChooseParkingModel.fromJson(parkingModel));
             }
             return Right(listParking);
@@ -56,14 +55,14 @@ class ParkRepository {
           type: RequestType.POST,
           url: ParkEndPoints.choosePark,
           headers:
-              NetworkConfig.getHeaders(needAuth: true, type: RequestType.POST),
+          NetworkConfig.getHeaders(needAuth: true, type: RequestType.POST),
           body: {
             'ParkingNumber': ParkingNumber,
           }).then((response) {
         if (response != null) {
           log('==========> ${response}');
           CommonResponse<Map<String, dynamic>> commonResponse =
-              CommonResponse.fromJson(response);
+          CommonResponse.fromJson(response);
 
           if (commonResponse.getStatus) {
             return Right(commonResponse.data);
@@ -90,7 +89,7 @@ class ParkRepository {
           type: RequestType.POST,
           url: ParkEndPoints.chooseTime,
           headers:
-              NetworkConfig.getHeaders(needAuth: true, type: RequestType.POST),
+          NetworkConfig.getHeaders(needAuth: true, type: RequestType.POST),
           body: {
             'username': storage.getUserInfo()!.username,
             'duration': duration,
@@ -101,7 +100,7 @@ class ParkRepository {
         if (response != null) {
           log('==========> ${response}');
           CommonResponse<Map<String, dynamic>> commonResponse =
-              CommonResponse.fromJson(response);
+          CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
             return Right(parkingorderdetails.fromJson(commonResponse.data!));
           } else {
@@ -191,7 +190,7 @@ class ParkRepository {
         if (response != null) {
           log('==========> $response');
           CommonResponse<List<dynamic>> commonResponse =
-              CommonResponse.fromJson(response);
+          CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
             List<ParkingHistoryModel> historyParking = [];
             for (Map<String, dynamic> s in commonResponse.data!) {
@@ -214,18 +213,18 @@ class ParkRepository {
       {required String idPark}) async {
     try {
       return NetworkUtil.sendRequest(
-        type: RequestType.POST,
-        url: ParkEndPoints.deleteHistoryPark,
-        headers: NetworkConfig.getHeaders(type: RequestType.POST),
-        body: {
-          "id":idPark
-        }
+          type: RequestType.POST,
+          url: ParkEndPoints.deleteHistoryPark,
+          headers: NetworkConfig.getHeaders(type: RequestType.POST),
+          body: {
+            "id":idPark
+          }
       ).then((response) {
 
         if (response != null) {
           log('==========> $response');
           CommonResponse<Map<String, dynamic>> commonResponse =
-              CommonResponse.fromJson(response);
+          CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
             return Right(commonResponse.data!['message']);
           } else {
