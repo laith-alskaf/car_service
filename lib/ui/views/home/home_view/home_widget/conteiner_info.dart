@@ -24,7 +24,6 @@ class CustomContainerInfo extends StatelessWidget {
     return InkWell(
       onTap: onpresed,
       child: Container(
-          // margin: EdgeInsets.only(bottom: 10.h, left: 20.w, right: 20.w),
           padding:
               EdgeInsetsDirectional.symmetric(horizontal: 10.w, vertical: 15.w),
           width: width ?? 0.8.sw,

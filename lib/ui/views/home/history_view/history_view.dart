@@ -3,7 +3,7 @@ import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/views/home/history_view/history_view_controller.dart';
-import 'package:car_service/ui/views/home/history_view/history_widget/container_history_qr.dart';
+import 'package:car_service/ui/views/home/history_view/history_widget/container_history.dart';
 import 'package:car_service/ui/views/home/history_view/history_widget/title_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -98,7 +98,7 @@ class HistoryView extends StatelessWidget {
                                       text: 'No Data',
                                       textType: TextStyleType.title),
                                 )
-                              : ContainerHistoryQr(
+                              : ContainerHistory(
                                   onTap: () {},
                                 ))
                       : (historyViewController.problemHistory == null
@@ -114,7 +114,7 @@ class HistoryView extends StatelessWidget {
                                       text: 'No Data',
                                       textType: TextStyleType.title),
                                 )
-                              : ContainerHistoryQr(
+                              : ContainerHistory(
                                   onTap: () {},
                                 ));
                 },

@@ -102,4 +102,5 @@ class HistoryViewController extends BaseController {
     getHistoryProblems();
     super.onInit();
   }
+
 }

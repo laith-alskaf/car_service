@@ -12,12 +12,12 @@ import '../../../../core/data/models/api/parking_model.dart';
 
 class HomeViewController extends BaseController {
   late CarouselController buttonCarouselController = CarouselController();
-  Rx<ParkingTimer> parkingtimer = ParkingTimer().obs;
+  ParkingTimer? parkingTimer ;
   RxInt numberHoursPark = 1.obs;
 
   @override
   void onInit() {
-    parkingTimer();
+    getParkingTimer();
     super.onInit();
   }
   @override
@@ -25,6 +25,7 @@ class HomeViewController extends BaseController {
     // TODO: implement refresh
     super.refresh();
   }
+
   changePrice({required bool dec}) {
     if (dec) {
       if (numberHoursPark < 24) {
@@ -84,21 +85,22 @@ class HomeViewController extends BaseController {
   onPageChanged2(int index, _) {
     selectedImageIndex[2] = index;
   }
-  Future<void> parkingTimer() async {
+  Future<void> getParkingTimer() async {
     await runFullLoadingFutureFunction(
         function: ParkRepository().parkingtimer().then((value) {
           value.fold((l) {
             CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
           }, (r) {
-            parkingtimer.value = r;
+            parkingTimer = r;
             update();
             CustomToast.showMessage(
                 message: 'done', messageType: MessageType.SUCCESS);
             // Get.to(() => ParkSpotView());
+            update();
           });
         }));
   }
-  Future<void> expandtime() async {
+  Future<void> expandTime() async {
     await runFullLoadingFutureFunction(
         function:
         ParkRepository().expandtime(duration: 2).then((value) {
@@ -108,7 +110,7 @@ class HomeViewController extends BaseController {
             CustomToast.showMessage(
                 message: r,
                 messageType: MessageType.SUCCESS);
-            update();
+            getParkingTimer();
           });
         }));
   }

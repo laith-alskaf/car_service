@@ -9,13 +9,12 @@ import '../../../../shared/colors.dart';
 import '../home_view_controller.dart';
 
 class ServicesContainer extends StatelessWidget {
-  ServicesContainer({super.key});
-
-  HomeViewController controller = Get.find();
+  const ServicesContainer({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HomeViewController>(builder: (c) {
+
+    return GetBuilder<HomeViewController>(builder: (controller) {
       return Container(
         width: 1.sw,
         height: 0.18.sh,
@@ -130,14 +129,14 @@ class ServicesContainer extends StatelessWidget {
                                   children: [
                                     TextButton(
                                       onPressed: () {
-                                        Navigator.of(context).pop();
+                                        Get.back();
                                       },
                                       child: const Text('Cancel'),
                                     ),
                                     TextButton(
                                       onPressed: () {
-                                        controller.expandtime();
-                                        controller.parkingtimer();
+                                        controller.expandTime();
+
                                         Get.back();
                                       },
                                       child: const Text('OK'),
@@ -159,9 +158,9 @@ class ServicesContainer extends StatelessWidget {
                     format: CountDownTimerFormat.hoursMinutesSeconds,
                     endTime: DateTime.now().add(
                       Duration(
-                        hours: controller.parkingtimer.value.hours ?? 0,
-                        minutes: controller.parkingtimer.value.minutes ?? 0,
-                        seconds: controller.parkingtimer.value.seconds ?? 0,
+                        hours: controller.parkingTimer!.hours ?? 0,
+                        minutes: controller.parkingTimer!.minutes ?? 0,
+                        seconds: controller.parkingTimer!.seconds ?? 0,
                       ),
                     ),
                     onEnd: () {

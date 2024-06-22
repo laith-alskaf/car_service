@@ -18,8 +18,7 @@ class AdminRepositories {
       return NetworkUtil.sendRequest(
           type: RequestType.POST,
           url: adminendpoint.getHistoryProblem,
-          headers: NetworkConfig.getHeaders(type: RequestType.POST),
-          body: {}).then((response) {
+          headers: NetworkConfig.getHeaders(type: RequestType.POST),).then((response) {
         if (response != null) {
           log('==========> $response');
           CommonResponse<dynamic> commonResponse =

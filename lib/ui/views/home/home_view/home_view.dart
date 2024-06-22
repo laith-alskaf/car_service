@@ -15,13 +15,13 @@ import 'home_widget/container_subscription.dart';
 
 // ignore: must_be_immutable
 class HomeView extends StatelessWidget {
-  HomeView({super.key});
+ const HomeView({super.key});
 
-  HomeViewController controller = Get.put(HomeViewController());
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeViewController>(
+      init:HomeViewController() ,
       builder: (controller) {
         return ListView(
           children: [
@@ -61,9 +61,9 @@ class HomeView extends StatelessWidget {
                     child: CustomContainerInfo(
                       title: "Find Available Maintenance spots",
                       onpresed: () {
-                        Get.to(AllOrderView());
+                        Get.to(() => const AllOrderView());
                       },
-                      image: "meantenance",
+                      image: "Meantenance",
                     ),
                   ),
                   (20.h).ph,
@@ -86,11 +86,11 @@ class HomeView extends StatelessWidget {
                 ],
               ),
             ),
-            controller.parkingtimer.isNull
+            controller.parkingTimer==null
                 ? SpinKitCircle(
                     color: AppColors.mainColor,
                   )
-                : ServicesContainer()
+                :const ServicesContainer()
           ],
         );
       },

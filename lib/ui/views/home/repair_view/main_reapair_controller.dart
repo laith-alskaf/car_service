@@ -20,6 +20,7 @@ class MainRepairController extends BaseController {
   late List<ChooseParkingModel> placingList;
   late OrderDetailsModel orderDetails;
   List<ProblemModel> problems = [];
+  bool isLoading = false;
   List<String> problemsType = ['Mechanical', 'Electric', 'Other'];
   String chooseProblemType = '';
   String chooseProblem = '';
@@ -88,6 +89,8 @@ class MainRepairController extends BaseController {
   }
 
   Future<void> problemTypeChoose({required bool isIncrease}) async {
+    isLoading = true;
+    update();
     await runLoadingFutureFunction(
         function: ProblemRepositories()
             .chooseProblemType(
@@ -97,14 +100,16 @@ class MainRepairController extends BaseController {
       value.fold((l) {
         CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
         handleStepValue(isIncrease: false);
+        isLoading = false;
       }, (r) {
         chooseProblem = '';
         problems.clear();
         problems.addAll(r);
         handleStepValue(isIncrease: isIncrease);
-        update();
+        isLoading = false;
       });
     }));
+    update();
   }
 
   Future<void> getRepairPlaces() async {
@@ -143,6 +148,9 @@ class MainRepairController extends BaseController {
   }
 
   Future<void> choosePlace({required String parkNumber}) async {
+    isLoading = true;
+    update();
+
     await runFullLoadingFutureFunction(
         function: ProblemRepositories()
             .choosePlace(
@@ -152,11 +160,13 @@ class MainRepairController extends BaseController {
             .then((value) {
       value.fold((l) {
         CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+        isLoading = false;
       }, (r) {
         orderDetails = r;
         handleStepValue(isIncrease: true);
-        update();
+        isLoading = false;
       });
     }));
+    update();
   }
 }

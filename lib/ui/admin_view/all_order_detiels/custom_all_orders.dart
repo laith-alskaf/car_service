@@ -16,17 +16,18 @@ class CustomAllOrders extends StatelessWidget {
   final int? index;
   final Function() onTap;
 
-  CustomAllOrders({
+ const CustomAllOrders({
     super.key,
     this.myItems,
     this.index,
     required this.onTap,
   });
 
-  AllOrderController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
+    AllOrderController controller = Get.find();
+
     return RefreshIndicator(
       onRefresh: () {
         return controller.onInit();

@@ -10,31 +10,32 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-class ContainerHistoryQr extends StatelessWidget {
+class ContainerHistory extends StatelessWidget {
   final List? myItems;
   final int? index;
   final Function() onTap;
 
-  ContainerHistoryQr({
+ const  ContainerHistory({
     super.key,
     this.myItems,
     this.index,
     required this.onTap,
   });
 
-  HistoryViewController controller = Get.find();
-
   @override
   Widget build(BuildContext context) {
+    HistoryViewController controller = Get.find();
     return RefreshIndicator(
       onRefresh: () {
         return controller.onInit();
       },
       child: ListView.builder(
         shrinkWrap: true,
-        itemCount: controller.index == 0
+        itemCount:
+        controller.index == 0
             ? controller.parkingHistory!.length
-            : controller.problemHistory!.length,
+            :
+        controller.problemHistory!.length,
         itemBuilder: (context, index) =>
             Obx(
                   () =>

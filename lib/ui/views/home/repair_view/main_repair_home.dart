@@ -12,6 +12,7 @@ import 'package:car_service/ui/views/home/repair_view/oreder_details_view/order_
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_stepindicator/flutter_stepindicator.dart';
 import 'package:get/get.dart';
 
@@ -57,7 +58,7 @@ class MainRepairView extends StatelessWidget {
                     if (controller.page == 0) const ChooseProblemTypeView(),
                     if (controller.page == 1) const ChooseProblemView(),
                     if (controller.page == 2) RepairChoosePlaceView(),
-                    if (controller.page == 3)  OrderDetailsView(),
+                    if (controller.page == 3) OrderDetailsView(),
                     if (controller.page == 4)
                       Column(
                         children: [
@@ -86,26 +87,32 @@ class MainRepairView extends StatelessWidget {
                     const Spacer(),
                     Column(
                       children: [
-                        CustomButton(
-                          onPressed: () {
-                            controller.handleButtonPress(isIncrease: true);
-                          },
-                          text: controller.page == 4 ? 'Finish' : 'Next',
-                          buttonTypeEnum: ButtonTypeEnum.medium,
-                          width: 240.w,
-                          height: 55.h,
-                        ),
+                        controller.isLoading
+                            ? SpinKitCircle(
+                                color: AppColors.mainColor,
+                                size: 80.w,
+                              )
+                            : CustomButton(
+                                onPressed: () {
+                                  controller.handleButtonPress(
+                                      isIncrease: true);
+                                },
+                                text: controller.page == 4 ? 'Finish' : 'Next',
+                                buttonTypeEnum: ButtonTypeEnum.medium,
+                                width: 240.w,
+                                height: 55.h,
+                              ),
                         (20.h).ph,
-                        if(controller.page!=0)
-                        GestureDetector(
-                            onTap: () {
-                              controller.handleStepValue(isIncrease: false);
-                            },
-                            child: CustomText(
-                              text: 'Back',
-                              textType: TextStyleType.bodyBig,
-                              textColor: AppColors.mainColor,
-                            )),
+                        if (controller.page != 0)
+                          GestureDetector(
+                              onTap: () {
+                                controller.handleStepValue(isIncrease: false);
+                              },
+                              child: CustomText(
+                                text: 'Back',
+                                textType: TextStyleType.bodyBig,
+                                textColor: AppColors.mainColor,
+                              )),
                       ],
                     ),
                     (20.h).ph,

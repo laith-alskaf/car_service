@@ -50,7 +50,6 @@ class AllOrderController extends BaseController {
               problemHistory![i].createdAt =
                   problemHistory![i].createdAt!.substring(0, 10);
             }
-
             update();
           });
         }));
@@ -59,6 +58,8 @@ class AllOrderController extends BaseController {
   @override
   Future<void> onInit() async {
     getHistoryProblems();
+    parkingHistory=[];
+    update();
     super.onInit();
   }
 }
