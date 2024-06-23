@@ -209,7 +209,10 @@ class CustomAllOrders extends StatelessWidget {
                               : 30.h,
                           start: 400.w),
                       child: InkWell(
-                        onTap: () => showAlertEditRepair(),
+                        onTap: () => showAlertEditRepair(
+                            id: controller.index == 0
+                                ? controller.parkingHistory![index].sId!
+                                : controller.problemHistory![index].sId!),
                         child: SizedBox(
                             width: 28.w,
                             height: 28.w,

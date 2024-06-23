@@ -1,3 +1,4 @@
+import 'package:car_service/ui/admin_view/all_order_detiels/all_order_controller.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
@@ -7,7 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-showAlertEditRepair() {
+showAlertEditRepair({required String id}) {
   Get.dialog(Dialog(
     shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(35.r))),
@@ -60,7 +61,7 @@ showAlertEditRepair() {
                     backgroundColor: AppColors.mainColor,
                     onPressed: () {
                       Get.back();
-                      showAlertUpdateRepair();
+                      showAlertUpdateRepair(id: id);
                     },
                     text: 'Update',
                   ),
@@ -92,7 +93,8 @@ showAlertEditRepair() {
   ));
 }
 
-showAlertUpdateRepair() {
+showAlertUpdateRepair({required String id}) {
+  AllOrderController controller = Get.find();
   Get.dialog(Dialog(
     shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(35.r))),
@@ -155,6 +157,8 @@ showAlertUpdateRepair() {
                     backgroundColor: AppColors.mainColor,
                     onPressed: () {
                       Get.back();
+                      controller.updateOrderProblem(
+                          price: 2, date: '', orderId: id);
                     },
                     text: 'Ok',
                   ),

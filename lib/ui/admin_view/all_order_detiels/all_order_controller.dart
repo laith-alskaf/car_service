@@ -12,7 +12,6 @@ class AllOrderController extends BaseController {
   List<ProblemHistoryModel>? problemHistory;
   List<ParkingHistoryModel>? parkingHistory;
 
-
   handleClickFilter({required int serviceIndex}) {
     index = serviceIndex;
     update();
@@ -42,23 +41,39 @@ class AllOrderController extends BaseController {
   Future<void> getHistoryProblems() async {
     await runLoadingFutureFunction(
         function: AdminRepositories().getHistoryProblem().then((value) {
-          value.fold((l) {
-            CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
-          }, (r) {
-            problemHistory = r;
-            for (int i = 0; i < problemHistory!.length; i++) {
-              problemHistory![i].createdAt =
-                  problemHistory![i].createdAt!.substring(0, 10);
-            }
-            update();
-          });
-        }));
+      value.fold((l) {
+        CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+      }, (r) {
+        problemHistory = r;
+        for (int i = 0; i < problemHistory!.length; i++) {
+          problemHistory![i].createdAt =
+              problemHistory![i].createdAt!.substring(0, 10);
+        }
+        update();
+      });
+    }));
+  }
+
+  Future<void> updateOrderProblem(
+      {required int price,
+      required String date,
+      required String orderId}) async {
+    await runLoadingFutureFunction(
+        function: AdminRepositories()
+            .updateOrderProblem(orderId: orderId, price: price, date: date)
+            .then((value) {
+      value.fold((l) {
+        CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+      }, (r) {
+        CustomToast.showMessage(message: r, messageType: MessageType.SUCCESS);
+      });
+    }));
   }
 
   @override
   Future<void> onInit() async {
     getHistoryProblems();
-    parkingHistory=[];
+    parkingHistory = [];
     update();
     super.onInit();
   }
