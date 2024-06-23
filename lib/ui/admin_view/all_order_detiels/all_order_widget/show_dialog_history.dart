@@ -3,17 +3,14 @@ import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text_field.dart';
-import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:car_service/ui/views/home/history_view/history_widget/alert_dialog_delete_history.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-
-import '../../../../../core/enums/message_type.dart';
-import '../../../../../core/translation/app_translation.dart';
-import '../../../../shared/custom_widget/custom_toast.dart';
-
+import '../../../../core/enums/message_type.dart';
+import '../../../../core/translation/app_translation.dart';
+import '../../../shared/custom_widget/custom_toast.dart';
 
 showAlertEditRepair({required String id}) {
   AllOrderController controller = Get.find();
@@ -84,12 +81,12 @@ showAlertEditRepair({required String id}) {
                     onPressed: () {
                       Get.back();
                       showAlertDelete(
-                          text: 'Sure Delete History Info', onTap: () {
-                            controller.deletOrderProblem(orderId: id);
-                            controller.getHistoryProblems();
-                            Get.back();
-
-                      },);
+                        text: 'Sure Delete History Info',
+                        onTap: () {
+                          controller.deleteOrderProblem(orderId: id);
+                          Get.back();
+                        },
+                      );
                     },
                     text: 'Delete',
                   ),
@@ -151,7 +148,7 @@ showAlertUpdateRepair({required String id}) {
                 ),
                 CustomTextFormField(
                     hintText: "new price",
-                    controller: controller.pricecontroller,
+                    controller: controller.priceController,
                     keyboardType: TextInputType.number,
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -169,14 +166,14 @@ showAlertUpdateRepair({required String id}) {
                     },
                     child: Container(
                       width: 1.sw,
-                      height:50.h ,
+                      height: 50.h,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(10),
                           border:
                               Border.all(width: 1, color: AppColors.mainColor)),
                       child: Center(
                         child: CustomText(
-                          isTextAlign:TextAlign.center ,
+                          isTextAlign: TextAlign.center,
                           textType: TextStyleType.body,
                           text: controller.birthDay.value,
                         ),
@@ -197,6 +194,8 @@ showAlertUpdateRepair({required String id}) {
                       textColor: AppColors.mainColor,
                       onPressed: () {
                         Get.back();
+                        controller.priceController.clear();
+                        controller.birthDay.value = 'no date';
                       },
                       text: 'Cancel',
                     ),
@@ -208,20 +207,19 @@ showAlertUpdateRepair({required String id}) {
                       backgroundColor: AppColors.mainColor,
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
-                          if(controller.birthDay.value=='no date'){
-                            CustomToast.showMessage(message: "please select date", messageType: MessageType.WARNING);
-                          }
-                          else{
+                          if (controller.birthDay.value == 'no date') {
+                            CustomToast.showMessage(
+                                message: "please select date",
+                                messageType: MessageType.WARNING);
+                          } else {
                             await controller.updateOrderProblem(
                                 orderId: id,
                                 price:
-                                int.parse(controller.pricecontroller.text));
-                            await controller.getHistoryProblems();
+                                    int.parse(controller.priceController.text));
                             Get.back();
-                            controller.pricecontroller.clear();
-                            controller.birthDay.value='no date';
+                            controller.priceController.clear();
+                            controller.birthDay.value = 'no date';
                           }
-
                         }
                       },
                       text: 'Ok',
