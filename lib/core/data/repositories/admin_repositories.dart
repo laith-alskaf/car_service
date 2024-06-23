@@ -1,23 +1,18 @@
 import 'dart:developer';
-
 import 'package:car_service/core/data/network/endpoints/admin_endpoint.dart';
 import 'package:dartz/dartz.dart';
-
 import '../../enums/request_type.dart';
 import '../../utils/network_utils.dart';
-import '../models/api/admin_model.dart';
 import '../models/api/problem_model.dart';
 import '../models/common_respons.dart';
-import '../network/endpoints/problem_endpoint.dart';
 import '../network/network_config.dart';
 
 class AdminRepositories {
-
   Future<Either<String, List<ProblemHistoryModel>>> getHistoryProblem() async {
     try {
       return NetworkUtil.sendRequest(
           type: RequestType.POST,
-          url: adminendpoint.getHistoryProblem,
+          url: AdminEndpoint.getHistoryProblem,
           headers: NetworkConfig.getHeaders(type: RequestType.POST),
           body: {}).then((response) {
         if (response != null) {
@@ -42,7 +37,8 @@ class AdminRepositories {
       return Left(e.toString());
     }
   }
-  Future<Either<String, List<UpdateModel>>> chooseProblemType({
+
+  Future<Either<String, String>> updateOrderProblem({
     required String orderId,
     required int price,
     required String date,
@@ -50,7 +46,7 @@ class AdminRepositories {
     try {
       return NetworkUtil.sendRequest(
           type: RequestType.POST,
-          url: adminendpoint.updateOrder,
+          url: AdminEndpoint.updateOrderProblem,
           headers: NetworkConfig.getHeaders(type: RequestType.POST),
           body: {
             'orderId': orderId,
@@ -59,14 +55,10 @@ class AdminRepositories {
           }).then((response) {
         if (response != null) {
           log('==========> ${response}');
-          CommonResponse<dynamic> commonResponse =
-          CommonResponse.fromJson(response);
+          CommonResponse<Map<String, dynamic>> commonResponse =
+              CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
-            List<UpdateModel> listProblems = [];
-            for (Map<String, dynamic> problems in commonResponse.data!) {
-              listProblems.add(UpdateModel.fromJson(problems));
-            }
-            return Right(listProblems);
+            return Right(commonResponse.data!['message']);
           } else {
             return Left(commonResponse.message ?? '');
           }
@@ -78,5 +70,4 @@ class AdminRepositories {
       return Left(e.toString());
     }
   }
-
 }

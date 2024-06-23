@@ -211,7 +211,6 @@ class CustomAllOrders extends StatelessWidget {
                       child: InkWell(
                         onTap: () => showAlertEditRepair(),
                         child: SizedBox(
-
                             width: 28.w,
                             height: 28.w,
                             child: SvgPicture.asset(

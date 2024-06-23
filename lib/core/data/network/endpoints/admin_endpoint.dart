@@ -1,7 +1,7 @@
 import '../network_config.dart';
 
-class adminendpoint {
+class AdminEndpoint {
 
   static String getHistoryProblem = NetworkConfig.getFullApiRout('Admin/getAll-repairOrder');
-  static String updateOrder = NetworkConfig.getFullApiRout('Admin/update-repairOrder');
+  static String updateOrderProblem = NetworkConfig.getFullApiRout('Admin/update-repairOrder');
 }

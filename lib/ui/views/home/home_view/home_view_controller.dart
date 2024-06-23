@@ -1,7 +1,6 @@
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -12,7 +11,6 @@ import 'package:car_service/ui/shared/custom_widget/custom_toast.dart';
 import '../../../../core/data/models/api/parking_model.dart';
 
 class HomeViewController extends BaseController {
-  late CarouselController buttonCarouselController = CarouselController();
   ParkingTimer? parkingTimer;
   RxInt numberHoursPark = 1.obs;
 
@@ -20,12 +18,6 @@ class HomeViewController extends BaseController {
   void onInit() {
     getParkingTimer();
     super.onInit();
-  }
-
-  @override
-  void refresh() {
-    // TODO: implement refresh
-    super.refresh();
   }
 
   changePrice({required bool dec}) {
@@ -41,61 +33,19 @@ class HomeViewController extends BaseController {
     update();
   }
 
-  RxList<int> selectedImageIndex = [0, 0, 0].obs;
-
-  final List<List<String>> cash = [
-    ['iDCash'],
-    ['syriatel', 'mtn'],
-    ['baraka', 'bemo']
-  ];
-  final List<HomeAction> homeAction = [
-    HomeAction(image: 'pay', textBottom: 'Pay Now', listText: [
-      'Payments Due',
-      'Total : ',
-      'Basic Package',
-    ]),
-    HomeAction(
-      image: 'time',
-      listText: ['Time Left to check up'],
-    ),
-    HomeAction(
-      image: 'parking',
-      listText: ['Wanna Park ?', 'Check out available spots near you'],
-    )
-  ];
-
   handleClickCar({required String title}) {}
-
-  bool focusColorSlider(int index, int indexContainer) {
-    if (selectedImageIndex[indexContainer] == index) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  onPageChanged0(int index, _) {
-    selectedImageIndex[0] = index;
-  }
-
-  onPageChanged1(int index, _) {
-    selectedImageIndex[1] = index;
-  }
-
-  onPageChanged2(int index, _) {
-    selectedImageIndex[2] = index;
-  }
 
   Future<void> getParkingTimer() async {
     await runFullLoadingFutureFunction(
         function: ParkRepository().parkingtimer().then((value) {
       value.fold((l) {
+        parkingTimer = ParkingTimer(seconds: 00, hours: 00, minutes: 00);
+        update();
         CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
       }, (r) {
         parkingTimer = r;
-        CustomToast.showMessage(
-            message: 'done', messageType: MessageType.SUCCESS);
-        // Get.to(() => ParkSpotView());
+        // CustomToast.showMessage(
+        //     message: 'done', messageType: MessageType.SUCCESS);
         update();
       });
     }));
@@ -103,7 +53,9 @@ class HomeViewController extends BaseController {
 
   Future<void> expandTime() async {
     await runFullLoadingFutureFunction(
-        function: ParkRepository().expandtime(duration: 2).then((value) {
+        function: ParkRepository()
+            .expandtime(duration: numberHoursPark.value)
+            .then((value) {
       value.fold((l) {
         CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
       }, (r) {

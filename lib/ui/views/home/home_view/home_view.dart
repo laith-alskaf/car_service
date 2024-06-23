@@ -22,75 +22,80 @@ class HomeView extends StatelessWidget {
     return GetBuilder<HomeViewController>(
       init: HomeViewController(),
       builder: (controller) {
-        return ListView(
-          children: [
-            const CustomAppBar(
-              title: 'Home',
-              iconSetting: true,
-            ),
-            (50.h).ph,
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const ContainerSubscription(),
-                  (50.h).ph,
-                  Padding(
-                    padding: EdgeInsetsDirectional.only(start: 5.h),
-                    child: Row(
+        return RefreshIndicator(
+          onRefresh: () async {
+            return controller.onInit();
+          },
+          child: ListView(
+            children: [
+              const CustomAppBar(
+                title: 'Home',
+                iconSetting: true,
+              ),
+              (50.h).ph,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const ContainerSubscription(),
+                    (50.h).ph,
+                    Padding(
+                      padding: EdgeInsetsDirectional.only(start: 5.h),
+                      child: Row(
+                        children: [
+                          CustomText(
+                            text:
+                                "And Many More! go and see our premuim Packages",
+                            textType: TextStyleType.bodyBig,
+                            textColor: AppColors.blueColor,
+                            fontSize: 16.h,
+                          ),
+                          (10.w).pw,
+                          Icon(
+                            Icons.arrow_forward_outlined,
+                            color: AppColors.blueColor,
+                          ),
+                        ],
+                      ),
+                    ),
+                    (20.h).ph,
+                    Center(
+                      child: CustomContainerInfo(
+                        title: "Find Available Maintenance spots",
+                        onpresed: () {
+                          Get.to(() => const AllOrderView());
+                        },
+                        image: "meantenance",
+                      ),
+                    ),
+                    (20.h).ph,
+                    Row(
                       children: [
-                        CustomText(
-                          text:
-                          "And Many More! go and see our premuim Packages",
-                          textType: TextStyleType.bodyBig,
-                          textColor: AppColors.blueColor,
-                          fontSize: 16.h,
+                        CustomContainerInfo(
+                          title: "Scan Qr Code",
+                          image: "qr",
+                          width: 0.4.sw,
                         ),
-                        (10.w).pw,
-                        Icon(
-                          Icons.arrow_forward_outlined,
-                          color: AppColors.blueColor,
+                        (15.w).pw,
+                        CustomContainerInfo(
+                          title: "Find Your Parking Spot",
+                          image: "spot",
+                          width: 0.57.sw,
                         ),
                       ],
                     ),
-                  ),
-                  (20.h).ph,
-                  Center(
-                    child: CustomContainerInfo(
-                      title: "Find Available Maintenance spots",
-                      onpresed: () {
-                        Get.to(() => const AllOrderView());
-                      },
-                      image: "meantenance",
-                    ),
-                  ),
-                  (20.h).ph,
-                  Row(
-                    children: [
-                      CustomContainerInfo(
-                        title: "Scan Qr Code",
-                        image: "qr",
-                        width: 0.4.sw,
-                      ),
-                      (15.w).pw,
-                      CustomContainerInfo(
-                        title: "Find Your Parking Spot",
-                        image: "spot",
-                        width: 0.57.sw,
-                      ),
-                    ],
-                  ),
-                  (20.h).ph,
-                ],
+                    (20.h).ph,
+                  ],
+                ),
               ),
-            ),
-            controller.parkingTimer == null
-                ? SpinKitCircle(
-              color: AppColors.mainColor,
-            )
-                : const ServicesContainer()
-          ],
+              controller.parkingTimer == null
+                  ? SpinKitCircle(
+                      color: AppColors.mainColor,
+                    )
+                  : const ServicesContainer()
+            ],
+          ),
         );
       },
     );
