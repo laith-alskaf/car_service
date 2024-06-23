@@ -15,13 +15,12 @@ import 'home_widget/container_subscription.dart';
 
 // ignore: must_be_immutable
 class HomeView extends StatelessWidget {
- const HomeView({super.key});
-
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeViewController>(
-      init:HomeViewController(),
+      init: HomeViewController(),
       builder: (controller) {
         return ListView(
           children: [
@@ -86,11 +85,11 @@ class HomeView extends StatelessWidget {
                 ],
               ),
             ),
-            controller.parkingTimer==null
+            controller.parkingTimer == null
                 ? SpinKitCircle(
                     color: AppColors.mainColor,
                   )
-                :const ServicesContainer()
+                : const ServicesContainer()
           ],
         );
       },
