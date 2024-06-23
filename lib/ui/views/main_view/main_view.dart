@@ -29,7 +29,7 @@ class MainView extends StatelessWidget {
             children: [
               ParkingView(),
               const BillingView(),
-              const HomeView(),
+               HomeView(),
               const HistoryView(),
               MainRepairView(),
             ],

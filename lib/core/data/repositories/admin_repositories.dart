@@ -14,9 +14,9 @@ class AdminRepositories {
   Future<Either<String, List<ProblemHistoryModel>>> getHistoryProblem() async {
     try {
       return NetworkUtil.sendRequest(
-          type: RequestType.POST,
-          url: adminendpoint.getHistoryProblem,
-          headers: NetworkConfig.getHeaders(type: RequestType.POST),).then((response) {
+        type: RequestType.POST,
+        url: adminendpoint.getHistoryProblem,
+        headers: NetworkConfig.getHeaders(type: RequestType.POST),).then((response) {
         if (response != null) {
           log('==========> $response');
           CommonResponse<dynamic> commonResponse =

@@ -93,6 +93,8 @@ class HomeViewController extends BaseController {
         CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
       }, (r) {
         parkingTimer = r;
+        CustomToast.showMessage(
+            message: 'done', messageType: MessageType.SUCCESS);
         // Get.to(() => ParkSpotView());
         update();
       });

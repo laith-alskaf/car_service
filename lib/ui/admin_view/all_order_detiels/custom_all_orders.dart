@@ -15,7 +15,7 @@ class CustomAllOrders extends StatelessWidget {
   final int? index;
   final Function() onTap;
 
- const CustomAllOrders({
+  const CustomAllOrders({
     super.key,
     this.myItems,
     this.index,
