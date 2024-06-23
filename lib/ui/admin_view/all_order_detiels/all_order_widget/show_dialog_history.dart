@@ -12,7 +12,7 @@ import 'package:get/get.dart';
 
 import '../../../../../core/enums/message_type.dart';
 import '../../../../../core/translation/app_translation.dart';
-import '../../../../shared/custom_widget/custom_toast.dart';
+import '../../../shared/custom_widget/custom_toast.dart';
 
 
 showAlertEditRepair({required String id}) {
@@ -85,7 +85,7 @@ showAlertEditRepair({required String id}) {
                       Get.back();
                       showAlertDelete(
                           text: 'Sure Delete History Info', onTap: () {
-                            controller.deletOrderProblem(orderId: id);
+                            controller.deleteOrderProblem(orderId: id);
                             controller.getHistoryProblems();
                             Get.back();
 
@@ -151,7 +151,7 @@ showAlertUpdateRepair({required String id}) {
                 ),
                 CustomTextFormField(
                     hintText: "new price",
-                    controller: controller.pricecontroller,
+                    controller: controller.priceController,
                     keyboardType: TextInputType.number,
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -215,10 +215,10 @@ showAlertUpdateRepair({required String id}) {
                             await controller.updateOrderProblem(
                                 orderId: id,
                                 price:
-                                int.parse(controller.pricecontroller.text));
+                                int.parse(controller.priceController.text));
                             await controller.getHistoryProblems();
                             Get.back();
-                            controller.pricecontroller.clear();
+                            controller.priceController.clear();
                             controller.birthDay.value='no date';
                           }
 
