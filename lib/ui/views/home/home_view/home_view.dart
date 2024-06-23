@@ -21,7 +21,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeViewController>(
-      init:HomeViewController() ,
+      init:HomeViewController(),
       builder: (controller) {
         return ListView(
           children: [

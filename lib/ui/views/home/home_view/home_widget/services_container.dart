@@ -13,7 +13,6 @@ class ServicesContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return GetBuilder<HomeViewController>(builder: (controller) {
       return Container(
         width: 1.sw,
@@ -54,99 +53,12 @@ class ServicesContainer extends StatelessWidget {
                   Center(
                     child: IconButton(
                       onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              content: const Text(
-                                  'Are you sure you want to expand your parking time'),
-                              actions: <Widget>[
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    InkWell(
-                                      onTap: () {
-                                        controller.changePrice(dec: false);
-                                      },
-                                      child: Container(
-                                        alignment: Alignment.center,
-                                        decoration: BoxDecoration(
-                                          border: Border.all(
-                                            color: AppColors.mainColor,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(15.r),
-                                        ),
-                                        width: 40.w,
-                                        height: 40.w,
-                                        child: const CustomText(
-                                          isTextAlign: TextAlign.center,
-                                          textType: TextStyleType.bodyBig,
-                                          text: '-',
-                                        ),
-                                      ),
-                                    ),
-                                    Obx(() => Container(
-                                          alignment: Alignment.center,
-                                          width: 40.w,
-                                          height: 40.w,
-                                          child: CustomText(
-                                            isTextAlign: TextAlign.center,
-                                            textType: TextStyleType.bodyBig,
-                                            text: controller
-                                                .numberHoursPark.value
-                                                .toString(),
-                                          ),
-                                        )),
-                                    InkWell(
-                                      onTap: () {
-                                        controller.changePrice(dec: true);
-                                      },
-                                      child: Container(
-                                        alignment: Alignment.center,
-                                        decoration: BoxDecoration(
-                                          border: Border.all(
-                                            color: AppColors.mainColor,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(15.r),
-                                        ),
-                                        width: 40.w,
-                                        height: 40.w,
-                                        child: const CustomText(
-                                          isTextAlign: TextAlign.center,
-                                          textType: TextStyleType.bodyBig,
-                                          text: '+',
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                (20.h).ph,
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    TextButton(
-                                      onPressed: () {
-                                        Get.back();
-                                      },
-                                      child: const Text('Cancel'),
-                                    ),
-                                    TextButton(
-                                      onPressed: () {
-                                        controller.expandTime();
+                        if (controller.parkingTimer!.hours == 00 &&
+                            controller.parkingTimer!.minutes == 00) {
+                          controller.showDialogExpandTime();
+                        } else {
 
-                                        Get.back();
-                                      },
-                                      child: const Text('OK'),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            );
-                          },
-                        );
+                        }
                       },
                       icon: Icon(Icons.add, color: AppColors.mainColor),
                     ),

@@ -4,11 +4,9 @@ import 'package:car_service/core/data/network/endpoints/admin_endpoint.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../enums/request_type.dart';
-import '../../utils/general_util.dart';
 import '../../utils/network_utils.dart';
 import '../models/api/problem_model.dart';
 import '../models/common_respons.dart';
-import '../network/endpoints/problem_endpoint.dart';
 import '../network/network_config.dart';
 
 class AdminRepositories {

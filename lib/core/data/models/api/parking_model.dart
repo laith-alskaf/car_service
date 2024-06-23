@@ -114,14 +114,14 @@ class parkingorderdetails {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['parkNumber'] = this.parkNumber;
-    data['carNumber'] = this.carNumber;
-    data['bookingEndTime'] = this.bookingEndTime;
-    data['parksNum'] = this.parksNum;
-    data['parkingName'] = this.parkingName;
-    data['duration'] = this.duration;
-    data['Price'] = this.price;
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    data['parkNumber'] = parkNumber;
+    data['carNumber'] = carNumber;
+    data['bookingEndTime'] = bookingEndTime;
+    data['parksNum'] = parksNum;
+    data['parkingName'] = parkingName;
+    data['duration'] =duration;
+    data['Price'] = price;
     return data;
   }
 }
@@ -162,10 +162,10 @@ class ParkingHistoryModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data =  <String, dynamic>{};
     data['_id'] = sId;
-    if (this.userId != null) {
+    if (userId != null) {
       data['userId'] = userId!.toJson();
     }
-    if (this.selectedPark != null) {
+    if (selectedPark != null) {
       data['SelectedPark'] = selectedPark!.toJson();
     }
     data['duration'] = duration;
@@ -243,6 +243,7 @@ class Location {
     return data;
   }
 }
+
 class expandtime {
   String? username;
   int? duration;
@@ -255,9 +256,9 @@ class expandtime {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['username'] = this.username;
-    data['duration'] = this.duration;
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    data['username'] = username;
+    data['duration'] = duration;
     return data;
   }
 }
@@ -275,10 +276,10 @@ class ParkingTimer {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['hours'] = this.hours;
-    data['minutes'] = this.minutes;
-    data['seconds'] = this.seconds;
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    data['hours'] = hours;
+    data['minutes'] = minutes;
+    data['seconds'] = seconds;
     return data;
   }
 }
