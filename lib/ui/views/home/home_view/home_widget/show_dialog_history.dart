@@ -14,9 +14,9 @@ import '../../../../../core/enums/message_type.dart';
 import '../../../../../core/translation/app_translation.dart';
 import '../../../../shared/custom_widget/custom_toast.dart';
 
-AllOrderController controller = Get.put(AllOrderController());
 
 showAlertEditRepair({required String id}) {
+  AllOrderController controller = Get.find();
   Get.dialog(Dialog(
     shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(35.r))),
@@ -84,7 +84,12 @@ showAlertEditRepair({required String id}) {
                     onPressed: () {
                       Get.back();
                       showAlertDelete(
-                          text: 'Sure Delete History Info', onTap: () {});
+                          text: 'Sure Delete History Info', onTap: () {
+                            controller.deletOrderProblem(orderId: id);
+                            controller.getHistoryProblems();
+                            Get.back();
+
+                      },);
                     },
                     text: 'Delete',
                   ),
@@ -152,6 +157,7 @@ showAlertUpdateRepair({required String id}) {
                       if (value!.isEmpty) {
                         return tr('should not be empty');
                       }
+                      return null;
                     }),
                 SizedBox(
                   height: 15.h,

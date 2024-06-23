@@ -89,6 +89,19 @@ class AllOrderController extends BaseController {
           });
         }));
   }
+  Future<void> deletOrderProblem(
+      {required String orderId}) async {
+    await runLoadingFutureFunction(
+        function: AdminRepositories()
+            .DeletOrderProblem(orderId: orderId,)
+            .then((value) {
+          value.fold((l) {
+            CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+          }, (r) {
+            CustomToast.showMessage(message: r, messageType: MessageType.SUCCESS);
+          });
+        }));
+  }
 
   @override
   Future<void> onInit() async {
