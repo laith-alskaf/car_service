@@ -87,22 +87,39 @@ class AllOrderView extends StatelessWidget {
                   padding: EdgeInsets.only(top: 10.h, bottom: 290.h),
                   child: GetBuilder<AllOrderController>(
                     builder: (c) {
-                      return controller.problemHistory == null
-                          ? Center(
-                              child: SpinKitCircle(
-                                color: AppColors.mainColor,
-                                size: 100.w,
-                              ),
-                            )
-                          : controller.problemHistory!.isEmpty
-                              ? const Center(
-                                  child: CustomText(
-                                      text: 'No Data',
-                                      textType: TextStyleType.title),
+                      return controller.index == 0
+                          ? (controller.parkingHistory == null
+                              ? Center(
+                                  child: SpinKitCircle(
+                                    color: AppColors.mainColor,
+                                    size: 100.w,
+                                  ),
                                 )
-                              : CustomAllOrders(
-                                  onTap: () {},
-                                );
+                              : controller.parkingHistory!.isEmpty
+                                  ? const Center(
+                                      child: CustomText(
+                                          text: 'No Data',
+                                          textType: TextStyleType.title),
+                                    )
+                                  : CustomAllOrders(
+                                      onTap: () {},
+                                    ))
+                          : controller.problemHistory == null
+                              ? Center(
+                                  child: SpinKitCircle(
+                                    color: AppColors.mainColor,
+                                    size: 100.w,
+                                  ),
+                                )
+                              : controller.problemHistory!.isEmpty
+                                  ? const Center(
+                                      child: CustomText(
+                                          text: 'No Data',
+                                          textType: TextStyleType.title),
+                                    )
+                                  : CustomAllOrders(
+                                      onTap: () {},
+                                    );
                     },
                   )),
             ),

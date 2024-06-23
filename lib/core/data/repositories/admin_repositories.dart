@@ -10,17 +10,17 @@ import '../models/common_respons.dart';
 import '../network/network_config.dart';
 
 class AdminRepositories {
-
   Future<Either<String, List<ProblemHistoryModel>>> getHistoryProblem() async {
     try {
       return NetworkUtil.sendRequest(
           type: RequestType.POST,
           url: adminendpoint.getHistoryProblem,
-          headers: NetworkConfig.getHeaders(type: RequestType.POST),).then((response) {
+          headers: NetworkConfig.getHeaders(type: RequestType.POST),
+          body: {}).then((response) {
         if (response != null) {
           log('==========> $response');
           CommonResponse<dynamic> commonResponse =
-          CommonResponse.fromJson(response);
+              CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
             List<ProblemHistoryModel> historyProblem = [];
             for (Map<String, dynamic> s in commonResponse.data!) {
@@ -39,5 +39,4 @@ class AdminRepositories {
       return Left(e.toString());
     }
   }
-
 }

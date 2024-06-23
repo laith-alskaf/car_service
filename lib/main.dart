@@ -25,7 +25,7 @@ Future<void> main() async {
     );
     Get.put(NotificationService());
   } catch (e) {
-    print(e);
+    (e);
   }
   runApp(const MyApp());
 }

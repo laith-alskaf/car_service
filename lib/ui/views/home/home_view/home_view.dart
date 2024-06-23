@@ -62,7 +62,7 @@ class HomeView extends StatelessWidget {
                       onpresed: () {
                         Get.to(() => const AllOrderView());
                       },
-                      image: "Meantenance",
+                      image: "meantenance",
                     ),
                   ),
                   (20.h).ph,
