@@ -1,5 +1,7 @@
+import 'package:car_service/core/enums/message_type.dart';
 import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
+import 'package:car_service/ui/shared/custom_widget/custom_toast.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -53,10 +55,13 @@ class ServicesContainer extends StatelessWidget {
                   Center(
                     child: IconButton(
                       onPressed: () {
-                        if (controller.parkingTimer!.hours == 00 &&
-                            controller.parkingTimer!.minutes == 00) {
+                        if (controller.parkingTimer!.hours != 00 &&
+                            controller.parkingTimer!.minutes != 00) {
                           controller.showDialogExpandTime();
                         } else {
+                          CustomToast.showMessage(
+                              message: 'Yoy have\'t choose any park yet',
+                              messageType: MessageType.WARNING);
                         }
                       },
                       icon: Icon(Icons.add, color: AppColors.mainColor),
