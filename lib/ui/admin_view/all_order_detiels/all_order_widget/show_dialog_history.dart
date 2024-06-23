@@ -197,8 +197,6 @@ showAlertUpdateRepair({required String id}) {
                       textColor: AppColors.mainColor,
                       onPressed: () {
                         Get.back();
-                        controller.pricecontroller.clear();
-                        controller.birthDay.value='no date';
                       },
                       text: 'Cancel',
                     ),

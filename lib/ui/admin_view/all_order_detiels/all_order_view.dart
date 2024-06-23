@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:car_service/ui/admin_view/all_order_detiels/all_order_widget/custom_all_orders.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,7 +9,6 @@ import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/views/home/history_view/history_widget/title_service.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'all_order_controller.dart';
-import 'custom_all_orders.dart';
 
 class AllOrderView extends StatelessWidget {
   const AllOrderView({super.key});
