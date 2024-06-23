@@ -42,7 +42,7 @@ class HomeView extends StatelessWidget {
                       children: [
                         CustomText(
                           text:
-                              "And Many More! go and see our premuim Packages",
+                          "And Many More! go and see our premuim Packages",
                           textType: TextStyleType.bodyBig,
                           textColor: AppColors.blueColor,
                           fontSize: 16.h,
@@ -87,8 +87,8 @@ class HomeView extends StatelessWidget {
             ),
             controller.parkingTimer == null
                 ? SpinKitCircle(
-                    color: AppColors.mainColor,
-                  )
+              color: AppColors.mainColor,
+            )
                 : const ServicesContainer()
           ],
         );

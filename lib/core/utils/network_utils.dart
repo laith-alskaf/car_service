@@ -4,8 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:car_service/core/enums/request_type.dart';
 
 class NetworkUtil {
-  // static String baseUrl = '192.168.137.1:5000';
-  static String baseUrl = 'hill-thundering-approval.glitch.me';
+  static String baseUrl = '192.168.137.1:5000';
   static var client = http
       .Client(); // حتى استطيع ارسال واصتقبال الطلبات من ال http يجب ان اهيأ متغير من نوع client
 
@@ -19,11 +18,11 @@ class NetworkUtil {
     try {
       //!--- Required for request ----
       //*--- Make full api url ------
-      var uri = Uri.https(baseUrl, url, params);
+      var uri = Uri.http(baseUrl, url, params);
       log('==========> $uri');
       //?--- To Save api response ----
       late http.Response
-          response; // حتى يتم استقبال البيانات من http ويتم تاخير تعريفه حتى يتم طلبه
+      response; // حتى يتم استقبال البيانات من http ويتم تاخير تعريفه حتى يتم طلبه
       //?--- To Save api status code ----
 
       //!--- Required convert ap i response to Map ----
@@ -58,7 +57,7 @@ class NetworkUtil {
               body: jsonEncode(body), headers: headers);
           break;
         case RequestType.MULTIPART:
-          // TODO: Handle this case.
+        // TODO: Handle this case.
           break;
       }
 
@@ -72,9 +71,9 @@ class NetworkUtil {
 
       jsonResponse.putIfAbsent(
           'response',
-          () => result == null
+              () => result == null
               ? jsonDecode(jsonEncode(
-                  {'title': const Utf8Codec().decode(response.bodyBytes)}))
+              {'title': const Utf8Codec().decode(response.bodyBytes)}))
               : jsonDecode(const Utf8Codec().decode(response.bodyBytes)));
       jsonResponse.putIfAbsent('statusCode', () => response.statusCode);
 
