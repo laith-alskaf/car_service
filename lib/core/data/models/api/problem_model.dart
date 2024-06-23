@@ -38,6 +38,7 @@ class ProblemModel {
     return data;
   }
 }
+
 class OrderDetailsModel {
   String? location;
   String? problem;
@@ -47,10 +48,10 @@ class OrderDetailsModel {
 
   OrderDetailsModel(
       {this.location,
-        this.problem,
-        this.estimatedTime,
-        this.price,
-        this.image});
+      this.problem,
+      this.estimatedTime,
+      this.price,
+      this.image});
 
   OrderDetailsModel.fromJson(Map<String, dynamic> json) {
     location = json['Location'];
@@ -61,7 +62,7 @@ class OrderDetailsModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data =  <String, dynamic>{};
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['Location'] = location;
     data['Problem'] = problem;
     data['EstimatedTime'] = estimatedTime;
@@ -70,6 +71,7 @@ class OrderDetailsModel {
     return data;
   }
 }
+
 class UserId {
   String? sId;
   String? email;
@@ -94,6 +96,7 @@ class UserId {
     return data;
   }
 }
+
 class SelectedPark {
   Location? location;
   String? sId;
@@ -116,6 +119,7 @@ class SelectedPark {
     return data;
   }
 }
+
 class Location {
   String? parkingName;
 
@@ -126,11 +130,12 @@ class Location {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data =  <String, dynamic>{};
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['parkingName'] = parkingName;
     return data;
   }
 }
+
 class CarProblem {
   String? sId;
   String? problemType;
@@ -142,12 +147,12 @@ class CarProblem {
 
   CarProblem(
       {this.sId,
-        this.problemType,
-        this.name,
-        this.image,
-        this.price,
-        this.duration,
-        this.iV});
+      this.problemType,
+      this.name,
+      this.image,
+      this.price,
+      this.duration,
+      this.iV});
 
   CarProblem.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -160,7 +165,7 @@ class CarProblem {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data =  <String, dynamic>{};
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['_id'] = sId;
     data['ProblemType'] = problemType;
     data['Name'] = name;
@@ -177,29 +182,35 @@ class ProblemHistoryModel {
   UserId? userId;
   SelectedPark? selectedPark;
   CarProblem? carProblem;
+  int? orderPrice;
+  String? orderFinishDate;
   String? createdAt;
   String? updatedAt;
   int? iV;
 
-    ProblemHistoryModel(
+  ProblemHistoryModel(
       {this.sId,
-        this.userId,
-        this.selectedPark,
-        this.carProblem,
-        this.createdAt,
-        this.updatedAt,
-        this.iV});
+      this.userId,
+      this.selectedPark,
+      this.orderPrice,
+      this.orderFinishDate,
+      this.carProblem,
+      this.createdAt,
+      this.updatedAt,
+      this.iV});
 
   ProblemHistoryModel.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     userId =
-    json['userId'] != null ? new UserId.fromJson(json['userId']) : null;
+        json['userId'] != null ? new UserId.fromJson(json['userId']) : null;
     selectedPark = json['SelectedPark'] != null
         ? new SelectedPark.fromJson(json['SelectedPark'])
         : null;
     carProblem = json['carProblem'] != null
         ? new CarProblem.fromJson(json['carProblem'])
         : null;
+    orderPrice = json['orderPrice'];
+    orderFinishDate = json['orderFinishDate'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     iV = json['__v'];
@@ -218,6 +229,8 @@ class ProblemHistoryModel {
       data['carProblem'] = this.carProblem!.toJson();
     }
     data['createdAt'] = this.createdAt;
+    data['orderFinishDate'] = this.orderFinishDate;
+    data['orderPrice'] = this.orderPrice;
     data['updatedAt'] = this.updatedAt;
     data['__v'] = this.iV;
     return data;

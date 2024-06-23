@@ -152,8 +152,7 @@ class CustomAllOrders extends StatelessWidget {
                                           ? controller
                                               .parkingHistory![index].price!
                                               .toString()
-                                          : controller.problemHistory![index]
-                                              .carProblem!.price!
+                                          : controller.problemHistory![index].orderPrice
                                               .toString(),
                                       textType: TextStyleType.body,
                                       fontWeight: FontWeight.normal,
