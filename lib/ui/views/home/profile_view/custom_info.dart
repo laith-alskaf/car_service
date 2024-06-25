@@ -1,14 +1,10 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:car_service/core/translation/app_translation.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_container.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
-import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:car_service/ui/views/home/profile_view/custom_row_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-
 
 class CustomInfo extends StatelessWidget {
   const CustomInfo({
@@ -17,17 +13,19 @@ class CustomInfo extends StatelessWidget {
     required this.title,
     this.titleIcon,
     this.suffixText,
-    this.onTap,
+    this.onTap, required this.index,
   });
 
   final List<String>? textBody;
   final String title;
   final String? suffixText;
   final bool? titleIcon;
-  final Function? onTap;
+  final int index;
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
+
     return ZoomIn(
         duration: const Duration(milliseconds: 600),
         child: CustomContainer(
@@ -48,10 +46,9 @@ class CustomInfo extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 InkWell(
-                  onTap: () {
-
-                  },
+                  onTap: onTap,
                   child: CustomRowInfo(
+                    index: index,
                     title: title,
                     suffixText: suffixText,
                   ),
@@ -68,49 +65,7 @@ class CustomInfo extends StatelessWidget {
                     );
                   })
                 ]
-                //________________________________________________________________
 
-                else if (textBody == null) ...[
-                  Row(
-                    children: [
-                      Image.asset(
-                        'assets/images/star.png',
-                        width: 26.w,
-                        height: 26.w,
-                      ),
-                      (10.w).pw,
-                      CustomText(
-                        text: tr('key_places'),
-                        textType: TextStyleType.body,
-                        fontWeight: FontWeight.normal,
-                      ),
-                      (51.w).pw,
-                      const CustomText(
-                        text: '0',
-                        textType: TextStyleType.body,
-                        fontWeight: FontWeight.normal,
-                      ),
-                      const Spacer(),
-                      Image.asset(
-                        'assets/images/love.png',
-                        width: 26.w,
-                        height: 26.w,
-                      ),
-                      (10.w).pw,
-                      CustomText(
-                        text: tr('key_products'),
-                        textType: TextStyleType.body,
-                        fontWeight: FontWeight.normal,
-                      ),
-                      (51.w).pw,
-                      const CustomText(
-                        text: '0',
-                        textType: TextStyleType.body,
-                        fontWeight: FontWeight.normal,
-                      ),
-                    ],
-                  )
-                ]
               ],
             ),
           ),

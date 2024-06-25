@@ -11,7 +11,6 @@ class UserInfo {
   String? expirationCodeTime;
   String? verifyEmailCode;
   String? resetPasswordCode;
-  Null? resetPasswordExpiration;
   int? money;
   int? paymentAmount;
   bool? pro;
@@ -23,26 +22,25 @@ class UserInfo {
 
   UserInfo(
       {this.sId,
-      this.email,
-      this.password,
-      this.firstName,
-      this.lastName,
-      this.username,
-      this.emailVerified,
-      this.photo,
-      this.role,
-      this.expirationCodeTime,
-      this.verifyEmailCode,
-      this.resetPasswordCode,
-      this.resetPasswordExpiration,
-      this.money,
-      this.paymentAmount,
-      this.pro,
-      this.fcmToken,
-      this.createdAt,
-      this.updatedAt,
-      this.iV,
-      this.car});
+        this.email,
+        this.password,
+        this.firstName,
+        this.lastName,
+        this.username,
+        this.emailVerified,
+        this.photo,
+        this.role,
+        this.expirationCodeTime,
+        this.verifyEmailCode,
+        this.resetPasswordCode,
+        this.money,
+        this.paymentAmount,
+        this.pro,
+        this.fcmToken,
+        this.createdAt,
+        this.updatedAt,
+        this.iV,
+        this.car});
 
   UserInfo.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -57,7 +55,6 @@ class UserInfo {
     expirationCodeTime = json['expirationCodeTime'];
     verifyEmailCode = json['verifyEmailCode'];
     resetPasswordCode = json['resetPasswordCode'];
-    resetPasswordExpiration = json['resetPasswordExpiration'];
     money = json['money'];
     paymentAmount = json['paymentAmount'];
     pro = json['pro'];
@@ -82,7 +79,6 @@ class UserInfo {
     data['expirationCodeTime'] = this.expirationCodeTime;
     data['verifyEmailCode'] = this.verifyEmailCode;
     data['resetPasswordCode'] = this.resetPasswordCode;
-    data['resetPasswordExpiration'] = this.resetPasswordExpiration;
     data['money'] = this.money;
     data['paymentAmount'] = this.paymentAmount;
     data['pro'] = this.pro;

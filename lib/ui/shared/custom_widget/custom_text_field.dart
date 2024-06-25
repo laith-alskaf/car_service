@@ -28,6 +28,7 @@ class CustomTextFormField extends StatelessWidget {
     this.contentPadding,
     this.colorBorder,
     this.readOnly,
+    this.initialValue,
   });
 
   final String hintText;
@@ -41,6 +42,7 @@ class CustomTextFormField extends StatelessWidget {
   final String? prefixIcon;
   final Color? prefixIconColor;
   final String? suffixIcon;
+  final String? initialValue;
   final Color? colorBorder;
   final Function()? suffixOnTap;
   final Color? suffixIconColor;
@@ -65,17 +67,20 @@ class CustomTextFormField extends StatelessWidget {
         controller: controller,
         validator: validator,
         obscureText: obscureText,
+        initialValue: initialValue,
         textAlign: TextAlign.start,
         cursorColor: AppColors.mainColor,
         decoration: InputDecoration(
-          prefixIcon:prefixIcon!=null?  Transform.scale(
-            scale: 0.5,
-            child: SvgPicture.asset(
-              'assets/images/$prefixIcon.svg',
-              color: prefixIconColor ?? AppColors.mainColor,
-              width: screenWidth(15),
-            ),
-          ):null,
+          prefixIcon: prefixIcon != null
+              ? Transform.scale(
+                  scale: 0.5,
+                  child: SvgPicture.asset(
+                    'assets/images/$prefixIcon.svg',
+                    color: prefixIconColor ?? AppColors.mainColor,
+                    width: screenWidth(15),
+                  ),
+                )
+              : null,
           suffixIcon: suffixIcon != null
               ? InkWell(
                   onTap: suffixOnTap,

@@ -6,6 +6,8 @@ import 'package:car_service/ui/shared/custom_widget/custom_container.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:car_service/ui/views/home/profile_view/custom_info.dart';
+import 'package:car_service/ui/views/home/profile_view/edit_profile_view.dart';
+import 'package:car_service/ui/views/home/profile_view/profile_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,6 +18,7 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ProfileController controller = Get.put(ProfileController());
     UserInfo userInfo = storage.getUserInfo()!;
     return SafeArea(
       child: Scaffold(
@@ -49,9 +52,10 @@ class ProfileView extends StatelessWidget {
                                 fit: BoxFit.fill,
                               ),
                               (10.h).ph,
-                              const CustomText(
+                              CustomText(
                                   fontWeight: FontWeight.bold,
-                                  text: 'Laith Alskaf',
+                                  text:
+                                      '${storage.getUserInfo()!.firstName} ${storage.getUserInfo()!.lastName}',
                                   textType: TextStyleType.subtitle),
                               (2.h).ph,
                               const CustomText(
@@ -65,15 +69,22 @@ class ProfileView extends StatelessWidget {
                     ),
                     (20.h).ph,
                     CustomInfo(
+                      index: 0,
                       title: 'Personal Info',
                       textBody: [
                         'Name : ${userInfo.username}',
                         'Email : ${userInfo.email} ',
                       ],
                       suffixText: 'Edit',
+                      onTap: () {
+                        controller.expandedContainer[0] = true;
+                        controller.expandedContainer[1] = false;
+                        Get.to(() => EditProfileView());
+                      },
                     ),
                     (20.h).ph,
                     CustomInfo(
+                      index: 1,
                       title: 'Car Info',
                       textBody: [
                         'Car Number : ${userInfo.car!.carNumber!}',
@@ -81,7 +92,11 @@ class ProfileView extends StatelessWidget {
                         'Car Model : ${userInfo.car!.carModel} ',
                       ],
                       suffixText: 'Edit',
-                      onTap: () {},
+                      onTap: () {
+                        controller.expandedContainer[0] = false;
+                        controller.expandedContainer[1] = true;
+                        Get.to(() => EditProfileView());
+                      },
                     ),
                     (20.h).ph,
                     // CustomInfo(

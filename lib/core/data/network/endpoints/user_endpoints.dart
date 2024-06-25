@@ -8,4 +8,5 @@ class UserEndPoints {
   static String register = NetworkConfig.getFullApiRout('user/register');
   static String verifyCode = NetworkConfig.getFullApiRout('user/sendCode');
   static String sendCode = NetworkConfig.getFullApiRout('user/verifyCode');
+  static String editProfile = NetworkConfig.getFullApiRout('user/settings');
 }

@@ -26,10 +26,11 @@ class UserRepository {
         if (response != null) {
           log('==========> ${response}');
           CommonResponse<Map<String, dynamic>> commonResponse =
-          CommonResponse.fromJson(response);
+              CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
             log('==========> ${commonResponse.data!['user']}');
-            storage.setUserInfo(UserInfo.fromJson(commonResponse.data!['user']));
+            storage
+                .setUserInfo(UserInfo.fromJson(commonResponse.data!['user']));
             log('======user    ====> ${storage.getUserInfo()!.email}');
 
             storage.setTokenInfo(commonResponse.data!['token']);
@@ -37,11 +38,9 @@ class UserRepository {
           } else {
             return Left(commonResponse.message ?? '');
           }
+        } else {
+          return const Left('Please check your internet');
         }
-
-         else {
-          return const Left('Please check your internet');}
-
       });
     } catch (e) {
       return Left(e.toString());
@@ -64,7 +63,7 @@ class UserRepository {
           }).then((response) {
         if (response != null) {
           CommonResponse<Map<String, dynamic>> commonResponse =
-          CommonResponse.fromJson(response);
+              CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
             return Right(commonResponse.data!['message']);
           } else {
@@ -73,7 +72,6 @@ class UserRepository {
         } else {
           return const Left('Please check your internet');
         }
-
       });
     } catch (e) {
       return Left(e.toString());
@@ -98,7 +96,7 @@ class UserRepository {
           }).then((response) {
         if (response != null) {
           CommonResponse<Map<String, dynamic>> commonResponse =
-          CommonResponse.fromJson(response);
+              CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
             return Right(commonResponse.data!['message']);
           } else {
@@ -107,7 +105,6 @@ class UserRepository {
         } else {
           return const Left('Please check your internet');
         }
-
       });
     } catch (e) {
       return Left(e.toString());
@@ -128,7 +125,7 @@ class UserRepository {
           }).then((response) {
         if (response != null) {
           CommonResponse<Map<String, dynamic>> commonResponse =
-          CommonResponse.fromJson(response);
+              CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
             return Right(commonResponse.data!['message']);
           } else {
@@ -137,7 +134,6 @@ class UserRepository {
         } else {
           return const Left('Please check your internet');
         }
-
       });
     } catch (e) {
       return Left(e.toString());
@@ -159,7 +155,7 @@ class UserRepository {
       ).then((response) {
         if (response != null) {
           CommonResponse<Map<String, dynamic>> commonResponse =
-          CommonResponse.fromJson(response);
+              CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
             return Right(commonResponse.data!['message']);
           } else {
@@ -168,7 +164,6 @@ class UserRepository {
         } else {
           return const Left('Please check your internet');
         }
-
       });
     } catch (e) {
       return Left(e.toString());
@@ -189,9 +184,10 @@ class UserRepository {
         if (response != null) {
           log('==========> ${response}');
           CommonResponse<Map<String, dynamic>> commonResponse =
-          CommonResponse.fromJson(response);
+              CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
-            storage.setUserInfo(UserInfo.fromJson(commonResponse.data!['user']));
+            storage
+                .setUserInfo(UserInfo.fromJson(commonResponse.data!['user']));
             storage.setTokenInfo(commonResponse.data!['token']);
             return Right(commonResponse.data!['message']);
           } else {
@@ -200,7 +196,6 @@ class UserRepository {
         } else {
           return const Left('Please check your internet');
         }
-
       });
     } catch (e) {
       return Left(e.toString());
@@ -223,7 +218,7 @@ class UserRepository {
         url: UserEndPoints.register,
         body: {
           'email': email,
-          'fcmToken':storage.getfcmTokenInfo,
+          'fcmToken': storage.getfcmTokenInfo,
           'username': firstName,
           'password': password,
           'confirmPassword': password,
@@ -238,7 +233,7 @@ class UserRepository {
       ).then((response) {
         if (response != null) {
           CommonResponse<Map<String, dynamic>> commonResponse =
-          CommonResponse.fromJson(response);
+              CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
             return Right(commonResponse.data!['message']);
           } else {
@@ -247,7 +242,46 @@ class UserRepository {
         } else {
           return const Left('Please check your internet');
         }
+      });
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
 
+  Future<Either<String, String>> editProfile({
+    required String lastName,
+    required String firstName,
+    required String carNumber,
+    required String carModel,
+    required String carType,
+  }) async {
+    try {
+      return NetworkUtil.sendRequest(
+        type: RequestType.POST,
+        url: UserEndPoints.editProfile,
+        body: {
+          'lastName': lastName,
+          'firstName': firstName,
+          'username': storage.getUserInfo()!.username,
+          'newusername': firstName,
+          'carNumber': carNumber,
+          'carModel': carModel,
+          'carType': carType,
+        },
+        headers:
+            NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
+      ).then((response) {
+        if (response != null) {
+          CommonResponse<Map<String, dynamic>> commonResponse =
+              CommonResponse.fromJson(response);
+          if (commonResponse.getStatus) {
+            return Right(commonResponse.data!['message']);
+          } else {
+            return Left(commonResponse.message ?? '');
+          }
+        } else {
+          return const Left('Please check your internet');
+        }
       });
     } catch (e) {
       return Left(e.toString());
