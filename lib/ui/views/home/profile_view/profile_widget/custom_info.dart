@@ -2,7 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_container.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
-import 'package:car_service/ui/views/home/profile_view/custom_row_info.dart';
+import 'package:car_service/ui/views/home/profile_view/profile_widget/custom_row_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

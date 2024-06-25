@@ -5,7 +5,7 @@ import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text_field.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
-import 'package:car_service/ui/views/home/profile_view/custom_row_info.dart';
+import 'package:car_service/ui/views/home/profile_view/profile_widget/custom_row_info.dart';
 import 'package:car_service/ui/views/home/profile_view/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

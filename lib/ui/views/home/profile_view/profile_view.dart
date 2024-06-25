@@ -5,8 +5,8 @@ import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_container.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
-import 'package:car_service/ui/views/home/profile_view/custom_info.dart';
-import 'package:car_service/ui/views/home/profile_view/edit_profile_view.dart';
+import 'package:car_service/ui/views/home/profile_view/profile_widget/custom_info.dart';
+import 'package:car_service/ui/views/home/profile_view/profile_widget/edit_profile_view.dart';
 import 'package:car_service/ui/views/home/profile_view/profile_controller.dart';
 import 'package:flutter/material.dart';
 
