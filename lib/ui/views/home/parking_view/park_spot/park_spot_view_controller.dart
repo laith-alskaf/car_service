@@ -15,11 +15,8 @@ class ParkSpotViewController extends BaseController {
   late ParkingTimer parkingtimer;
   late double checkPrice;
   late parkingorderdetails parkorderDetails;
-   int hours=0;
-   int mintes=0;
-
-
-
+  int hours = 0;
+  int mintes = 0;
   int numberHoursPark = 1;
   late List<ParkingSpot> parkingSpot;
   late String selectedPark;
@@ -32,6 +29,7 @@ class ParkSpotViewController extends BaseController {
   @override
   void onInit() {
     checkPrice = price;
+    parkingtimer = ParkingTimer();
     update();
     initSpots();
 
@@ -93,7 +91,6 @@ class ParkSpotViewController extends BaseController {
       },
     );
 
-
     if (selectedTime != null) {
       hour = selectedTime.hourOfPeriod;
       final minute = selectedTime.minute;
@@ -101,7 +98,7 @@ class ParkSpotViewController extends BaseController {
 
       time.value = '$hour:$minute $period';
 
-      mintes=minute- TimeOfDay.now().minute;
+      mintes = minute - TimeOfDay.now().minute;
 
       int currentHour = TimeOfDay.now().hour;
       int endHour = hour + numberHoursPark;
@@ -117,7 +114,7 @@ class ParkSpotViewController extends BaseController {
       } else {
         // إذا كان الوقت الحالي بين وقت البدء ووقت الانتهاء، نحسب الساعات المتبقية
         hours = endHour - currentHour;
-       // -----------------------------------------------------------------------------------------------------------
+        // -----------------------------------------------------------------------------------------------------------
         int currentMinute = TimeOfDay.now().minute;
         int minutesDifference = minute - currentMinute;
 
@@ -126,19 +123,19 @@ class ParkSpotViewController extends BaseController {
         if (minutesDifference < 0) {
           minutesDifference += 60;
         }
-        mintes=minutesDifference;
-
+        mintes = minutesDifference;
       }
-
     }
     update();
   }
-  clearData(){
+
+  clearData() {
     time.value = '';
     birthDay.value = '';
-    numberHoursPark =1;
-    checkPrice=price;
+    numberHoursPark = 1;
+    checkPrice = price;
   }
+
   Future<void> chooseTimeSpot() async {
     await runFullLoadingFutureFunction(
         function: ParkRepository()
@@ -154,7 +151,7 @@ class ParkSpotViewController extends BaseController {
         parkorderDetails = r;
         update();
         Get.back();
-        Get.to(()=>ParkingOrderDetiels());
+        Get.to(() => ParkingOrderDetiels());
 
         CustomToast.showMessage(
             message: 'لعيون عمك هاشم واقطع', messageType: MessageType.SUCCESS);
@@ -162,18 +159,18 @@ class ParkSpotViewController extends BaseController {
       });
     }));
   }
+
   Future<void> parkingTimer() async {
     await runFullLoadingFutureFunction(
         function: ParkRepository().parkingtimer().then((value) {
-          value.fold((l) {
-            CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
-          }, (r) {
-            parkingtimer = r;
-            update();
-            CustomToast.showMessage(
-                message: 'لعيون عمك هاشم واقطع', messageType: MessageType.SUCCESS);
-          });
-        }));
+      value.fold((l) {
+        CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+      }, (r) {
+        parkingtimer = r;
+        update();
+        CustomToast.showMessage(
+            message: 'لعيون عمك هاشم واقطع', messageType: MessageType.SUCCESS);
+      });
+    }));
   }
-
 }

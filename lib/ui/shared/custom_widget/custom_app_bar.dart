@@ -2,30 +2,30 @@ import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
+import 'package:car_service/ui/views/home/profile_view/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar(
-      {super.key,
-      required this.title,
-      this.existContainer,
-      this.existBack,
-      this.positionedTop,
-      this.positionedLeft,
-      this.positionedRight,
-      this.positionedBottom,
-      this.onTapBack,
-      this.iconSetting,
-      this.onTapList,
-      this.existBorderRadius,
-      this.titleColor,
-      this.backgroundColor,
-      this.height,
-      this.existAppBarThemeColored,
-      this.borderRadius});
+  const CustomAppBar({super.key,
+    required this.title,
+    this.existContainer,
+    this.existBack,
+    this.positionedTop,
+    this.positionedLeft,
+    this.positionedRight,
+    this.positionedBottom,
+    this.onTapBack,
+    this.iconSetting,
+    this.onTapList,
+    this.existBorderRadius,
+    this.titleColor,
+    this.backgroundColor,
+    this.height,
+    this.existAppBarThemeColored,
+    this.borderRadius});
 
   final String title;
   final bool? existContainer;
@@ -59,8 +59,8 @@ class CustomAppBar extends StatelessWidget {
                 color: backgroundColor ?? AppColors.mainColor,
                 borderRadius: borderRadius ?? true
                     ? BorderRadius.only(
-                        bottomLeft: Radius.circular(25.r),
-                        bottomRight: Radius.circular(25.r))
+                    bottomLeft: Radius.circular(25.r),
+                    bottomRight: Radius.circular(25.r))
                     : null),
           ),
         ),
@@ -72,7 +72,7 @@ class CustomAppBar extends StatelessWidget {
                 (30.w).pw,
                 GestureDetector(
                   onTap: onTapBack ??
-                      () {
+                          () {
                         Get.back();
                       },
                   child: SizedBox(
@@ -85,14 +85,15 @@ class CustomAppBar extends StatelessWidget {
               if (existBack == null) ...[
                 (30.w).pw,
                 Obx(
-                  () => SizedBox(
-                    child: Icon(
-                      Icons.wifi,
-                      color: myAppController.isOnline.value
-                          ? AppColors.greenColor
-                          : AppColors.grayColor,
-                    ),
-                  ),
+                      () =>
+                      SizedBox(
+                        child: Icon(
+                          Icons.wifi,
+                          color: myAppController.isOnline.value
+                              ? AppColors.greenColor
+                              : AppColors.grayColor,
+                        ),
+                      ),
                 ),
               ],
 
@@ -110,11 +111,14 @@ class CustomAppBar extends StatelessWidget {
               Visibility(
                 visible: iconSetting ?? false,
                 child: InkWell(
-                    onTap: onTapList,
+                    onTap: () {
+                      Get.to(() =>
+                    const   ProfileView());
+                    },
                     child: SizedBox(
                         width: 30.w,
                         child:
-                            SvgPicture.asset('assets/images/ic_setting.svg'))),
+                        SvgPicture.asset('assets/images/ic_setting.svg'))),
               ),
               iconSetting ?? false ? (30.w).pw : const SizedBox()
 
