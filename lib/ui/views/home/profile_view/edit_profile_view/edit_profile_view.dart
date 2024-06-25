@@ -13,12 +13,12 @@ import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class EditProfileView extends StatelessWidget {
-  EditProfileView({super.key});
-
-  ProfileController controller = Get.find();
+  const EditProfileView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    ProfileController controller = Get.find();
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.whiteColor,
@@ -240,7 +240,7 @@ class EditProfileView extends StatelessWidget {
                                               CrossAxisAlignment.start,
                                           children: [
                                             const CustomText(
-                                              text: 'Car Number:*',
+                                              text: 'Car Number:',
                                               textType: TextStyleType.body,
                                               fontWeight: FontWeight.w500,
                                             ),
@@ -252,7 +252,7 @@ class EditProfileView extends StatelessWidget {
                                             ),
                                             (20.h).ph,
                                             const CustomText(
-                                              text: 'Car Type:*',
+                                              text: 'Car Type:',
                                               textType: TextStyleType.body,
                                               fontWeight: FontWeight.w500,
                                             ),
@@ -265,7 +265,7 @@ class EditProfileView extends StatelessWidget {
                                             ),
                                             (20.h).ph,
                                             const CustomText(
-                                              text: 'Car Model:*',
+                                              text: 'Car Model:',
                                               textType: TextStyleType.body,
                                               fontWeight: FontWeight.w500,
                                             ),
@@ -290,21 +290,17 @@ class EditProfileView extends StatelessWidget {
                     ZoomIn(
                       delay: const Duration(milliseconds: 300),
                       duration: const Duration(milliseconds: 500),
-                      child: AnimatedOpacity(
-                        duration: const Duration(milliseconds: 500),
-                        opacity: controller.onPress.value ? 0 : 1,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20.w),
-                          child: Center(
-                            child: SizedBox(
-                                height: 50.h,
-                                child: CustomButton(
-                                    onPressed: () {
-                                      controller.editProfile();
-                                    },
-                                    text: 'Submit',
-                                    buttonTypeEnum: ButtonTypeEnum.big)),
-                          ),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20.w),
+                        child: Center(
+                          child: SizedBox(
+                              height: 50.h,
+                              child: CustomButton(
+                                  onPressed: () {
+                                    controller.editProfile();
+                                  },
+                                  text: 'Submit',
+                                  buttonTypeEnum: ButtonTypeEnum.big)),
                         ),
                       ),
                     ),

@@ -10,12 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProfileController extends BaseController {
-  RxString selectedGender = ''.obs;
-  RxString birthDay = ''.obs;
   RxList<bool> expandedContainer = [false, false].obs;
   UserInfo userInfo = UserInfo();
-  RxString paths = ''.obs;
-  RxBool fileTrue = false.obs;
 
   TextEditingController name = TextEditingController();
   TextEditingController lastName = TextEditingController();
@@ -23,8 +19,6 @@ class ProfileController extends BaseController {
   TextEditingController carModel = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController carType = TextEditingController();
-
-  RxBool onPress = false.obs;
 
   clickToExpanded({required int index}) {
     expandedContainer[index] = !expandedContainer[index];
@@ -63,7 +57,6 @@ class ProfileController extends BaseController {
         userInfo.car!.carNumber = carNumber.text;
         userInfo.car!.carType = carType.text;
         storage.setUserInfo(userInfo);
-        print(storage.getUserInfo()!.firstName);
         Get.off(() => MainView());
       });
     }));

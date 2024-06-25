@@ -6,7 +6,7 @@ import 'package:car_service/ui/shared/custom_widget/custom_container.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:car_service/ui/views/home/profile_view/profile_widget/custom_info.dart';
-import 'package:car_service/ui/views/home/profile_view/profile_widget/edit_profile_view.dart';
+import 'package:car_service/ui/views/home/profile_view/edit_profile_view/edit_profile_view.dart';
 import 'package:car_service/ui/views/home/profile_view/profile_controller.dart';
 import 'package:flutter/material.dart';
 
@@ -79,7 +79,7 @@ class ProfileView extends StatelessWidget {
                       onTap: () {
                         controller.expandedContainer[0] = true;
                         controller.expandedContainer[1] = false;
-                        Get.to(() => EditProfileView());
+                        Get.to(() => const EditProfileView());
                       },
                     ),
                     (20.h).ph,
@@ -95,7 +95,7 @@ class ProfileView extends StatelessWidget {
                       onTap: () {
                         controller.expandedContainer[0] = false;
                         controller.expandedContainer[1] = true;
-                        Get.to(() => EditProfileView());
+                        Get.to(() => const EditProfileView());
                       },
                     ),
                     (20.h).ph,
