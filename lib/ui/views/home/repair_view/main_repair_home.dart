@@ -36,7 +36,7 @@ class MainRepairView extends StatelessWidget {
             builder: (s) {
               return SizedBox(
                 height: 0.8.sh,
-                child: Column(
+                child: ListView(
                   children: [
                     FlutterStepIndicator(
                       height: 60.w,

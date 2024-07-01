@@ -32,7 +32,7 @@ class ParkSpotViewController extends BaseController {
     parkingtimer = ParkingTimer();
     update();
     initSpots();
-
+    parkingTimer();
     super.onInit();
   }
 

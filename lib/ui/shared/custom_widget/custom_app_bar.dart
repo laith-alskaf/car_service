@@ -113,7 +113,7 @@ class CustomAppBar extends StatelessWidget {
                 child: InkWell(
                     onTap: () {
                       Get.to(() =>
-                    const   ProfileView());
+                       ProfileView());
                     },
                     child: SizedBox(
                         width: 30.w,

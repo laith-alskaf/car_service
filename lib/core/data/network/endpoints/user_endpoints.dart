@@ -9,4 +9,5 @@ class UserEndPoints {
   static String verifyCode = NetworkConfig.getFullApiRout('user/sendCode');
   static String sendCode = NetworkConfig.getFullApiRout('user/verifyCode');
   static String editProfile = NetworkConfig.getFullApiRout('user/settings');
+  static String pro = NetworkConfig.getFullApiRout('pro');
 }

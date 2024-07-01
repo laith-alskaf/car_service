@@ -1,3 +1,5 @@
+import 'package:car_service/core/data/models/api/pro_model.dart';
+import 'package:car_service/core/data/repositories/user_repositories.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
@@ -12,6 +14,7 @@ import '../../../../core/data/models/api/parking_model.dart';
 
 class HomeViewController extends BaseController {
   ParkingTimer? parkingTimer;
+  ProModel? proinfo;
   RxInt numberHoursPark = 1.obs;
 
   @override
@@ -64,6 +67,8 @@ class HomeViewController extends BaseController {
       });
     }));
   }
+
+
 
   showDialogExpandTime() {
     showDialog(

@@ -18,7 +18,7 @@ class UserRepository {
           type: RequestType.POST,
           url: UserEndPoints.login,
           headers:
-              NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
+          NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
           body: {
             'email': email,
             'password': password,
@@ -26,7 +26,7 @@ class UserRepository {
         if (response != null) {
           log('==========> ${response}');
           CommonResponse<Map<String, dynamic>> commonResponse =
-              CommonResponse.fromJson(response);
+          CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
             log('==========> ${commonResponse.data!['user']}');
             storage
@@ -56,14 +56,14 @@ class UserRepository {
           type: RequestType.POST,
           url: UserEndPoints.verifyResetPassword,
           headers:
-              NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
+          NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
           body: {
             'code': code,
             'email': email,
           }).then((response) {
         if (response != null) {
           CommonResponse<Map<String, dynamic>> commonResponse =
-              CommonResponse.fromJson(response);
+          CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
             return Right(commonResponse.data!['message']);
           } else {
@@ -88,7 +88,7 @@ class UserRepository {
           type: RequestType.POST,
           url: UserEndPoints.resetPassword,
           headers:
-              NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
+          NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
           body: {
             'newPassword': newPassword,
             'confirmPassword': confirmPassword,
@@ -96,7 +96,7 @@ class UserRepository {
           }).then((response) {
         if (response != null) {
           CommonResponse<Map<String, dynamic>> commonResponse =
-              CommonResponse.fromJson(response);
+          CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
             return Right(commonResponse.data!['message']);
           } else {
@@ -119,13 +119,13 @@ class UserRepository {
           type: RequestType.POST,
           url: UserEndPoints.forgetPassword,
           headers:
-              NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
+          NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
           body: {
             'email': email,
           }).then((response) {
         if (response != null) {
           CommonResponse<Map<String, dynamic>> commonResponse =
-              CommonResponse.fromJson(response);
+          CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
             return Right(commonResponse.data!['message']);
           } else {
@@ -148,14 +148,14 @@ class UserRepository {
         type: RequestType.POST,
         url: UserEndPoints.verifyCode,
         headers:
-            NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
+        NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
         body: {
           'email': email,
         },
       ).then((response) {
         if (response != null) {
           CommonResponse<Map<String, dynamic>> commonResponse =
-              CommonResponse.fromJson(response);
+          CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
             return Right(commonResponse.data!['message']);
           } else {
@@ -179,12 +179,12 @@ class UserRepository {
           type: RequestType.POST,
           url: UserEndPoints.sendCode,
           headers:
-              NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
+          NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
           body: {'code': code, 'email': email}).then((response) {
         if (response != null) {
           log('==========> ${response}');
           CommonResponse<Map<String, dynamic>> commonResponse =
-              CommonResponse.fromJson(response);
+          CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
             storage
                 .setUserInfo(UserInfo.fromJson(commonResponse.data!['user']));
@@ -229,11 +229,11 @@ class UserRepository {
           'carType': carType,
         },
         headers:
-            NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
+        NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
       ).then((response) {
         if (response != null) {
           CommonResponse<Map<String, dynamic>> commonResponse =
-              CommonResponse.fromJson(response);
+          CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
             return Right(commonResponse.data!['message']);
           } else {
@@ -269,11 +269,11 @@ class UserRepository {
           'carType': carType,
         },
         headers:
-            NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
+        NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
       ).then((response) {
         if (response != null) {
           CommonResponse<Map<String, dynamic>> commonResponse =
-              CommonResponse.fromJson(response);
+          CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
             return Right(commonResponse.data!['message']);
           } else {

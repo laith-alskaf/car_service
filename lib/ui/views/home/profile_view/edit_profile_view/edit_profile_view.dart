@@ -51,7 +51,7 @@ class EditProfileView extends StatelessWidget {
                   children: [
                     (10.h).ph,
                     Obx(
-                      () => FadeInLeft(
+                          () => FadeInLeft(
                         delay: const Duration(milliseconds: 200),
                         duration: const Duration(milliseconds: 400),
                         child: AnimatedContainer(
@@ -63,7 +63,7 @@ class EditProfileView extends StatelessWidget {
                           margin: EdgeInsets.symmetric(horizontal: 20.w),
                           decoration: BoxDecoration(
                             borderRadius:
-                                BorderRadiusDirectional.circular(15.r),
+                            BorderRadiusDirectional.circular(15.r),
                             color: AppColors.whiteColor,
                             boxShadow: [
                               BoxShadow(
@@ -107,25 +107,25 @@ class EditProfileView extends StatelessWidget {
                                     duration: const Duration(milliseconds: 500),
                                     child: Column(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.start,
+                                      MainAxisAlignment.start,
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      CrossAxisAlignment.start,
                                       children: [
                                         Row(
                                           children: [
                                             Column(
                                                 crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                CrossAxisAlignment.start,
                                                 children: [
                                                   const CustomText(
                                                     text: 'Name:',
                                                     textType:
-                                                        TextStyleType.body,
+                                                    TextStyleType.body,
                                                     fontWeight: FontWeight.w500,
                                                   ),
                                                   CustomTextFormField(
                                                     keyboardType:
-                                                        TextInputType.name,
+                                                    TextInputType.name,
                                                     widthContainer: 190.w,
                                                     controller: controller.name,
                                                     hintText: '',
@@ -134,7 +134,7 @@ class EditProfileView extends StatelessWidget {
                                             (40.w).pw,
                                             Column(
                                               crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                               children: [
                                                 const CustomText(
                                                   text: 'Family:',
@@ -144,9 +144,9 @@ class EditProfileView extends StatelessWidget {
                                                 CustomTextFormField(
                                                   widthContainer: 190.w,
                                                   controller:
-                                                      controller.lastName,
+                                                  controller.lastName,
                                                   keyboardType:
-                                                      TextInputType.name,
+                                                  TextInputType.name,
                                                   hintText: '',
                                                 ),
                                               ],
@@ -176,7 +176,7 @@ class EditProfileView extends StatelessWidget {
                     ),
                     (20.h).ph,
                     Obx(
-                      () => FadeInLeft(
+                          () => FadeInLeft(
                         delay: const Duration(milliseconds: 200),
                         duration: const Duration(milliseconds: 400),
                         child: AnimatedContainer(
@@ -188,7 +188,7 @@ class EditProfileView extends StatelessWidget {
                           margin: EdgeInsets.symmetric(horizontal: 20.w),
                           decoration: BoxDecoration(
                             borderRadius:
-                                BorderRadiusDirectional.circular(15.r),
+                            BorderRadiusDirectional.circular(15.r),
                             color: AppColors.whiteColor,
                             boxShadow: [
                               BoxShadow(
@@ -213,7 +213,7 @@ class EditProfileView extends StatelessWidget {
                               GestureDetector(
                                   onTap: () {
                                     controller.expandedContainer[1] =
-                                        !controller.expandedContainer[1];
+                                    !controller.expandedContainer[1];
                                   },
                                   child: const CustomRowInfo(
                                     isEdit: true,
@@ -233,11 +233,11 @@ class EditProfileView extends StatelessWidget {
                                   duration: const Duration(milliseconds: 500),
                                   child: Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    CrossAxisAlignment.start,
                                     children: [
                                       Column(
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                           children: [
                                             const CustomText(
                                               text: 'Car Number:',
@@ -258,7 +258,7 @@ class EditProfileView extends StatelessWidget {
                                             ),
                                             CustomTextFormField(
                                               keyboardType:
-                                                  TextInputType.emailAddress,
+                                              TextInputType.emailAddress,
                                               widthContainer: 1.sw,
                                               controller: controller.carType,
                                               hintText: '',
@@ -271,7 +271,7 @@ class EditProfileView extends StatelessWidget {
                                             ),
                                             CustomTextFormField(
                                               keyboardType:
-                                                  TextInputType.emailAddress,
+                                              TextInputType.emailAddress,
                                               widthContainer: 1.sw,
                                               controller: controller.carModel,
                                               hintText: '',

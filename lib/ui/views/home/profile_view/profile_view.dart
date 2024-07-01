@@ -55,7 +55,7 @@ class ProfileView extends StatelessWidget {
                               CustomText(
                                   fontWeight: FontWeight.bold,
                                   text:
-                                      '${storage.getUserInfo()!.firstName} ${storage.getUserInfo()!.lastName}',
+                                  '${storage.getUserInfo()!.firstName} ${storage.getUserInfo()!.lastName}',
                                   textType: TextStyleType.subtitle),
                               (2.h).ph,
                               const CustomText(
