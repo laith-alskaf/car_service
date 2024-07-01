@@ -1,4 +1,3 @@
-import 'package:car_service/core/data/models/api/pro_model.dart';
 import 'package:car_service/core/data/repositories/user_repositories.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
@@ -14,12 +13,13 @@ import '../../../../core/data/models/api/parking_model.dart';
 
 class HomeViewController extends BaseController {
   ParkingTimer? parkingTimer;
-  ProModel? proinfo;
   RxInt numberHoursPark = 1.obs;
+  List proInfo = <String>[];
 
   @override
-  void onInit() {
-    getParkingTimer();
+  void onInit() async {
+    await getParkingTimer();
+    await getPro();
     super.onInit();
   }
 
@@ -54,6 +54,15 @@ class HomeViewController extends BaseController {
     }));
   }
 
+  Future<void> getPro() async {
+    await UserRepository().pro().then((value) {
+      value.fold((l) {}, (r) {
+        proInfo = r;
+        print(proInfo[0]);
+      });
+    });
+  }
+
   Future<void> expandTime() async {
     await runFullLoadingFutureFunction(
         function: ParkRepository()
@@ -67,8 +76,6 @@ class HomeViewController extends BaseController {
       });
     }));
   }
-
-
 
   showDialogExpandTime() {
     showDialog(
@@ -162,16 +169,4 @@ class HomeViewController extends BaseController {
       },
     );
   }
-}
-
-class HomeAction {
-  final String? image;
-  final String? textBottom;
-  final List<String>? listText;
-
-  HomeAction({
-    this.image,
-    this.textBottom,
-    this.listText,
-  });
 }

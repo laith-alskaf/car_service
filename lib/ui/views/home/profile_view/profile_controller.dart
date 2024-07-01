@@ -40,25 +40,25 @@ class ProfileController extends BaseController {
     await runFullLoadingFutureFunction(
         function: UserRepository()
             .editProfile(
-            lastName: lastName.text,
-            firstName: name.text,
-            carNumber: carNumber.text,
-            carModel: carModel.text,
-            carType: carType.text)
+                lastName: lastName.text,
+                firstName: name.text,
+                carNumber: carNumber.text,
+                carModel: carModel.text,
+                carType: carType.text)
             .then((value) {
-          value.fold((l) {
-            CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
-          }, (r) {
-            CustomToast.showMessage(message: r, messageType: MessageType.SUCCESS);
-            userInfo.firstName = name.text;
-            userInfo.username = name.text;
-            userInfo.lastName = lastName.text;
-            userInfo.car!.carModel = carModel.text;
-            userInfo.car!.carNumber = carNumber.text;
-            userInfo.car!.carType = carType.text;
-            storage.setUserInfo(userInfo);
-            Get.off(() => MainView());
-          });
-        }));
+      value.fold((l) {
+        CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+      }, (r) {
+        CustomToast.showMessage(message: r, messageType: MessageType.SUCCESS);
+        userInfo.firstName = name.text;
+        userInfo.username = name.text;
+        userInfo.lastName = lastName.text;
+        userInfo.car!.carModel = carModel.text;
+        userInfo.car!.carNumber = carNumber.text;
+        userInfo.car!.carType = carType.text;
+        storage.setUserInfo(userInfo);
+        Get.offAll(() => MainView());
+      });
+    }));
   }
 }

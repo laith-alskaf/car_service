@@ -22,7 +22,7 @@ class ParkingTimerView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: ListView(children: [
-           CustomAppBar(
+          CustomAppBar(
             title: tr('Parking Timer'),
             iconSetting: true,
           ),
@@ -73,7 +73,7 @@ class ParkingTimerView extends StatelessWidget {
           (20.h).ph,
           GestureDetector(
             onTap: () {
-              Get.offAll(MainView());
+              Get.offAll(() => MainView());
             },
             child: CustomText(
               text: tr('Return To Home Page'),

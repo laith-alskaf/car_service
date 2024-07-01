@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:car_service/core/data/models/api/user_info_model.dart';
 import 'package:car_service/core/utils/general_util.dart';
+import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_container.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
@@ -22,6 +23,7 @@ class ProfileView extends StatelessWidget {
     UserInfo userInfo = storage.getUserInfo()!;
     return SafeArea(
       child: Scaffold(
+        backgroundColor: AppColors.whiteColor,
         body: ListView(children: [
           CustomAppBar(
             title: 'Profile',

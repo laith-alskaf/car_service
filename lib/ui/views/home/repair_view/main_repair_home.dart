@@ -92,16 +92,19 @@ class MainRepairView extends StatelessWidget {
                                 color: AppColors.mainColor,
                                 size: 80.w,
                               )
-                            : CustomButton(
-                                onPressed: () {
-                                  controller.handleButtonPress(
-                                      isIncrease: true);
-                                },
-                                text: controller.page == 4 ? 'Finish' : 'Next',
-                                buttonTypeEnum: ButtonTypeEnum.medium,
-                                width: 240.w,
-                                height: 55.h,
-                              ),
+                            : Padding(
+                              padding:  EdgeInsets.only(top: 10.h),
+                              child: CustomButton(
+                                  onPressed: () {
+                                    controller.handleButtonPress(
+                                        isIncrease: true);
+                                  },
+                                  text: controller.page == 4 ? 'Finish' : 'Next',
+                                  buttonTypeEnum: ButtonTypeEnum.medium,
+                                  width: 240.w,
+                                  height: 55.h,
+                                ),
+                            ),
                         (20.h).ph,
                         if (controller.page != 0)
                           GestureDetector(
