@@ -18,7 +18,7 @@ class ParkRepository {
           type: RequestType.POST,
           url: ParkEndPoints.getClosestPark,
           headers:
-          NetworkConfig.getHeaders(needAuth: true, type: RequestType.POST),
+              NetworkConfig.getHeaders(needAuth: true, type: RequestType.POST),
           body: {
             'userLatitude': lat,
             'userLongitude': long,
@@ -26,12 +26,12 @@ class ParkRepository {
         if (response != null) {
           log('==========> ${response}');
           CommonResponse<Map<String, dynamic>> commonResponse =
-          CommonResponse.fromJson(response);
+              CommonResponse.fromJson(response);
 
           if (commonResponse.getStatus) {
             List<ChooseParkingModel> listParking = [];
             for (Map<String, dynamic> parkingModel
-            in commonResponse.data!['parkingLocations']) {
+                in commonResponse.data!['parkingLocations']) {
               listParking.add(ChooseParkingModel.fromJson(parkingModel));
             }
             return Right(listParking);
@@ -55,14 +55,14 @@ class ParkRepository {
           type: RequestType.POST,
           url: ParkEndPoints.choosePark,
           headers:
-          NetworkConfig.getHeaders(needAuth: true, type: RequestType.POST),
+              NetworkConfig.getHeaders(needAuth: true, type: RequestType.POST),
           body: {
             'ParkingNumber': ParkingNumber,
           }).then((response) {
         if (response != null) {
           log('==========> ${response}');
           CommonResponse<Map<String, dynamic>> commonResponse =
-          CommonResponse.fromJson(response);
+              CommonResponse.fromJson(response);
 
           if (commonResponse.getStatus) {
             return Right(commonResponse.data);
@@ -89,7 +89,7 @@ class ParkRepository {
           type: RequestType.POST,
           url: ParkEndPoints.chooseTime,
           headers:
-          NetworkConfig.getHeaders(needAuth: true, type: RequestType.POST),
+              NetworkConfig.getHeaders(needAuth: true, type: RequestType.POST),
           body: {
             'username': storage.getUserInfo()!.username,
             'duration': duration,
@@ -100,7 +100,7 @@ class ParkRepository {
         if (response != null) {
           log('==========> ${response}');
           CommonResponse<Map<String, dynamic>> commonResponse =
-          CommonResponse.fromJson(response);
+              CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
             return Right(parkingorderdetails.fromJson(commonResponse.data!));
           } else {
@@ -114,6 +114,7 @@ class ParkRepository {
       return Left(e.toString());
     }
   }
+
   //-----------------------------------------------------------------
   Future<Either<String, ParkingTimer>> parkingtimer() async {
     try {
@@ -121,14 +122,14 @@ class ParkRepository {
           type: RequestType.POST,
           url: ParkEndPoints.parkingtimer,
           headers:
-          NetworkConfig.getHeaders(needAuth: true, type: RequestType.POST),
+              NetworkConfig.getHeaders(needAuth: true, type: RequestType.POST),
           body: {
             'username': storage.getUserInfo()!.username,
           }).then((response) {
         if (response != null) {
           log('==========> ${response}');
           CommonResponse<Map<String, dynamic>> commonResponse =
-          CommonResponse.fromJson(response);
+              CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
             return Right(ParkingTimer.fromJson(commonResponse.data!));
           } else {
@@ -142,6 +143,7 @@ class ParkRepository {
       return Left(e.toString());
     }
   }
+
   Future<Either<String, String>> expandtime({
     required int duration,
   }) async {
@@ -150,14 +152,14 @@ class ParkRepository {
           type: RequestType.POST,
           url: ParkEndPoints.expandtime,
           headers:
-          NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
+              NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
           body: {
-            'username':storage.getUserInfo()!.username,
+            'username': storage.getUserInfo()!.username,
             'duration': duration,
           }).then((response) {
         if (response != null) {
           CommonResponse<Map<String, dynamic>> commonResponse =
-          CommonResponse.fromJson(response);
+              CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
             return Right(commonResponse.data!['message']);
           } else {
@@ -166,17 +168,11 @@ class ParkRepository {
         } else {
           return const Left('Please check your internet');
         }
-
       });
     } catch (e) {
       return Left(e.toString());
     }
   }
-
-
-
-
-
 
   Future<Either<String, List<ParkingHistoryModel>>> getHistoryParking() async {
     try {
@@ -190,7 +186,7 @@ class ParkRepository {
         if (response != null) {
           log('==========> $response');
           CommonResponse<List<dynamic>> commonResponse =
-          CommonResponse.fromJson(response);
+              CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
             List<ParkingHistoryModel> historyParking = [];
             for (Map<String, dynamic> s in commonResponse.data!) {
@@ -216,15 +212,11 @@ class ParkRepository {
           type: RequestType.POST,
           url: ParkEndPoints.deleteHistoryPark,
           headers: NetworkConfig.getHeaders(type: RequestType.POST),
-          body: {
-            "id":idPark
-          }
-      ).then((response) {
-
+          body: {"id": idPark}).then((response) {
         if (response != null) {
           log('==========> $response');
           CommonResponse<Map<String, dynamic>> commonResponse =
-          CommonResponse.fromJson(response);
+              CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
             return Right(commonResponse.data!['message']);
           } else {
@@ -239,4 +231,37 @@ class ParkRepository {
     }
   }
 
+  Future<Either<String, List<String>>> chooseQRPark({
+    required String parkName,
+  }) async {
+    try {
+      return NetworkUtil.sendRequest(
+          type: RequestType.POST,
+          url: ParkEndPoints.chooseQRPark,
+          headers: NetworkConfig.getHeaders(type: RequestType.POST),
+          body: {
+            'ParkingNumber': parkName,
+          }).then((response) {
+        if (response != null) {
+          log('==========> ${response}');
+          CommonResponse<Map<String, dynamic>> commonResponse =
+              CommonResponse.fromJson(response);
+          if (commonResponse.getStatus) {
+            List<String> order = [];
+            order.add(commonResponse.data!['ParkingName']);
+            order.add(commonResponse.data!['spot'].toString());
+            order.add(commonResponse.data!['Price'].toString());
+
+            return Right(order);
+          } else {
+            return Left(commonResponse.message ?? '');
+          }
+        } else {
+          return const Left('Please check your internet');
+        }
+      });
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
 }

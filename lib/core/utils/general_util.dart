@@ -8,6 +8,7 @@ import 'package:car_service/core/services/connectivity_service.dart';
 import 'package:car_service/app/my_app_controller.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:socket_io_client/socket_io_client.dart' as socket_io;
 
 HiveRepository get storage => Get.find<HiveRepository>();
 
@@ -119,3 +120,10 @@ List<LatLng> polygonHOMS = const [
   LatLng(34.719133, 36.757399),
   LatLng(34.756260, 36.755292),
 ];
+socket_io.Socket socket = socket = socket_io.io(
+  'http://192.168.137.1:5000/',
+  <String, dynamic>{
+    'transports': ['websocket'],
+    'autoConnect': false,
+  },
+);

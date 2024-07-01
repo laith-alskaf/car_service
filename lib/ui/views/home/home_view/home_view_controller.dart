@@ -1,4 +1,5 @@
 import 'package:car_service/core/data/repositories/user_repositories.dart';
+import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
@@ -14,12 +15,16 @@ import '../../../../core/data/models/api/parking_model.dart';
 class HomeViewController extends BaseController {
   ParkingTimer? parkingTimer;
   RxInt numberHoursPark = 1.obs;
+  late String qrParkChoose;
+  late List<String> qrParkDetails;
+
   List proInfo = <String>[];
 
   @override
   void onInit() async {
     await getParkingTimer();
     await getPro();
+    connectSocket();
     super.onInit();
   }
 
@@ -73,6 +78,19 @@ class HomeViewController extends BaseController {
       }, (r) {
         CustomToast.showMessage(message: r, messageType: MessageType.SUCCESS);
         getParkingTimer();
+      });
+    }));
+  }
+
+  Future<void> chooseQRPark() async {
+    await runFullLoadingFutureFunction(
+        function:
+            ParkRepository().chooseQRPark(parkName: qrParkChoose).then((value) {
+      value.fold((l) {
+        CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+      }, (r) {
+        qrParkDetails = r;
+        print(qrParkDetails);
       });
     }));
   }
@@ -168,5 +186,14 @@ class HomeViewController extends BaseController {
         );
       },
     );
+  }
+
+  void connectSocket() {
+    socket.auth = {
+      'user_id': storage.getUserInfo()!.sId,
+      'user_name': storage.getUserInfo()!.username,
+    };
+    socket.connect();
+    ('connect');
   }
 }

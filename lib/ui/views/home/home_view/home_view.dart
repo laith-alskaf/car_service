@@ -5,6 +5,7 @@ import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:car_service/ui/views/home/home_view/home_view_controller.dart';
 import 'package:car_service/ui/views/home/home_view/home_widget/conteiner_info.dart';
+import 'package:car_service/ui/views/home/home_view/home_widget/qr_scanner.dart';
 import 'package:car_service/ui/views/home/home_view/home_widget/services_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -72,10 +73,15 @@ class HomeView extends StatelessWidget {
                     (20.h).ph,
                     Row(
                       children: [
-                        CustomContainerInfo(
-                          title: "Scan Qr Code",
-                          image: "qr",
-                          width: 0.4.sw,
+                        GestureDetector(
+                          onTap: () {
+                            showQrScanner();
+                          },
+                          child: CustomContainerInfo(
+                            title: "Scan Qr Code",
+                            image: "qr",
+                            width: 0.4.sw,
+                          ),
                         ),
                         (15.w).pw,
                         CustomContainerInfo(
