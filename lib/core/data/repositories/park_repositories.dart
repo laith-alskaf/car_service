@@ -231,7 +231,7 @@ class ParkRepository {
     }
   }
 
-  Future<Either<String, List<String>>> chooseQRPark({
+  Future<Either<String, List<dynamic>>> chooseQRPark({
     required String parkName,
   }) async {
     try {
@@ -247,10 +247,10 @@ class ParkRepository {
           CommonResponse<Map<String, dynamic>> commonResponse =
               CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
-            List<String> order = [];
+            List<dynamic> order = [];
             order.add(commonResponse.data!['ParkingName']);
-            order.add(commonResponse.data!['spot'].toString());
-            order.add(commonResponse.data!['Price'].toString());
+            order.add(commonResponse.data!['spot']);
+            order.add(commonResponse.data!['Price']);
 
             return Right(order);
           } else {
