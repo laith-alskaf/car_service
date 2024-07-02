@@ -5,14 +5,17 @@ import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+
+import '../home_view_controller.dart';
 
 class ContainerSubscription extends StatelessWidget {
-  const ContainerSubscription({super.key});
-
-  @override
+   ContainerSubscription({super.key});
+   HomeViewController controller =Get.find();
+   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200.h,
+      height: 175.h,
       width: 1.sw,
       decoration: BoxDecoration(
         color: AppColors.whiteColor,
@@ -29,6 +32,7 @@ class ContainerSubscription extends StatelessWidget {
       child: Padding(
         padding:  EdgeInsets.symmetric(horizontal: 15.h),
         child: ListView(
+          shrinkWrap: true,
           children: [
             Row(
               children: [
@@ -41,21 +45,49 @@ class ContainerSubscription extends StatelessWidget {
               ],
             ),
             (20.h).ph,
-            Row(
-              children: [
-                CustomText(text: "wash your car up to 3 times a month",
-                  fontSize: 14.h,
-                  fontWeight: FontWeight.bold,
-                  textType: TextStyleType.body,textColor: AppColors.blueColor,),
-                (40.w).pw,
-                SvgPicture.asset("assets/images/ph_x-bold.svg"),
-                (70.w).pw,
-                SvgPicture.asset("assets/images/icon-park-outline_correct.svg"),
+            ...List.generate(controller.proInfo.length, (index) {
+              return Row(
+                children: [
+                  SizedBox(
+                    width: 340.w,
+                    child: CustomText(text: '- '+controller.proInfo[index],
+
+                      fontSize: 14.h,
+                      fontWeight: FontWeight.bold,
+                      textType: TextStyleType.body,textColor: AppColors.blueColor,),
+                  ),
+                  SizedBox(
+                    width: 150.w,
+                    child: Row(
+                      children: [
+                        SvgPicture.asset("assets/images/ph_x-bold.svg"),
+                        (70.w).pw,
+                        SvgPicture.asset("assets/images/icon-park-outline_correct.svg"),
+                      ],
+                    ),
+                  )
 
 
 
-              ],
-            ),
+
+                ],
+              );
+            },),
+            // Row(
+            //   children: [
+            //     CustomText(text: "wash your car up to 3 times a month",
+            //       fontSize: 14.h,
+            //       fontWeight: FontWeight.bold,
+            //       textType: TextStyleType.body,textColor: AppColors.blueColor,),
+            //     (40.w).pw,
+            //     SvgPicture.asset("assets/images/ph_x-bold.svg"),
+            //     (70.w).pw,
+            //     SvgPicture.asset("assets/images/icon-park-outline_correct.svg"),
+            //
+            //
+            //
+            //   ],
+            // ),
           ],
         ),
       ),

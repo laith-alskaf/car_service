@@ -312,4 +312,30 @@ class UserRepository {
       return Left(e.toString());
     }
   }
+  Future<Either<String, String>> GetPro() async {
+    try {
+      return NetworkUtil.sendRequest(
+          type: RequestType.POST,
+          url: UserEndPoints.getpro,
+          headers:
+          NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
+          body: {'username': storage.getUserInfo()!.username, 'Payment': 1000000}).then((response) {
+        if (response != null) {
+          log('==========> ${response}');
+          CommonResponse<Map<String, dynamic>> commonResponse =
+          CommonResponse.fromJson(response);
+          if (commonResponse.getStatus) {
+            return Right(commonResponse.data!['message']);
+          } else {
+            return Left(commonResponse.message ?? '');
+          }
+        } else {
+          return const Left('Please check your internet');
+        }
+      });
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+
 }

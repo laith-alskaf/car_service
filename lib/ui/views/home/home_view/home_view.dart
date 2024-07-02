@@ -1,6 +1,7 @@
 import 'package:car_service/ui/admin_view/all_order_detiels/all_order_view.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
+import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:car_service/ui/views/home/home_view/home_view_controller.dart';
@@ -28,6 +29,7 @@ class HomeView extends StatelessWidget {
             return controller.onInit();
           },
           child: ListView(
+            shrinkWrap: true,
             children: [
               const CustomAppBar(
                 title: 'Home',
@@ -39,7 +41,48 @@ class HomeView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const ContainerSubscription(),
+                    InkWell(
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                backgroundColor: AppColors.whiteColor,
+                                content: const Text(
+                                    'Are you sure you want to be a prime member of this app ?'),
+                                actions: <Widget>[
+                                  Row(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                     mainAxisAlignment: MainAxisAlignment.center ,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child:  CustomText(
+                                          textType: TextStyleType.subtitle,
+                                          text: "cansel",
+                                          textColor: AppColors.mainColor,
+                                        ),
+                                      ),
+                                      (60.w).pw,
+                                      CustomButton(
+                                        buttonTypeEnum: ButtonTypeEnum.small,
+                                        onPressed: () {
+                                          controller.GetProSub();
+                                          Navigator.of(context).pop();
+                                        },
+                                        text: "ok",
+                                        backgroundColor: AppColors.mainColor,
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
+                        child: ContainerSubscription()),
                     (50.h).ph,
                     Padding(
                       padding: EdgeInsetsDirectional.only(start: 5.h),

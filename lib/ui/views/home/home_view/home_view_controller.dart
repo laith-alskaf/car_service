@@ -105,6 +105,19 @@ class HomeViewController extends BaseController {
           });
         }));
   }
+  Future<void> GetProSub() async {
+    await runFullLoadingFutureFunction(
+        function: UserRepository()
+            .GetPro()
+            .then((value) {
+          value.fold((l) {
+            CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+          }, (r) {
+            CustomToast.showMessage(message: r, messageType: MessageType.SUCCESS);
+          });
+        }));
+  }
+
 
   showDialogExpandTime() {
     showDialog(
