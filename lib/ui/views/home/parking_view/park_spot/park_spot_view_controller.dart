@@ -98,33 +98,7 @@ class ParkSpotViewController extends BaseController {
 
       time.value = '$hour:$minute $period';
 
-      mintes = minute - TimeOfDay.now().minute;
 
-      int currentHour = TimeOfDay.now().hour;
-      int endHour = hour + numberHoursPark;
-
-// إذا كان الوقت الإجمالي يتجاوز منتصف الليل (24:00), نقوم بتصحيحه
-      if (endHour >= 24) {
-        endHour -= 24;
-      }
-// التحقق مما إذا كان الوقت الحالي قد تجاوز وقت الانتهاء
-      if (currentHour < hour || currentHour > endHour) {
-        // إذا كان الوقت الحالي قبل وقت البدء أو بعد وقت الانتهاء، نستخدم الوقت بالكامل
-        hours = numberHoursPark;
-      } else {
-        // إذا كان الوقت الحالي بين وقت البدء ووقت الانتهاء، نحسب الساعات المتبقية
-        hours = endHour - currentHour;
-        // -----------------------------------------------------------------------------------------------------------
-        int currentMinute = TimeOfDay.now().minute;
-        int minutesDifference = minute - currentMinute;
-
-// للتأكد من أن minutesDifference ليست سالبة، يمكنك إضافة 60 إليها إذا كانت سالبة
-// لأن الوقت عبارة عن دورة 24 ساعة
-        if (minutesDifference < 0) {
-          minutesDifference += 60;
-        }
-        mintes = minutesDifference;
-      }
     }
     update();
   }
