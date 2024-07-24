@@ -1,4 +1,5 @@
 import 'package:car_service/ui/admin_view/all_order_detiels/all_order_view.dart';
+import 'package:car_service/ui/admin_view/all_parking_order/all_parking_order.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
@@ -13,6 +14,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 
+import '../../../admin_view/add_park/add_park_view.dart';
 import 'home_widget/container_subscription.dart';
 
 // ignore: must_be_immutable
@@ -108,7 +110,7 @@ class HomeView extends StatelessWidget {
                       child: CustomContainerInfo(
                         title: "Find Available Maintenance spots",
                         onpresed: () {
-                          Get.to(() => const AllOrderView());
+                          Get.to(() =>  AddParkView());
                         },
                         image: "meantenance",
                       ),

@@ -98,4 +98,43 @@ class AdminRepositories {
       return Left(e.toString());
     }
   }
+  Future<Either<String, String>> AddPark({
+    required String AdminEmail,
+    required int price,
+    required int NumberOfCarRepairPlaces,
+    required String parkingName,
+    required double lat,
+    required double long,
+  }) async {
+    try {
+      return NetworkUtil.sendRequest(
+          type: RequestType.POST,
+          url: AdminEndpoint.addPark,
+          headers: NetworkConfig.getHeaders(type: RequestType.POST),
+          body: {
+            'AdminEmail': AdminEmail,
+            'Price': price,
+            'parkingName':parkingName,
+            'NumberOfCarRepairPlaces': NumberOfCarRepairPlaces,
+            'parklat': lat,
+            'parklong': long,
+
+          }).then((response) {
+        if (response != null) {
+          log('==========> ${response}');
+          CommonResponse<Map<String, dynamic>> commonResponse =
+          CommonResponse.fromJson(response);
+          if (commonResponse.getStatus) {
+            return Right(commonResponse.data!['message']);
+          } else {
+            return Left(commonResponse.message ?? '');
+          }
+        } else {
+          return const Left('Please check your internet');
+        }
+      });
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
 }

@@ -29,7 +29,7 @@ class HomeViewController extends BaseController {
   void onInit() async {
     await getParkingTimer();
     await getPro();
-    connectSocket();
+    // connectSocket();
     super.onInit();
   }
 
@@ -213,29 +213,29 @@ class HomeViewController extends BaseController {
     );
   }
 
-  void connectSocket() async {
-    List<ProblemHistoryModel> problemHistoryModel = [];
-    if (!socket.connected) {
-      socket.auth = {
-        'user_id': storage.getUserInfo()!.sId,
-        'username': storage.getUserInfo()!.username,
-      };
-      socket.connect();
-      socket.emit('auth', {
-        'username': 'hashem',
-        // 'username': storage.getUserInfo()!.username,
-      });
-      socket.on('getall', (message) {
-        for (Map<String, dynamic> s in message) {
-          problemHistoryModel.add(ProblemHistoryModel.fromJson(s));
-        }
-        print(problemHistoryModel[0].userId!.firstName);
-      });
-      socket.on('add', (message) {
-        problemHistoryModel.add(ProblemHistoryModel.fromJson(message));
-        print(problemHistoryModel.last.userId!.sId);
-      });
-      print('connect');
-    }
-  }
+  // void connectSocket() async {
+  //   List<ProblemHistoryModel> problemHistoryModel = [];
+  //   if (!socket.connected) {
+  //     socket.auth = {
+  //       'user_id': storage.getUserInfo()!.sId,
+  //       'username': storage.getUserInfo()!.username,
+  //     };
+  //     socket.connect();
+  //     socket.emit('auth', {
+  //       'username': 'hashem',
+  //       // 'username': storage.getUserInfo()!.username,
+  //     });
+  //     socket.on('getall', (message) {
+  //       for (Map<String, dynamic> s in message) {
+  //         problemHistoryModel.add(ProblemHistoryModel.fromJson(s));
+  //       }
+  //       print(problemHistoryModel[0].userId!.firstName);
+  //     });
+  //     socket.on('add', (message) {
+  //       problemHistoryModel.add(ProblemHistoryModel.fromJson(message));
+  //       print(problemHistoryModel.last.userId!.sId);
+  //     });
+  //     print('connect');
+  //   }
+  // }
 }

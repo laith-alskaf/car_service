@@ -283,3 +283,58 @@ class ParkingTimer {
     return data;
   }
 }
+class SocketPark {
+  String? sId;
+  UserId? userId;
+  SelectedPark? selectedPark;
+  int? duration;
+  int? price;
+  String? createdAt;
+  String? updatedAt;
+  int? iV;
+  String? orderFinishDate;
+
+  SocketPark(
+      {this.sId,
+        this.userId,
+        this.selectedPark,
+        this.duration,
+        this.price,
+        this.createdAt,
+        this.updatedAt,
+        this.iV,
+        this.orderFinishDate});
+
+  SocketPark.fromJson(Map<String, dynamic> json) {
+    sId = json['_id'];
+    userId =
+    json['userId'] != null ? new UserId.fromJson(json['userId']) : null;
+    selectedPark = json['SelectedPark'] != null
+        ? new SelectedPark.fromJson(json['SelectedPark'])
+        : null;
+    duration = json['duration'];
+    price = json['Price'];
+    createdAt = json['createdAt'];
+    updatedAt = json['updatedAt'];
+    iV = json['__v'];
+    orderFinishDate = json['orderFinishDate'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['_id'] = this.sId;
+    if (this.userId != null) {
+      data['userId'] = this.userId!.toJson();
+    }
+    if (this.selectedPark != null) {
+      data['SelectedPark'] = this.selectedPark!.toJson();
+    }
+    data['duration'] = this.duration;
+    data['Price'] = this.price;
+    data['createdAt'] = this.createdAt;
+    data['updatedAt'] = this.updatedAt;
+    data['__v'] = this.iV;
+    data['orderFinishDate'] = this.orderFinishDate;
+    return data;
+  }
+}
