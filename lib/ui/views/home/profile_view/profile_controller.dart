@@ -5,13 +5,19 @@ import 'package:car_service/core/enums/message_type.dart';
 import 'package:car_service/core/services/base_controller.dart';
 import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_toast.dart';
+import 'package:car_service/ui/views/home/profile_view/profile_view.dart';
 import 'package:car_service/ui/views/main_view/main_view.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfileController extends BaseController {
   RxList<bool> expandedContainer = [false, false].obs;
   UserInfo userInfo = UserInfo();
+  ImagePicker picker = ImagePicker();
+  FileModel selectedFile = FileModel('', FileTypeEnum.GALLERY);
+  bool showOptions = false;
 
   TextEditingController name = TextEditingController();
   TextEditingController lastName = TextEditingController();
@@ -33,6 +39,8 @@ class ProfileController extends BaseController {
     carNumber = TextEditingController(text: userInfo.car!.carNumber);
     carType = TextEditingController(text: userInfo.car!.carType);
     carModel = TextEditingController(text: userInfo.car!.carModel);
+    selectedFile.path = storage.getGallary;
+    update();
     super.onInit();
   }
 
@@ -60,5 +68,34 @@ class ProfileController extends BaseController {
         Get.offAll(() => MainView());
       });
     }));
+  }
+
+  void setShowOPtion(bool value) {
+    showOptions = value;
+    update();
+  }
+
+  Future<FileModel> pickFile(FileTypeEnum type) async {
+    String path = '';
+    switch (type) {
+      case FileTypeEnum.CAMERA:
+        await picker
+            .pickImage(source: ImageSource.camera)
+            .then((value) => path = value?.path ?? '');
+        break;
+      case FileTypeEnum.GALLERY:
+        await picker
+            .pickImage(source: ImageSource.gallery)
+            .then((value) => path = value?.path ?? '');
+        break;
+      case FileTypeEnum.FILE:
+        await FilePicker.platform
+            .pickFiles()
+            .then((value) => path = value?.paths[0] ?? '');
+        break;
+    }
+    setShowOPtion(false);
+    return FileModel(path.isNotEmpty ? path : selectedFile!.path,
+        path.isNotEmpty ? type : selectedFile!.type);
   }
 }

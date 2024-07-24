@@ -39,6 +39,7 @@ class MainRepairView extends StatelessWidget {
                 child: ListView(
                   children: [
                     FlutterStepIndicator(
+
                       height: 60.w,
                       paddingLine: const EdgeInsets.symmetric(horizontal: 0),
                       positiveColor: AppColors.mainColor,
@@ -50,8 +51,6 @@ class MainRepairView extends StatelessWidget {
                       onChange: (i) {},
                       page: controller.page,
                       onClickItem: (p0) {
-                        controller.page = p0;
-                        controller.update();
                       },
                     ),
                     (20.h).ph,

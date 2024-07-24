@@ -8,6 +8,8 @@ import 'package:hive/hive.dart';
 class HiveRepository {
   static String HIVE_FIRST_LOGIN = "first_login";
   static String HIVE_LOGIN_MODEL = 'login_model';
+  static String HIVE_GALLARY_MODEL = 'galary_model';
+  static String HIVE_Camera_MODEL = 'camera_model';
   String HIVE_FCM_TOKEN = 'fcm_token';
   static String HIVE_TOKEN_INFO = 'token_info';
   static String HIVE_USER_INFO = 'user_info';
@@ -65,4 +67,16 @@ class HiveRepository {
 
   String get getfcmTokenInfo =>
       Hive.box(HIVE_GENERAL_BOX).get(HIVE_FCM_TOKEN, defaultValue: '');
+
+
+  Future<void> setGallary(String value) async{
+    await Hive.box(HIVE_GENERAL_BOX).put(HIVE_GALLARY_MODEL, value);
+  }
+
+  String get getGallary => Hive.box(HIVE_GENERAL_BOX)
+      .get(HIVE_GALLARY_MODEL, defaultValue: '');
+
+
+
+
 }
