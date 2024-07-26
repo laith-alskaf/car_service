@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:car_service/app/app_config.dart';
+import 'package:car_service/core/data/models/api/amin_info_model.dart';
 import 'package:car_service/core/data/models/api/user_info_model.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:hive/hive.dart';
@@ -13,6 +14,7 @@ class HiveRepository {
   String HIVE_FCM_TOKEN = 'fcm_token';
   static String HIVE_TOKEN_INFO = 'token_info';
   static String HIVE_USER_INFO = 'user_info';
+  static String HIVE_ADMIN_INFO = 'admin_info';
   String PREF_APP_LANG = 'app_languages';
   static String HIVE_GENERAL_BOX = "app_general_info";
   late Box primaryBox;
@@ -60,6 +62,25 @@ class HiveRepository {
       return null;
     }
   }
+
+  Future<void> setAdminInfo(AdminInfo value) async {
+    await Hive.box(HIVE_GENERAL_BOX).put(HIVE_ADMIN_INFO, jsonEncode(value.toJson()));
+  }
+  AdminInfo?  getAdminInfo() {
+    if (Hive.box(HIVE_GENERAL_BOX).containsKey(HIVE_ADMIN_INFO)) {
+      return AdminInfo.fromJson(jsonDecode(
+          Hive.box(HIVE_GENERAL_BOX).get(HIVE_ADMIN_INFO, defaultValue: {})));
+    } else {
+      return null;
+    }
+  }
+
+
+
+
+
+
+
 
   Future<void> setfcmTokenInfo(String value) async {
     await Hive.box(HIVE_GENERAL_BOX).put(HIVE_FCM_TOKEN, value);

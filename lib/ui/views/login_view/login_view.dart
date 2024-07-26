@@ -102,9 +102,7 @@ class LoginView extends StatelessWidget {
                         if (value!.isEmpty) {
                           return tr('please check your password');
                         }
-                        if (value.length <= 7) {
-                          return tr('please inpout more than 7');
-                        }
+
                         return null;
                       },
                     ),
@@ -137,7 +135,7 @@ class LoginView extends StatelessWidget {
                       buttonTypeEnum: ButtonTypeEnum.normal,
                       onPressed: () async {
                         if (_formKey1.currentState!.validate()) {
-                          await controller.login();
+                          await controller.Adminlogin();
                         }
                       },
                       text: tr('key_login'),
