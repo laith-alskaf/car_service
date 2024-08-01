@@ -12,6 +12,10 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AdminProfileController extends BaseController {
+  List<String> parks = [
+
+  ];
+  RxString parkname = ''.obs;
    List<AdminParks>? adminparks;
 
   RxList<bool> expandedContainer = [false, false].obs;
@@ -31,7 +35,6 @@ class AdminProfileController extends BaseController {
 
   @override
   void onInit() async{
-    await adminparks;
     await getParking();
     admin = storage.getAdminInfo()!;
     name = TextEditingController(text: admin.firstName);
@@ -77,6 +80,10 @@ class AdminProfileController extends BaseController {
             CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
           }, (r) {
               adminparks = r;
+              r.forEach((parking){
+                parks.add(parking.location!.parkingName!);
+              });
+              parks.add('All');
             update();
           });
         }));

@@ -1,26 +1,17 @@
 import 'dart:io';
-import 'dart:math';
-
 import 'package:animate_do/animate_do.dart';
-import 'package:car_service/core/data/models/api/user_info_model.dart';
 import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/ui/admin_view/admin_profile_view/profile_widget/custom_info_admin.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_container.dart';
+import 'package:car_service/ui/shared/custom_widget/custom_drop_menu.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
-import 'package:car_service/ui/views/home/profile_view/profile_widget/custom_info.dart';
-import 'package:car_service/ui/views/home/profile_view/edit_profile_view/edit_profile_view.dart';
-import 'package:car_service/ui/views/home/profile_view/profile_controller.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-
 import '../../../core/data/models/api/amin_info_model.dart';
 import '../../views/home/profile_view/profile_view.dart';
 import 'admin_profile_controller.dart';
@@ -184,7 +175,24 @@ class _AdminProfileViewState extends State<AdminProfileView> {
                                  CustomText(
                                     text: 'Your iD : ${admin.sId}',
                                     fontWeight: FontWeight.normal,
-                                    textType: TextStyleType.bodyBig)
+                                    textType: TextStyleType.bodyBig),
+                                // CustomDropMenu(
+                                //   validator:(value) {
+                                //     if (value == null) {
+                                //       return 'Please select Type';
+                                //     }
+                                //     else{
+                                //       controller.parkname.value=value;
+                                //     }
+                                //     return null;
+                                //   },
+                                //   hint: "parking",
+                                //   items: controller.parks,
+                                //   onSaved: (value) {
+                                //     controller.parkname.value = value!;
+                                //   },
+                                // ),
+
                               ],
                             ),
                           ),
@@ -210,9 +218,9 @@ class _AdminProfileViewState extends State<AdminProfileView> {
 
                     ),
                     (20.h).ph,
-
-                    if (controller.adminparks != null) ...[
-                      ...List.generate(controller.adminparks!.length, (index) {
+                    GetBuilder<AdminProfileController>(builder: (c) {
+                      return Column(
+                        children: List.generate(controller.adminparks==null?0:controller.adminparks!.length, (index) {
                         return Column(
                           children: [
                             CustomInfoAdmin(
@@ -237,7 +245,10 @@ class _AdminProfileViewState extends State<AdminProfileView> {
                           ],
                         );
                       })
-                    ],
+                      );
+                    }),
+
+
 
 
 

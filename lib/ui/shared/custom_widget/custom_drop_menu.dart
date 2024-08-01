@@ -1,4 +1,5 @@
 import 'package:car_service/core/translation/app_translation.dart';
+import 'package:car_service/ui/admin_view/admin_profile_view/admin_profile_view.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
@@ -10,11 +11,13 @@ import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class CustomDropMenu extends StatelessWidget {
-   CustomDropMenu({super.key, required this.items, this.onSaved});
+   CustomDropMenu({super.key, required this.items, this.onSaved,required this.hint,this.validator});
 
   final List<String> items;
+  final String hint;
+  final String? Function(String?)? validator;
   final Function(String?)? onSaved;
-  SignUpViewController controller = Get.find();
+
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +26,7 @@ class CustomDropMenu extends StatelessWidget {
         style: TextStyle(color: AppColors.mainColor),
         decoration: InputDecoration(
           contentPadding: EdgeInsets.only(top: 10.h),
-          hintText: tr('Car Type'),
+          hintText: hint,
           hintStyle: TextStyle(color: AppColors.grayColor),
           fillColor: AppColors.blackColor.withOpacity(0.02),
           focusedBorder: OutlineInputBorder(
@@ -47,7 +50,6 @@ class CustomDropMenu extends StatelessWidget {
         ),
         items: items.map<DropdownMenuItem<String>>((value) {
           return DropdownMenuItem<String>(
-
             value: value,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,15 +83,7 @@ class CustomDropMenu extends StatelessWidget {
             );
           }).toList();
         },
-        validator: (value) {
-          if (value == null) {
-            return 'Please select Type';
-          }
-          else{
-            controller.carType.value=value;
-          }
-          return null;
-        },
+        validator: validator,
         onChanged: (value) {},
         onSaved: onSaved,
         iconStyleData: const IconStyleData(),
