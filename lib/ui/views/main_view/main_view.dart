@@ -20,20 +20,17 @@ class MainView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> widgetView = [
+      ParkingView(),
+      const BillingView(),
+      const HomeView(),
+      const HistoryView(),
+      MainRepairView()
+    ];
     return SafeArea(
       child: Scaffold(
           backgroundColor: AppColors.whiteColor,
-          body: PageView(
-            physics: const NeverScrollableScrollPhysics(),
-            controller: controller.pageViewController,
-            children: [
-              ParkingView(),
-              const BillingView(),
-               const HomeView(),
-              const HistoryView(),
-              MainRepairView(),
-            ],
-          ),
+          body: Obx(() => widgetView[controller.page.value]),
           bottomNavigationBar: FancyBottomNavigationPlus(
             barBackgroundColor: AppColors.mainColor,
             initialSelection: 2,
@@ -74,23 +71,25 @@ class MainView extends StatelessWidget {
                   title: tr("Repair")),
             ],
             onTabChangedListener: (int position) {
-              switch (position) {
-                case 0:
-                  controller.animatedToPage(
-                      BottomNavigationEnum.parking, position);
-                case 1:
-                  controller.animatedToPage(
-                      BottomNavigationEnum.billing, position);
-                case 2:
-                  controller.animatedToPage(
-                      BottomNavigationEnum.home, position);
-                case 3:
-                  controller.animatedToPage(
-                      BottomNavigationEnum.history, position);
-                case 4:
-                  controller.animatedToPage(
-                      BottomNavigationEnum.repair, position);
-              }
+              controller.page.value = position;
+              controller.update();
+              // switch (position) {
+              //   case 0:
+              //     controller.animatedToPage(
+              //         BottomNavigationEnum.parking, position);
+              //   case 1:
+              //     controller.animatedToPage(
+              //         BottomNavigationEnum.billing, position);
+              //   case 2:
+              //     controller.animatedToPage(
+              //         BottomNavigationEnum.home, position);
+              //   case 3:
+              //     controller.animatedToPage(
+              //         BottomNavigationEnum.history, position);
+              //   case 4:
+              //     controller.animatedToPage(
+              //         BottomNavigationEnum.repair, position);
+              // }
             },
           )),
     );

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 enum BottomNavigationEnum { parking, billing, home,history,repair }
 
 class MainController extends GetxController {
-  // RxInt lengthList = 0.obs;
+  RxInt page = 2.obs;
   // RxInt currentIndex = 1.obs;
   var selected = BottomNavigationEnum.home.obs;
   PageController pageViewController = PageController(initialPage: 2);
