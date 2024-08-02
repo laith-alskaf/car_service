@@ -24,105 +24,108 @@ class MainRepairView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(physics: const NeverScrollableScrollPhysics(), children: [
-      const CustomAppBar(
-        title: '',
-        iconSetting: true,
-      ),
-      (10.h).ph,
-      Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w),
-          child: GetBuilder<MainRepairController>(
-            builder: (s) {
-              return SizedBox(
-                height: 0.8.sh,
-                child: ListView(
-                  children: [
-                    FlutterStepIndicator(
-
-                      height: 60.w,
-                      paddingLine: const EdgeInsets.symmetric(horizontal: 0),
-                      positiveColor: AppColors.mainColor,
-                      progressColor: const Color(0xFFEA9C00),
-                      negativeColor: const Color(0xFFD5D5D5),
-                      padding: EdgeInsets.all(4.w),
-                      list: controller.list,
-                      division: controller.counter,
-                      onChange: (i) {},
-                      page: controller.page,
-                      onClickItem: (p0) {
-                      },
-                    ),
-                    (20.h).ph,
-                    if (controller.page == 0) const ChooseProblemTypeView(),
-                    if (controller.page == 1) const ChooseProblemView(),
-                    if (controller.page == 2) RepairChoosePlaceView(),
-                    if (controller.page == 3) OrderDetailsView(),
-                    if (controller.page == 4)
+    return PopScope(
+      canPop: false,
+      child: ListView(physics: const NeverScrollableScrollPhysics(), children: [
+        const CustomAppBar(
+          title: '',
+          iconSetting: true,
+        ),
+        (10.h).ph,
+        Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            child: GetBuilder<MainRepairController>(
+              builder: (s) {
+                return SizedBox(
+                  height: 0.8.sh,
+                  child: ListView(
+                    children: [
+                      FlutterStepIndicator(
+                        height: 60.w,
+                        paddingLine: const EdgeInsets.symmetric(horizontal: 0),
+                        positiveColor: AppColors.mainColor,
+                        progressColor: const Color(0xFFEA9C00),
+                        negativeColor: const Color(0xFFD5D5D5),
+                        padding: EdgeInsets.all(4.w),
+                        list: controller.list,
+                        division: controller.counter,
+                        onChange: (i) {},
+                        page: controller.page,
+                        onClickItem: (p0) {},
+                      ),
+                      (20.h).ph,
+                      if (controller.page == 0) const ChooseProblemTypeView(),
+                      if (controller.page == 1) const ChooseProblemView(),
+                      if (controller.page == 2) RepairChoosePlaceView(),
+                      if (controller.page == 3) OrderDetailsView(),
+                      if (controller.page == 4)
+                        Column(
+                          children: [
+                            Align(
+                                alignment: Alignment.topCenter,
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                    top: 40.h,
+                                  ),
+                                  child: CustomContainerPayment(
+                                    indexes: 1,
+                                  ),
+                                )),
+                            Align(
+                                alignment: Alignment.topCenter,
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                    top: 40.h,
+                                  ),
+                                  child: CustomContainerPayment(
+                                    indexes: 2,
+                                  ),
+                                )),
+                          ],
+                        ),
+                      const Spacer(),
                       Column(
                         children: [
-                          Align(
-                              alignment: Alignment.topCenter,
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                  top: 40.h,
+                          controller.isLoading
+                              ? SpinKitCircle(
+                                  color: AppColors.mainColor,
+                                  size: 80.w,
+                                )
+                              : Padding(
+                                  padding: EdgeInsets.only(top: 10.h),
+                                  child: CustomButton(
+                                    onPressed: () {
+                                      controller.handleButtonPress(
+                                          isIncrease: true);
+                                    },
+                                    text: controller.page == 4
+                                        ? 'Finish'
+                                        : 'Next',
+                                    buttonTypeEnum: ButtonTypeEnum.medium,
+                                    width: 240.w,
+                                    height: 55.h,
+                                  ),
                                 ),
-                                child: CustomContainerPayment(
-                                  indexes: 1,
-                                ),
-                              )),
-                          Align(
-                              alignment: Alignment.topCenter,
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                  top: 40.h,
-                                ),
-                                child: CustomContainerPayment(
-                                  indexes: 2,
-                                ),
-                              )),
+                          (20.h).ph,
+                          if (controller.page != 0)
+                            GestureDetector(
+                                onTap: () {
+                                  controller.handleStepValue(isIncrease: false);
+                                },
+                                child: CustomText(
+                                  text: 'Back',
+                                  textType: TextStyleType.bodyBig,
+                                  textColor: AppColors.mainColor,
+                                )),
                         ],
                       ),
-                    const Spacer(),
-                    Column(
-                      children: [
-                        controller.isLoading
-                            ? SpinKitCircle(
-                                color: AppColors.mainColor,
-                                size: 80.w,
-                              )
-                            : Padding(
-                              padding:  EdgeInsets.only(top: 10.h),
-                              child: CustomButton(
-                                  onPressed: () {
-                                    controller.handleButtonPress(
-                                        isIncrease: true);
-                                  },
-                                  text: controller.page == 4 ? 'Finish' : 'Next',
-                                  buttonTypeEnum: ButtonTypeEnum.medium,
-                                  width: 240.w,
-                                  height: 55.h,
-                                ),
-                            ),
-                        (20.h).ph,
-                        if (controller.page != 0)
-                          GestureDetector(
-                              onTap: () {
-                                controller.handleStepValue(isIncrease: false);
-                              },
-                              child: CustomText(
-                                text: 'Back',
-                                textType: TextStyleType.bodyBig,
-                                textColor: AppColors.mainColor,
-                              )),
-                      ],
-                    ),
-                    (20.h).ph,
-                  ],
-                ),
-              );
-            },
-          )),
-    ]);
+                      (20.h).ph,
+                    ],
+                  ),
+                );
+              },
+            )),
+      ]),
+    );
   }
 }

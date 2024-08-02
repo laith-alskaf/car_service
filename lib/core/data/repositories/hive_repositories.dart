@@ -11,6 +11,7 @@ class HiveRepository {
   static String HIVE_LOGIN_MODEL = 'login_model';
   static String HIVE_GALLARY_MODEL = 'galary_model';
   static String HIVE_Camera_MODEL = 'camera_model';
+  static String HIVE_ROLE_MODEL = 'role_model';
   String HIVE_FCM_TOKEN = 'fcm_token';
   static String HIVE_TOKEN_INFO = 'token_info';
   static String HIVE_USER_INFO = 'user_info';
@@ -36,8 +37,8 @@ class HiveRepository {
     primaryBox = await Hive.openBox(HIVE_GENERAL_BOX);
   }
 
-  Future<void> setAppLanguage(String value) async{
-   await Hive.box(HIVE_GENERAL_BOX).put(PREF_APP_LANG, value);
+  Future<void> setAppLanguage(String value) async {
+    await Hive.box(HIVE_GENERAL_BOX).put(PREF_APP_LANG, value);
   }
 
   String get getAppLanguage => Hive.box(HIVE_GENERAL_BOX)
@@ -47,14 +48,17 @@ class HiveRepository {
     await Hive.box(HIVE_GENERAL_BOX).put(HIVE_TOKEN_INFO, value);
   }
 
+
+
   String get getTokenInfo =>
       Hive.box(HIVE_GENERAL_BOX).get(HIVE_TOKEN_INFO, defaultValue: '');
 
   Future<void> setUserInfo(UserInfo value) async {
-    await Hive.box(HIVE_GENERAL_BOX).put(HIVE_USER_INFO, jsonEncode(value.toJson()));
+    await Hive.box(HIVE_GENERAL_BOX)
+        .put(HIVE_USER_INFO, jsonEncode(value.toJson()));
   }
 
-  UserInfo?  getUserInfo() {
+  UserInfo? getUserInfo() {
     if (Hive.box(HIVE_GENERAL_BOX).containsKey(HIVE_USER_INFO)) {
       return UserInfo.fromJson(jsonDecode(
           Hive.box(HIVE_GENERAL_BOX).get(HIVE_USER_INFO, defaultValue: {})));
@@ -64,9 +68,11 @@ class HiveRepository {
   }
 
   Future<void> setAdminInfo(AdminInfo value) async {
-    await Hive.box(HIVE_GENERAL_BOX).put(HIVE_ADMIN_INFO, jsonEncode(value.toJson()));
+    await Hive.box(HIVE_GENERAL_BOX)
+        .put(HIVE_ADMIN_INFO, jsonEncode(value.toJson()));
   }
-  AdminInfo?  getAdminInfo() {
+
+  AdminInfo? getAdminInfo() {
     if (Hive.box(HIVE_GENERAL_BOX).containsKey(HIVE_ADMIN_INFO)) {
       return AdminInfo.fromJson(jsonDecode(
           Hive.box(HIVE_GENERAL_BOX).get(HIVE_ADMIN_INFO, defaultValue: {})));
@@ -75,13 +81,6 @@ class HiveRepository {
     }
   }
 
-
-
-
-
-
-
-
   Future<void> setfcmTokenInfo(String value) async {
     await Hive.box(HIVE_GENERAL_BOX).put(HIVE_FCM_TOKEN, value);
   }
@@ -89,15 +88,16 @@ class HiveRepository {
   String get getfcmTokenInfo =>
       Hive.box(HIVE_GENERAL_BOX).get(HIVE_FCM_TOKEN, defaultValue: '');
 
-
-  Future<void> setGallary(String value) async{
+  Future<void> setGallary(String value) async {
     await Hive.box(HIVE_GENERAL_BOX).put(HIVE_GALLARY_MODEL, value);
   }
 
-  String get getGallary => Hive.box(HIVE_GENERAL_BOX)
-      .get(HIVE_GALLARY_MODEL, defaultValue: '');
+  String get getGallary =>
+      Hive.box(HIVE_GENERAL_BOX).get(HIVE_GALLARY_MODEL, defaultValue: '');
 
-
-
-
+  Future<void> setRole(String value) async {
+    await Hive.box(HIVE_GENERAL_BOX).put(HIVE_ROLE_MODEL, value);
+  }
+  String get getRole =>
+      Hive.box(HIVE_GENERAL_BOX).get(HIVE_ROLE_MODEL, defaultValue: '');
 }

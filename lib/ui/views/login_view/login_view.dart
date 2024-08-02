@@ -108,6 +108,36 @@ class LoginView extends StatelessWidget {
                     ),
                   ),
                   (10.h).ph,
+                  GetBuilder<LoginViewController>(builder: (c) {
+                    return Row(
+                      children: [
+                        Radio(
+                          value: "admin",
+                          activeColor: AppColors.mainColor,
+                          groupValue: controller.selectedRole,
+                          onChanged: (value) {
+                            controller.selectedRole = value!;
+                            controller.update();
+                          },
+                        ),
+                        const Text("Admin",
+                            style: TextStyle(color: Colors.black)),
+                        (20.w).pw,
+                        Radio(
+                          value: "user",
+                          groupValue: controller.selectedRole,
+                          activeColor: AppColors.mainColor,
+                          onChanged: (value) {
+                            controller.selectedRole = value!;
+                            controller.update();
+                          },
+                        ),
+                        const Text("User",
+                            style: TextStyle(color: Colors.black)),
+                      ],
+                    );
+                  }),
+                  (10.h).ph,
                   FadeInLeft(
                     delay: const Duration(milliseconds: 1300),
                     duration: const Duration(milliseconds: 300),
@@ -135,7 +165,11 @@ class LoginView extends StatelessWidget {
                       buttonTypeEnum: ButtonTypeEnum.normal,
                       onPressed: () async {
                         if (_formKey1.currentState!.validate()) {
-                          await controller.Adminlogin();
+                          if (controller.selectedRole == "user") {
+                            await controller.login();
+                          } else {
+                            await controller.Adminlogin();
+                          }
                         }
                       },
                       text: tr('key_login'),

@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:car_service/core/utils/general_util.dart';
+import 'package:car_service/ui/admin_view/admin_dashboard/admin_dashboard.dart';
+import 'package:car_service/ui/admin_view/admin_dashboard/admin_dashboard_controller.dart';
 import 'package:car_service/ui/admin_view/admin_profile_view/admin_profile_view.dart';
 import 'package:car_service/ui/views/login_view/login_view.dart';
 import 'package:car_service/ui/views/main_view/main_view.dart';
@@ -14,7 +16,11 @@ class SplashScreenController extends GetxController {
       if (storage.getTokenInfo == '') {
         Get.off(() => LoginView());
       } else {
-        Get.off(() => AdminProfileView());
+        if (storage.getRole == "user") {
+          Get.off(() => MainView());
+        } else {
+          Get.off(() => AdminDashboardView());
+        }
       }
     });
     super.onInit();

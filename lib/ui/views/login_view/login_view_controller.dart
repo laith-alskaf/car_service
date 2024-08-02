@@ -1,6 +1,8 @@
 import 'package:car_service/core/data/repositories/admin_repositories.dart';
 import 'package:car_service/core/enums/message_type.dart';
 import 'package:car_service/core/services/base_controller.dart';
+import 'package:car_service/core/utils/general_util.dart';
+import 'package:car_service/ui/admin_view/admin_dashboard/admin_dashboard.dart';
 import 'package:car_service/ui/admin_view/admin_profile_view/admin_profile_view.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_toast.dart';
 import 'package:car_service/ui/views/main_view/main_view.dart';
@@ -11,6 +13,7 @@ import '../../../core/data/repositories/user_repositories.dart';
 class LoginViewController extends BaseController {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  String selectedRole = 'admin'; // تعريف متغير لتخزين الخيار المختار
 
   Future<void> login() async {
     await runFullLoadingFutureFunction(
@@ -25,9 +28,11 @@ class LoginViewController extends BaseController {
       }, (r) {
         CustomToast.showMessage(message: r, messageType: MessageType.SUCCESS);
         Get.off(() => MainView());
+        storage.setRole(selectedRole);
       });
     }));
   }
+
   Future<void> Adminlogin() async {
     await runFullLoadingFutureFunction(
         function: AdminRepositories()
@@ -40,7 +45,8 @@ class LoginViewController extends BaseController {
         CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
       }, (r) {
         CustomToast.showMessage(message: r, messageType: MessageType.SUCCESS);
-        Get.off(() => AdminProfileView());
+        Get.off(() => AdminDashboardView());
+        storage.setRole(selectedRole);
       });
     }));
   }

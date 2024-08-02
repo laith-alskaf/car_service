@@ -1,5 +1,5 @@
 import 'package:car_service/ui/admin_view/all_order_detiels/all_order_view.dart';
-import 'package:car_service/ui/admin_view/all_parking_order/all_parking_order.dart';
+import 'package:car_service/ui/admin_view/all_parking_order/all_parking_order_view.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_button.dart';

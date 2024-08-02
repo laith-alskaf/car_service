@@ -64,6 +64,7 @@ dependencies:
   flutter_stepindicator: ^0.1.7
   qr_code_scanner: ^1.0.1
   socket_io_client: ^2.0.3+1
+  fl_chart: ^0.68.0
 
 dev_dependencies:
   flutter_test:

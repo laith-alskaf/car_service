@@ -5,6 +5,9 @@ class AppColors {
   static Color blueColor = const Color(0xFF0008C1);
   static Color backgroundColor = const Color(0xFFE0E0E2);
   static const Color mtnBrownColor = Color(0xFF3A2400);
+  static Color Grey2 = Color.fromRGBO(43, 47, 56, 1); //used
+  static Color mainBlackColor = Color.fromRGBO(31, 31, 39, 1); //used
+
   static const Color mtnYellowColor = Color(0xFFFEB300);
   static Color error = Colors.red.shade600;
   static Color success = Colors.green.shade600;

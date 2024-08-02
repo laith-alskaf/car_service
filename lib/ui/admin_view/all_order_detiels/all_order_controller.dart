@@ -11,7 +11,7 @@ class AllOrderController extends BaseController {
   RxString birthDay = 'no date'.obs;
   TextEditingController priceController = TextEditingController();
 
-  int index = 0;
+  int index = 1;
   List<ProblemHistoryModel>? problemHistory;
   List<ParkingHistoryModel>? parkingHistory;
 

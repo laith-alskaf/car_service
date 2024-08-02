@@ -16,7 +16,8 @@ import 'package:get/get.dart';
 class AdminEditProfileView extends StatelessWidget {
   final String? parkname;
   final int? price;
-  const AdminEditProfileView({super.key,  this.parkname, this.price});
+
+  const AdminEditProfileView({super.key, this.parkname, this.price});
 
   @override
   Widget build(BuildContext context) {
@@ -52,10 +53,9 @@ class AdminEditProfileView extends StatelessWidget {
                 child: ListView(
                   shrinkWrap: true,
                   children: [
-
                     (20.h).ph,
                     Obx(
-                          () => FadeInLeft(
+                      () => FadeInLeft(
                         delay: const Duration(milliseconds: 200),
                         duration: const Duration(milliseconds: 400),
                         child: AnimatedContainer(
@@ -67,7 +67,7 @@ class AdminEditProfileView extends StatelessWidget {
                           margin: EdgeInsets.symmetric(horizontal: 20.w),
                           decoration: BoxDecoration(
                             borderRadius:
-                            BorderRadiusDirectional.circular(15.r),
+                                BorderRadiusDirectional.circular(15.r),
                             color: AppColors.whiteColor,
                             boxShadow: [
                               BoxShadow(
@@ -111,11 +111,11 @@ class AdminEditProfileView extends StatelessWidget {
                                   duration: const Duration(milliseconds: 500),
                                   child: Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           children: [
                                             const CustomText(
                                               text: 'price',
@@ -136,13 +136,13 @@ class AdminEditProfileView extends StatelessWidget {
                                             ),
                                             CustomTextFormField(
                                               keyboardType:
-                                              TextInputType.emailAddress,
+                                                  TextInputType.emailAddress,
                                               widthContainer: 1.sw,
-                                              controller: controller.newParkinNmae,
+                                              controller:
+                                                  controller.newParkinNmae,
                                               hintText: '',
                                             ),
                                             (20.h).ph,
-
                                           ]),
                                     ],
                                   ),
@@ -154,13 +154,12 @@ class AdminEditProfileView extends StatelessWidget {
                                   delay: const Duration(milliseconds: 500),
                                   duration: const Duration(milliseconds: 500),
                                   child: Column(
-
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           children: [
                                             const CustomText(
                                               text: 'new email',
@@ -181,13 +180,12 @@ class AdminEditProfileView extends StatelessWidget {
                                             ),
                                             CustomTextFormField(
                                               keyboardType:
-                                              TextInputType.emailAddress,
+                                                  TextInputType.emailAddress,
                                               widthContainer: 1.sw,
                                               controller: controller.name,
                                               hintText: '',
                                             ),
                                             (20.h).ph,
-
                                           ]),
                                     ],
                                   ),
@@ -209,15 +207,18 @@ class AdminEditProfileView extends StatelessWidget {
                               height: 50.h,
                               child: CustomButton(
                                   onPressed: () {
-                                    if( controller.expandedContainer[1] = true)
-                                   { controller.editepark(ParkingName: parkname.toString(), Price:price??2500 );
-                                    controller.getParking();}
-                                    if( controller.expandedContainer[0] = true)
-                                    {
+                                    if (controller.expandedContainer[1] ==
+                                        true) {
+                                      controller.editepark(
+                                          ParkingName: parkname.toString(),
+                                          Price: price ?? 2500);
+                                      controller.getParking();
+                                    }
+                                    if (controller.expandedContainer[0] ==
+                                        true) {
                                       controller.setting();
                                     }
                                     Get.back();
-
                                   },
                                   text: 'Submit',
                                   buttonTypeEnum: ButtonTypeEnum.big)),

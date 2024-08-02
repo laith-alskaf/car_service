@@ -72,6 +72,7 @@ class AdminRepositories {
       return Left(e.toString());
     }
   }
+
   Future<Either<String, String>> DeletOrderProblem({
     required String orderId,
   }) async {
@@ -86,7 +87,7 @@ class AdminRepositories {
         if (response != null) {
           log('==========> ${response}');
           CommonResponse<Map<String, dynamic>> commonResponse =
-          CommonResponse.fromJson(response);
+              CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
             return Right(commonResponse.data!['message']);
           } else {
@@ -100,6 +101,7 @@ class AdminRepositories {
       return Left(e.toString());
     }
   }
+
   Future<Either<String, String>> AddPark({
     required String AdminEmail,
     required int price,
@@ -116,16 +118,15 @@ class AdminRepositories {
           body: {
             'AdminEmail': AdminEmail,
             'Price': price,
-            'parkingName':parkingName,
+            'parkingName': parkingName,
             'NumberOfCarRepairPlaces': NumberOfCarRepairPlaces,
             'parklat': lat,
             'parklong': long,
-
           }).then((response) {
         if (response != null) {
           log('==========> ${response}');
           CommonResponse<Map<String, dynamic>> commonResponse =
-          CommonResponse.fromJson(response);
+              CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
             return Right(commonResponse.data!['message']);
           } else {
@@ -149,7 +150,7 @@ class AdminRepositories {
           type: RequestType.POST,
           url: AdminEndpoint.adminlogin,
           headers:
-          NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
+              NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
           body: {
             'email': email,
             'password': password,
@@ -157,10 +158,11 @@ class AdminRepositories {
         if (response != null) {
           log('==========> ${response}');
           CommonResponse<Map<String, dynamic>> commonResponse =
-          CommonResponse.fromJson(response);
+              CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
             log('==========> ${commonResponse.data!['admin']}');
-            storage.setAdminInfo(AdminInfo.fromJson(commonResponse.data!['admin']));
+            storage.setAdminInfo(
+                AdminInfo.fromJson(commonResponse.data!['admin']));
             storage.setTokenInfo(commonResponse.data!['token']);
             log('==========> ${storage.getAdminInfo()}');
             return Right(commonResponse.data!['message']);
@@ -175,6 +177,7 @@ class AdminRepositories {
       return Left(e.toString());
     }
   }
+
   Future<Either<String, List<AdminParks>>> getAdminParks() async {
     try {
       return NetworkUtil.sendRequest(
@@ -187,7 +190,7 @@ class AdminRepositories {
         if (response != null) {
           log('==========> $response');
           CommonResponse<dynamic> commonResponse =
-          CommonResponse.fromJson(response);
+              CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
             List<AdminParks> parks = [];
             for (Map<String, dynamic> s in commonResponse.data!) {
@@ -205,6 +208,7 @@ class AdminRepositories {
       return Left(e.toString());
     }
   }
+
   Future<Either<String, String>> updatepark({
     required String AdminEmail,
     required String parkingName,
@@ -215,8 +219,9 @@ class AdminRepositories {
     try {
       return NetworkUtil.sendRequest(
           type: RequestType.POST,
-          url: AdminEndpoint.editPark ,
-          headers:NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
+          url: AdminEndpoint.editPark,
+          headers:
+              NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
           body: {
             'AdminEmail': AdminEmail,
             'parkingName': parkingName,
@@ -224,45 +229,10 @@ class AdminRepositories {
             'Price': Price,
             'newPrice': newPrice,
           }).then((response) {
-    if (response != null) {
-    log('==========> ${response}');
-    CommonResponse<Map<String, dynamic>> commonResponse =
-    CommonResponse.fromJson(response);
-    if (commonResponse.getStatus) {
-    return Right(commonResponse.data!['message']);
-    } else {
-    return Left(commonResponse.message ?? '');
-    }
-    } else {
-    return const Left('Please check your internet');
-    }
-    });
-    } catch (e) {
-    return Left(e.toString());
-    }
-  }
-
-  Future<Either<String, String>> settigns({
-    required String AdminEmail,
-    required String newAdminEmail,
-    required String username,
-    required String newusername,
-  }) async {
-    try {
-      return NetworkUtil.sendRequest(
-          type: RequestType.POST,
-          url: AdminEndpoint.settigns ,
-          headers:NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
-          body: {
-            'AdminEmail': AdminEmail,
-            'newAdminEmail': newAdminEmail,
-            'username': username,
-            'newusername': newusername,
-          }).then((response) {
         if (response != null) {
           log('==========> ${response}');
           CommonResponse<Map<String, dynamic>> commonResponse =
-          CommonResponse.fromJson(response);
+              CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
             return Right(commonResponse.data!['message']);
           } else {
@@ -277,6 +247,43 @@ class AdminRepositories {
     }
   }
 
-
-
+  Future<Either<String, String>> settigns({
+    required String AdminEmail,
+    required String newAdminEmail,
+    required String username,
+    required String newusername,
+  }) async {
+    try {
+      return NetworkUtil.sendRequest(
+          type: RequestType.POST,
+          url: AdminEndpoint.settigns,
+          headers:
+              NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
+          body: {
+            'AdminEmail': AdminEmail,
+            'newAdminEmail': newAdminEmail,
+            'username': username,
+            'newusername': newusername,
+          }).then((response) {
+        if (response != null) {
+          log('==========> ${response}');
+          CommonResponse<Map<String, dynamic>> commonResponse =
+              CommonResponse.fromJson(response);
+          if (commonResponse.getStatus) {
+            print(commonResponse.data);
+            AdminInfo adminInfo =
+                AdminInfo.fromJson(commonResponse.data!['message']);
+            storage.setAdminInfo(adminInfo);
+            return const Right('Done');
+          } else {
+            return Left(commonResponse.message ?? '');
+          }
+        } else {
+          return const Left('Please check your internet');
+        }
+      });
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
 }
