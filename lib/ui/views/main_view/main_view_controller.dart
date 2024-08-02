@@ -4,10 +4,17 @@ import 'package:get/get.dart';
 enum BottomNavigationEnum { parking, billing, home,history,repair }
 
 class MainController extends GetxController {
-  RxInt page = 2.obs;
+  MainController({required this.page});
+  int page;
+ @override
+  void onInit() {
+   pageViewController = PageController(initialPage: page);
+    // TODO: implement onInit
+    super.onInit();
+  }
   // RxInt currentIndex = 1.obs;
   var selected = BottomNavigationEnum.home.obs;
-  PageController pageViewController = PageController(initialPage: 2);
+ late PageController pageViewController ;
 
   void animatedToPage(selectedEnum, pageNumber) {
     if(selected.value!=selectedEnum){

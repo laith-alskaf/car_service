@@ -29,10 +29,8 @@ class ParkSpotViewController extends BaseController {
   @override
   void onInit() {
     checkPrice = price;
-    parkingtimer = ParkingTimer();
     update();
     initSpots();
-    parkingTimer();
     super.onInit();
   }
 
@@ -123,6 +121,7 @@ class ParkSpotViewController extends BaseController {
         CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
       }, (r) {
         parkorderDetails = r;
+        parkingTimer();
         update();
         Get.back();
         Get.to(() => ParkingOrderDetiels());
@@ -140,6 +139,7 @@ class ParkSpotViewController extends BaseController {
       value.fold((l) {
         CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
       }, (r) {
+        parkingtimer=ParkingTimer();
         parkingtimer = r;
         update();
         CustomToast.showMessage(

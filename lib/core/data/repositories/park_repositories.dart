@@ -57,7 +57,9 @@ class ParkRepository {
           headers:
               NetworkConfig.getHeaders(needAuth: true, type: RequestType.POST),
           body: {
+
             'ParkingNumber': ParkingNumber,
+            'username': storage.getUserInfo()!.username,
           }).then((response) {
         if (response != null) {
           log('==========> ${response}');
@@ -218,7 +220,7 @@ class ParkRepository {
           CommonResponse<Map<String, dynamic>> commonResponse =
               CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
-            return Right(commonResponse.data!['message']);
+            return Right(commonResponse.data!['messgae']);
           } else {
             return Left(commonResponse.message ?? '');
           }

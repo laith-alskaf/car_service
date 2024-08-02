@@ -73,10 +73,10 @@ class ParkingTimerView extends StatelessWidget {
           (20.h).ph,
           GestureDetector(
             onTap: () {
-              Get.offAll(() => MainView());
+              Get.offAll(MainView(currentIndex: 0,));
             },
             child: CustomText(
-              text: tr('Return To Home Page'),
+              text: tr('Return To parking Page'),
               textType: TextStyleType.title,
               isTextAlign: TextAlign.center,
               textColor: AppColors.mainColor,

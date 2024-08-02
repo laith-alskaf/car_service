@@ -14,9 +14,9 @@ import '../home/home_view/home_view.dart';
 
 // ignore: must_be_immutable
 class MainView extends StatelessWidget {
-  MainView({super.key});
+  MainView({super.key,  this.currentIndex});
+  final int? currentIndex ;
 
-  MainController controller = Get.put(MainController());
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +28,12 @@ class MainView extends StatelessWidget {
       MainRepairView()
     ];
     return SafeArea(
-      child: Scaffold(
+      child:GetBuilder(init: MainController(page: currentIndex??2),builder: (controller){return Scaffold(
           backgroundColor: AppColors.whiteColor,
-          body: Obx(() => widgetView[controller.page.value]),
+          body: widgetView[controller.page],
           bottomNavigationBar: FancyBottomNavigationPlus(
             barBackgroundColor: AppColors.mainColor,
-            initialSelection: 2,
+            initialSelection: controller.page,
             titleStyle: TextStyle(
                 color: AppColors.whiteColor, fontFamily: 'BalooBhaijaan2'),
             circleColor: AppColors.mainColor,
@@ -61,7 +61,7 @@ class MainView extends StatelessWidget {
                   icon: Padding(
                       padding: EdgeInsets.all(20.w),
                       child:
-                          SvgPicture.asset('assets/bottom_bar/ic_history.svg')),
+                      SvgPicture.asset('assets/bottom_bar/ic_history.svg')),
                   title: tr("History")),
               TabData(
                   icon: Padding(
@@ -71,7 +71,7 @@ class MainView extends StatelessWidget {
                   title: tr("Repair")),
             ],
             onTabChangedListener: (int position) {
-              controller.page.value = position;
+              controller.page = position;
               controller.update();
               // switch (position) {
               //   case 0:
@@ -91,7 +91,8 @@ class MainView extends StatelessWidget {
               //         BottomNavigationEnum.repair, position);
               // }
             },
-          )),
+          )); },)
+      
     );
   }
 }

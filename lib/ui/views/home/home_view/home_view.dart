@@ -144,7 +144,7 @@ class HomeView extends StatelessWidget {
                   ? SpinKitCircle(
                       color: AppColors.mainColor,
                     )
-                  : const ServicesContainer()
+                  :  ServicesContainer()
             ],
           ),
         );

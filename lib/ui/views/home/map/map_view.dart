@@ -48,7 +48,7 @@ class MapViewState extends State<MapView> {
                   mapController.controller.complete(controller);
                   widget.locationPark.forEach((element) {
                     mapController.addMarker(
-                        imageUrl: 'https://www.fluttercampus.com/img/car.png',
+                        // imageUrl: 'https://www.fluttercampus.com/img/car.png',
                         position: LatLng(
                             element.coordinates![1], element.coordinates![0]),
                         id: element.parkingNumber.toString(),

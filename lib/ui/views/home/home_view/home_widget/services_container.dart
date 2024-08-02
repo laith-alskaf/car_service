@@ -11,11 +11,11 @@ import '../../../../shared/colors.dart';
 import '../home_view_controller.dart';
 
 class ServicesContainer extends StatelessWidget {
-  const ServicesContainer({super.key});
-
+   ServicesContainer({super.key});
+  HomeViewController controller =Get.find();
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HomeViewController>(builder: (controller) {
+    return GetBuilder<HomeViewController>(builder: (c) {
       return IntrinsicHeight(
         child: Container(
           width: 1.sw,
@@ -45,8 +45,10 @@ class ServicesContainer extends StatelessWidget {
                   ],
                 ),
                 (15.h).ph,
-                if (controller.parkingTimer!.hours != 00 &&
-                    controller.parkingTimer!.minutes != 00) ...[
+                if ((controller.parkingTimer!.hours == 00 &&
+                    controller.parkingTimer!.minutes != 00) || (controller.parkingTimer!.hours != 00 &&
+                    controller.parkingTimer!.minutes == 00  ) ||(controller.parkingTimer!.hours != 00 &&
+                    controller.parkingTimer!.minutes != 00  ) ) ...[
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -83,12 +85,13 @@ class ServicesContainer extends StatelessWidget {
                           ),
                         ),
                         onEnd: () {
-                          print("Timer finished");
+                          controller.getParkingTimer();
                         },
                       )
                     ],
                   ),
-                ] else ...[
+                ]
+                else ...[
                   CustomText(
                     text: "No Parking exist",
                     textType: TextStyleType.body,

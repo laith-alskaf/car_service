@@ -24,9 +24,9 @@ showDialogDatePark(
           borderRadius: BorderRadius.circular(20),
         ),
         width: 400.w,
-        // height:0.54.sh ,
+         // height:0.54.sh ,
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             (20.h).ph,
@@ -154,7 +154,6 @@ showDialogDatePark(
               onPressed: () {
                 if (controller.time.value != '') {
                   controller.chooseTimeSpot();
-                  controller.parkingTimer();
                 } else {
                   CustomToast.showMessage(
                       message: 'Please input time and date',
