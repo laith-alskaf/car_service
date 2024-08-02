@@ -13,15 +13,18 @@ class CustomContainerDashAndroid extends StatelessWidget {
   final Function()? onTap;
   final double? width;
   final double? height;
+  final double? textSize;
   final BorderDirectional? borderDirectional;
 
-  CustomContainerDashAndroid(
-      {this.onTap,
-      this.width,
-      this.height,
-      this.borderDirectional,
-      required this.titleAction,
-      required this.numberInAction});
+  CustomContainerDashAndroid({
+    this.onTap,
+    this.width,
+    this.height,
+    this.borderDirectional,
+    required this.titleAction,
+    required this.numberInAction,
+    this.textSize,
+  });
 
   AdminDashboardController adminDashboardController = Get.find();
 
@@ -36,7 +39,7 @@ class CustomContainerDashAndroid extends StatelessWidget {
               color: AppColors.mainColor.withOpacity(0.4),
               spreadRadius: 1,
               blurRadius: 3,
-              offset: const Offset(0, 3),
+              offset: const Offset(1, 1),
             ),
           ],
           borderRadius: BorderRadius.all(
@@ -55,6 +58,7 @@ class CustomContainerDashAndroid extends StatelessWidget {
                 text: titleAction,
                 textColor: AppColors.textColor,
                 textType: TextStyleType.subtitle,
+                fontSize: textSize,
               ),
               if (numberInAction != '') ...[
                 (15.h).ph,

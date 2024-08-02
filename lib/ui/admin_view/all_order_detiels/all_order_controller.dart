@@ -2,6 +2,7 @@ import 'package:car_service/core/data/models/api/parking_model.dart';
 import 'package:car_service/core/data/models/api/problem_model.dart';
 import 'package:car_service/core/enums/message_type.dart';
 import 'package:car_service/core/services/base_controller.dart';
+import 'package:car_service/ui/admin_view/admin_dashboard/admin_dashboard_controller.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,10 +11,9 @@ import '../../../core/data/repositories/admin_repositories.dart';
 class AllOrderController extends BaseController {
   RxString birthDay = 'no date'.obs;
   TextEditingController priceController = TextEditingController();
-
+  AdminDashboardController adminDashboardController = Get.find();
   int index = 1;
   List<ProblemHistoryModel>? problemHistory;
-  List<ParkingHistoryModel>? parkingHistory;
 
   handleClickFilter({required int serviceIndex}) {
     index = serviceIndex;
@@ -59,21 +59,21 @@ class AllOrderController extends BaseController {
     }
   }
 
-  Future<void> getHistoryProblems() async {
-    await runLoadingFutureFunction(
-        function: AdminRepositories().getHistoryProblem().then((value) {
-      value.fold((l) {
-        CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
-      }, (r) {
-        problemHistory = r;
-        for (int i = 0; i < problemHistory!.length; i++) {
-          problemHistory![i].createdAt =
-              problemHistory![i].createdAt!.substring(0, 10);
-        }
-        update();
-      });
-    }));
-  }
+  // Future<void> getHistoryProblems() async {
+  //   await runLoadingFutureFunction(
+  //       function: AdminRepositories().getHistoryProblem().then((value) {
+  //     value.fold((l) {
+  //       CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+  //     }, (r) {
+  //       problemHistory = r;
+  //       for (int i = 0; i < problemHistory!.length; i++) {
+  //         problemHistory![i].createdAt =
+  //             problemHistory![i].createdAt!.substring(0, 10);
+  //       }
+  //       update();
+  //     });
+  //   }));
+  // }
 
   Future<void> updateOrderProblem(
       {required int price, required String orderId}) async {
@@ -86,7 +86,9 @@ class AllOrderController extends BaseController {
         CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
       }, (r) {
         CustomToast.showMessage(message: r, messageType: MessageType.SUCCESS);
-        getHistoryProblems();
+        adminDashboardController.getHistoryProblems();
+        problemHistory = adminDashboardController.problemHistory;
+        update();
       });
     }));
   }
@@ -100,15 +102,16 @@ class AllOrderController extends BaseController {
         CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
       }, (r) {
         CustomToast.showMessage(message: r, messageType: MessageType.SUCCESS);
-        getHistoryProblems();
+        adminDashboardController.getHistoryProblems();
+        problemHistory = adminDashboardController.problemHistory;
+        update();
       });
     }));
   }
 
   @override
   Future<void> onInit() async {
-    getHistoryProblems();
-    parkingHistory = [];
+    problemHistory = adminDashboardController.problemHistory;
     update();
     super.onInit();
   }

@@ -13,7 +13,6 @@ class AdminDashboardView extends GetView<AdminDashboardController> {
 
   AdminDashboardController adminDashboardController =
       Get.put(AdminDashboardController());
-  final GlobalKey<FormState> changePassFormState = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -31,41 +30,55 @@ class AdminDashboardView extends GetView<AdminDashboardController> {
               isDash: true,
             ),
             body: Padding(
-              padding:
-                  EdgeInsetsDirectional.only(start: 20.w, end: 20.w, top: 20.h),
+              padding: EdgeInsetsDirectional.only(start: 20.w, end: 20.w),
               child: ListView(
                 primary: true,
                 shrinkWrap: true,
                 scrollDirection: Axis.vertical,
                 children: [
-                  Wrap(
-                    runSpacing: 20.w,
-                    spacing: 20.w,
-                    alignment: WrapAlignment.center,
-                    children:
-                        List.generate(controller.titleAction.length, (index) {
-                      return CustomContainerDashAndroid(
-                          onTap: () {
-                            controller.handleClickAction(index: index);
-                            // if (text1[index] == 'Projects') {
-                            //   Get.to(() => ProjectsAllDash(
-                            //         adminDashboardController:
-                            //             admindashboardController,
-                            //       ));
-                            // } else if (text1[index] == 'Employees Status') {
-                            //   Get.to(() => EmployeesStatusAndroid());
-                            // }
-                          },
-                          width: 239.w,
-                          height: 160.w,
-                          titleAction: controller.titleAction[index],
-                          numberInAction: controller.numberInAction[index]);
-                    }),
-                  ),
                   (20.h).ph,
-                  ProjectStatisticDashBoard(
-                    adminDashboardController: adminDashboardController,
-                  ),
+                  GetBuilder<AdminDashboardController>(builder: (c) {
+                    return Wrap(
+                      runSpacing: 20.w,
+                      spacing: 20.w,
+                      alignment: WrapAlignment.center,
+                      children:
+                          List.generate(controller.titleAction.length, (index) {
+                        return CustomContainerDashAndroid(
+                            onTap: () {
+                              controller.handleClickAction(index: index);
+                              // if (text1[index] == 'Projects') {
+                              //   Get.to(() => ProjectsAllDash(
+                              //         adminDashboardController:
+                              //             admindashboardController,
+                              //       ));
+                              // } else if (text1[index] == 'Employees Status') {
+                              //   Get.to(() => EmployeesStatusAndroid());
+                              // }
+                            },
+                            width: 200.w,
+                            height: 120.w,
+                            titleAction: controller.titleAction[index],
+                            numberInAction: index == 0
+                                ? controller.allorderparking.length.toString()
+                                : index == 1
+                                    ? controller.problemHistory.length
+                                        .toString()
+                                    : '');
+                      }),
+                    );
+                  }),
+                  (20.h).ph,
+                  ...List.generate(2, (index) {
+                    return GetBuilder<AdminDashboardController>(builder: (c) {
+                      return Padding(
+                        padding: EdgeInsets.only(bottom: index == 1 ? 0 : 20.h),
+                        child: ProjectStatisticDashBoard(
+                          actionIndex: index,
+                        ),
+                      );
+                    });
+                  }),
                   (20.h).ph,
                 ],
               ),

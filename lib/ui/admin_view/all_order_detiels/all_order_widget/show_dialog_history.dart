@@ -13,7 +13,6 @@ import '../../../../../core/enums/message_type.dart';
 import '../../../../../core/translation/app_translation.dart';
 import '../../../shared/custom_widget/custom_toast.dart';
 
-
 showAlertEditRepair({required String id}) {
   AllOrderController controller = Get.find();
   Get.dialog(Dialog(
@@ -83,12 +82,16 @@ showAlertEditRepair({required String id}) {
                     onPressed: () {
                       Get.back();
                       showAlertDelete(
-                          text: 'Sure Delete History Info', onTap: () {
-                            controller.deleteOrderProblem(orderId: id);
-                            controller.getHistoryProblems();
-                            Get.back();
-
-                      },);
+                        text: 'Sure Delete History Info',
+                        onTap: () {
+                          controller.deleteOrderProblem(orderId: id);
+                          controller.adminDashboardController
+                              .getHistoryProblems();
+                          controller.problemHistory = controller
+                              .adminDashboardController.problemHistory;
+                          Get.back();
+                        },
+                      );
                     },
                     text: 'Delete',
                   ),
@@ -168,14 +171,14 @@ showAlertUpdateRepair({required String id}) {
                     },
                     child: Container(
                       width: 1.sw,
-                      height:50.h ,
+                      height: 50.h,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(10),
                           border:
                               Border.all(width: 1, color: AppColors.mainColor)),
                       child: Center(
                         child: CustomText(
-                          isTextAlign:TextAlign.center ,
+                          isTextAlign: TextAlign.center,
                           textType: TextStyleType.body,
                           text: controller.birthDay.value,
                         ),
@@ -207,20 +210,23 @@ showAlertUpdateRepair({required String id}) {
                       backgroundColor: AppColors.mainColor,
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
-                          if(controller.birthDay.value=='no date'){
-                            CustomToast.showMessage(message: "please select date", messageType: MessageType.WARNING);
-                          }
-                          else{
+                          if (controller.birthDay.value == 'no date') {
+                            CustomToast.showMessage(
+                                message: "please select date",
+                                messageType: MessageType.WARNING);
+                          } else {
                             await controller.updateOrderProblem(
                                 orderId: id,
                                 price:
-                                int.parse(controller.priceController.text));
-                            await controller.getHistoryProblems();
+                                    int.parse(controller.priceController.text));
+                            await controller.adminDashboardController
+                                .getHistoryProblems();
+                            controller.problemHistory = controller
+                                .adminDashboardController.problemHistory;
                             Get.back();
                             controller.priceController.clear();
-                            controller.birthDay.value='no date';
+                            controller.birthDay.value = 'no date';
                           }
-
                         }
                       },
                       text: 'Ok',

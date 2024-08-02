@@ -4,6 +4,8 @@ import 'dart:math';
 import 'package:animate_do/animate_do.dart';
 import 'package:car_service/core/data/models/api/user_info_model.dart';
 import 'package:car_service/core/utils/general_util.dart';
+import 'package:car_service/ui/admin_view/add_park/add_park_view.dart';
+import 'package:car_service/ui/admin_view/admin_dashboard/admin_dashboard_widget/container_action_admin.dart';
 import 'package:car_service/ui/admin_view/admin_dashboard/admin_dashboard_widget/custom_appbar_admin.dart';
 import 'package:car_service/ui/admin_view/admin_profile_view/profile_widget/custom_info_admin.dart';
 import 'package:car_service/ui/shared/colors.dart';
@@ -144,7 +146,7 @@ class _AdminProfileViewState extends State<AdminProfileView> {
                                     ],
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 20,
                                 ),
                                 Visibility(
@@ -180,6 +182,18 @@ class _AdminProfileViewState extends State<AdminProfileView> {
                                     text: 'Your iD : ${controller.admin.sId}',
                                     fontWeight: FontWeight.normal,
                                     textType: TextStyleType.bodyBig),
+                                Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: CustomContainerDashAndroid(
+                                      textSize: 20.sp,
+                                      onTap: () {
+                                        Get.to(() => AddParkView());
+                                      },
+                                      width: 120.w,
+                                      height: 50.w,
+                                      titleAction: 'New Park',
+                                      numberInAction: ''),
+                                )
                                 // CustomDropMenu(
                                 //   validator:(value) {
                                 //     if (value == null) {

@@ -31,9 +31,7 @@ class CustomAllOrders extends StatelessWidget {
       },
       child: ListView.builder(
         shrinkWrap: true,
-        itemCount: controller.index == 0
-            ? controller.parkingHistory!.length
-            : controller.problemHistory!.length,
+        itemCount: controller.problemHistory!.length,
         itemBuilder: (context, index) => Obx(
           () => SizedBox(
             height: controller.checkExpandedContainer(index) ? 200.h : 130.h,
@@ -111,16 +109,10 @@ class CustomAllOrders extends StatelessWidget {
                                             width: 210.w,
                                             height: 25.h,
                                             child: CustomText(
-                                              text: controller.index == 0
-                                                  ? controller
-                                                      .parkingHistory![index]
-                                                      .selectedPark!
-                                                      .location!
-                                                      .parkingName!
-                                                  : controller
-                                                      .problemHistory![index]
-                                                      .carProblem!
-                                                      .name!,
+                                              text: controller
+                                                  .problemHistory![index]
+                                                  .carProblem!
+                                                  .name!,
                                               overflow: TextOverflow.clip,
                                               textType: TextStyleType.bodyBig,
                                               fontWeight: FontWeight.bold,
@@ -147,13 +139,9 @@ class CustomAllOrders extends StatelessWidget {
                                       ),
                                     CustomText(
                                       topPadding: 5.h,
-                                      text: controller.index == 0
-                                          ? controller
-                                              .parkingHistory![index].price!
-                                              .toString()
-                                          : controller
-                                              .problemHistory![index].orderPrice
-                                              .toString(),
+                                      text: controller
+                                          .problemHistory![index].orderPrice
+                                          .toString(),
                                       textType: TextStyleType.body,
                                       fontWeight: FontWeight.normal,
                                     ),
@@ -164,14 +152,9 @@ class CustomAllOrders extends StatelessWidget {
                                             padding: EdgeInsetsDirectional.only(
                                                 start: 196.w),
                                             child: CustomText(
-                                              text: controller.index == 0
-                                                  ? controller
-                                                      .parkingHistory![index]
-                                                      .createdAt!
-                                                      .toString()
-                                                  : controller
-                                                      .problemHistory![index]
-                                                      .createdAt!,
+                                              text: controller
+                                                  .problemHistory![index]
+                                                  .createdAt!,
                                               fontWeight: FontWeight.normal,
                                               textType: TextStyleType.bodyBig,
                                             ),
@@ -209,9 +192,7 @@ class CustomAllOrders extends StatelessWidget {
                           start: 400.w),
                       child: InkWell(
                         onTap: () => showAlertEditRepair(
-                            id: controller.index == 0
-                                ? controller.parkingHistory![index].sId!
-                                : controller.problemHistory![index].sId!),
+                            id: controller.problemHistory![index].sId!),
                         child: SizedBox(
                             width: 28.w,
                             height: 28.w,
@@ -231,11 +212,8 @@ class CustomAllOrders extends StatelessWidget {
                           child: Column(
                             children: [
                               CustomText(
-                                text: controller.index == 0
-                                    ? controller.parkingHistory![index]
-                                        .selectedPark!.location!.parkingName!
-                                    : controller.problemHistory![index]
-                                        .carProblem!.problemType!,
+                                text: controller.problemHistory![index]
+                                    .carProblem!.problemType!,
                                 textType: TextStyleType.bodyBig,
                                 fontWeight: FontWeight.bold,
                               ),

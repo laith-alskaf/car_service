@@ -10,6 +10,7 @@ class AdminEndpoint {
   static String getparks = NetworkConfig.getFullApiRout('Admins/getParks');
   static String editPark = NetworkConfig.getFullApiRout('Admins/editPark');
   static String settigns = NetworkConfig.getFullApiRout('Admins/settigns');
+  static String countAllPark = NetworkConfig.getFullApiRout('Statiscs/numberofparks');
   static String totalRevenu = NetworkConfig.getFullApiRout('Statiscs/totalRevenu');
   static String numberoflocationbypark = NetworkConfig.getFullApiRout("Statiscs/numberoflocationbypark");
 }

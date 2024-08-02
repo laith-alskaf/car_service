@@ -13,7 +13,7 @@ import '../../../core/data/repositories/user_repositories.dart';
 class LoginViewController extends BaseController {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  String selectedRole = 'admin'; // تعريف متغير لتخزين الخيار المختار
+  String selectedRole = 'user'; // تعريف متغير لتخزين الخيار المختار
 
   Future<void> login() async {
     await runFullLoadingFutureFunction(
@@ -28,7 +28,7 @@ class LoginViewController extends BaseController {
       }, (r) {
         CustomToast.showMessage(message: r, messageType: MessageType.SUCCESS);
         Get.off(() => MainView());
-        storage.setRole(selectedRole);
+        storage.setRole('user');
       });
     }));
   }
@@ -46,7 +46,7 @@ class LoginViewController extends BaseController {
       }, (r) {
         CustomToast.showMessage(message: r, messageType: MessageType.SUCCESS);
         Get.off(() => AdminDashboardView());
-        storage.setRole(selectedRole);
+        storage.setRole('admin');
       });
     }));
   }

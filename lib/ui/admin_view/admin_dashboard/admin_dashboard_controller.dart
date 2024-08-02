@@ -1,5 +1,4 @@
 import 'package:car_service/core/data/models/api/parking_model.dart';
-import 'package:car_service/core/services/base_controller.dart';
 import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/ui/admin_view/add_park/add_park_view.dart';
 import 'package:car_service/ui/admin_view/all_order_detiels/all_order_view.dart';
@@ -15,6 +14,7 @@ import '../../shared/custom_widget/custom_toast.dart';
 class AdminDashboardController extends BaseController {
   List<String> projectsList = ['sdsdsd', 'scxc', 'pwepw'];
   RxInt todoCounter = 0.obs;
+class AdminDashboardController extends GetxController {
   String messageNoOrder = '';
   List<TotalRevenue>? totalRevenuelist;
   List<NumberofLocationbyPark>? numberOfLocation;
@@ -22,12 +22,24 @@ class AdminDashboardController extends BaseController {
 
   RxInt processingCounter = 0.obs;
   RxInt finishedCounter = 0.obs;
+  List<ProblemHistoryModel> problemHistory = <ProblemHistoryModel>[];
+  List<CountAllParkModel> countAllParkModel = <CountAllParkModel>[];
   List<String> titleAction = [
     'Park Status',
     'Orders',
-    'New Park',
+    // 'New Park',
   ];
-  List<String> numberInAction = ['xs', '24', ''];
+  List<Color> colorsBar = [
+    Colors.green,
+    Colors.blue,
+    Colors.purple,
+    Colors.pink,
+    Colors.indigo,
+    Colors.tealAccent,
+    Colors.yellow,
+    Colors.orange,
+    Colors.grey
+  ];
 
   handleClickAction({required int index}) {
     if (index == 0) {
@@ -39,12 +51,18 @@ class AdminDashboardController extends BaseController {
     }
   }
 
-  Future onRefresh() async {}
+  Future onRefresh() async {
+    await getHistoryProblems();
+    await getCountALlParks();
+  }
+
   RxList<SocketPark> allorderparking = <SocketPark>[].obs;
 
   @override
   void onInit() async {
     connectSocket();
+    await getHistoryProblems();
+    await getCountALlParks();
     super.onInit();
   }
 
@@ -80,6 +98,39 @@ class AdminDashboardController extends BaseController {
         print('add');
       });
     }
+  }
+
+  Future<void> getHistoryProblems() async {
+    await AdminRepositories().getHistoryProblem().then((value) {
+      value.fold((l) {
+        CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+      }, (r) {
+        problemHistory = r;
+        for (int i = 0; i < problemHistory.length; i++) {
+          problemHistory[i].createdAt =
+              problemHistory[i].createdAt!.substring(0, 10);
+        }
+        update();
+      });
+    });
+  }
+
+  Future<void> getCountALlParks() async {
+    await AdminRepositories()
+        .getCountAllPark(AdminEmail: storage.getAdminInfo()!.email!)
+        .then((value) {
+      value.fold((l) {
+        CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+      }, (r) {
+        countAllParkModel = r;
+        for (int i = 0; i < problemHistory.length; i++) {
+          problemHistory[i].createdAt =
+              problemHistory[i].createdAt!.substring(0, 10);
+        }
+        print(countAllParkModel.length);
+        update();
+      });
+    });
   }
   Future<void> gettotalRevenue() async {
     await runLoadingFutureFunction(
