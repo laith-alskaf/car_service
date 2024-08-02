@@ -21,7 +21,6 @@ class SplashScreenController extends GetxController {
         } else {
           Get.off(() => AdminDashboardView());
         }
-        Get.off(() => MainView());
       }
     });
     super.onInit();

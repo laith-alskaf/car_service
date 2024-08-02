@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:car_service/core/data/models/api/amin_info_model.dart';
+import 'package:car_service/core/data/models/api/total_revenue_model.dart';
 import 'package:car_service/core/data/network/endpoints/admin_endpoint.dart';
 import 'package:dartz/dartz.dart';
 import '../../enums/request_type.dart';
@@ -286,4 +287,41 @@ class AdminRepositories {
       return Left(e.toString());
     }
   }
+
+
+  Future<Either<String, List<TotalRevenue>>> totalRevenue() async {
+    try {
+      return NetworkUtil.sendRequest(
+          type: RequestType.POST,
+          url: AdminEndpoint.totalRevenu,
+          headers: NetworkConfig.getHeaders(type: RequestType.POST),
+          body: {
+            "AdminEmail":storage.getAdminInfo()!.email
+          }).then((response) {
+        if (response != null) {
+          log('==========> $response');
+          CommonResponse<dynamic> commonResponse =
+          CommonResponse.fromJson(response);
+          if (commonResponse.getStatus) {
+            List<TotalRevenue> totalRevenue = [];
+            for (Map<String, dynamic> s in commonResponse.data!['result']) {
+              totalRevenue.add(TotalRevenue.fromJson(s));
+            }
+            print(totalRevenue.length);
+            return Right(totalRevenue);
+          } else {
+            return Left(commonResponse.message ?? '');
+          }
+        } else {
+          return const Left('Please check your internet');
+        }
+      });
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+
+
+
 }

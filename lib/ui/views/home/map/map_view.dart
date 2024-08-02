@@ -50,7 +50,7 @@ class MapViewState extends State<MapView> {
                     mapController.addMarker(
                         // imageUrl: 'https://www.fluttercampus.com/img/car.png',
                         position: LatLng(
-                            element.coordinates![1], element.coordinates![0]),
+                            element.coordinates![0], element.coordinates![1]),
                         id: element.parkingNumber.toString(),
                         name: element.parkingName);
                   });

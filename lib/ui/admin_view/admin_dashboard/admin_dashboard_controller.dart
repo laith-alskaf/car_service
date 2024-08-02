@@ -1,14 +1,22 @@
 import 'package:car_service/core/data/models/api/parking_model.dart';
+import 'package:car_service/core/services/base_controller.dart';
 import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/ui/admin_view/add_park/add_park_view.dart';
 import 'package:car_service/ui/admin_view/all_order_detiels/all_order_view.dart';
 import 'package:car_service/ui/admin_view/all_parking_order/all_parking_order_view.dart';
 import 'package:get/get.dart';
 
-class AdminDashboardController extends GetxController {
+import '../../../core/data/models/api/total_revenue_model.dart';
+import '../../../core/data/repositories/admin_repositories.dart';
+import '../../../core/enums/message_type.dart';
+import '../../shared/custom_widget/custom_toast.dart';
+
+class AdminDashboardController extends BaseController {
   List<String> projectsList = ['sdsdsd', 'scxc', 'pwepw'];
   RxInt todoCounter = 0.obs;
   String messageNoOrder = '';
+  List<TotalRevenue>? totalRevenuelist;
+
 
   RxInt processingCounter = 0.obs;
   RxInt finishedCounter = 0.obs;
@@ -71,4 +79,21 @@ class AdminDashboardController extends GetxController {
       });
     }
   }
+  Future<void> gettotalRevenue() async {
+    await runLoadingFutureFunction(
+        function: AdminRepositories().totalRevenue().then((value) {
+          value.fold((l) {
+            CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+          }, (r) {
+            totalRevenuelist = r;
+            update();
+          });
+        }));
+  }
+
+
+
+
+
+
 }
