@@ -6,6 +6,7 @@ import 'package:car_service/ui/admin_view/all_order_detiels/all_order_view.dart'
 import 'package:car_service/ui/admin_view/all_parking_order/all_parking_order_view.dart';
 import 'package:get/get.dart';
 
+import '../../../core/data/models/api/Statiscs_model.dart';
 import '../../../core/data/models/api/total_revenue_model.dart';
 import '../../../core/data/repositories/admin_repositories.dart';
 import '../../../core/enums/message_type.dart';
@@ -16,6 +17,7 @@ class AdminDashboardController extends BaseController {
   RxInt todoCounter = 0.obs;
   String messageNoOrder = '';
   List<TotalRevenue>? totalRevenuelist;
+  List<NumberofLocationbyPark>? numberOfLocation;
 
 
   RxInt processingCounter = 0.obs;
@@ -90,6 +92,18 @@ class AdminDashboardController extends BaseController {
           });
         }));
   }
+  Future<void> getNumberofLocationbyPark({required String parkingname,}) async {
+    await runLoadingFutureFunction(
+        function: AdminRepositories().numberofLocation(parkingname: parkingname).then((value) {
+          value.fold((l) {
+            CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+          }, (r) {
+            numberOfLocation = r;
+            update();
+          });
+        }));
+  }
+
 
 
 
