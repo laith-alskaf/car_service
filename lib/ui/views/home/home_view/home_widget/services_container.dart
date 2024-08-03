@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
 import 'package:get/get.dart';
 import '../../../../shared/colors.dart';
+import '../../../../shared/custom_widget/custom_button.dart';
 import '../home_view_controller.dart';
 
 class ServicesContainer extends StatelessWidget {
@@ -32,7 +33,7 @@ class ServicesContainer extends StatelessWidget {
             ],
           ),
           child: Padding(
-            padding: EdgeInsets.all(defaultPadding),
+            padding: EdgeInsets.all(10.h),
             child: Column(
               children: [
                 Row(
@@ -50,29 +51,72 @@ class ServicesContainer extends StatelessWidget {
                     controller.parkingTimer!.minutes == 00  ) ||(controller.parkingTimer!.hours != 00 &&
                     controller.parkingTimer!.minutes != 00  ) ) ...[
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       CustomText(
                         text: "Parking Timer",
                         textType: TextStyleType.body,
                         fontSize: 16.h,
                       ),
-                      Center(
-                        child: IconButton(
-                          onPressed: () {
-                            if (controller.parkingTimer!.hours != 00 &&
-                                controller.parkingTimer!.minutes != 00) {
-                              controller.showDialogExpandTime();
-                            } else {
-                              CustomToast.showMessage(
-                                  message: 'Yoy have\'t choose any park yet',
-                                  messageType: MessageType.WARNING);
-                            }
-                          },
-                          icon: Icon(Icons.add, color: AppColors.mainColor),
-                        ),
+                      IconButton(
+                        onPressed: () {
+                          if (controller.parkingTimer!.hours != 00 &&
+                              controller.parkingTimer!.minutes != 00) {
+                            controller.showDialogExpandTime();
+                          } else {
+                            CustomToast.showMessage(
+                                message: 'Yoy have\'t choose any park yet',
+                                messageType: MessageType.WARNING);
+                          }
+                        },
+                        icon: Icon(Icons.add, color: AppColors.mainColor),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                backgroundColor: AppColors.whiteColor,
+                                content: const Text(
+                                    'Are you sure you want to delete this park'),
+                                actions: <Widget>[
+                                  Row(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center ,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child:  CustomText(
+                                          textType: TextStyleType.subtitle,
+                                          text: "cansel",
+                                          textColor: AppColors.mainColor,
+                                        ),
+                                      ),
+                                      (60.w).pw,
+                                      CustomButton(
+                                        buttonTypeEnum: ButtonTypeEnum.small,
+                                        onPressed: () {
+                                          controller.ordercanseling();
+                                          Navigator.of(context).pop();
+
+                                        },
+                                        text: "ok",
+                                        backgroundColor: AppColors.mainColor,
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+
+                        },
+                        icon: Icon(Icons.delete, color: AppColors.mainColor),
                       ),
                       TimerCountdown(
+                        spacerWidth:5.h ,
                         timeTextStyle: const TextStyle(
                             color: AppColors.blackColor,
                             fontWeight: FontWeight.bold),
@@ -87,7 +131,10 @@ class ServicesContainer extends StatelessWidget {
                         onEnd: () {
                           controller.getParkingTimer();
                         },
-                      )
+                      ),
+
+
+
                     ],
                   ),
                 ]
@@ -95,7 +142,7 @@ class ServicesContainer extends StatelessWidget {
                   CustomText(
                     text: "No Parking exist",
                     textType: TextStyleType.body,
-                    fontSize: 16.h,
+                    fontSize: 20.h,
                   ),
                 ]
               ],

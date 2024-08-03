@@ -266,4 +266,35 @@ class ParkRepository {
       return Left(e.toString());
     }
   }
+
+
+  Future<Either<String, String>> ordercansling() async {
+    try {
+      return NetworkUtil.sendRequest(
+          type: RequestType.POST,
+          url: ParkEndPoints.oedercansled,
+          headers:
+          NetworkConfig.getHeaders(needAuth: false, type: RequestType.POST),
+          body: {
+            'email': storage.getUserInfo()!.email,
+          }).then((response) {
+        if (response != null) {
+          log('==========> ${response}');
+          CommonResponse<Map<String, dynamic>> commonResponse =
+          CommonResponse.fromJson(response);
+          if (commonResponse.getStatus) {
+            return Right(commonResponse.data!['message']);
+          } else {
+            return Left(commonResponse.message ?? '');
+          }
+        } else {
+          return const Left('Please check your internet');
+        }
+      });
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+
 }

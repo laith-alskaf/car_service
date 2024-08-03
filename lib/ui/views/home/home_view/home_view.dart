@@ -45,44 +45,44 @@ class HomeView extends StatelessWidget {
                   children: [
                     InkWell(
                         onTap: () {
-                          // showDialog(
-                          //   context: context,
-                          //   builder: (BuildContext context) {
-                          //     return AlertDialog(
-                          //       backgroundColor: AppColors.whiteColor,
-                          //       content: const Text(
-                          //           'Are you sure you want to be a prime member of this app ?'),
-                          //       actions: <Widget>[
-                          //         Row(
-                          //           crossAxisAlignment: CrossAxisAlignment.center,
-                          //            mainAxisAlignment: MainAxisAlignment.center ,
-                          //           children: [
-                          //             InkWell(
-                          //               onTap: () {
-                          //                 Navigator.of(context).pop();
-                          //               },
-                          //               child:  CustomText(
-                          //                 textType: TextStyleType.subtitle,
-                          //                 text: "cansel",
-                          //                 textColor: AppColors.mainColor,
-                          //               ),
-                          //             ),
-                          //             (60.w).pw,
-                          //             CustomButton(
-                          //               buttonTypeEnum: ButtonTypeEnum.small,
-                          //               onPressed: () {
-                          //                 controller.GetProSub();
-                          //                 Navigator.of(context).pop();
-                          //               },
-                          //               text: "ok",
-                          //               backgroundColor: AppColors.mainColor,
-                          //             )
-                          //           ],
-                          //         ),
-                          //       ],
-                          //     );
-                          //   },
-                          // );
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                backgroundColor: AppColors.whiteColor,
+                                content: const Text(
+                                    'Are you sure you want to be a prime member of this app ?'),
+                                actions: <Widget>[
+                                  Row(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                     mainAxisAlignment: MainAxisAlignment.center ,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child:  CustomText(
+                                          textType: TextStyleType.subtitle,
+                                          text: "cansel",
+                                          textColor: AppColors.mainColor,
+                                        ),
+                                      ),
+                                      (60.w).pw,
+                                      CustomButton(
+                                        buttonTypeEnum: ButtonTypeEnum.small,
+                                        onPressed: () {
+                                          controller.GetProSub();
+                                          Navigator.of(context).pop();
+                                        },
+                                        text: "ok",
+                                        backgroundColor: AppColors.mainColor,
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              );
+                            },
+                          );
 
                         },
                         child: ContainerSubscription()),

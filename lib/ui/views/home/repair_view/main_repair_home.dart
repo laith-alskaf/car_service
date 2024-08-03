@@ -28,7 +28,7 @@ class MainRepairView extends StatelessWidget {
       canPop: false,
       child: ListView(physics: const NeverScrollableScrollPhysics(), children: [
         const CustomAppBar(
-          title: '',
+          title: 'Rpeair',
           iconSetting: true,
         ),
         (10.h).ph,

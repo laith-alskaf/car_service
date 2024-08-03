@@ -3,9 +3,13 @@ import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:car_service/ui/views/home/home_view/home_view_controller.dart';
 import 'package:car_service/ui/views/home/home_view/home_widget/qr_item_info.dart';
+import 'package:car_service/ui/views/home/parking_view/parking_timer_view/parking_timer_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:get/get.dart';
+
+import '../../parking_view/park_spot/park_spot_view_controller.dart';
 
 showDialogOrderQRPark() {
   HomeViewController controller = Get.find();
@@ -188,7 +192,14 @@ showDialogOrderQRPark() {
                             width: 30.w,
                           ),
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              controller.chooseTimeSpot(duration: controller.numberHoursPark.value,
+
+                                date:DateFormat.Hm().format(DateTime.now()) ,
+
+                                Spot: controller.qrParkDetails[1],
+                                parkingName: controller.qrParkDetails[0].toString(),);
+                            },
                             style: ElevatedButton.styleFrom(
                               padding: EdgeInsets.symmetric(horizontal: 40.w),
                               // backgroundColor:
