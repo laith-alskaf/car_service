@@ -34,3 +34,39 @@ class NumberofLocationbyPark {
     return data;
   }
 }
+class TotalRevenueByPark {
+  int? totalRevenue;
+  int? month;
+
+  TotalRevenueByPark({this.totalRevenue, this.month});
+
+  TotalRevenueByPark.fromJson(Map<String, dynamic> json) {
+    totalRevenue = json['totalRevenue'];
+    month = json['month'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['totalRevenue'] = this.totalRevenue;
+    data['month'] = this.month;
+    return data;
+  }
+}
+class RepairOrdersByproblem {
+  String? sId;
+  int? total;
+
+  RepairOrdersByproblem({this.sId, this.total});
+
+  RepairOrdersByproblem.fromJson(Map<String, dynamic> json) {
+    sId = json['_id'];
+    total = json['total'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['_id'] = this.sId;
+    data['total'] = this.total;
+    return data;
+  }
+}

@@ -7,6 +7,7 @@ import 'package:dartz/dartz.dart';
 import '../../enums/request_type.dart';
 import '../../utils/general_util.dart';
 import '../../utils/network_utils.dart';
+import '../models/api/Statiscs_model.dart';
 import '../models/api/problem_model.dart';
 import '../models/common_respons.dart';
 import '../network/network_config.dart';
@@ -356,10 +357,75 @@ class AdminRepositories {
       return Left(e.toString());
     }
   }
+  Future<Either<String, List<TotalRevenueByPark>>> totalrevenuebypark({
+    required String parkingname,
+  }) async {
+    try {
+      return NetworkUtil.sendRequest(
+          type: RequestType.POST,
+          url: AdminEndpoint.TotalRevenueByPark,
+          headers: NetworkConfig.getHeaders(type: RequestType.POST),
+          body: {
+            "AdminEmail":storage.getAdminInfo()!.email,
+            "parkName" : parkingname
+          }).then((response) {
+        if (response != null) {
+          log('==========> $response');
+          CommonResponse<dynamic> commonResponse =
+          CommonResponse.fromJson(response);
+          if (commonResponse.getStatus) {
+            List<TotalRevenueByPark> totalrevenuebypark = [];
+            for (Map<String, dynamic> s in commonResponse.data!['result']) {
+              totalrevenuebypark.add(TotalRevenueByPark.fromJson(s));
+            }
+            print(totalrevenuebypark.length);
+            return Right(totalrevenuebypark);
+          } else {
+            return Left(commonResponse.message ?? '');
+          }
+        } else {
+          return const Left('Please check your internet');
+        }
+      });
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
 
-
-
-
+  Future<Either<String, List<RepairOrdersByproblem>>> repairordersbyproblem({
+    required String parkingname,
+  }) async {
+    try {
+      return NetworkUtil.sendRequest(
+          type: RequestType.POST,
+          url: AdminEndpoint.repairordersbyproblem,
+          headers: NetworkConfig.getHeaders(type: RequestType.POST),
+          body: {
+            "AdminEmail":storage.getAdminInfo()!.email,
+            "parkName" : parkingname
+          }).then((response) {
+        if (response != null) {
+          log('==========> $response');
+          CommonResponse<dynamic> commonResponse =
+          CommonResponse.fromJson(response);
+          if (commonResponse.getStatus) {
+            List<RepairOrdersByproblem> repairordersbyproblem = [];
+            for (Map<String, dynamic> s in commonResponse.data!['result']) {
+              repairordersbyproblem.add(RepairOrdersByproblem.fromJson(s));
+            }
+            print(repairordersbyproblem.length);
+            return Right(repairordersbyproblem);
+          } else {
+            return Left(commonResponse.message ?? '');
+          }
+        } else {
+          return const Left('Please check your internet');
+        }
+      });
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
 
 
   Future<Either<String, List<CountAllParkModel>>> getCountAllPark({

@@ -1,23 +1,28 @@
+import 'dart:ui';
+
 import 'package:car_service/core/data/models/api/parking_model.dart';
 import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/ui/admin_view/add_park/add_park_view.dart';
 import 'package:car_service/ui/admin_view/all_order_detiels/all_order_view.dart';
 import 'package:car_service/ui/admin_view/all_parking_order/all_parking_order_view.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/data/models/api/Statiscs_model.dart';
+import '../../../core/data/models/api/count_all_park_model.dart';
+import '../../../core/data/models/api/problem_model.dart';
 import '../../../core/data/models/api/total_revenue_model.dart';
 import '../../../core/data/repositories/admin_repositories.dart';
 import '../../../core/enums/message_type.dart';
 import '../../shared/custom_widget/custom_toast.dart';
 
-class AdminDashboardController extends BaseController {
-  List<String> projectsList = ['sdsdsd', 'scxc', 'pwepw'];
-  RxInt todoCounter = 0.obs;
+
 class AdminDashboardController extends GetxController {
   String messageNoOrder = '';
   List<TotalRevenue>? totalRevenuelist;
-  List<NumberofLocationbyPark>? numberOfLocation;
+  List<NumberofLocationbyPark> numberOfLocation= <NumberofLocationbyPark>[];
+  List<TotalRevenueByPark> totalRevenueByPark=<TotalRevenueByPark>[];
+  List<RepairOrdersByproblem> repairOrdersByproblem = <RepairOrdersByproblem>[];
 
 
   RxInt processingCounter = 0.obs;
@@ -132,32 +137,56 @@ class AdminDashboardController extends GetxController {
       });
     });
   }
+
   Future<void> gettotalRevenue() async {
-    await runLoadingFutureFunction(
-        function: AdminRepositories().totalRevenue().then((value) {
-          value.fold((l) {
-            CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
-          }, (r) {
-            totalRevenuelist = r;
-            update();
-          });
-        }));
+    function:
+    AdminRepositories().totalRevenue().then((value) {
+      value.fold((l) {
+        CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+      }, (r) {
+        totalRevenuelist = r;
+        update();
+      });
+    });
   }
+
   Future<void> getNumberofLocationbyPark({required String parkingname,}) async {
-    await runLoadingFutureFunction(
-        function: AdminRepositories().numberofLocation(parkingname: parkingname).then((value) {
-          value.fold((l) {
-            CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
-          }, (r) {
-            numberOfLocation = r;
-            update();
-          });
-        }));
+    function:
+    AdminRepositories().numberofLocation(parkingname: parkingname).then((
+        value) {
+      value.fold((l) {
+        CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+      }, (r) {
+        numberOfLocation = r;
+        update();
+      });
+    });
   }
 
+  Future<void> gettotalrevenuebypark({required String parkingname,}) async {
+    function:
+    AdminRepositories().totalrevenuebypark(parkingname: parkingname).then((
+        value) {
+      value.fold((l) {
+        CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+      }, (r) {
+        totalRevenueByPark = r;
+        update();
+      });
+    });
+  }
+  Future<void> getrepairOrdersByproblem({required String parkingname,}) async {
 
-
-
+    AdminRepositories().repairordersbyproblem(parkingname: parkingname).then((
+        value) {
+      value.fold((l) {
+        CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+      }, (r) {
+        repairOrdersByproblem = r;
+        update();
+      });
+    });
+  }
 
 
 
