@@ -11,91 +11,121 @@ import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class CustomDropMenu extends StatelessWidget {
-   CustomDropMenu({super.key, required this.items, this.onSaved,required this.hint,this.validator});
+  CustomDropMenu({
+    super.key,
+    required this.items,
+    this.onSaved,
+    required this.hint,
+    this.validator,
+    this.colorBorder,
+    this.borderRadTop,
+    this.onChanged,
+  });
 
   final List<String> items;
   final String hint;
+  final double? borderRadTop;
+  final Color? colorBorder;
   final String? Function(String?)? validator;
   final Function(String?)? onSaved;
-
+  final Function(String?)? onChanged;
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: DropdownButtonFormField2<String>(
-        style: TextStyle(color: AppColors.mainColor),
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.only(top: 10.h),
-          hintText: hint,
-          hintStyle: TextStyle(color: AppColors.grayColor),
-          fillColor: AppColors.blackColor.withOpacity(0.02),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15.r),
-            borderSide: BorderSide(
-              color: AppColors.mainColor,
-            ),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15.r),
-            borderSide: BorderSide(
-              color: AppColors.mainColor,
-            ),
-          ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15.r),
-            borderSide: BorderSide(
-              color: AppColors.mainColor,
-            ),
-          ),
+    return DropdownButtonFormField2<String>(
+      style: TextStyle(color: AppColors.mainColor),
+      alignment: Alignment.center,
+      decoration: InputDecoration(
+        contentPadding: EdgeInsetsDirectional.only(start: 10.w, end: 0.w),
+        hintText: hint,
+        hintStyle: TextStyle(color: AppColors.grayColor),
+        fillColor: AppColors.blackColor.withOpacity(0.02),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(borderRadTop ?? 15.r),
+              topRight: Radius.circular(borderRadTop ?? 15.r),
+              bottomRight: Radius.circular(15.r),
+              bottomLeft: Radius.circular(15.r)),
+          borderSide: BorderSide(
+              color: colorBorder ?? AppColors.mainColor,
+              width: borderRadTop != null ? 0.3 : 1.0),
         ),
-        items: items.map<DropdownMenuItem<String>>((value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CustomText(
-                  startPadding: 15.w,
-                  text: value,
-                  textColor: AppColors.blackColor,
-                  textType: TextStyleType.body,
-                  fontWeight: FontWeight.normal,
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(borderRadTop ?? 15.r),
+              topRight: Radius.circular(borderRadTop ?? 15.r),
+              bottomRight: Radius.circular(15.r),
+              bottomLeft: Radius.circular(15.r)),
+          borderSide: BorderSide(
+              color: colorBorder ?? AppColors.mainColor,
+              width: borderRadTop != null ? 0.3 : 1.0),
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(borderRadTop ?? 15.r),
+              topRight: Radius.circular(borderRadTop ?? 15.r),
+              bottomRight: Radius.circular(15.r),
+              bottomLeft: Radius.circular(15.r)),
+          borderSide: BorderSide(
+              color: colorBorder ?? AppColors.mainColor,
+              width: borderRadTop != null ? 0.3 : 1.0),
+        ),
+      ),
+      items: items.map<DropdownMenuItem<String>>((value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CustomText(
+                startPadding: 10.w,
+                text: value,
+                textColor: AppColors.blackColor,
+                textType: TextStyleType.body,
+                fontWeight: FontWeight.normal,
+              ),
+              Visibility(
+                visible: items.last != value,
+                child: const Divider(
+                  color: AppColors.blackColor,
+                  indent: 10.0,
+                  endIndent: 10.0,
                 ),
-                Visibility(
-                  visible: items.last != value,
-                  child: const Divider(
-                    color: AppColors.blackColor,
-                    indent: 10.0,
-                    endIndent: 10.0,
-                  ),
-                ),
-                if (items.last != value) (2.h).ph,
-              ],
-            ),
-          );
-        }).toList(),
-        selectedItemBuilder: (BuildContext context) {
-          return items.map<Widget>((String value) {
-            return CustomText(
+              ),
+              if (items.last != value) (2.h).ph,
+            ],
+          ),
+        );
+      }).toList(),
+      selectedItemBuilder: (BuildContext context) {
+        return items.map<Widget>((String value) {
+          return SizedBox(
+            width: 130.w,
+            child: CustomText(
               text: value,
               textType: TextStyleType.body,
               fontWeight: FontWeight.normal,
-            );
-          }).toList();
-        },
-        validator: validator,
-        onChanged: (value) {},
-        onSaved: onSaved,
-        iconStyleData: const IconStyleData(),
-        dropdownStyleData: DropdownStyleData(
-          maxHeight: 300,
-          decoration: BoxDecoration(color: AppColors.whiteColor,
-            borderRadius: BorderRadius.circular(15),
-          ),
+            ),
+          );
+        }).toList();
+      },
+      validator: validator,
+      onChanged: onChanged,
+      onSaved: onSaved,
+      iconStyleData: IconStyleData(
+          icon: Icon(
+        Icons.arrow_drop_down,
+        size: 30.w,
+      )),
+      dropdownStyleData: DropdownStyleData(
+        maxHeight: 200.h,
+        decoration: BoxDecoration(
+          color: AppColors.whiteColor,
+          borderRadius: BorderRadius.circular(15.r),
         ),
-        menuItemStyleData: MenuItemStyleData(
-          padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 5.h),
-        ),
+      ),
+      menuItemStyleData: MenuItemStyleData(
+        padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 5.h),
       ),
     );
   }

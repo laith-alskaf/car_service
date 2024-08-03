@@ -194,22 +194,7 @@ class _AdminProfileViewState extends State<AdminProfileView> {
                                       titleAction: 'New Park',
                                       numberInAction: ''),
                                 )
-                                // CustomDropMenu(
-                                //   validator:(value) {
-                                //     if (value == null) {
-                                //       return 'Please select Type';
-                                //     }
-                                //     else{
-                                //       controller.parkname.value=value;
-                                //     }
-                                //     return null;
-                                //   },
-                                //   hint: "parking",
-                                //   items: controller.parks,
-                                //   onSaved: (value) {
-                                //     controller.parkname.value = value!;
-                                //   },
-                                // ),
+
                               ],
                             ),
                           ),

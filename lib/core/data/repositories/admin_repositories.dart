@@ -1,13 +1,11 @@
 import 'dart:developer';
+import 'package:car_service/core/data/models/api/Statiscs_model.dart';
 import 'package:car_service/core/data/models/api/amin_info_model.dart';
-import 'package:car_service/core/data/models/api/total_revenue_model.dart';
-import 'package:car_service/core/data/models/api/count_all_park_model.dart';
 import 'package:car_service/core/data/network/endpoints/admin_endpoint.dart';
 import 'package:dartz/dartz.dart';
 import '../../enums/request_type.dart';
 import '../../utils/general_util.dart';
 import '../../utils/network_utils.dart';
-import '../models/api/Statiscs_model.dart';
 import '../models/api/problem_model.dart';
 import '../models/common_respons.dart';
 import '../network/network_config.dart';
@@ -291,7 +289,7 @@ class AdminRepositories {
   }
 
 
-  Future<Either<String, List<TotalRevenue>>> totalRevenue() async {
+  Future<Either<String, List<StatisticsModel>>> totalRevenue() async {
     try {
       return NetworkUtil.sendRequest(
           type: RequestType.POST,
@@ -305,9 +303,9 @@ class AdminRepositories {
           CommonResponse<dynamic> commonResponse =
           CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
-            List<TotalRevenue> totalRevenue = [];
+            List<StatisticsModel> totalRevenue = [];
             for (Map<String, dynamic> s in commonResponse.data!['result']) {
-              totalRevenue.add(TotalRevenue.fromJson(s));
+              totalRevenue.add(StatisticsModel.fromJson(s));
             }
             print(totalRevenue.length);
             return Right(totalRevenue);
@@ -323,13 +321,13 @@ class AdminRepositories {
     }
   }
 
-  Future<Either<String, List<NumberofLocationbyPark>>> numberofLocation({
+  Future<Either<String, List<StatisticsModel>>> numberofLocation({
     required String parkingname,
   }) async {
     try {
       return NetworkUtil.sendRequest(
           type: RequestType.POST,
-          url: AdminEndpoint.totalRevenu,
+          url: AdminEndpoint.numberoflocationbypark,
           headers: NetworkConfig.getHeaders(type: RequestType.POST),
           body: {
             "AdminEmail":storage.getAdminInfo()!.email,
@@ -340,9 +338,9 @@ class AdminRepositories {
           CommonResponse<dynamic> commonResponse =
           CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
-            List<NumberofLocationbyPark> numberofLocation = [];
+            List<StatisticsModel> numberofLocation = [];
             for (Map<String, dynamic> s in commonResponse.data!['result']) {
-              numberofLocation.add(NumberofLocationbyPark.fromJson(s));
+              numberofLocation.add(StatisticsModel.fromJson(s));
             }
             print(numberofLocation.length);
             return Right(numberofLocation);
@@ -357,7 +355,7 @@ class AdminRepositories {
       return Left(e.toString());
     }
   }
-  Future<Either<String, List<TotalRevenueByPark>>> totalrevenuebypark({
+  Future<Either<String, List<StatisticsModel>>> totalrevenuebypark({
     required String parkingname,
   }) async {
     try {
@@ -374,9 +372,9 @@ class AdminRepositories {
           CommonResponse<dynamic> commonResponse =
           CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
-            List<TotalRevenueByPark> totalrevenuebypark = [];
+            List<StatisticsModel> totalrevenuebypark = [];
             for (Map<String, dynamic> s in commonResponse.data!['result']) {
-              totalrevenuebypark.add(TotalRevenueByPark.fromJson(s));
+              totalrevenuebypark.add(StatisticsModel.fromJson(s));
             }
             print(totalrevenuebypark.length);
             return Right(totalrevenuebypark);
@@ -392,7 +390,7 @@ class AdminRepositories {
     }
   }
 
-  Future<Either<String, List<RepairOrdersByproblem>>> repairordersbyproblem({
+  Future<Either<String, List<StatisticsModel>>> repairordersbyproblem({
     required String parkingname,
   }) async {
     try {
@@ -409,9 +407,9 @@ class AdminRepositories {
           CommonResponse<dynamic> commonResponse =
           CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
-            List<RepairOrdersByproblem> repairordersbyproblem = [];
+            List<StatisticsModel> repairordersbyproblem = [];
             for (Map<String, dynamic> s in commonResponse.data!['result']) {
-              repairordersbyproblem.add(RepairOrdersByproblem.fromJson(s));
+              repairordersbyproblem.add(StatisticsModel.fromJson(s));
             }
             print(repairordersbyproblem.length);
             return Right(repairordersbyproblem);
@@ -428,7 +426,7 @@ class AdminRepositories {
   }
 
 
-  Future<Either<String, List<CountAllParkModel>>> getCountAllPark({
+  Future<Either<String, List<StatisticsModel>>> getCountAllPark({
     required String AdminEmail,
   }) async {
     try {
@@ -444,10 +442,10 @@ class AdminRepositories {
           CommonResponse<Map<String, dynamic>> commonResponse =
               CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
-            List<CountAllParkModel> countAll = <CountAllParkModel>[];
+            List<StatisticsModel> countAll = <StatisticsModel>[];
             for (Map<String, dynamic> countAllParkModel
                 in commonResponse.data!['result']) {
-              countAll.add(CountAllParkModel.fromJson(countAllParkModel));
+              countAll.add(StatisticsModel.fromJson(countAllParkModel));
             }
             return  Right(countAll);
           } else {

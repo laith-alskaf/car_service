@@ -1,7 +1,9 @@
 import 'package:car_service/ui/admin_view/admin_dashboard/admin_dashboard_controller.dart';
 import 'package:car_service/ui/admin_view/admin_dashboard/admin_dashboard_widget/container_action_admin.dart';
 import 'package:car_service/ui/admin_view/admin_dashboard/admin_dashboard_widget/custom_appbar_admin.dart';
-import 'package:car_service/ui/admin_view/admin_dashboard/admin_dashboard_widget/service_statistic.dart';
+import 'package:car_service/ui/admin_view/admin_dashboard/admin_dashboard_widget/total_order_service_statistic.dart';
+import 'package:car_service/ui/admin_view/admin_dashboard/admin_dashboard_widget/total_park_service_statistic.dart';
+import 'package:car_service/ui/admin_view/admin_dashboard/admin_dashboard_widget/total_revenue_service_statistic.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:flutter/material.dart';
@@ -69,15 +71,16 @@ class AdminDashboardView extends GetView<AdminDashboardController> {
                     );
                   }),
                   (20.h).ph,
-                  ...List.generate(2, (index) {
-                    return GetBuilder<AdminDashboardController>(builder: (c) {
-                      return Padding(
-                        padding: EdgeInsets.only(bottom: index == 1 ? 0 : 20.h),
-                        child: ProjectStatisticDashBoard(
-                          actionIndex: index,
-                        ),
-                      );
-                    });
+                  GetBuilder<AdminDashboardController>(builder: (c) {
+                    return TotalParkStatisticDashBoard();
+                  }),
+                  (20.h).ph,
+                  GetBuilder<AdminDashboardController>(builder: (c) {
+                    return TotalRevenueStatisticDashBoard();
+                  }),
+                  (20.h).ph,
+                  GetBuilder<AdminDashboardController>(builder: (c) {
+                    return TotalOrderServiceStatistic();
                   }),
                   (20.h).ph,
                 ],

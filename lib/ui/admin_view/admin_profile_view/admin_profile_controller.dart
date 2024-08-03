@@ -13,7 +13,7 @@ import 'package:image_picker/image_picker.dart';
 
 class AdminProfileController extends BaseController {
   List<String> parks = [];
-  RxString parkname = ''.obs;
+  RxString parkname = 'total'.obs;
   List<AdminParks>? adminparks;
   RxList<bool> expandedContainer = [false, false].obs;
   AdminInfo admin = AdminInfo();
