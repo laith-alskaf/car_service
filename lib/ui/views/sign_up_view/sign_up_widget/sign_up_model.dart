@@ -58,21 +58,23 @@ class SignUpModel extends StatelessWidget {
           delay: const Duration(milliseconds: 1700),
           duration: const Duration(milliseconds: 200),
           child: CustomDropMenu(
-            validator:(value) {
-              if (value == null) {
-                return 'Please select Type';
-              }
-              else{
-                controller.carType.value=value;
-              }
-              return null;
-            },
-            hint: tr('car type'),
-            items: controller.listCarType,
-            onSaved: (value) {
-              controller.carType.value = value!;
-            },
-          ),
+              validator: (value) {
+                if (value == null) {
+                  return 'Please select Type';
+                } else {
+                  controller.carType.value = value;
+                }
+                return null;
+              },
+              hint: tr('car type'),
+              items: controller.listCarType,
+              onSaved: (value) {
+                controller.carType.value = value!;
+              },
+              onChanged: (value) {
+                controller.carType.value = value!;
+                return ;
+              }),
         ),
         (25.h).ph,
         FadeInLeft(

@@ -18,8 +18,7 @@ class CustomDropMenu extends StatelessWidget {
     required this.hint,
     this.validator,
     this.colorBorder,
-    this.borderRadTop,
-    this.onChanged,
+    this.borderRadTop, this.onChanged,
   });
 
   final List<String> items;
@@ -27,8 +26,8 @@ class CustomDropMenu extends StatelessWidget {
   final double? borderRadTop;
   final Color? colorBorder;
   final String? Function(String?)? validator;
+  final String? Function(String?)? onChanged;
   final Function(String?)? onSaved;
-  final Function(String?)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -114,9 +113,9 @@ class CustomDropMenu extends StatelessWidget {
       onSaved: onSaved,
       iconStyleData: IconStyleData(
           icon: Icon(
-        Icons.arrow_drop_down,
-        size: 30.w,
-      )),
+            Icons.arrow_drop_down,
+            size: 30.w,
+          )),
       dropdownStyleData: DropdownStyleData(
         maxHeight: 200.h,
         decoration: BoxDecoration(

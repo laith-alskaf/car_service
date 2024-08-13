@@ -1,16 +1,16 @@
 class EnLanguage {
   static Map<String, String> get map => {
-    "Welcome to our Car Services, your one-stop destination for all your automotive needs": "Welcome to our Car Services, your one-stop destination for all your automotive needs",
-    "Parking": "Parking",
-    "Billing": "Billing",
-    "Home": "Home",
-    "History": "History",
-    'Parking Timer':'Parking Timer',
-    'Return To Home Page':'Return To Home Page',
-    "Repair": "Repair",
+        "Welcome to our Car Services, your one-stop destination for all your automotive needs":
+            "Welcome to our Car Services, your one-stop destination for all your automotive needs",
+        "Parking": "Parking",
+        "Billing": "Billing",
+        "Home": "Home",
+        "History": "History",
+        'Parking Timer': 'Parking Timer',
+        'Return To Home Page': 'Return To Home Page',
+        "Repair": "Repair",
 
-
-    //______________________________ LogIn View_________________________________________
+        //______________________________ LogIn View_________________________________________
         "key_login": "Log in",
         "Email": "Email",
         "Password": "Password",
@@ -33,31 +33,63 @@ class EnLanguage {
         "Already have account": "Already have account",
         "please check your confirm password":
             "Please check your confirm password",
-    "Car Brand And Model": "Car Brand And Model",
-    "Should be not empty": "Should be not empty",
-    "Car Number": "Car Number",
-    "Should be more than 4 numbers": "Should be more than 4 numbers",
-    "Next": "Next",
-    "Verify": "Verify",
-    "Resend": "Resend",
-    "Car Type": "Car Type",
-    "Please select Type": "Please select Type",
-    "Didn\'t Receive Email ?": "Didn\'t Receive Email ?",
-    "Please Check Your Inbox for The Verification Email": "Please Check Your Inbox for The Verification Email",
-    "Please Enter The 6 Digits Code sent to you": "Please Enter The 6 Digits Code sent to you",
-    "You will be redirected to login page": "You will be redirected to login page",
-    //______________________________ ForgetPasswordView_________________________________________
-    "Don’t worry it happens please enter your email address":"Don’t worry it happens please enter your email address",
-    "Reset Password":"Reset Password",
-    //______________________________ locationView_________________________________________
+        "Car Brand And Model": "Car Brand And Model",
+        "Should be not empty": "Should be not empty",
+        "Car Number": "Car Number",
+        "Should be more than 4 numbers": "Should be more than 4 numbers",
+        "Next": "Next",
+        "Verify": "Verify",
+        "Resend": "Resend",
+        "Car Type": "Car Type",
+        "Please select Type": "Please select Type",
+        "Didn\'t Receive Email ?": "Didn\'t Receive Email ?",
+        "Please Check Your Inbox for The Verification Email":
+            "Please Check Your Inbox for The Verification Email",
+        "Please Enter The 6 Digits Code sent to you":
+            "Please Enter The 6 Digits Code sent to you",
+        "You will be redirected to login page":
+            "You will be redirected to login page",
+        //______________________________ ForgetPasswordView_________________________________________
+        "Don’t worry it happens please enter your email address":
+            "Don’t worry it happens please enter your email address",
+        "Reset Password": "Reset Password",
+        //______________________________ locationView_________________________________________
 
-    'No Location Selected':'No Location Selected',
-  "Select Date and Start Hour":"Select Date and Start Hour",
-    "Parking Time":"Parking Time"
-
-
-
-
-
-};
+        'No Location Selected': 'No Location Selected',
+        "Select Date and Start Hour": "Select Date and Start Hour",
+        "Parking Time": "Parking Time",
+        "Book your service": "Book your service",
+        "Find Your Parking Spot": "Find Your Parking Spot",
+        "Already in the parking ?": "Already in the parking ?",
+        "Scan Now": "Scan Now",
+        "Cancel": "Cancel",
+        "Going On Services": "Going On Services",
+        "You have\'to choose any park yet": "You have\'to choose any park yet",
+        "Are you sure you want to delete this parking":
+            "Are you sure you want to delete this parking",
+        "Ok": "Ok",
+        "Select Time": "Select Time",
+        "No Parking exist active": "No Parking exist active",
+        "Please check your internet": "Please check your internet",
+        "Are you sure you want to expand your parking time":
+            "Are you sure you want to expand your parking time",
+        "Profile": "Profile",
+        "Name": "Name",
+        "Edit": "Edit",
+        "Car Info": "Car Info",
+        "Car Model": "Car Model",
+        "Free": "Free",
+        "Premium": "Premium",
+        "Personal Info": "Personal Info",
+        "Gallery": "Gallery",
+        "Your iD": "Your iD",
+        "parking Info": "parking Info",
+        "Parking name": "Parking name",
+        "Price": "Price",
+        "Parking Status": "Parking Status",
+        "Orders": "Orders",
+        "All": "All",
+        "Park": "Park",
+        "Month": "Month",
+      };
 }

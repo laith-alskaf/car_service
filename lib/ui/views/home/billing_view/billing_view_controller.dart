@@ -14,7 +14,7 @@ class BillingViewController extends GetxController {
   bool showOTB = false;
   RxList<int> selectedImageIndex = [0, 0, 0].obs;
   final List<List<String>> cash = [
-    ['iDCash'],
+    ['ic_splash'],
     ['syriatel', 'mtn'],
     ['baraka', 'bemo']
   ];

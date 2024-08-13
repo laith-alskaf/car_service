@@ -8,6 +8,7 @@ import 'package:car_service/core/services/base_controller.dart';
 import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_toast.dart';
 import 'package:car_service/ui/views/home/map/map_view.dart';
+import 'package:car_service/ui/views/main_view/main_view.dart';
 import 'package:get/get.dart';
 import 'package:location/location.dart';
 
@@ -15,7 +16,7 @@ class MainRepairController extends BaseController {
   String? selectedLocation;
   String? selectedPlace;
   String? placeNumber;
-  int counter = 4;
+  int counter = 3;
   int page = 0;
   late List<ChooseParkingModel> placingList;
   late OrderDetailsModel orderDetails;
@@ -25,11 +26,11 @@ class MainRepairController extends BaseController {
   String chooseProblemType = '';
   String chooseProblem = '';
   LocationData? currentLocation;
-  List list = [0, 1, 2, 3, 4];
+  List list = [0, 1, 2, 3];
 
   handleStepValue({required bool isIncrease}) {
     if (isIncrease) {
-      if (page < 4) page += 1;
+      if (page < 3) page += 1;
     } else {
       if (page >= 1) page -= 1;
     }
@@ -81,8 +82,12 @@ class MainRepairController extends BaseController {
         }
         break;
       case 3:
-        break;
-      case 4:
+        handleStepValue(isIncrease: false);
+        handleStepValue(isIncrease: false);
+        handleStepValue(isIncrease: false);
+        Get.offAll(MainView(
+          currentIndex: 4,
+        ));
         break;
     }
     update();

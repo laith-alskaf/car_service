@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:car_service/core/data/models/api/user_info_model.dart';
+import 'package:car_service/core/translation/app_translation.dart';
 import 'package:car_service/core/utils/general_util.dart';
 import 'package:dartz/dartz.dart';
 import 'package:car_service/core/data/models/common_respons.dart';
@@ -39,7 +40,7 @@ class UserRepository {
             return Left(commonResponse.message ?? '');
           }
         } else {
-          return const Left('Please check your internet');
+          return  Left(tr('Please check your internet'));
         }
       });
     } catch (e) {
@@ -70,7 +71,7 @@ class UserRepository {
             return Left(commonResponse.message ?? '');
           }
         } else {
-          return const Left('Please check your internet');
+          return  Left(tr('Please check your internet'));
         }
       });
     } catch (e) {
@@ -103,7 +104,7 @@ class UserRepository {
             return Left(commonResponse.message ?? '');
           }
         } else {
-          return const Left('Please check your internet');
+          return  Left(tr('Please check your internet'));
         }
       });
     } catch (e) {
@@ -132,7 +133,7 @@ class UserRepository {
             return Left(commonResponse.message ?? '');
           }
         } else {
-          return const Left('Please check your internet');
+          return  Left(tr('Please check your internet'));
         }
       });
     } catch (e) {
@@ -162,7 +163,7 @@ class UserRepository {
             return Left(commonResponse.message ?? '');
           }
         } else {
-          return const Left('Please check your internet');
+          return  Left(tr('Please check your internet'));
         }
       });
     } catch (e) {
@@ -194,7 +195,7 @@ class UserRepository {
             return Left(commonResponse.message ?? '');
           }
         } else {
-          return const Left('Please check your internet');
+          return  Left(tr('Please check your internet'));
         }
       });
     } catch (e) {
@@ -235,12 +236,13 @@ class UserRepository {
           CommonResponse<Map<String, dynamic>> commonResponse =
               CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
+            storage.setRole('user');
             return Right(commonResponse.data!['message']);
           } else {
             return Left(commonResponse.message ?? '');
           }
         } else {
-          return const Left('Please check your internet');
+          return  Left(tr('Please check your internet'));
         }
       });
     } catch (e) {
@@ -280,7 +282,7 @@ class UserRepository {
             return Left(commonResponse.message ?? '');
           }
         } else {
-          return const Left('Please check your internet');
+          return  Left(tr('Please check your internet'));
         }
       });
     } catch (e) {
@@ -305,7 +307,7 @@ class UserRepository {
             return Left(commonResponse.message ?? '');
           }
         } else {
-          return const Left('Please check your internet');
+          return  Left(tr('Please check your internet'));
         }
       });
     } catch (e) {
@@ -330,7 +332,7 @@ class UserRepository {
             return Left(commonResponse.message ?? '');
           }
         } else {
-          return const Left('Please check your internet');
+          return  Left(tr('Please check your internet'));
         }
       });
     } catch (e) {

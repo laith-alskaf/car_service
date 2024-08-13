@@ -18,6 +18,8 @@ class ProfileController extends BaseController {
   ImagePicker picker = ImagePicker();
   FileModel selectedFile = FileModel('', FileTypeEnum.GALLERY);
   bool showOptions = false;
+  RxBool showIcons = false.obs;
+  RxBool expandContainer = false.obs;
 
   TextEditingController name = TextEditingController();
   TextEditingController lastName = TextEditingController();
@@ -29,9 +31,21 @@ class ProfileController extends BaseController {
   clickToExpanded({required int index}) {
     expandedContainer[index] = !expandedContainer[index];
   }
+  List proInfo = <String>[];
+  Future<void> getPro() async {
+    await UserRepository().pro().then((value) {
+      value.fold((l) {
+        CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+      }, (r) {
+        proInfo = r;
+        print(proInfo[0]);
+        update();
+      });
+    });
+  }
 
   @override
-  void onInit() {
+  void onInit() async{
     userInfo = storage.getUserInfo()!;
     name = TextEditingController(text: userInfo.firstName);
     lastName = TextEditingController(text: userInfo.lastName);
@@ -40,6 +54,7 @@ class ProfileController extends BaseController {
     carType = TextEditingController(text: userInfo.car!.carType);
     carModel = TextEditingController(text: userInfo.car!.carModel);
     selectedFile.path = storage.getGallary;
+    await getPro();
     update();
     super.onInit();
   }
@@ -95,7 +110,7 @@ class ProfileController extends BaseController {
         break;
     }
     setShowOPtion(false);
-    return FileModel(path.isNotEmpty ? path : selectedFile!.path,
-        path.isNotEmpty ? type : selectedFile!.type);
+    return FileModel(path.isNotEmpty ? path : selectedFile.path,
+        path.isNotEmpty ? type : selectedFile.type);
   }
 }

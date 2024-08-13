@@ -25,10 +25,8 @@ class ContainerHistory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HistoryViewController controller = Get.find();
-    return RefreshIndicator(
-      onRefresh: () {
-        return controller.onInit();
-      },
+    return Scrollbar(
+      thickness: 6,radius: Radius.circular(16.r),
       child: ListView.builder(
         shrinkWrap: true,
         itemCount: controller.index == 0
@@ -137,7 +135,16 @@ class ContainerHistory extends StatelessWidget {
                                         child: CustomText(
                                           textType: TextStyleType.body,
                                           isTextAlign: TextAlign.center,
-                                          text: 'Uniform Clothing Store',
+                                          text: controller.index == 0
+                                              ? controller
+                                              .parkingHistory![index]
+                                              .selectedPark!
+                                              .location!
+                                              .parkingName!
+                                              : controller
+                                              .problemHistory![index]
+                                              .carProblem!
+                                              .name!,
                                           overflow: controller
                                                   .checkExpandedContainer(index)
                                               ? null

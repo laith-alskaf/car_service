@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:car_service/core/data/models/api/parking_model.dart';
 import 'package:car_service/core/data/models/api/problem_model.dart';
 import 'package:car_service/core/data/network/endpoints/problem_endpoint.dart';
+import 'package:car_service/core/translation/app_translation.dart';
 import 'package:car_service/core/utils/general_util.dart';
 import 'package:dartz/dartz.dart';
 import 'package:car_service/core/data/models/common_respons.dart';
@@ -35,7 +36,7 @@ class ProblemRepositories {
             return Left(commonResponse.message ?? '');
           }
         } else {
-          return const Left('Please check your internet');
+          return Left(tr('Please check your internet'));
         }
       });
     } catch (e) {
@@ -71,7 +72,7 @@ class ProblemRepositories {
             return Left(commonResponse.message ?? '');
           }
         } else {
-          return const Left('Please check your internet');
+          return Left(tr('Please check your internet'));
         }
       });
     } catch (e) {
@@ -103,7 +104,7 @@ class ProblemRepositories {
             return Left(commonResponse.message ?? '');
           }
         } else {
-          return const Left('Please check your internet');
+          return Left(tr('Please check your internet'));
         }
       });
     } catch (e) {
@@ -134,13 +135,14 @@ class ProblemRepositories {
             return Left(commonResponse.message ?? '');
           }
         } else {
-          return const Left('Please check your internet');
+          return Left(tr('Please check your internet'));
         }
       });
     } catch (e) {
       return Left(e.toString());
     }
   }
+
   Future<Either<String, String>> deleteHistoryProblem(
       {required String idPark}) async {
     try {
@@ -148,22 +150,18 @@ class ProblemRepositories {
           type: RequestType.POST,
           url: ProblemEndpoint.deleteHistoryProblem,
           headers: NetworkConfig.getHeaders(type: RequestType.POST),
-          body: {
-            "id":idPark
-          }
-      ).then((response) {
-
+          body: {"id": idPark}).then((response) {
         if (response != null) {
           log('==========> $response');
           CommonResponse<Map<String, dynamic>> commonResponse =
-          CommonResponse.fromJson(response);
+              CommonResponse.fromJson(response);
           if (commonResponse.getStatus) {
-            return Right(commonResponse.data!['message']);
+            return Right(commonResponse.data!['messgae']);
           } else {
             return Left(commonResponse.message ?? '');
           }
         } else {
-          return const Left('Please check your internet');
+          return Left(tr('Please check your internet'));
         }
       });
     } catch (e) {

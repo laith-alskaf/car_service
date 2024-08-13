@@ -13,6 +13,8 @@ class HistoryViewController extends BaseController {
   List<ProblemHistoryModel>? problemHistory;
 
   handleClickFilter({required int serviceIndex}) {
+    currentIndexON.value = -1;
+    showText.value = false;
     index = serviceIndex;
     update();
   }
@@ -44,6 +46,9 @@ class HistoryViewController extends BaseController {
       value.fold((l) {
         CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
       }, (r) {
+        currentIndexON.value = -1;
+        showText.value = false;
+        parkingHistory = null;
         parkingHistory = r;
         for (int i = 0; i < parkingHistory!.length; i++) {
           parkingHistory![i].createdAt =
@@ -60,12 +65,14 @@ class HistoryViewController extends BaseController {
       value.fold((l) {
         CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
       }, (r) {
+        currentIndexON.value = -1;
+        showText.value = false;
+        problemHistory = null;
         problemHistory = r;
         for (int i = 0; i < problemHistory!.length; i++) {
           problemHistory![i].createdAt =
               problemHistory![i].createdAt!.substring(0, 10);
         }
-
         update();
       });
     }));
@@ -83,10 +90,12 @@ class HistoryViewController extends BaseController {
       });
     }));
   }
+
   Future<void> deleteHistoryProblem({required String idPark}) async {
     await runLoadingFutureFunction(
-        function:
-            ProblemRepositories().deleteHistoryProblem(idPark: idPark).then((value) {
+        function: ProblemRepositories()
+            .deleteHistoryProblem(idPark: idPark)
+            .then((value) {
       value.fold((l) {
         CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
       }, (r) async {
@@ -102,5 +111,4 @@ class HistoryViewController extends BaseController {
     getHistoryProblems();
     super.onInit();
   }
-
 }

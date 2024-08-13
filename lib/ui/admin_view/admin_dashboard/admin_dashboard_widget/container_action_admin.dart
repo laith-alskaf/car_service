@@ -1,3 +1,4 @@
+import 'package:car_service/core/translation/app_translation.dart';
 import 'package:car_service/ui/admin_view/admin_dashboard/admin_dashboard_controller.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
@@ -55,7 +56,7 @@ class CustomContainerDashAndroid extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CustomText(
-                text: titleAction,
+                text: tr(titleAction),
                 textColor: AppColors.textColor,
                 textType: TextStyleType.subtitle,
                 fontSize: textSize,

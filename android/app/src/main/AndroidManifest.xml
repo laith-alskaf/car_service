@@ -9,7 +9,7 @@
     <uses-feature android:name="android.hardware.camera" />
     <application
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/launcher_icon"
         android:label="car_service">
         <activity
             android:name=".MainActivity"

@@ -26,7 +26,7 @@ class AllOrderView extends StatelessWidget {
           ),
           ZoomIn(
             child: Padding(
-                padding: EdgeInsets.only(top: 10.h, bottom: 290.h),
+                padding: EdgeInsets.only(top: 10.h, bottom: 10.h),
                 child: GetBuilder<AllOrderController>(
                   builder: (c) {
                     return controller.problemHistory == null
@@ -43,8 +43,8 @@ class AllOrderView extends StatelessWidget {
                                     textType: TextStyleType.title),
                               )
                             : CustomAllOrders(
-                                onTap: () {},
-                              );
+                              onTap: () {},
+                            );
                   },
                 )),
           )

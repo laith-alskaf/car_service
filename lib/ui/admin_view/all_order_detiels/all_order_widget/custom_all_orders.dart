@@ -30,6 +30,7 @@ class CustomAllOrders extends StatelessWidget {
         return controller.onInit();
       },
       child: ListView.builder(
+        physics: NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemCount: controller.problemHistory!.length,
         itemBuilder: (context, index) => Obx(
@@ -96,6 +97,7 @@ class CustomAllOrders extends StatelessWidget {
                                       ? 60.h
                                       : 30.h),
                               child: SingleChildScrollView(
+                                physics: NeverScrollableScrollPhysics(),
                                 child: Column(
                                   crossAxisAlignment:
                                       controller.checkExpandedContainer(index)

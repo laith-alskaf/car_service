@@ -1,5 +1,4 @@
-import 'package:car_service/ui/admin_view/all_order_detiels/all_order_view.dart';
-import 'package:car_service/ui/admin_view/all_parking_order/all_parking_order_view.dart';
+import 'package:car_service/core/translation/app_translation.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
@@ -7,11 +6,13 @@ import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:car_service/ui/views/home/home_view/home_view_controller.dart';
 import 'package:car_service/ui/views/home/home_view/home_widget/conteiner_info.dart';
+import 'package:car_service/ui/views/home/home_view/home_widget/custom_container_qution.dart';
 import 'package:car_service/ui/views/home/home_view/home_widget/qr_scanner.dart';
 import 'package:car_service/ui/views/home/home_view/home_widget/services_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../admin_view/add_park/add_park_view.dart';
@@ -33,119 +34,94 @@ class HomeView extends StatelessWidget {
           child: ListView(
             shrinkWrap: true,
             children: [
-              const CustomAppBar(
-                title: 'Home',
+              CustomAppBar(
+                title: tr('Home'),
                 iconSetting: true,
               ),
-              (50.h).ph,
+              (20.h).ph,
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    InkWell(
-                        onTap: () {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                backgroundColor: AppColors.whiteColor,
-                                content: const Text(
-                                    'Are you sure you want to be a prime member of this app ?'),
-                                actions: <Widget>[
-                                  Row(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                     mainAxisAlignment: MainAxisAlignment.center ,
-                                    children: [
-                                      InkWell(
-                                        onTap: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                        child:  CustomText(
-                                          textType: TextStyleType.subtitle,
-                                          text: "cansel",
-                                          textColor: AppColors.mainColor,
-                                        ),
-                                      ),
-                                      (60.w).pw,
-                                      CustomButton(
-                                        buttonTypeEnum: ButtonTypeEnum.small,
-                                        onPressed: () {
-                                          controller.GetProSub();
-                                          Navigator.of(context).pop();
-                                        },
-                                        text: "ok",
-                                        backgroundColor: AppColors.mainColor,
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-
-                        },
-                        child: ContainerSubscription()),
-                    (50.h).ph,
-                    Padding(
-                      padding: EdgeInsetsDirectional.only(start: 5.h),
-                      child: Row(
-                        children: [
-                          CustomText(
-                            text:
-                                "And Many More! go and see our premuim Packages",
-                            textType: TextStyleType.bodyBig,
-                            textColor: AppColors.blueColor,
-                            fontSize: 16.h,
-                          ),
-                          (10.w).pw,
-                          Icon(
-                            Icons.arrow_forward_outlined,
-                            color: AppColors.blueColor,
-                          ),
-                        ],
-                      ),
-                    ),
-                    (20.h).ph,
-                    Center(
-                      child: CustomContainerInfo(
-                        title: "Find Available Maintenance spots",
-                        onpresed: () {
-                          Get.to(() =>  AddParkView());
-                        },
-                        image: "meantenance",
-                      ),
+                    CustomContainerQution(
+                      indexes: 0,
                     ),
                     (20.h).ph,
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        GestureDetector(
-                          onTap: () {
-                            showQrScanner();
-                          },
-                          child: CustomContainerInfo(
-                            title: "Scan Qr Code",
-                            image: "qr",
-                            width: 0.4.sw,
-                          ),
-                        ),
-                        (15.w).pw,
                         CustomContainerInfo(
-                          title: "Find Your Parking Spot",
+                          title: tr("Book your service"),
+                          onpresed: () {
+                            //@TODO
+                            // Get.to(() => AddParkView());
+                          },
+                          image: "meantenance",
+                        ),
+                        (30.w).pw,
+                        CustomContainerInfo(
+                          title: tr("Find Your Parking Spot"),
                           image: "spot",
-                          width: 0.57.sw,
                         ),
                       ],
+                    ),
+                    (20.h).ph,
+                    Center(
+                      child: Container(
+                          width: 390.w,
+                          height: 100.h,
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.r)),
+                            color: AppColors.whiteColor,
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColors.mainColor.withOpacity(0.4),
+                                spreadRadius: 1,
+                                blurRadius: 3,
+                                offset: const Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              (20.w).pw,
+                              SvgPicture.asset(
+                                "assets/images/qr.svg",
+                                height: 50.h,
+                              ),
+                              (50.w).pw,
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  CustomText(
+                                    text: tr('Already in the parking ?'),
+                                    textType: TextStyleType.body,
+                                    textColor: AppColors.blackColor,
+                                    isTextAlign: TextAlign.center,
+                                  ),
+                                  (10.h).ph,
+                                  CustomButton(
+                                    text: tr('Scan Now'),
+                                    buttonTypeEnum: ButtonTypeEnum.small,
+                                    width: 100.w,
+                                    fontSize: 18.sp,
+                                    onPressed: () {
+                                      showQrScanner();
+                                    },
+                                  )
+                                ],
+                              ),
+                            ],
+                          )),
                     ),
                     (20.h).ph,
                   ],
                 ),
               ),
-              controller.parkingTimer == null
-                  ? SpinKitCircle(
-                      color: AppColors.mainColor,
-                    )
-                  :  ServicesContainer()
+              ServicesContainer()
             ],
           ),
         );

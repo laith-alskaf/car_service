@@ -58,31 +58,6 @@ class MainRepairView extends StatelessWidget {
                       if (controller.page == 1) const ChooseProblemView(),
                       if (controller.page == 2) RepairChoosePlaceView(),
                       if (controller.page == 3) OrderDetailsView(),
-                      if (controller.page == 4)
-                        Column(
-                          children: [
-                            Align(
-                                alignment: Alignment.topCenter,
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                    top: 40.h,
-                                  ),
-                                  child: CustomContainerPayment(
-                                    indexes: 1,
-                                  ),
-                                )),
-                            Align(
-                                alignment: Alignment.topCenter,
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                    top: 40.h,
-                                  ),
-                                  child: CustomContainerPayment(
-                                    indexes: 2,
-                                  ),
-                                )),
-                          ],
-                        ),
                       const Spacer(),
                       Column(
                         children: [
@@ -98,7 +73,7 @@ class MainRepairView extends StatelessWidget {
                                       controller.handleButtonPress(
                                           isIncrease: true);
                                     },
-                                    text: controller.page == 4
+                                    text: controller.page == 3
                                         ? 'Finish'
                                         : 'Next',
                                     buttonTypeEnum: ButtonTypeEnum.medium,
@@ -107,7 +82,7 @@ class MainRepairView extends StatelessWidget {
                                   ),
                                 ),
                           (20.h).ph,
-                          if (controller.page != 0)
+                          if (controller.page != 0 &&controller.page!=3)
                             GestureDetector(
                                 onTap: () {
                                   controller.handleStepValue(isIncrease: false);

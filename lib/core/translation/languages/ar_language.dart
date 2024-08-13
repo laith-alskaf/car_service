@@ -5,8 +5,8 @@ class ARLanguage {
         "Parking": "موقف سيارات",
         "Billing": "الفواتير",
         "Home": "الرئيسية",
-        'Parking Timer':"مؤقت وقوف السيارات",
-        'Return To Home Page':'العودة اللى الصفحة الرئيسية',
+        'Parking Timer': "مؤقت وقوف السيارات",
+        'Return To Home Page': 'العودة اللى الصفحة الرئيسية',
         "History": "السجل",
         "Repair": "الاصلاح",
 
@@ -50,16 +50,45 @@ class ARLanguage {
         "You will be redirected to login page":
             "سيتم إعادة توجيهك إلى صفحة تسجيل الدخول",
         //______________________________ ForgetPasswordView_________________________________________
-        "Don’t worry it happens please enter your email address":"لا تقلق، قد يحدث ذلك، يرجى إدخال عنوان بريدك الإلكتروني",
-        "Reset Password":"اعادة ارسال كلمة المرور",
+        "Don’t worry it happens please enter your email address":
+            "لا تقلق، قد يحدث ذلك، يرجى إدخال عنوان بريدك الإلكتروني",
+        "Reset Password": "اعادة ارسال كلمة المرور",
         //______________________________ ForgetPasswordView_________________________________________
-        'No Location Selected':"لم يتم اختيار موقع",
+        'No Location Selected': "لم يتم اختيار موقع",
         //______________________________ ForgetPasswordView_________________________________________
-        "Select Date and Start Hour":"اختار التاريخ و الوقت",
-        "Parking Time":"وقت الحجز"
-
-
-
-
-  };
+        "Select Date and Start Hour": "اختار التاريخ و الوقت",
+        "Parking Time": "وقت الحجز",
+        "Book your service": "احجز خدمتك",
+        "Find Your Parking Spot": "ابحث عن مكان وقوف سيارتك",
+        "Already in the parking ?": "هل أنت موجود بالفعل في موقف السيارات؟",
+        "Scan Now": "مسح الآن",
+        "Going On Services": "خدمات مستمرة",
+        "You have\'t choose any park yet": "عليك اختيار أي حديقة بعد",
+        "Are you sure you want to delete this parking":
+            "هل أنت متأكد أنك تريد حذف هذا الموقف؟",
+        "Cancel": "إلغاء",
+        "Ok": "موافق",
+        "No Parking exist active": "لا يوجد موقف سيارات نشط",
+        "Are you sure you want to expand your parking time":
+            "هل أنت متأكد من أنك تريد تمديد وقت وقوف السيارات الخاص بك؟",
+        "Please check your internet": "يرجى التحقق من الإنترنت الخاص بك",
+        "Select Time": "حدد الوقت",
+        "Profile": "الملف الشخصي",
+        "Personal Info": "معلومات شخصية",
+        "Name": "الأسم",
+        "Edit": "تعديل",
+        "Car Info": "معلومات السيارة",
+        "Car Model": "Car Model",
+        "Free": "مجانا",
+        "Premium": "مميز",
+        "Gallery": "المعرض",
+        "Your iD": "معرفك",
+        "parking Info": "معلومات عن مواقف السيارات",
+        "Parking name": "اسم الموقف",
+        "Price": "السعر",
+        "Parking Status": "حالة المصفات",
+        "Orders": "الطلبات",
+        "All": "الكل",
+        "Month": "الشهر",
+      };
 }

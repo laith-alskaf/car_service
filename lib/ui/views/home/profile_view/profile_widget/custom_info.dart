@@ -13,7 +13,7 @@ class CustomInfo extends StatelessWidget {
     required this.title,
     this.titleIcon,
     this.suffixText,
-    this.onTap, required this.index,
+    this.onTap, required this.index,  this.children,
   });
 
   final List<String>? textBody;
@@ -22,6 +22,7 @@ class CustomInfo extends StatelessWidget {
   final bool? titleIcon;
   final int index;
   final Function()? onTap;
+  final   List<Widget>? children;
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +65,10 @@ class CustomInfo extends StatelessWidget {
                       fontWeight: FontWeight.normal,
                     );
                   })
-                ]
+                ],
+                if(children!=null)
+                ...children!
+
 
               ],
             ),

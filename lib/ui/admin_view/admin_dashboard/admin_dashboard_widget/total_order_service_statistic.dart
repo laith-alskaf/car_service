@@ -34,7 +34,7 @@ class TotalOrderServiceStatistic extends StatelessWidget {
           alignment: Alignment.center,
           child: const CustomText(
             textType: TextStyleType.bodyBig,
-            text: 'Total Park',
+            text: 'Total Problem',
           ),
         ),
         Container(

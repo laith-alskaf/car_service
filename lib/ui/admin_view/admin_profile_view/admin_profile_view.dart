@@ -1,30 +1,17 @@
 import 'dart:io';
-import 'dart:math';
-
 import 'package:animate_do/animate_do.dart';
-import 'package:car_service/core/data/models/api/user_info_model.dart';
+import 'package:car_service/core/translation/app_translation.dart';
 import 'package:car_service/core/utils/general_util.dart';
-import 'package:car_service/ui/admin_view/add_park/add_park_view.dart';
-import 'package:car_service/ui/admin_view/admin_dashboard/admin_dashboard_widget/container_action_admin.dart';
 import 'package:car_service/ui/admin_view/admin_dashboard/admin_dashboard_widget/custom_appbar_admin.dart';
 import 'package:car_service/ui/admin_view/admin_profile_view/profile_widget/custom_info_admin.dart';
 import 'package:car_service/ui/shared/colors.dart';
-import 'package:car_service/ui/shared/custom_widget/custom_app_bar.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_button.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_container.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
-import 'package:car_service/ui/views/home/profile_view/profile_widget/custom_info.dart';
-import 'package:car_service/ui/views/home/profile_view/edit_profile_view/edit_profile_view.dart';
-import 'package:car_service/ui/views/home/profile_view/profile_controller.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-
-import '../../../core/data/models/api/amin_info_model.dart';
 import '../../views/home/profile_view/profile_view.dart';
 import 'admin_profile_controller.dart';
 import 'edit_profile_view/admin_edit_profile_view.dart';
@@ -95,39 +82,15 @@ class _AdminProfileViewState extends State<AdminProfileView> {
                                                         ? null
                                                         : Icon(
                                                             Icons.person,
-                                                            size: 50.h,
+                                                            size: 80.h,
+                                                            color: AppColors
+                                                                .whiteColor,
                                                           )
                                                     : null),
                                       ),
-                                      //     CircleAvatar(
-                                      //     backgroundImage: controller.image == null ? null : FileImage(controller.image!),
-                                      //     backgroundColor: controller.image == null &&controller. fileupload == null
-                                      //         ? AppColors.mainOrangeColor
-                                      //         : null,
-                                      //     radius: 80,
-                                      //     child:controller. image == null  controller.fileupload == null
-                                      // ? InkWell(
-                                      // onTap: controller.image != null  controller.fileupload != null
-                                      // ? null
-                                      //     : () {
-                                      // controller. image == null && controller.fileupload == null
-                                      // ? controller.dialogImage()
-                                      //     : null;
-                                      // },
-                                      //     child: controller.image != null
-                                      //         ? null
-                                      //         : Icon(
-                                      //       controller.fileupload != null
-                                      //           ? Icons.file_copy
-                                      //           : Icons.person,
-                                      //       size: 120,
-                                      //     ))
-                                      //       : null),
                                       Visibility(
-                                          visible:
-                                              controller.selectedFile != null &&
-                                                  controller.selectedFile.path
-                                                      .isNotEmpty,
+                                          visible: controller
+                                              .selectedFile.path.isNotEmpty,
                                           child: InkWell(
                                             onTap: () {
                                               controller.setShowOPtion(true);
@@ -157,7 +120,7 @@ class _AdminProfileViewState extends State<AdminProfileView> {
                                     children: [
                                       CustomButton(
                                         buttonTypeEnum: ButtonTypeEnum.small,
-                                        text: 'Gallery',
+                                        text: tr('Gallery'),
                                         onPressed: () {
                                           controller
                                               .pickFile(FileTypeEnum.GALLERY)
@@ -179,22 +142,10 @@ class _AdminProfileViewState extends State<AdminProfileView> {
                                     textType: TextStyleType.subtitle),
                                 (10.h).ph,
                                 CustomText(
-                                    text: 'Your iD : ${controller.admin.sId}',
+                                    text:
+                                        '${tr('Your iD')} : ${controller.admin.sId}',
                                     fontWeight: FontWeight.normal,
                                     textType: TextStyleType.bodyBig),
-                                Align(
-                                  alignment: Alignment.bottomCenter,
-                                  child: CustomContainerDashAndroid(
-                                      textSize: 20.sp,
-                                      onTap: () {
-                                        Get.to(() => AddParkView());
-                                      },
-                                      width: 120.w,
-                                      height: 50.w,
-                                      titleAction: 'New Park',
-                                      numberInAction: ''),
-                                )
-
                               ],
                             ),
                           ),
@@ -210,12 +161,12 @@ class _AdminProfileViewState extends State<AdminProfileView> {
                           Get.to(() => const AdminEditProfileView());
                         },
                         index: 0,
-                        title: 'Personal Info',
+                        title: tr('Personal Info'),
                         textBody: [
-                          'Name : ${controller.admin.username}',
-                          'Email : ${controller.admin.email} ',
+                          '${tr('Name')} : ${controller.admin.username}',
+                          '${tr('Email')} : ${controller.admin.email} ',
                         ],
-                        suffixText: 'Edit',
+                        suffixText: tr('Edit'),
                       );
                     }),
                     (20.h).ph,
@@ -239,12 +190,12 @@ class _AdminProfileViewState extends State<AdminProfileView> {
                                     ));
                               },
                               index: 1,
-                              title: 'parking Info',
+                              title: tr('parking Info'),
                               textBody: [
-                                'Prking name : ${controller.adminparks![index].location!.parkingName}',
-                                'price :${controller.adminparks![index].location!.price} ',
+                                '${tr('Parking name')} : ${controller.adminparks![index].location!.parkingName}',
+                                '${tr('Price')} :${controller.adminparks![index].location!.price} ',
                               ],
-                              suffixText: 'Edit',
+                              suffixText: tr('Edit'),
                             ),
                             (20.h).ph,
                           ],

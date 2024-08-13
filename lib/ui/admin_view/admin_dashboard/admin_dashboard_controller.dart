@@ -1,6 +1,7 @@
 import 'package:car_service/core/data/models/api/Statiscs_model.dart';
 import 'package:car_service/core/data/models/api/parking_model.dart';
 import 'package:car_service/core/data/models/api/problem_model.dart';
+import 'package:car_service/core/translation/app_translation.dart';
 import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/ui/admin_view/all_order_detiels/all_order_view.dart';
 import 'package:car_service/ui/admin_view/all_parking_order/all_parking_order_view.dart';
@@ -22,15 +23,14 @@ class AdminDashboardController extends GetxController {
   String parkNameTotalRevenue = 'All';
   String parkNameTotalOrder = '';
   RxList<SocketPark> allorderparking = <SocketPark>[].obs;
-
   List<ProblemHistoryModel> problemHistory = <ProblemHistoryModel>[];
+
   List<StatisticsModel> parkCount = <StatisticsModel>[];
   List<StatisticsModel> repairOrdersCount = <StatisticsModel>[];
   List<StatisticsModel> parkRevenue = <StatisticsModel>[];
   List<String> titleAction = [
     'Park Status',
     'Orders',
-    // 'New Park',
   ];
   List<Color> colorsBar = [
     Colors.green,
@@ -121,8 +121,8 @@ class AdminDashboardController extends GetxController {
             parksRevenue.add(parking.name!);
             repairOrderCount.add(parking.name!);
           });
-          parksCount.add('All');
-          parksRevenue.add('All');
+          parksCount.add(tr('All'));
+          parksRevenue.add(tr('All'));
         }
 
         update();

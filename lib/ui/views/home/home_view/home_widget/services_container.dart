@@ -1,10 +1,12 @@
 import 'package:car_service/core/enums/message_type.dart';
+import 'package:car_service/core/translation/app_translation.dart';
 import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_toast.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
 import 'package:get/get.dart';
 import '../../../../shared/colors.dart';
@@ -12,8 +14,10 @@ import '../../../../shared/custom_widget/custom_button.dart';
 import '../home_view_controller.dart';
 
 class ServicesContainer extends StatelessWidget {
-   ServicesContainer({super.key});
-  HomeViewController controller =Get.find();
+  ServicesContainer({super.key});
+
+  HomeViewController controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeViewController>(builder: (c) {
@@ -26,9 +30,9 @@ class ServicesContainer extends StatelessWidget {
             boxShadow: [
               BoxShadow(
                 color: AppColors.mainColor.withOpacity(0.4),
-                spreadRadius: 1,
-                blurRadius: 3,
-                offset: const Offset(0, 3),
+                spreadRadius: 2,
+                blurRadius: 1,
+                offset: const Offset(0, 0),
               ),
             ],
           ),
@@ -39,21 +43,27 @@ class ServicesContainer extends StatelessWidget {
                 Row(
                   children: [
                     CustomText(
-                      text: "Going On Services",
+                      text: tr("Going On Services"),
                       textType: TextStyleType.bodyBig,
                       textColor: AppColors.blueColor,
                     )
                   ],
                 ),
                 (15.h).ph,
-                if ((controller.parkingTimer!.hours == 00 &&
-                    controller.parkingTimer!.minutes != 00) || (controller.parkingTimer!.hours != 00 &&
-                    controller.parkingTimer!.minutes == 00  ) ||(controller.parkingTimer!.hours != 00 &&
-                    controller.parkingTimer!.minutes != 00  ) ) ...[
+                if (controller.parkingTimer == null)
+                  SpinKitCircle(
+                    color: AppColors.mainColor,
+                  )
+                else if ((controller.parkingTimer!.hours == 00 &&
+                        controller.parkingTimer!.minutes != 00) ||
+                    (controller.parkingTimer!.hours != 00 &&
+                        controller.parkingTimer!.minutes == 00) ||
+                    (controller.parkingTimer!.hours != 00 &&
+                        controller.parkingTimer!.minutes != 00)) ...[
                   Row(
                     children: [
                       CustomText(
-                        text: "Parking Timer",
+                        text: tr("Parking Timer"),
                         textType: TextStyleType.body,
                         fontSize: 16.h,
                       ),
@@ -64,7 +74,7 @@ class ServicesContainer extends StatelessWidget {
                             controller.showDialogExpandTime();
                           } else {
                             CustomToast.showMessage(
-                                message: 'Yoy have\'t choose any park yet',
+                                message: tr('Yoy have\'t choose any park yet'),
                                 messageType: MessageType.WARNING);
                           }
                         },
@@ -77,20 +87,21 @@ class ServicesContainer extends StatelessWidget {
                             builder: (BuildContext context) {
                               return AlertDialog(
                                 backgroundColor: AppColors.whiteColor,
-                                content: const Text(
-                                    'Are you sure you want to delete this park'),
+                                content: Text(tr(
+                                    'Are you sure you want to delete this park')),
                                 actions: <Widget>[
                                   Row(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.center ,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       InkWell(
                                         onTap: () {
                                           Navigator.of(context).pop();
                                         },
-                                        child:  CustomText(
+                                        child: CustomText(
                                           textType: TextStyleType.subtitle,
-                                          text: "cansel",
+                                          text: tr("Cancel"),
                                           textColor: AppColors.mainColor,
                                         ),
                                       ),
@@ -100,9 +111,8 @@ class ServicesContainer extends StatelessWidget {
                                         onPressed: () {
                                           controller.ordercanseling();
                                           Navigator.of(context).pop();
-
                                         },
-                                        text: "ok",
+                                        text: tr("ok"),
                                         backgroundColor: AppColors.mainColor,
                                       )
                                     ],
@@ -111,12 +121,12 @@ class ServicesContainer extends StatelessWidget {
                               );
                             },
                           );
-
                         },
-                        icon: Icon(Icons.delete, color: AppColors.mainColor),
+                        icon: Icon(Icons.cancel_rounded,
+                            color: AppColors.mainColor),
                       ),
                       TimerCountdown(
-                        spacerWidth:5.h ,
+                        spacerWidth: 5.h,
                         timeTextStyle: const TextStyle(
                             color: AppColors.blackColor,
                             fontWeight: FontWeight.bold),
@@ -132,17 +142,12 @@ class ServicesContainer extends StatelessWidget {
                           controller.getParkingTimer();
                         },
                       ),
-
-
-
                     ],
                   ),
-                ]
-                else ...[
+                ] else ...[
                   CustomText(
-                    text: "No Parking exist",
-                    textType: TextStyleType.body,
-                    fontSize: 20.h,
+                    text: tr("No Parking exist active"),
+                    textType: TextStyleType.bodyBig,
                   ),
                 ]
               ],

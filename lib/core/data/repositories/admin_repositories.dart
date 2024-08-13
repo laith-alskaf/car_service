@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:car_service/core/data/models/api/Statiscs_model.dart';
 import 'package:car_service/core/data/models/api/amin_info_model.dart';
 import 'package:car_service/core/data/network/endpoints/admin_endpoint.dart';
+import 'package:car_service/core/translation/app_translation.dart';
 import 'package:dartz/dartz.dart';
 import '../../enums/request_type.dart';
 import '../../utils/general_util.dart';
@@ -33,7 +34,7 @@ class AdminRepositories {
             return Left(commonResponse.message ?? '');
           }
         } else {
-          return const Left('Please check your internet');
+          return  Left(tr('Please check your internet'));
         }
       });
     } catch (e) {
@@ -66,7 +67,7 @@ class AdminRepositories {
             return Left(commonResponse.message ?? '');
           }
         } else {
-          return const Left('Please check your internet');
+          return  Left(tr('Please check your internet'));
         }
       });
     } catch (e) {
@@ -95,7 +96,7 @@ class AdminRepositories {
             return Left(commonResponse.message ?? '');
           }
         } else {
-          return const Left('Please check your internet');
+          return  Left(tr('Please check your internet'));
         }
       });
     } catch (e) {
@@ -134,7 +135,7 @@ class AdminRepositories {
             return Left(commonResponse.message ?? '');
           }
         } else {
-          return const Left('Please check your internet');
+          return  Left(tr('Please check your internet'));
         }
       });
     } catch (e) {
@@ -171,7 +172,7 @@ class AdminRepositories {
             return Left(commonResponse.message ?? '');
           }
         } else {
-          return const Left('Please check your internet');
+          return  Left(tr('Please check your internet'));
         }
       });
     } catch (e) {
@@ -202,7 +203,7 @@ class AdminRepositories {
             return Left(commonResponse.message ?? '');
           }
         } else {
-          return const Left('Please check your internet');
+          return  Left(tr('Please check your internet'));
         }
       });
     } catch (e) {
@@ -240,7 +241,7 @@ class AdminRepositories {
             return Left(commonResponse.message ?? '');
           }
         } else {
-          return const Left('Please check your internet');
+          return  Left(tr('Please check your internet'));
         }
       });
     } catch (e) {
@@ -280,7 +281,7 @@ class AdminRepositories {
             return Left(commonResponse.message ?? '');
           }
         } else {
-          return const Left('Please check your internet');
+          return  Left(tr('Please check your internet'));
         }
       });
     } catch (e) {
@@ -313,7 +314,7 @@ class AdminRepositories {
             return Left(commonResponse.message ?? '');
           }
         } else {
-          return const Left('Please check your internet');
+          return  Left(tr('Please check your internet'));
         }
       });
     } catch (e) {
@@ -348,7 +349,7 @@ class AdminRepositories {
             return Left(commonResponse.message ?? '');
           }
         } else {
-          return const Left('Please check your internet');
+          return  Left(tr('Please check your internet'));
         }
       });
     } catch (e) {
@@ -382,7 +383,7 @@ class AdminRepositories {
             return Left(commonResponse.message ?? '');
           }
         } else {
-          return const Left('Please check your internet');
+          return  Left(tr('Please check your internet'));
         }
       });
     } catch (e) {
@@ -417,7 +418,7 @@ class AdminRepositories {
             return Left(commonResponse.message ?? '');
           }
         } else {
-          return const Left('Please check your internet');
+          return  Left(tr('Please check your internet'));
         }
       });
     } catch (e) {
@@ -452,7 +453,7 @@ class AdminRepositories {
             return Left(commonResponse.message ?? '');
           }
         } else {
-          return const Left('Please check your internet');
+          return  Left(tr('Please check your internet'));
         }
       });
     } catch (e) {

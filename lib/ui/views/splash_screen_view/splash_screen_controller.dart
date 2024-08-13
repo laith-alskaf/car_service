@@ -18,8 +18,10 @@ class SplashScreenController extends GetxController {
       } else {
         if (storage.getRole == "user") {
           Get.off(() => MainView());
-        } else {
+        } else if (storage.getRole == "admin") {
           Get.off(() => AdminDashboardView());
+        } else {
+          Get.off(() => LoginView());
         }
       }
     });

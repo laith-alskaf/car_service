@@ -1,13 +1,11 @@
-import 'package:car_service/core/data/models/api/Statiscs_model.dart';
-import 'package:car_service/core/data/models/api/problem_model.dart';
 import 'package:car_service/core/data/repositories/user_repositories.dart';
-import 'package:car_service/core/utils/general_util.dart';
+import 'package:car_service/core/translation/app_translation.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
 import 'package:car_service/ui/views/home/home_view/home_widget/dialog_order_qr.dart';
 import 'package:car_service/ui/views/home/home_view/qr_order_detailes/qr_order_detailes_view.dart';
-import 'package:dartz/dartz.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -16,12 +14,18 @@ import 'package:car_service/core/enums/message_type.dart';
 import 'package:car_service/core/services/base_controller.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_toast.dart';
 import '../../../../core/data/models/api/parking_model.dart';
-import '../../../../core/data/repositories/admin_repositories.dart';
-import '../parking_view/parking_order_detiels.dart';
 
 class HomeViewController extends BaseController {
   ParkingTimer? parkingTimer;
   late int price;
+  late CarouselController buttonCarouselController = CarouselController();
+
+  RxInt numberHoursPark = 1.obs;
+  int selectIndex = 0;
+  late String qrParkChoose;
+  late List qrParkDetails;
+  late int checkPrice;
+  late int hour;
   RxString time = ''.obs;
 
   selectTime() async {
@@ -29,7 +33,7 @@ class HomeViewController extends BaseController {
     final selectedTime = await showTimePicker(
       context: Get.context!,
       initialTime: TimeOfDay.fromDateTime(now),
-      helpText: 'Select Time',
+      helpText: tr('Select Time'),
       builder: (BuildContext context, Widget? child) {
         return MediaQuery(
           data: MediaQuery.of(context).copyWith(),
@@ -44,29 +48,32 @@ class HomeViewController extends BaseController {
       final period = selectedTime.period == DayPeriod.am ? 'AM' : 'PM';
 
       time.value = '$hour:$minute $period';
-
-
     }
     update();
   }
 
-
-  RxInt numberHoursPark = 1.obs;
-  late String qrParkChoose;
-  late List qrParkDetails;
-  late int checkPrice;
-  late int hour;
-  List proInfo = <String>[];
   late parkingorderdetails parkorderDetails;
-
 
   @override
   void onInit() async {
     await getParkingTimer();
-    await getPro();
-    // connectSocket();
     super.onInit();
   }
+
+  final List<List<String>> qaution = [
+    [
+      'how are you today  skaljdlk asjs sldk ;asd?',
+      'I am good what about you and i play football'
+    ],
+    [
+      'how are you todayd salkd as;lk das sds  sdasdas as ?',
+      'I am good what about you and i play football'
+    ],
+    [
+      'how are you today saskad skdjskd ?',
+      'I am good what about you and i play ldsak;d; ljaslkj kldasjlk jaskljd klasjkld jaslkjdkl jaskldjk ljaslkdj sa football'
+    ],
+  ];
 
   changePrice({required bool dec}) {
     if (dec) {
@@ -84,25 +91,14 @@ class HomeViewController extends BaseController {
   }
 
   Future<void> getParkingTimer() async {
-    await runFullLoadingFutureFunction(
-        function: ParkRepository().parkingtimer().then((value) {
-          value.fold((l) {
-            parkingTimer = ParkingTimer(seconds: 00, hours: 00, minutes: 00);
-            update();
-            CustomToast.showMessage(
-                message: l, messageType: MessageType.REJECTED);
-          }, (r) {
-            parkingTimer = r;
-            update();
-          });
-        }));
-  }
-
-  Future<void> getPro() async {
-    await UserRepository().pro().then((value) {
-      value.fold((l) {}, (r) {
-        proInfo = r;
-        print(proInfo[0]);
+    await ParkRepository().parkingtimer().then((value) {
+      value.fold((l) {
+        parkingTimer = ParkingTimer(seconds: 00, hours: 00, minutes: 00);
+        update();
+        // CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+      }, (r) {
+        parkingTimer = r;
+        update();
       });
     });
   }
@@ -112,48 +108,43 @@ class HomeViewController extends BaseController {
         function: ParkRepository()
             .expandtime(duration: numberHoursPark.value)
             .then((value) {
-          value.fold((l) {
-            CustomToast.showMessage(
-                message: l, messageType: MessageType.REJECTED);
-          }, (r) {
-            CustomToast.showMessage(
-                message: r, messageType: MessageType.SUCCESS);
-            getParkingTimer();
-          });
-        }));
+      value.fold((l) {
+        CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+      }, (r) {
+        CustomToast.showMessage(message: r, messageType: MessageType.SUCCESS);
+        getParkingTimer();
+      });
+    }));
   }
 
   Future<void> chooseQRPark() async {
     await runFullLoadingFutureFunction(
         function:
-        ParkRepository().chooseQRPark(parkName: qrParkChoose).then((value) {
-          value.fold((l) {
-            CustomToast.showMessage(
-                message: l, messageType: MessageType.REJECTED);
-          }, (r) {
-            qrParkDetails = r;
-            checkPrice = qrParkDetails[2];
-            price = qrParkDetails[2];
-            numberHoursPark=1.obs;
-            update();
+            ParkRepository().chooseQRPark(parkName: qrParkChoose).then((value) {
+      value.fold((l) {
+        CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+      }, (r) {
+        qrParkDetails = r;
+        checkPrice = qrParkDetails[2];
+        price = qrParkDetails[2];
+        update();
+        numberHoursPark = 1.obs;
 
-            showDialogOrderQRPark();
-          });
-        }));
+        showDialogOrderQRPark();
+      });
+    }));
   }
-  Future<void> GetProSub() async {
+
+  Future<void> getProSub() async {
     await runFullLoadingFutureFunction(
-        function: UserRepository()
-            .GetPro()
-            .then((value) {
-          value.fold((l) {
-            CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
-          }, (r) {
-            CustomToast.showMessage(message: r, messageType: MessageType.SUCCESS);
-          });
-        }));
+        function: UserRepository().GetPro().then((value) {
+      value.fold((l) {
+        CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+      }, (r) {
+        CustomToast.showMessage(message: r, messageType: MessageType.SUCCESS);
+      });
+    }));
   }
-
 
   showDialogExpandTime() {
     showDialog(
@@ -162,7 +153,7 @@ class HomeViewController extends BaseController {
         return AlertDialog(
           backgroundColor: AppColors.whiteColor,
           content:
-          const Text('Are you sure you want to expand your parking time'),
+              Text(tr('Are you sure you want to expand your parking time')),
           actions: <Widget>[
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -189,8 +180,7 @@ class HomeViewController extends BaseController {
                     ),
                   ),
                 ),
-                Obx(() =>
-                    Container(
+                Obx(() => Container(
                       alignment: Alignment.center,
                       width: 40.w,
                       height: 40.w,
@@ -231,7 +221,7 @@ class HomeViewController extends BaseController {
                   onPressed: () {
                     Get.back();
                   },
-                  child: const Text('Cancel'),
+                  child: Text(tr('Cancel')),
                 ),
                 TextButton(
                   onPressed: () {
@@ -239,7 +229,7 @@ class HomeViewController extends BaseController {
 
                     Get.back();
                   },
-                  child: const Text('OK'),
+                  child: Text(tr('Ok')),
                 ),
               ],
             ),
@@ -247,6 +237,19 @@ class HomeViewController extends BaseController {
         );
       },
     );
+  }
+
+  bool focusColorSlider(int index) {
+    if (selectIndex == index) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  onPageChanged1(int index, _) {
+    selectIndex = index;
+    update();
   }
 
   Future<void> chooseTimeSpot({
@@ -258,46 +261,40 @@ class HomeViewController extends BaseController {
     await runFullLoadingFutureFunction(
         function: ParkRepository()
             .chooseTimeSpot(
-            parkingName: parkingName,
-            date: date,
-            duration: duration,
-            Spot:Spot)
+                parkingName: parkingName,
+                date: date,
+                duration: duration,
+                Spot: Spot)
             .then((value) {
-          value.fold((l) {
-            CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
-          }, (r) {
-            parkorderDetails = r;
-            getParkingTimer();
-            update();
-            Get.back();
-            Get.to(() => QrParkingOrderDetiels());
+      value.fold((l) {
+        CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+      }, (r) {
+        parkorderDetails = r;
+        getParkingTimer();
+        update();
+        Get.back();
+        Get.to(() => QrParkingOrderDetiels());
 
-            CustomToast.showMessage(
-                message: 'لعيون عمك هاشم واقطع', messageType: MessageType.SUCCESS);
-            // Get.to(() => ParkSpotView());
-          });
-        }));
+        CustomToast.showMessage(
+            message: 'لعيون عمك هاشم واقطع', messageType: MessageType.SUCCESS);
+        // Get.to(() => ParkSpotView());
+      });
+    }));
   }
 
   Future<void> ordercanseling() async {
-    ParkRepository()
-            .ordercansling()
-            .then((value) {
-          value.fold((l) {
-            CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
+    ParkRepository().ordercansling().then((value) {
+      value.fold((l) {
+        CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
 
-            getParkingTimer();
-          }, (r) {
-            CustomToast.showMessage(message: r, messageType: MessageType.SUCCESS);
-          });
-        });
+        getParkingTimer();
+      }, (r) {
+        CustomToast.showMessage(message: r, messageType: MessageType.SUCCESS);
+      });
+    });
 
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 3), () {
       getParkingTimer();
     });
   }
-
-
-
-
 }

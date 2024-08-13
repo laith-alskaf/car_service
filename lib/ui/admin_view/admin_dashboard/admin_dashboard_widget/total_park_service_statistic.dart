@@ -1,3 +1,4 @@
+import 'package:car_service/core/translation/app_translation.dart';
 import 'package:car_service/ui/admin_view/admin_dashboard/admin_dashboard_controller.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_drop_menu.dart';
@@ -70,16 +71,17 @@ class TotalParkStatisticDashBoard extends StatelessWidget {
                               parkingname:
                                   adminDashboardController.parkNameTotalPark);
                         }
+                        return;
                       },
                       validator: (value) {
                         if (value == null) {
-                          return 'Please select Type';
+                          return tr('Please select Type');
                         } else {
                           adminDashboardController.parkNameTotalPark = value;
                         }
                         return null;
                       },
-                      hint: "All",
+                      hint: tr("All"),
                       items: adminDashboardController.parksCount,
                       onSaved: (value) {
                         adminDashboardController.parkNameTotalPark = value!;
@@ -89,10 +91,10 @@ class TotalParkStatisticDashBoard extends StatelessWidget {
                 ),
                 adminDashboardController.parkCount.isEmpty
                     ? Center(
-                      child: SpinKitSpinningCircle(
+                        child: SpinKitSpinningCircle(
                           color: AppColors.blueColor,
                         ),
-                    )
+                      )
                     : Padding(
                         padding: EdgeInsets.only(top: 20.h),
                         child: BarChart(
@@ -122,8 +124,8 @@ class TotalParkStatisticDashBoard extends StatelessWidget {
                                                 text: adminDashboardController
                                                             .parkNameTotalPark ==
                                                         'All'
-                                                    ? 'Park: '
-                                                    : 'Month: '),
+                                                    ? '${tr('Park')}: '
+                                                    : '${tr('Month')}: '),
                                             (5.w).pw,
                                             Wrap(
                                                 children: List.generate(

@@ -11,7 +11,8 @@ class CustomContainerInfo extends StatelessWidget {
       this.image,
       required this.title,
       this.width,
-      this.height, this.onpresed});
+      this.height,
+      this.onpresed});
 
   final String? image;
   final Function()? onpresed;
@@ -25,11 +26,11 @@ class CustomContainerInfo extends StatelessWidget {
       onTap: onpresed,
       child: Container(
           padding:
-              EdgeInsetsDirectional.symmetric(horizontal: 10.w, vertical: 15.w),
-          width: width ?? 0.8.sw,
-          height: height ?? 80.h,
+              EdgeInsetsDirectional.symmetric(horizontal: 10.w, vertical: 30.w),
+          width: width ?? 180.w,
+          // height: height ?? 80.h,
           decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(20)),
+            borderRadius:  BorderRadius.all(Radius.circular(20.r)),
             color: AppColors.whiteColor,
             boxShadow: [
               BoxShadow(
@@ -40,15 +41,16 @@ class CustomContainerInfo extends StatelessWidget {
               ),
             ],
           ),
-          child: Row(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              SvgPicture.asset("assets/images/$image.svg"),
+              (10.h).ph,
               CustomText(
                 text: title,
                 textType: TextStyleType.body,
                 textColor: AppColors.blackColor,
+                isTextAlign: TextAlign.center,
               ),
-              (10.h).pw,
-              SvgPicture.asset("assets/images/$image.svg")
             ],
           )),
     );
