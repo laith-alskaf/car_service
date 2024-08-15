@@ -85,7 +85,8 @@ class QrParkingOrderDetiels extends StatelessWidget {
                           buttonTypeEnum: ButtonTypeEnum.big,
                           width: 1.sw,
                           onPressed: () {
-                            Get.to(MainView());
+                            Get.off(() => MainView(currentIndex: 2,));
+
                           },
                         ),
                       ],

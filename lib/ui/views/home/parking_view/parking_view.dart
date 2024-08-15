@@ -14,10 +14,11 @@ import 'package:get/get.dart';
 class ParkingView extends StatelessWidget {
   ParkingView({super.key});
 
-  ParkingViewController controller = Get.put(ParkingViewController());
 
   @override
   Widget build(BuildContext context) {
+    ParkingViewController controller = Get.put(ParkingViewController());
+
     return ListView(children: [
       CustomAppBar(
         title: tr('Parking'),

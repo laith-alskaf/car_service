@@ -27,7 +27,8 @@ class LoginViewController extends BaseController {
         CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
       }, (r) {
         CustomToast.showMessage(message: r, messageType: MessageType.SUCCESS);
-        Get.off(() => MainView());
+        Get.off(() => MainView(currentIndex: 2,));
+
         storage.setRole('user');
       });
     }));

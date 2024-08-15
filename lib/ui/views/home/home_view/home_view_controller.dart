@@ -1,5 +1,8 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:car_service/core/data/repositories/user_repositories.dart';
+import 'package:car_service/core/services/notification_service.dart';
 import 'package:car_service/core/translation/app_translation.dart';
+import 'package:car_service/core/utils/general_util.dart';
 import 'package:car_service/ui/shared/colors.dart';
 import 'package:car_service/ui/shared/custom_widget/custom_text.dart';
 import 'package:car_service/ui/shared/extension_sizebox.dart';
@@ -17,14 +20,14 @@ import '../../../../core/data/models/api/parking_model.dart';
 
 class HomeViewController extends BaseController {
   ParkingTimer? parkingTimer;
-  late int price;
+  int price = 0;
   late CarouselController buttonCarouselController = CarouselController();
-
+  Map<String, dynamic> notfi = <String, dynamic>{};
   RxInt numberHoursPark = 1.obs;
   int selectIndex = 0;
   late String qrParkChoose;
   late List qrParkDetails;
-  late int checkPrice;
+  int checkPrice = 0;
   late int hour;
   RxString time = ''.obs;
 
@@ -57,6 +60,7 @@ class HomeViewController extends BaseController {
   @override
   void onInit() async {
     await getParkingTimer();
+    connectSocket();
     super.onInit();
   }
 
@@ -274,10 +278,6 @@ class HomeViewController extends BaseController {
         update();
         Get.back();
         Get.to(() => QrParkingOrderDetiels());
-
-        CustomToast.showMessage(
-            message: 'لعيون عمك هاشم واقطع', messageType: MessageType.SUCCESS);
-        // Get.to(() => ParkSpotView());
       });
     }));
   }
@@ -296,5 +296,58 @@ class HomeViewController extends BaseController {
     Future.delayed(const Duration(seconds: 3), () {
       getParkingTimer();
     });
+  }
+
+  void connectSocket() async {
+    if (!socket.connected) {
+      socket.auth = {
+        'user_id': storage.getUserInfo()!.sId,
+        'username': storage.getUserInfo()!.username,
+      };
+      socket.connect();
+      socket.emit('auth', {
+        'username': storage.getUserInfo()!.username,
+      });
+      socket.on('before-end', (message) async {
+        notfi.clear();
+        notfi = message;
+        print(notfi.values);
+        print(notfi.keys);
+        if (notfi.isNotEmpty) ReceivedNotification;
+        await NotificationService.showNotification(
+            title: notfi['title'],
+            body: notfi['body'],
+            payload: {
+              'navigate': 'true',
+            },
+            actionButtons: [
+              NotificationActionButton(
+                  key: 'check',
+                  label: 'Expand Now',
+                  actionType: ActionType.Default,
+                  color: AppColors.greenColor)
+            ]);
+      });
+      socket.on('Time-end', (message) async {
+        notfi.clear();
+        notfi = message;
+        print(notfi.values);
+        print(notfi.keys);
+        if (notfi.isNotEmpty)
+          await NotificationService.showNotification(
+              title: notfi['title'],
+              body: notfi['body'],
+              payload: {
+                'navigate': 'false',
+              },
+              actionButtons: [
+                NotificationActionButton(
+                    key: 'check',
+                    label: '',
+                    actionType: ActionType.Default,
+                    color: AppColors.greenColor)
+              ]);
+      });
+    }
   }
 }

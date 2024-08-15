@@ -9,18 +9,15 @@ import 'package:car_service/ui/views/home/home_view/home_widget/conteiner_info.d
 import 'package:car_service/ui/views/home/home_view/home_widget/custom_container_qution.dart';
 import 'package:car_service/ui/views/home/home_view/home_widget/qr_scanner.dart';
 import 'package:car_service/ui/views/home/home_view/home_widget/services_container.dart';
+import 'package:car_service/ui/views/main_view/main_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-import '../../../admin_view/add_park/add_park_view.dart';
-import 'home_widget/container_subscription.dart';
-
 // ignore: must_be_immutable
 class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+  HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +28,7 @@ class HomeView extends StatelessWidget {
           onRefresh: () async {
             return controller.onInit();
           },
-          child: ListView(
-            shrinkWrap: true,
+          child: Column(
             children: [
               CustomAppBar(
                 title: tr('Home'),
@@ -55,7 +51,9 @@ class HomeView extends StatelessWidget {
                           title: tr("Book your service"),
                           onpresed: () {
                             //@TODO
-                            // Get.to(() => AddParkView());
+                            Get.offAll(() => MainView(
+                                  currentIndex: 4,
+                                ));
                           },
                           image: "meantenance",
                         ),
@@ -63,6 +61,11 @@ class HomeView extends StatelessWidget {
                         CustomContainerInfo(
                           title: tr("Find Your Parking Spot"),
                           image: "spot",
+                          onpresed: () {
+                            Get.offAll(() => MainView(
+                                  currentIndex: 1,
+                                ));
+                          },
                         ),
                       ],
                     ),

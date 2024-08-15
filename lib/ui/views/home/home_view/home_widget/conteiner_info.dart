@@ -22,7 +22,7 @@ class CustomContainerInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: onpresed,
       child: Container(
           padding:

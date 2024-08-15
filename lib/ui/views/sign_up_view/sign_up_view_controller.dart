@@ -92,7 +92,7 @@ class SignUpViewController extends BaseController {
       }, (r) {
         CustomToast.showMessage(
             message: r, messageType: MessageType.SUCCESS);
-        Get.off(() => MainView());
+        Get.off(() => MainView(currentIndex: 2,));
       });
     }));
   }

@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-enum BottomNavigationEnum { parking, billing, home,history,repair }
+enum BottomNavigationEnum { parking, billing, home, history, repair }
 
 class MainController extends GetxController {
   MainController({required this.page});
+
   int page;
- @override
+
+  @override
   void onInit() {
-   pageViewController = PageController(initialPage: page);
-    // TODO: implement onInit
+    pageViewController = PageController(initialPage: page);
     super.onInit();
   }
-  // RxInt currentIndex = 1.obs;
+
   var selected = BottomNavigationEnum.home.obs;
- late PageController pageViewController ;
+  late PageController pageViewController;
 
   void animatedToPage(selectedEnum, pageNumber) {
-    if(selected.value!=selectedEnum){
+    if (selected.value != selectedEnum) {
       pageNumber;
       pageViewController.animateToPage(
         pageNumber,
@@ -29,6 +30,5 @@ class MainController extends GetxController {
 
       selected.value = selectedEnum;
     }
-
   }
 }

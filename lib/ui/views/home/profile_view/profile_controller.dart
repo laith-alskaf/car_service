@@ -31,7 +31,9 @@ class ProfileController extends BaseController {
   clickToExpanded({required int index}) {
     expandedContainer[index] = !expandedContainer[index];
   }
+
   List proInfo = <String>[];
+
   Future<void> getPro() async {
     await UserRepository().pro().then((value) {
       value.fold((l) {
@@ -45,7 +47,7 @@ class ProfileController extends BaseController {
   }
 
   @override
-  void onInit() async{
+  void onInit() async {
     userInfo = storage.getUserInfo()!;
     name = TextEditingController(text: userInfo.firstName);
     lastName = TextEditingController(text: userInfo.lastName);
@@ -80,7 +82,7 @@ class ProfileController extends BaseController {
         userInfo.car!.carNumber = carNumber.text;
         userInfo.car!.carType = carType.text;
         storage.setUserInfo(userInfo);
-        Get.offAll(() => MainView());
+        Get.back();
       });
     }));
   }

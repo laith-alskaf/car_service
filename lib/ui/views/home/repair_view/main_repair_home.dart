@@ -20,10 +20,11 @@ import 'package:get/get.dart';
 class MainRepairView extends StatelessWidget {
   MainRepairView({super.key});
 
-  MainRepairController controller = Get.put(MainRepairController());
 
   @override
   Widget build(BuildContext context) {
+    MainRepairController controller = Get.put(MainRepairController());
+
     return PopScope(
       canPop: false,
       child: ListView(physics: const NeverScrollableScrollPhysics(), children: [
