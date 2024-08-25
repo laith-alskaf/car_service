@@ -1,16 +1,4 @@
-# car_service
 
-A new Flutter project.
+يعد تطبيق "صيانة وركن السيا ا رت" نظامًا رقميًا متكاملاً مصممًا لتبسيط وإدارة عمليات ركن مواقف السياارت وخدمات الصيانة. يعتمد التطبيق على واجهات حديثة وتقنيات مبتكرة لتلبية احتياجات المستخدمين بشكل فعال. يحتوي التطبيق على قسمين رئيسيين: قسم المستخدم User وقسم الإدارة Administration
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+The "Maintenance and Parking of Cars Art" application is a digital meal system designed to simplify and manage the operations of parking cars and maintenance services. The application relies on modern interfaces and basic technologies for the basics of an effective user base. The application contains two main sections: the (User) section User and the (Administration) section Administration
